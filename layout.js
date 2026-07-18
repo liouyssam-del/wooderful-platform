@@ -24,7 +24,7 @@ const navbarHTML = `
                 </ul>
               </div>
             </li>
-            <li><a href="index.html#updates" class="nav-link text-body" data-en="Latest Updates">最新動態</a></li>
+            <li><a href="updates.html" class="nav-link text-body" data-en="Latest Updates">最新動態</a></li>
             <li><a href="contact.html" class="nav-link text-body" data-en="Contact Us">聯繫我們</a></li>
           </ul>
           <div class="lang-switcher flex items-center rounded-full overflow-hidden shadow-sm backdrop-blur-sm transition-all duration-300">
@@ -56,7 +56,7 @@ const navbarHTML = `
             <li><a href="lessons.html" class="block py-1 text-forest-600 font-semibold" data-en="View All Lessons →">查看全部教案 →</a></li>
           </ul>
         </li>
-        <li class="border-b border-stone-200/60"><a href="index.html#updates" class="block py-4" data-en="Latest Updates">最新動態</a></li>
+        <li class="border-b border-stone-200/60"><a href="updates.html" class="block py-4" data-en="Latest Updates">最新動態</a></li>
         <li><a href="contact.html" class="block py-4" data-en="Contact Us">聯繫我們</a></li>
       </ul>
     </div>
@@ -81,7 +81,7 @@ const footerHTML = `
           <p class="text-white/80 mb-6 text-body font-sans">E-mail：wtchang@mail.ntue.edu.tw</p>
           <div class="flex gap-5">
             <a href="https://www.facebook.com/share/g/1EfHD5RXL1/" target="_blank" rel="noopener" aria-label="Facebook">
-              <i class="fa-brands fa-facebook text-h3 text-white/50 hover:text-forest-300 cursor-pointer transition-colors"></i>
+              <i class="fa-brands fa-facebook text-[28px] text-white/50 hover:text-forest-300 cursor-pointer transition-colors"></i>
             </a>
           </div>
         </div>
@@ -91,7 +91,7 @@ const footerHTML = `
             <a href="director.html" class="text-white/80 hover:text-white transition-colors" data-en="Director">計畫主持人</a>
             <a href="partners.html" class="text-white/80 hover:text-white transition-colors" data-en="Partners">合作夥伴</a>
             <a href="lessons.html" class="text-white/80 hover:text-white transition-colors" data-en="Lessons">分享教案</a>
-            <a href="index.html#updates" class="text-white/80 hover:text-white transition-colors" data-en="Latest Updates">最新動態</a>
+            <a href="updates.html" class="text-white/80 hover:text-white transition-colors" data-en="Latest Updates">最新動態</a>
             <a href="contact.html" class="text-white/80 hover:text-white transition-colors" data-en="Contact Us">聯繫我們</a>
           </div>
         </div>
