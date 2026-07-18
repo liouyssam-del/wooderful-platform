@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>木育玩具設計 WOODERFUL TOY DESIGN</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <script src="tailwind-config.js"></script>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root {
+      --cream-soft: #fcfbf4; --paper: #fffdf8;
+      --border-soft: rgba(70, 107, 42, 0.15);
+      --shadow-soft: 0 18px 45px rgba(34, 58, 24, 0.10);
+      --shadow-strong: 0 24px 60px rgba(34, 58, 24, 0.14);
+    }
+    body { background: linear-gradient(135deg, #f9f4e6 0%, #f2ebdb 48%, #eaf2d7 100%); }
+    section { scroll-margin-top: 80px; position: relative; }
+
+    #hero {
+      height: 70vh; padding-top: 100px; position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
+      overflow: hidden; isolation: isolate; padding-left: 1.25rem; padding-right: 1.25rem;
+    }
+    .yt-bg-wrapper {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; pointer-events: none; filter: brightness(1.1) saturate(1.2);
+    }
+    .yt-bg-wrapper iframe {
+      width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+
+    .hero-shell {
+      position: relative; z-index: 2; width: min(88vw, 760px); padding: clamp(2rem, 4vw, 3.5rem);
+      border-radius: 2rem; border: 1px solid rgba(255, 255, 255, 0.5); background: rgba(0, 0, 0, 0.15); backdrop-filter: blur(2px); text-align: center;
+    }
+    .hero-shell::after {
+      content: ''; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 1.5rem; pointer-events: none;
+    }
+    .hero-title { text-shadow: 0 2px 12px rgba(0,0,0,0.35); animation: heroTextPulse 5s ease-in-out infinite; }
+    .hero-subtitle { box-shadow: 0 8px 24px rgba(0,0,0,0.16); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+    @keyframes heroTextPulse { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+
+    
+    .info-card {
+      background: linear-gradient(145deg, #fffdf9 0%, #f2ebdb 100%); border: 1px solid rgba(70, 107, 42, 0.12); border-radius: 1.5rem;
+      box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    }
+    .info-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--shadow-strong); }
+
+    .image-frame { border: 8px solid rgba(255, 255, 255, 0.72); box-shadow: var(--shadow-strong); background: var(--cream-soft); transition: transform 0.4s ease, box-shadow 0.4s ease; }
+    .image-frame:hover { transform: translateY(-4px); box-shadow: 0 30px 60px rgba(45,73,32,0.22); }
+    .image-frame img { transition: transform 0.8s ease; }
+    .image-frame:hover img { transform: scale(1.08); }
+
+    /* 按鈕統一互動手感：按下去有輕微回饋 */
+    a, button { transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+    a:active, button:active { transform: scale(0.97); }
+
+    .update-card { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, background-color 0.3s ease; }
+    .update-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 44px rgba(0,0,0,0.25); background-color: rgba(255,255,255,0.16); }
+
+    .marquee-container {
+      width: 100%; overflow: hidden; background: linear-gradient(90deg, rgba(255,253,248,0.96), rgba(250,246,239,0.98)); padding: 40px 0;
+      border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+    .marquee-track { display: flex; width: max-content; animation: scroll-left 40s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      flex-shrink: 0; white-space: nowrap; padding: 0 28px; height: 84px; margin: 0 15px; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 18px;
+      background: linear-gradient(135deg, var(--paper), #eef5e2); border-radius: 16px; font-weight: 700; color: #2d4920;
+      transition: all 0.3s ease; border: 1px solid rgba(70, 107, 42, 0.16); box-shadow: var(--shadow-soft);
+    }
+    .marquee-item img { height: 40px; width: 40px; object-fit: contain; flex-shrink: 0; }
+    .marquee-item:hover { box-shadow: 0 16px 32px rgba(34, 58, 24, 0.14); transform: translateY(-6px) scale(1.01); color: #5e8b3a; border-color: rgba(94, 139, 58, 0.28); }
+    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  </style>
+</head>
+<body>
+
+<!-- 自動載入全站導覽列（與其他頁面共用同一份，避免各頁各自維護一份導致跑版） -->
+<div id="nav-container"></div>
+
+<section id="hero">
+  <div class="yt-bg-wrapper">
+  <iframe width="1059" height="595" src="https://www.youtube.com/embed/ll_z5Gb6zEA?autoplay=1&mute=1&loop=1&playlist=ll_z5Gb6zEA&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" title="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.5) 0%, transparent 35%, rgba(0,0,0,0.2) 100%); z-index: -1;"></div>
+  <div class="hero-shell">
+    <h1 class="hero-title font-serif font-black text-display text-white leading-tight mb-4 tracking-wider" data-en="Wooderful Toy Design">木育玩具設計</h1>
+    <div class="hero-subtitle text-card-title text-white mt-4 tracking-[0.2em] font-serif inline-block px-6 py-2" style="border-top: 1px solid rgba(255,255,255,0.3); border-bottom: 1px solid rgba(255,255,255,0.3);">WOODERFUL TOY DESIGN</div>
+  </div>
+</section>
+
+<section id="about" class="py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal fade-right">
+        <div class="section-eyebrow">ABOUT US</div>
+        <h2 class="font-serif font-black text-section-title mb-6 text-wood-800" data-en="About Wooderful Toy Design">關於木育玩具設計</h2>
+        <div class="w-16 h-1.5 bg-forest-500 mb-8 rounded"></div>
+        <div class="space-y-6 text-lead leading-relaxed text-gray-700 text-justify font-sans">
+          <p data-en="Wood education is already part of many elementary school programs in Taiwan. Few, however, combine it with STEAM Maker thinking, cross-disciplinary learning, and the SDGs — or systematically evaluate how well it works.">臺灣已有許多小學木育教育案例正在實行中，惟相關小學課程的STEAM創客(Maker)、跨域與SDGs觀念整合，並評估教學成效及研究，目前比較少見。</p>
+          <p data-en="This three-year project centers on the Wood Education Program's STEAM Maker and SDGs framework, using project-based, cross-disciplinary teaching. It highlights the sustainable coexistence of forests and people, drawing on diverse pedagogical approaches to develop and test practical wood education lesson plans.">本計畫擬3年為期，以木育學堂STEAM創客與SDGs的專題式跨領域教學，強調森林與人永續共存的觀念，整合多元教學設計原則與方法，開發與測試具體之木育教案與建議。</p>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-2xl reveal fade-left h-[450px] image-frame">
+        <svg viewBox="0 0 650 450" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8f4e9"/>
+      <stop offset="100%" stop-color="#eef4ea"/>
+    </linearGradient>
+    <linearGradient id="hillGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#cfe1a6"/>
+      <stop offset="100%" stop-color="#98b96a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="650" height="450" fill="url(#skyGrad)"/>
+
+  <!-- sun -->
+  <circle cx="530" cy="90" r="46" fill="#f5efe6"/>
+  <circle cx="530" cy="90" r="46" fill="none" stroke="#e6c98a" stroke-width="2" opacity="0.6"/>
+
+  <!-- rolling hills -->
+  <path d="M0,300 Q120,255 250,290 T500,275 T650,300 L650,450 L0,450 Z" fill="#eef4ea"/>
+  <path d="M0,330 Q150,290 320,320 T650,310 L650,450 L0,450 Z" fill="url(#hillGrad)" opacity="0.55"/>
+
+  <!-- background trees -->
+  <g opacity="0.75">
+    <g transform="translate(70,230)">
+      <rect x="-4" y="30" width="8" height="45" fill="#a57a4e"/>
+      <path d="M0,-40 L28,35 L-28,35 Z" fill="#5e8b3a"/>
+      <path d="M0,-15 L24,35 L-24,35 Z" fill="#446b2a"/>
+    </g>
+    <g transform="translate(150,250) scale(0.8)">
+      <rect x="-4" y="30" width="8" height="45" fill="#a57a4e"/>
+      <path d="M0,-40 L28,35 L-28,35 Z" fill="#5e8b3a"/>
+      <path d="M0,-15 L24,35 L-24,35 Z" fill="#446b2a"/>
+    </g>
+    <g transform="translate(590,255) scale(0.9)">
+      <rect x="-4" y="30" width="8" height="45" fill="#a57a4e"/>
+      <path d="M0,-40 L28,35 L-28,35 Z" fill="#5e8b3a"/>
+      <path d="M0,-15 L24,35 L-24,35 Z" fill="#446b2a"/>
+    </g>
+  </g>
+
+  <!-- workbench -->
+  <g transform="translate(0,0)">
+    <rect x="120" y="330" width="410" height="22" rx="4" fill="#a57a4e"/>
+    <rect x="140" y="352" width="16" height="60" fill="#6a4c2d"/>
+    <rect x="480" y="352" width="16" height="60" fill="#6a4c2d"/>
+
+    <!-- wood shavings -->
+    <path d="M150,345 q10,-14 20,0 q10,14 20,0" fill="none" stroke="#c9a876" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+    <path d="M470,340 q8,-10 16,0 q8,10 16,0" fill="none" stroke="#c9a876" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- wooden gyro toy -->
+    <g transform="translate(230,300)">
+      <path d="M-26,0 L26,0 L14,34 L-14,34 Z" fill="#f5efe6" stroke="#6a4c2d" stroke-width="3"/>
+      <rect x="-4" y="-26" width="8" height="30" rx="3" fill="#6a4c2d"/>
+    </g>
+
+    <!-- stacked toy blocks -->
+    <g transform="translate(320,286)">
+      <rect x="-24" y="20" width="48" height="24" rx="3" fill="#98b96a"/>
+      <rect x="-18" y="-4" width="36" height="24" rx="3" fill="#f5efe6" stroke="#a57a4e" stroke-width="2"/>
+      <rect x="-12" y="-26" width="24" height="22" rx="3" fill="#e6c98a"/>
+    </g>
+
+    <!-- toy car -->
+    <g transform="translate(410,312)">
+      <rect x="-30" y="0" width="60" height="16" rx="4" fill="#f5efe6" stroke="#a57a4e" stroke-width="2"/>
+      <circle cx="-16" cy="18" r="9" fill="#6a4c2d"/>
+      <circle cx="16" cy="18" r="9" fill="#6a4c2d"/>
+      <circle cx="-16" cy="18" r="3" fill="#f5efe6"/>
+      <circle cx="16" cy="18" r="3" fill="#f5efe6"/>
+    </g>
+
+    <!-- small hand tool: saw -->
+    <g transform="translate(170,300) rotate(-12)">
+      <rect x="-3" y="0" width="6" height="30" rx="2" fill="#6a4c2d"/>
+      <path d="M-3,0 L45,-14 L45,-4 L2,6 Z" fill="#cbd5c0" stroke="#8a9a7a" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- floating leaves -->
+  <g fill="#5e8b3a" opacity="0.5">
+    <ellipse cx="90" cy="90" rx="9" ry="5" transform="rotate(30 90 90)"/>
+    <ellipse cx="560" cy="200" rx="8" ry="4" transform="rotate(-20 560 200)"/>
+    <ellipse cx="40" cy="180" rx="7" ry="4" transform="rotate(60 40 180)"/>
+  </g>
+</svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-14">
+  <div class="max-w-6xl mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal fade-up">
+      <div>
+        <div class="text-display font-serif font-black text-forest-600"><span class="counter" data-count-to="3">0</span> <span data-en="Years">年</span></div>
+        <p class="text-body text-stone-500 mt-2" data-en="Project Duration">計畫期程</p>
+      </div>
+      <div>
+        <div class="text-display font-serif font-black text-forest-600"><span class="counter" data-count-to="3">0</span>+</div>
+        <p class="text-body text-stone-500 mt-2" data-en="STEAM Lesson Plans">STEAM 教案</p>
+      </div>
+      <div>
+        <div class="text-display font-serif font-black text-forest-600"><span class="counter" data-count-to="10">0</span>+</div>
+        <p class="text-body text-stone-500 mt-2" data-en="Partners">合作夥伴</p>
+      </div>
+      <div>
+        <div class="text-display font-serif font-black text-forest-600"><span class="counter" data-count-to="70">0</span>+</div>
+        <p class="text-body text-stone-500 mt-2" data-en="Publications">研究發表</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="max-w-5xl mx-auto mb-10 text-center reveal fade-up">
+      <div class="section-eyebrow justify-center">EXPECTED RESULTS</div>
+      <h3 class="font-serif font-black text-section-title mb-6 text-wood-800" data-en="Expected Results">預期成果</h3>
+      <div class="space-y-6 text-lead leading-relaxed text-gray-700 font-sans text-left md:text-justify">
+        <p data-en="Built around three pillars — forest sustainability, hands-on making, and cross-disciplinary co-learning — this project develops a teaching and outreach system for wood education toy design, with each phase building toward more complete educational practice and real-world results.">本計畫以「森林永續、創客實作、跨域共學」為核心，逐步建立木育玩具設計教學與推廣體系，讓每一年都朝向更完整的教育實踐與成果落地發展。</p>
+        <p data-en="Each lesson plan draws on STEAM Maker thinking and the SDGs, built around six core woodworking skills — gluing, sanding, hammering, assembly, drilling, and cutting — spanning beginner, intermediate, and advanced levels.">本單元設計廣納STEAM創客與SDGs教案設計。木工學習向度包含：膠合、砂磨、釘敲、組裝、鑽孔、鋸切等六大向度，開發初、中、高階等階段難度課程。</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all border-t-4 border-wood-400 reveal fade-up info-card">
+        <h3 class="text-h2 font-serif font-bold mb-4 text-center text-wood-800" data-en="Phase 1">第一年</h3>
+        <p class="text-lead text-gray-600 text-center leading-relaxed font-sans" data-en="Analyze trends in the Wood Education Program and in cross-disciplinary STEAM Maker and SDGs lesson plans for elementary schools.">分析木育學堂與小教跨域STEAM創客與SDGs教案發展趨勢。</p>
+      </div>
+      <div class="bg-white p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all border-t-4 border-wood-600 reveal fade-up info-card" style="transition-delay: 0.1s;">
+        <h3 class="text-h2 font-serif font-bold mb-4 text-center text-wood-800" data-en="Phase 2">第二年</h3>
+        <p class="text-lead text-gray-600 text-center leading-relaxed font-sans" data-en="Develop cross-disciplinary wood education lesson plans and assessment tools grounded in STEAM Maker and SDGs principles, then test and evaluate them in the classroom.">開發木育跨域STEAM創客與SDGs教案與評量工具，進行測試與評估。</p>
+      </div>
+      <div class="bg-white p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all border-t-4 border-forest-500 reveal fade-up info-card" style="transition-delay: 0.2s;">
+        <h3 class="text-h2 font-serif font-bold mb-4 text-center text-wood-800" data-en="Phase 3">第三年</h3>
+        <p class="text-lead text-gray-600 text-center leading-relaxed font-sans" data-en="Bring the Wood Education Program's STEAM Maker and SDGs lesson plans into schools, integrating them into school-based curricula.">推廣並落實木育學堂STEAM創客與SDGs教案開發於小教特色課程。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partners" class="py-16">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 mb-8 text-center reveal fade-up">
+    <div class="section-eyebrow justify-center">OUR PARTNERS</div>
+    <h2 class="font-serif font-black text-section-title mb-4 text-wood-800" data-en="Partners">合作夥伴</h2>
+    <div class="w-16 h-1.5 mx-auto bg-wood-400 rounded"></div>
+  </div>
+  <div class="marquee-container reveal fade-up">
+    <div class="marquee-track">
+      <div class="marquee-item"><img src="合作夥伴/台灣工研中心.jpg" alt=""> <span data-en="National Taiwan Craft Research and Development Institute">國立台灣工藝研究發展中心</span></div>
+      <div class="marquee-item"><img src="合作夥伴/竹采藝品.jpg" alt=""> <span data-en="Bamboo Color Crafts Co., Ltd.">竹采藝品有限公司</span></div>
+      <div class="marquee-item"><img src="合作夥伴/台灣竹樂團.jpg" alt=""> <span data-en="Taiwan Bamboo Orchestra">台灣竹樂團</span></div>
+      <div class="marquee-item"><img src="合作夥伴/和誼LOGO600-300x300.png" alt=""> <span data-en="Hoi Toy & Play Innovation Co., Ltd.">和誼創新股份有限公司</span></div>
+      <div class="marquee-item"><img src="合作夥伴/林務局-300x300.png" alt=""> <span data-en="Forestry Bureau, MOA (former name)">農業部林務局（舊名）</span></div>
+      <div class="marquee-item"><img src="合作夥伴/林業及保育署.png" alt=""> <span data-en="Forestry and Nature Conservation Agency, MOA">農業部林業及自然保育署</span></div>
+      <div class="marquee-item"><img src="合作夥伴/德國特里爾應用科學大學_設計學院.jpg" alt=""> <span data-en="Trier University of Applied Sciences, Germany">德國特里爾應用科學大學</span></div>
+      <div class="marquee-item"><img src="合作夥伴/北科大-300x300.jpg" alt=""> <span data-en="Dept. of Industrial Design, NTUT">國立臺北科技大學工業設計系</span></div>
+      <div class="marquee-item"><i class="fa-solid fa-school"></i> <span data-en="Shulin Elementary School, New Taipei City">新北市樹林國小</span></div>
+      <div class="marquee-item"><img src="合作夥伴/螢橋國小-300x300.png" alt=""> <span data-en="Yingqiao Elementary School, Taipei">臺北市螢橋國小</span></div>
+      <div class="marquee-item"><img src="合作夥伴/日新國小-300x300.png" alt=""> <span data-en="Rixin Elementary School, Taipei">臺北市日新國小</span></div>
+      <!-- 複製一份相同內容，讓 -50% 位移時無縫接回開頭，才會是真正的循環 -->
+      <div class="marquee-item" aria-hidden="true"><img src="合作夥伴/台灣工研中心.jpg" alt=""> <span data-en="National Taiwan Craft Research and Development Institute">國立台灣工藝研究發展中心</span></div>
+      <div class="marquee-item" aria-hidden="true"><img src="合作夥伴/竹采藝品.jpg" alt=""> <span data-en="Bamboo Color Crafts Co., Ltd.">竹采藝品有限公司</span></div>
+      <div class="marquee-item" aria-hidden="true"><img src="合作夥伴/台灣竹樂團.jpg" alt=""> <span data-en="Taiwan Bamboo Orchestra">台灣竹樂團</span></div>
+      <div class="marquee-item" aria-hidden="true"><img src="合作夥伴/和誼LOGO600-300x300.png" alt=""> <span data-en="Hoi Toy & Play Innovation Co., Ltd.">和誼創新股份有限公司</span></div>
+      <div class="marquee-item" aria-hidden="true"><img src="合作夥伴/林務局-300x300.png" alt=""> <span data-en="Forestry Bureau, MOA (former name)">農業部林務局（舊名）</span></div>
+      <div class="marquee-item" aria-hidden="true"><img src="合作夥伴/林業及保育署.png" alt=""> <span data-en="Forestry and Nature Conservation Agency, MOA">農業部林業及自然保育署</span></div>
+      <div class="marquee-item" aria-hidden="true"><img src="合作夥伴/德國特里爾應用科學大學_設計學院.jpg" alt=""> <span data-en="Trier University of Applied Sciences, Germany">德國特里爾應用科學大學</span></div>
+      <div class="marquee-item" aria-hidden="true"><img src="合作夥伴/北科大-300x300.jpg" alt=""> <span data-en="Dept. of Industrial Design, NTUT">國立臺北科技大學工業設計系</span></div>
+      <div class="marquee-item" aria-hidden="true"><i class="fa-solid fa-school"></i> <span data-en="Shulin Elementary School, New Taipei City">新北市樹林國小</span></div>
+      <div class="marquee-item" aria-hidden="true"><img src="合作夥伴/螢橋國小-300x300.png" alt=""> <span data-en="Yingqiao Elementary School, Taipei">臺北市螢橋國小</span></div>
+      <div class="marquee-item" aria-hidden="true"><img src="合作夥伴/日新國小-300x300.png" alt=""> <span data-en="Rixin Elementary School, Taipei">臺北市日新國小</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="updates" class="py-24 bg-gradient-to-br from-forest-700 to-forest-600 border-t border-forest-500">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 reveal fade-up">
+    <div class="max-w-3xl mb-10">
+      <div class="section-eyebrow justify-center !text-forest-300">LATEST UPDATES</div>
+      <h2 class="font-serif font-black text-section-title mb-6 text-cream" data-en="Latest Updates">最新動態</h2>
+      <p class="text-lead text-cream/80 font-sans leading-relaxed" data-en="Follow the Wooderful Toy Design project's latest progress — from lesson outreach to hands-on results — updated regularly.">掌握木育玩具設計計畫最新進展、教案推廣與實作成果，持續更新資訊。</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="update-card rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm p-8 text-white">
+        <div class="text-sub uppercase tracking-[0.2em] text-forest-300 mb-3">2026 / 06</div>
+        <h3 class="font-serif text-card-title mb-4 font-bold" data-en="Forest Sustainability Lesson Trial">森林永續教案測試</h3>
+        <p class="text-h3 leading-relaxed text-cream/90" data-en="Completed the first round of hands-on lesson trials, refining the activity flow based on student feedback.">完成第一波木育教案實作測試，並整合學生回饋優化活動流程。</p>
+      </div>
+      <div class="update-card rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm p-8 text-white">
+        <div class="text-sub uppercase tracking-[0.2em] text-forest-300 mb-3">2026 / 05</div>
+        <h3 class="font-serif text-card-title mb-4 font-bold" data-en="Cross-School Co-Learning Workshop">跨校共學工作坊</h3>
+        <p class="text-h3 leading-relaxed text-cream/90" data-en="Hosted a cross-disciplinary Maker and SDGs workshop with several partner schools, deepening exchange among teachers.">與多所學校共同舉辦創客與SDGs跨域共學工作坊，深化教學交流。</p>
+      </div>
+      <div class="update-card rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm p-8 text-white">
+        <div class="text-sub uppercase tracking-[0.2em] text-forest-300 mb-3">2026 / 04</div>
+        <h3 class="font-serif text-card-title mb-4 font-bold" data-en="Prototype Toy Showcase">原型玩具成果展</h3>
+        <p class="text-h3 leading-relaxed text-cream/90" data-en="Unveiled the next generation of wood education toy prototypes to strong interest from teachers, students, and industry partners.">展示新一代木育玩具原型，獲得師生與業界高度回響與合作意向。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 自動載入全站頁尾（與其他頁面共用） -->
+<div id="footer-container"></div>
+
+<script src="layout.js"></script>
+<script>
+  // 首頁 Hero 視差效果：背景影片捲動時位移速度比內容慢，營造深度感
+  const heroSection = document.getElementById('hero');
+  const heroBg = document.querySelector('.yt-bg-wrapper');
+  const heroShell = document.querySelector('.hero-shell');
+  if (heroSection && heroBg) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      const heroHeight = heroSection.offsetHeight;
+      if (y < heroHeight) {
+        heroBg.style.transform = `translateY(${y * 0.18}px) scale(1.1)`;
+        if (heroShell) {
+          heroShell.style.transform = `translateY(${y * 0.15}px)`;
+          heroShell.style.opacity = String(Math.max(0, 1 - y / 500));
+        }
+      }
+    }, { passive: true });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>分享教案 - 木育玩具設計</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="tailwind-config.js"></script>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body { background-color: #fcfbf7; }
+    .avatar-wrapper { position: relative; width: 190px; height: 190px; margin: 0 auto 1.5rem; overflow: hidden; border-radius: 50%; }
+    .avatar-wrapper::before { content: ''; position: absolute; inset: -8px; border: 1px dashed #a57a4e; border-radius: 50%; opacity: 0.4; z-index: 2; pointer-events: none; }
+    .avatar-wrapper img { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .lesson-card { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease; }
+    .lesson-card:hover { transform: translateY(-8px) scale(1.015); box-shadow: 0 24px 48px rgba(45,73,32,0.14); }
+    .lesson-card:hover .avatar-wrapper img { transform: scale(1.1) rotate(2deg); }
+
+    /* 檢視切換按鈕 */
+    .view-toggle-btn { color: #a8a29e; transition: all 0.2s ease; }
+    .view-toggle-btn.active { background: #446B2A; color: #fff; }
+
+    /* 網格／列表 檢視控制：JS 只切換 #lessonGrid 的 class，樣式交給 CSS 處理 */
+    #lessonGrid.view-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    #lessonGrid.view-list .lesson-card {
+      flex-direction: row; align-items: center; text-align: left; padding: 1.5rem 2rem; gap: 2rem;
+    }
+    #lessonGrid.view-list .avatar-wrapper { width: 90px; height: 90px; margin: 0; flex-shrink: 0; }
+    #lessonGrid.view-list .lesson-card > div:first-child { display: flex; align-items: center; gap: 1.5rem; flex: 1; }
+    #lessonGrid.view-list .lesson-card h3 { margin-bottom: 0.25rem; }
+    #lessonGrid.view-list .lesson-card .tag-row { margin-bottom: 0.5rem; }
+    #lessonGrid.view-list .lesson-card .meta-row { margin-bottom: 0; justify-content: flex-start; }
+    #lessonGrid.view-list .lesson-card a.lesson-cta { width: auto; flex-shrink: 0; padding-left: 2rem; padding-right: 2rem; }
+  </style>
+</head>
+<body>
+
+<div id="nav-container"></div>
+
+<header class="page-hero page-hero--tall text-center text-white">
+  <div class="mt-12">
+    <div class="text-sm lg:text-body tracking-[0.4em] text-stone-200 uppercase mb-3">分享教案</div>
+    <h1 class="text-h1 lg:text-display font-serif font-bold tracking-widest mb-4">分享教案</h1>
+    <div class="text-caption tracking-[0.3em] text-stone-300 uppercase font-medium">TEACHING RESOURCES</div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 lg:px-12 py-20">
+
+  <!-- 排序與檢視切換工具列 -->
+  <div class="flex items-center justify-between mb-8 reveal fade-up">
+    <p class="text-body text-stone-400 font-medium"><i class="fa-solid fa-arrow-down-wide-short mr-1.5"></i> 依日期排序</p>
+    <div class="flex items-center gap-1 bg-white border border-stone-200 rounded-full p-1">
+      <button id="gridViewBtn" class="view-toggle-btn active w-10 h-10 rounded-full flex items-center justify-center" aria-label="網格檢視">
+        <i class="fa-solid fa-grip"></i>
+      </button>
+      <button id="listViewBtn" class="view-toggle-btn w-10 h-10 rounded-full flex items-center justify-center" aria-label="列表檢視">
+        <i class="fa-solid fa-list"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="lessonGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+    <!-- 飛鳥（2026/07/01，暫定日期，待確認實際上架日） -->
+    <div class="lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up" data-date="2026-07-01">
+      <div>
+        <div class="avatar-wrapper"><img src="分享教案頁面/素材-23-300x225.jpg" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner" /></div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-[#eef4ea] text-forest-600 px-4 py-1 rounded-full">STEAM 教案</span></div>
+        <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide">飛鳥教案</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+          <span><i class="fa-solid fa-user-graduate mr-1.5"></i> 5 歲以上（親子）</span>
+          <span><i class="fa-solid fa-clock mr-1.5"></i> 45 分鐘</span>
+        </div>
+      </div>
+      <a href="lesson-bird.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all">查看教案 &rarr;</a>
+    </div>
+    <!-- 存錢筒（2026/06/01，暫定日期，待確認實際上架日） -->
+    <div class="lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up" style="transition-delay: 0.1s;" data-date="2026-06-01">
+      <div>
+        <div class="avatar-wrapper"><img src="分享教案頁面/0606-01-300x225.jpg" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner" /></div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-[#eef4ea] text-forest-600 px-4 py-1 rounded-full">STEAM 教案</span></div>
+        <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide">自動存錢筒教案</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+          <span><i class="fa-solid fa-user-graduate mr-1.5"></i> 國小高年級以上</span>
+          <span><i class="fa-solid fa-clock mr-1.5"></i> 90 分鐘</span>
+        </div>
+      </div>
+      <a href="lesson-bank.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all">查看教案 &rarr;</a>
+    </div>
+    <!-- 木陀螺（2025/09/01，暫定日期，待確認實際上架日） -->
+    <div class="lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up" style="transition-delay: 0.2s;" data-date="2025-09-01">
+      <div>
+        <div class="avatar-wrapper"><img src="分享教案頁面/素材-20-300x225.jpg" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner" /></div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-[#f5efe6] text-wood-600 px-4 py-1 rounded-full">木工教案</span></div>
+        <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide">木陀螺教案</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+          <span><i class="fa-solid fa-user-graduate mr-1.5"></i> 國小中年級以上</span>
+          <span><i class="fa-solid fa-clock mr-1.5"></i> 60 分鐘</span>
+        </div>
+      </div>
+      <a href="lesson-gyro.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all">查看教案 &rarr;</a>
+    </div>
+    <!-- 呱呱響板 -->
+    <div class="lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up" data-date="2026-08-01">
+      <div>
+        <div class="avatar-wrapper"><img src="分享教案頁面/frog.png" class="w-full h-full object-contain bg-white rounded-full border-4 border-white shadow-inner" /></div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-[#eef4ea] text-forest-600 px-4 py-1 rounded-full">STEAM 教案</span></div>
+        <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide">呱呱響板教案</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+          <span><i class="fa-solid fa-user-graduate mr-1.5"></i> 5 歲以上（親子）</span>
+          <span><i class="fa-solid fa-clock mr-1.5"></i> 45 分鐘</span>
+        </div>
+      </div>
+      <a href="lesson-frog.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all">查看教案 &rarr;</a>
+    </div>
+    <!-- 爬行高手 -->
+    <div class="lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up" data-date="2026-08-05">
+      <div>
+        <div class="avatar-wrapper"><img src="分享教案頁面/crawler.png" class="w-full h-full object-contain bg-white rounded-full border-4 border-white shadow-inner" /></div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-[#eef4ea] text-forest-600 px-4 py-1 rounded-full">STEAM 教案</span></div>
+        <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide">爬行高手教案</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+          <span><i class="fa-solid fa-user-graduate mr-1.5"></i> 5 歲以上（親子）</span>
+          <span><i class="fa-solid fa-clock mr-1.5"></i> 60 分鐘</span>
+        </div>
+      </div>
+      <a href="lesson-crawler.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all">查看教案 &rarr;</a>
+    </div>
+    <!-- 搖搖平行車 -->
+    <div class="lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up" data-date="2026-08-10">
+      <div>
+        <div class="avatar-wrapper"><img src="分享教案頁面/wobblecar.png" class="w-full h-full object-contain bg-white rounded-full border-4 border-white shadow-inner" /></div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-[#eef4ea] text-forest-600 px-4 py-1 rounded-full">STEAM 教案</span></div>
+        <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide">搖搖平行車教案</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+          <span><i class="fa-solid fa-user-graduate mr-1.5"></i> 5 歲以上（親子）</span>
+          <span><i class="fa-solid fa-clock mr-1.5"></i> 60 分鐘</span>
+        </div>
+      </div>
+      <a href="lesson-wobblecar.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all">查看教案 &rarr;</a>
+    </div>
+    <!-- 高空運輸車 -->
+    <div class="lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up" data-date="2026-08-15">
+      <div>
+        <div class="avatar-wrapper"><img src="分享教案頁面/cablecar.png" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner" /></div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-[#eef4ea] text-forest-600 px-4 py-1 rounded-full">STEAM 教案</span></div>
+        <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide">高空運輸車教案</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+          <span><i class="fa-solid fa-user-graduate mr-1.5"></i> 5 歲以上（親子）</span>
+          <span><i class="fa-solid fa-clock mr-1.5"></i> 60 分鐘</span>
+        </div>
+      </div>
+      <a href="lesson-cablecar.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all">查看教案 &rarr;</a>
+    </div>
+    <!-- 蹦蹦車 -->
+    <div class="lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up" data-date="2026-08-20">
+      <div>
+        <div class="avatar-wrapper"><img src="分享教案頁面/train.png" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner" /></div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-[#eef4ea] text-forest-600 px-4 py-1 rounded-full">STEAM 教案</span></div>
+        <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide">蹦蹦車教案</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+          <span><i class="fa-solid fa-user-graduate mr-1.5"></i> 5 歲以上（親子）</span>
+          <span><i class="fa-solid fa-clock mr-1.5"></i> 60 分鐘</span>
+        </div>
+      </div>
+      <a href="lesson-train.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all">查看教案 &rarr;</a>
+    </div>
+    <!-- 木皮馬賽克 -->
+    <div class="lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up" data-date="2026-09-01">
+      <div>
+        <div class="avatar-wrapper"><img src="分享教案頁面/mosaic (1).png" class="w-full h-full object-contain bg-white rounded-full border-4 border-white shadow-inner" /></div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-[#f5efe6] text-wood-600 px-4 py-1 rounded-full">木工教案</span></div>
+        <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide">木皮馬賽克教案</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+          <span><i class="fa-solid fa-user-graduate mr-1.5"></i> 國小中年級以上</span>
+          <span><i class="fa-solid fa-clock mr-1.5"></i> 90 分鐘</span>
+        </div>
+      </div>
+      <a href="lesson-mosaic.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all">查看教案 &rarr;</a>
+    </div>
+    <!-- 風帆車 -->
+    <div class="lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up" data-date="2026-09-05">
+      <div>
+        <div class="avatar-wrapper"><img src="分享教案頁面/sailcar (1).png" class="w-full h-full object-contain bg-white rounded-full border-4 border-white shadow-inner" /></div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-[#eef4ea] text-forest-600 px-4 py-1 rounded-full">STEAM 教案</span></div>
+        <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide">風帆車教案</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+          <span><i class="fa-solid fa-user-graduate mr-1.5"></i> 國小中年級以上</span>
+          <span><i class="fa-solid fa-clock mr-1.5"></i> 90 分鐘</span>
+        </div>
+      </div>
+      <a href="lesson-sailcar.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all">查看教案 &rarr;</a>
+    </div>
+    <!-- 敬請期待：更新中的預告卡片，日期設為最遠的未來，確保永遠排在最後 -->
+    <div class="lesson-card bg-white/60 rounded-2xl p-10 border-2 border-dashed border-stone-300 shadow-none flex flex-col justify-between text-center" data-date="9999-12-31">
+      <div>
+        <div class="avatar-wrapper flex items-center justify-center bg-[#f4f1ea]/60 rounded-full">
+          <i class="fa-solid fa-seedling text-4xl text-forest-400"></i>
+        </div>
+        <div class="tag-row mb-5"><span class="text-body font-bold bg-stone-100 text-stone-400 px-4 py-1 rounded-full">敬請期待</span></div>
+        <h3 class="text-h2 font-serif font-bold text-stone-400 mb-5 tracking-wide">更多教案製作中</h3>
+        <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-400 mb-8 font-medium">
+          <span>陸續推出，敬請期待</span>
+        </div>
+      </div>
+      <a href="contact.html" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-stone-400 hover:bg-stone-400 hover:text-white hover:border-stone-400 transition-all">聯繫我們 &rarr;</a>
+    </div>
+  </div>
+
+  <!-- 分頁控制 -->
+  <div id="pagination" class="flex items-center justify-center gap-2 mt-14"></div>
+</main>
+
+<script>
+  // 檢視切換（網格／列表）
+  const lessonGrid = document.getElementById('lessonGrid');
+  const gridBtn = document.getElementById('gridViewBtn');
+  const listBtn = document.getElementById('listViewBtn');
+  gridBtn.addEventListener('click', () => {
+    lessonGrid.classList.remove('view-list');
+    gridBtn.classList.add('active'); listBtn.classList.remove('active');
+  });
+  listBtn.addEventListener('click', () => {
+    lessonGrid.classList.add('view-list');
+    listBtn.classList.add('active'); gridBtn.classList.remove('active');
+  });
+
+  // 依日期排序（由舊到新；之後新增教案只要加上 data-date 屬性，會自動排到正確位置）
+  const allCards = Array.from(lessonGrid.querySelectorAll('.lesson-card'))
+    .sort((a, b) => new Date(a.dataset.date) - new Date(b.dataset.date));
+  allCards.forEach(card => lessonGrid.appendChild(card));
+
+  // 分頁（每頁 3 筆，教案增加時會自動產生更多頁）
+  const PER_PAGE = 3;
+  const totalPages = Math.max(1, Math.ceil(allCards.length / PER_PAGE));
+  const paginationEl = document.getElementById('pagination');
+  let currentPage = 1;
+
+  function renderPage(page) {
+    currentPage = page;
+    allCards.forEach((card, i) => {
+      const inPage = Math.floor(i / PER_PAGE) + 1 === page;
+      card.style.display = inPage ? '' : 'none';
+    });
+    renderPagination();
+  }
+
+  function pageButton(label, page, opts = {}) {
+    const btn = document.createElement('button');
+    btn.textContent = label;
+    btn.className = 'w-10 h-10 rounded-full text-body font-semibold transition-all flex items-center justify-center ' +
+      (opts.active ? 'bg-forest-600 text-white' : 'bg-white border border-stone-200 text-wood-600 hover:border-forest-400 hover:text-forest-600') +
+      (opts.disabled ? ' opacity-30 pointer-events-none' : '');
+    if (!opts.disabled && !opts.dots) btn.addEventListener('click', () => renderPage(page));
+    if (opts.dots) { btn.className = 'w-10 h-10 flex items-center justify-center text-stone-400'; }
+    return btn;
+  }
+
+  function renderPagination() {
+    paginationEl.innerHTML = '';
+    if (totalPages <= 1) return; // 只有一頁時不顯示分頁列
+    paginationEl.appendChild(pageButton('‹', currentPage - 1, { disabled: currentPage === 1 }));
+    for (let p = 1; p <= totalPages; p++) {
+      if (p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1) {
+        paginationEl.appendChild(pageButton(String(p), p, { active: p === currentPage }));
+      } else if (Math.abs(p - currentPage) === 2) {
+        paginationEl.appendChild(pageButton('…', p, { dots: true }));
+      }
+    }
+    paginationEl.appendChild(pageButton('›', currentPage + 1, { disabled: currentPage === totalPages }));
+  }
+
+  renderPage(1);
+</script>
+
+<div id="footer-container"></div>
+<script src="layout.js"></script>
+</body>
+</html>

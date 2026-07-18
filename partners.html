@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>合作夥伴 - 木育玩具設計</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="tailwind-config.js"></script>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body { background-color: #FDFBF7; }
+    .partner-card {
+      background: #fff; border: 1px solid #e7e2d8; border-radius: 1rem; padding: 1.75rem;
+      text-align: center; width: 15rem; display: flex; flex-direction: column; align-items: center;
+      box-shadow: 0 1px 4px rgba(60,40,25,0.04); transition: all 0.3s ease;
+    }
+    .partner-card { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.3s ease; }
+    .partner-card:hover { box-shadow: 0 20px 40px rgba(45,73,32,0.16); transform: translateY(-8px) scale(1.03); border-color: rgba(94,139,58,0.4); }
+    .partner-logo { transition: transform 0.4s ease; }
+    .partner-card:hover .partner-logo { transform: scale(1.1); }
+    .partner-logo { width: 7.5rem; height: 7.5rem; object-fit: contain; margin: 0 auto 1rem; }
+    .partner-placeholder {
+      width: 7.5rem; height: 7.5rem; margin: 0 auto 1rem; border-radius: 9999px; background: #f5efe6;
+      display: flex; align-items: center; justify-content: center; color: #a57a4e; font-size: 1.75rem;
+    }
+
+    /* 簡單色塊背景 */
+    .partner-section-bg {
+      background: #f3efe4;
+      border: 1px solid #e7e2d8;
+    }
+    /* 段落標題 */
+    .paper-title {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-container"></div>
+
+<header class="page-hero text-center text-white">
+  <div class="mt-12">
+    <div class="text-caption lg:text-body tracking-[0.4em] text-stone-200 uppercase mb-2">合作夥伴</div>
+    <h1 class="text-h1 font-serif font-bold tracking-widest mb-3">合作夥伴</h1>
+    <div class="text-caption tracking-[0.3em] text-stone-300 uppercase font-medium">FOREST EDUCATION NETWORK</div>
+  </div>
+</header>
+
+<div class="max-w-6xl mx-auto px-6 lg:px-10 pt-8">
+  <div class="flex items-center gap-2 text-body text-stone-400 font-medium">
+    <a href="index.html" class="hover:text-forest-600"><i class="fa-solid fa-house-chimney text-caption"></i> 首頁</a> <span>&gt;</span>
+    <span class="text-stone-600 font-semibold">合作夥伴</span>
+  </div>
+</div>
+
+<main class="max-w-6xl mx-auto px-6 lg:px-10 py-16">
+
+  <!-- 資源夥伴 -->
+  <section class="mb-20 reveal fade-up partner-section-bg rounded-2xl py-14 px-6">
+    <div class="text-center mb-12">
+      <div class="paper-title">
+        <div class="section-eyebrow justify-center">PARTNERS</div>
+        <h2 class="font-serif font-black text-h2 text-wood-800">資源夥伴</h2>
+      </div>
+    </div>
+    <div class="flex justify-center gap-8 flex-wrap">
+
+      <a href="https://www.ntcri.gov.tw/home/zh-tw" target="_blank" rel="noopener" class="partner-card">
+        <img src="合作夥伴/台灣工研中心.jpg" class="partner-logo" alt="國立台灣工藝研究發展中心">
+        <p class="font-serif font-bold text-sm text-wood-800">國立台灣工藝研究發展中心</p>
+      </a>
+
+      <a href="https://www.bbc-bamboo.com/" target="_blank" rel="noopener" class="partner-card">
+        <img src="合作夥伴/竹采藝品.jpg" class="partner-logo" alt="竹采藝品有限公司">
+        <p class="font-serif font-bold text-sm text-wood-800">竹采藝品有限公司</p>
+      </a>
+
+      <a href="https://www.facebook.com/tbo168/?locale=zh_TW" target="_blank" rel="noopener" class="partner-card">
+        <img src="合作夥伴/台灣竹樂團.jpg" class="partner-logo rounded-lg" alt="台灣竹樂團">
+        <p class="font-serif font-bold text-sm text-wood-800">台灣竹樂團</p>
+      </a>
+
+      <a href="https://www.metaedu.org.tw/zh-hant/portfolio/%E5%92%8C%E8%AA%BC%E5%89%B5%E6%96%B0%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/" target="_blank" rel="noopener" class="partner-card">
+        <img src="合作夥伴/和誼LOGO600-300x300.png" class="partner-logo" alt="和誼創新股份有限公司">
+        <p class="font-serif font-bold text-sm text-wood-800">和誼創新股份有限公司</p>
+      </a>
+
+      <div class="partner-card">
+        <img src="合作夥伴/林務局-300x300.png" class="partner-logo" alt="農業部林務局">
+        <p class="font-serif font-bold text-sm text-wood-800">農業部林務局<br><span class="text-xs text-stone-400 font-sans font-light">（舊名）</span></p>
+      </div>
+
+      <div class="partner-card">
+        <img src="合作夥伴/林業及保育署.png" class="partner-logo" alt="農業部林業及自然保育署">
+        <p class="font-serif font-bold text-sm text-wood-800">農業部林業及自然保育署<br><span class="text-xs text-stone-400 font-sans font-light">（現名）</span></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 木育教案實驗合作學術機構 -->
+  <section class="mb-10 reveal fade-up partner-section-bg rounded-2xl py-14 px-6">
+    <div class="text-center mb-12">
+      <div class="paper-title">
+        <div class="section-eyebrow justify-center">ACADEMIC COOPERATION</div>
+        <h2 class="font-serif font-black text-h2 text-wood-800">木育教案實驗合作學術機構</h2>
+      </div>
+    </div>
+    <div class="flex justify-center gap-8 flex-wrap">
+
+      <a href="https://www.hochschule-trier.de/en/university/organisation/presidency" target="_blank" rel="noopener" class="partner-card">
+        <img src="合作夥伴/德國特里爾應用科學大學_設計學院.jpg" class="partner-logo" alt="德國特里爾應用科學大學 設計學院">
+        <p class="font-serif font-bold text-sm text-wood-800">德國特里爾應用科學大學<br><span class="text-xs text-stone-400 font-sans font-light">設計學院</span></p>
+      </a>
+
+      <a href="https://wwwid.ntut.edu.tw/" target="_blank" rel="noopener" class="partner-card">
+        <img src="合作夥伴/北科大-300x300.jpg" class="partner-logo" alt="國立臺北科技大學工業設計系">
+        <p class="font-serif font-bold text-sm text-wood-800">國立臺北科技大學<br><span class="text-xs text-stone-400 font-sans font-light">工業設計系 設計與文化創新研究室</span></p>
+      </a>
+
+      <a href="https://www.slps.ntpc.edu.tw/" target="_blank" rel="noopener" class="partner-card">
+        <div class="partner-placeholder"><i class="fa-solid fa-school"></i></div>
+        <p class="font-serif font-bold text-sm text-wood-800">新北市樹林國小<br><span class="text-xs text-stone-400 font-sans font-light">（Logo 待補）</span></p>
+      </a>
+
+      <a href="http://tw.school.uschoolnet.com/?id=es00000094" target="_blank" rel="noopener" class="partner-card">
+        <img src="合作夥伴/螢橋國小-300x300.png" class="partner-logo" alt="臺北市螢橋國小">
+        <p class="font-serif font-bold text-sm text-wood-800">臺北市螢橋國小</p>
+      </a>
+
+      <a href="https://www.zhps.tp.edu.tw/nss/p/index" target="_blank" rel="noopener" class="partner-card">
+        <img src="合作夥伴/日新國小-300x300.png" class="partner-logo" alt="臺北市日新國小">
+        <p class="font-serif font-bold text-sm text-wood-800">臺北市日新國小</p>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-container"></div>
+<script src="layout.js"></script>
+</body>
+</html>

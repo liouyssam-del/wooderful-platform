@@ -1,0 +1,126 @@
+/* style.css */
+body { 
+  font-family: 'Noto Sans TC', system-ui, sans-serif; 
+  color: #3d2b20; 
+  overflow-x: hidden; 
+  transition: background-color 0.2s ease-out, opacity 0.3s ease;
+}
+h1, h2, h3, h4, .font-serif { 
+  font-family: 'Noto Serif TC', Georgia, serif; 
+}
+
+/* ─── 全站一致導覽列 NAVBAR ─── */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: transparent; transition: all 0.4s ease;
+}
+#navbar.scrolled {
+  background: rgba(251, 249, 245, 0.96); backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(60, 40, 25, 0.04);
+  border-bottom: 1px solid rgba(106, 76, 45, 0.05);
+}
+
+.nav-link {
+  font-size: 0.95rem; font-weight: 600; color: #ffffff;
+  letter-spacing: 0.08em; text-shadow: 0 1px 3px rgba(0,0,0,0.4); 
+  transition: all 0.3s ease;
+}
+#navbar.scrolled .nav-link { color: #3d2b20; text-shadow: none; }
+.nav-link:hover, #navbar.scrolled .nav-link:hover { color: #5e8b3a; }
+
+/* ─── LOGO 高級白邊 / 發光濾鏡 ─── */
+#navbar:not(.scrolled) .logo-img {
+  filter: drop-shadow(2px 0px 0px #ffffff) drop-shadow(-2px 0px 0px #ffffff) 
+          drop-shadow(0px 2px 0px #ffffff) drop-shadow(0px -2px 0px #ffffff);
+  transition: filter 0.4s ease;
+}
+#navbar.scrolled .logo-img { filter: none; transition: filter 0.4s ease; }
+
+/* ─── 下拉選單樣式 ───
+   注意：下拉選單容器（.dropdown-wrap）從導覽項目底部「無縫」開始（top-full，不設 margin），
+   視覺間距改用 padding-top 做在容器內部，讓滑鼠從文字移動到選單的路徑全程都在同一個可
+   hover 的區塊內，滑鼠才不會因為中間的間隙而提早觸發收合。 */
+.dropdown-wrap {
+  position: absolute; top: 100%; left: 0; padding-top: 0.5rem; width: 14rem;
+  opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 50;
+}
+.group:hover .dropdown-wrap {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.dropdown-menu {
+  background: #ffffff; border: 1px solid #e7e2d8; box-shadow: 0 20px 45px rgba(60,40,25,0.12);
+  border-radius: 0.5rem; padding: 0.5rem 0;
+}
+
+/* style.css */
+/* 這是給頁尾的設定 */
+
+/* ─── 語系切換按鈕 ─── */
+.lang-switcher { border: 1px solid rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.1); }
+#navbar.scrolled .lang-switcher { border-color: rgba(106, 76, 45, 0.3); background: transparent; }
+.lang-btn { color: rgba(255, 255, 255, 0.8); }
+.lang-btn:hover { color: #ffffff; }
+.lang-btn.active { background: rgba(255, 255, 255, 0.2); color: #ffffff; }
+#navbar.scrolled .lang-btn { color: #6a4c2d; }
+#navbar.scrolled .lang-btn:hover { color: #5e8b3a; }
+#navbar.scrolled .lang-btn.active { background: #6a4c2d; color: #ffffff; }
+
+/* ─── 手機版漢堡選單（原本 lg 以下完全沒有導覽選單，這裡補上） ─── */
+.mobile-toggle {
+  width: 26px; height: 20px; position: relative; display: inline-flex; flex-direction: column;
+  justify-content: space-between; cursor: pointer; z-index: 1001;
+}
+.mobile-toggle span {
+  display: block; height: 2px; width: 100%; background: #ffffff; border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+}
+#navbar.scrolled .mobile-toggle span { background: #3d2b20; }
+.mobile-toggle.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.mobile-toggle.open span:nth-child(2) { opacity: 0; }
+.mobile-toggle.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+.mobile-panel {
+  position: fixed; top: 90px; left: 0; right: 0; z-index: 998;
+  background: rgba(251, 249, 245, 0.98); backdrop-filter: blur(14px);
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+  box-shadow: 0 12px 30px rgba(60,40,25,0.08);
+}
+.mobile-panel.open { max-height: 80vh; overflow-y: auto; }
+.mobile-panel a { color: #3d2b20; }
+.mobile-panel .mobile-sub { display: none; }
+.mobile-panel .mobile-sub.open { display: block; }
+
+/* ─── 內頁共用頂部大圖（原本 lessons/lesson-gyro/partners 各自重複定義一份，收進來統一管理） ─── */
+.page-hero {
+  height: 40vh; min-height: 320px; position: relative; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+}
+.page-hero--tall { height: 45vh; min-height: 360px; }
+
+/* 通用卡片圖片 hover 效果（教案主圖框等），全站共用 */
+.product-photo-frame { transition: transform 0.4s ease, box-shadow 0.4s ease; overflow: hidden; }
+.product-photo-frame:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(45,73,32,0.14); }
+.product-photo-frame img { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.product-photo-frame:hover img { transform: scale(1.06); }
+
+/* ─── 滾動淡入動畫（原本只有首頁有，這裡收進共用檔讓全站頁面都能套用） ─── */
+/* 雙向捲動淡入淡出：預設完全可見（安全），opacity/transform 由 JS 持續更新，
+   CSS 只負責讓數值變化時有平滑的過渡動畫 */
+.reveal { opacity: 1; transition: opacity 0.15s linear, transform 0.15s linear; will-change: transform, opacity; }
+
+/* 磁吸按鈕 */
+.magnetic-btn { position: relative; overflow: hidden; transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.magnetic-ripple {
+  position: absolute; width: 16px; height: 16px; border-radius: 50%;
+  background: rgba(255,255,255,0.55); transform: scale(0); opacity: 1; pointer-events: none;
+}
+
+/* 循環呼吸動畫：裝飾用小底線，不需要滑鼠也會持續微幅律動 */
+.section-eyebrow::after { animation: eyebrow-breathe 4s ease-in-out infinite; transform-origin: left; }
+@keyframes eyebrow-breathe { 0%, 100% { opacity: 1; transform: scaleX(1); } 50% { opacity: 0.65; transform: scaleX(0.72); } }
+
+/* ─── 段落小標籤（原本只有首頁有，這裡收進共用檔讓 partners.html 等內頁也能套用） ─── */
+.section-eyebrow {
+  display: inline-block; font-size: 1rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #5e8b3a; margin-bottom: 16px; position: relative;
+}
+.section-eyebrow::after { content: ''; display: block; width: 44px; height: 2px; background: linear-gradient(90deg, #5e8b3a, transparent); margin-top: 8px; }

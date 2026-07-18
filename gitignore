@@ -1,0 +1,11 @@
+# 系統/編輯器產生的檔案，不需要進版控
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# 本機測試用檔案
+測試.html
+
+# Node（若之後加裝任何工具會用到）
+node_modules/
