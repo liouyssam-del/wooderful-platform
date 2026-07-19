@@ -7,29 +7,36 @@ const navbarHTML = `
         </a>
         <div class="hidden lg:flex items-center gap-8">
           <ul class="flex items-center gap-8">
-            <li><a href="director.html" class="nav-link text-body" data-en="Director">計畫主持人</a></li>
-            <li><a href="partners.html" class="nav-link text-body" data-en="Partners">合作夥伴</a></li>
+            <li><a href="director.html" class="nav-link text-body" data-en="Director" data-ja="研究代表者" data-de="Projektleiter">計畫主持人</a></li>
+            <li><a href="partners.html" class="nav-link text-body" data-en="Partners" data-ja="パートナー" data-de="Partner">合作夥伴</a></li>
             <li class="relative group py-2">
               <a href="lessons.html" class="nav-link flex items-center gap-1 text-body">
-                <span data-en="Lessons">分享教案</span> <i class="fa-solid fa-chevron-down text-caption transition-transform group-hover:rotate-180"></i>
+                <span data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</span> <i class="fa-solid fa-chevron-down text-caption transition-transform group-hover:rotate-180"></i>
               </a>
               <div class="dropdown-wrap">
                 <ul class="dropdown-menu">
-                  <li><a href="lesson-gyro.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Wooden Gyro">木陀螺教案</a></li>
-                  <li><a href="lesson-bird.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Flying Bird">飛鳥教案</a></li>
-                  <li><a href="lesson-frog.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Croaking Frog Clapper">呱呱響板教案</a></li>
-                  <li><a href="lesson-cablecar.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Aerial Cable Car">高空運輸車教案</a></li>
-                  <li><a href="lesson-train.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Bumpy Train">蹦蹦車教案</a></li>
-                  <li class="border-t border-stone-100"><a href="lessons.html" class="block px-5 py-2.5 text-caption font-semibold text-forest-600 hover:bg-forest-100" data-en="View All Lessons →">查看全部教案 →</a></li>
+                  <li><a href="lesson-gyro.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Wooden Gyro" data-ja="木製ごま" data-de="Hölzerner Kreisel">木陀螺教案</a></li>
+                  <li><a href="lesson-bird.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Flying Bird" data-ja="飛ぶ鳥" data-de="Fliegender Vogel">飛鳥教案</a></li>
+                  <li><a href="lesson-frog.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Croaking Frog Clapper" data-ja="鳴くカエルのクラッカー" data-de="Quakender Frosch-Klapper">呱呱響板教案</a></li>
+                  <li><a href="lesson-cablecar.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Aerial Cable Car" data-ja="空中ケーブルカー" data-de="Seilbahn">高空運輸車教案</a></li>
+                  <li><a href="lesson-train.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Bumpy Train" data-ja="でこぼこ列車" data-de="Holpriger Zug">蹦蹦車教案</a></li>
+                  <li class="border-t border-stone-100"><a href="lessons.html" class="block px-5 py-2.5 text-caption font-semibold text-forest-600 hover:bg-forest-100" data-en="View All Lessons →" data-ja="すべてのレッスンを見る →" data-de="Alle Lektionen ansehen →">查看全部教案 →</a></li>
                 </ul>
               </div>
             </li>
-            <li><a href="updates.html" class="nav-link text-body" data-en="Latest Updates">最新動態</a></li>
-            <li><a href="contact.html" class="nav-link text-body" data-en="Contact Us">聯繫我們</a></li>
+            <li><a href="updates.html" class="nav-link text-body" data-en="Latest Updates" data-ja="最新情報" data-de="Neuigkeiten">最新動態</a></li>
+            <li><a href="contact.html" class="nav-link text-body" data-en="Contact Us" data-ja="お問い合わせ" data-de="Kontakt">聯繫我們</a></li>
           </ul>
-          <div class="lang-switcher flex items-center rounded-full overflow-hidden shadow-sm backdrop-blur-sm transition-all duration-300">
-            <button class="lang-btn active px-4 py-2 text-caption font-semibold transition-colors" data-lang="zh">中</button>
-            <button class="lang-btn px-4 py-2 text-caption font-semibold transition-colors" data-lang="en">EN</button>
+          <div class="lang-switcher-wrap relative">
+            <button id="langToggleBtn" type="button" class="lang-switcher-btn flex items-center gap-1.5 rounded-full overflow-hidden shadow-sm backdrop-blur-sm transition-all duration-300 px-4 py-2 text-caption font-semibold" aria-haspopup="true" aria-expanded="false">
+              <span id="langCurrentLabel">中</span> <i class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
+            </button>
+            <div id="langDropdown" class="lang-dropdown">
+              <button type="button" class="lang-btn active" data-lang="zh">中文</button>
+              <button type="button" class="lang-btn" data-lang="en">English</button>
+              <button type="button" class="lang-btn" data-lang="ja">日本語</button>
+              <button type="button" class="lang-btn" data-lang="de">Deutsch</button>
+            </div>
           </div>
         </div>
 
@@ -41,23 +48,32 @@ const navbarHTML = `
 
     <div id="mobilePanel" class="mobile-panel lg:hidden">
       <ul class="px-6 py-4 text-body font-semibold">
-        <li class="border-b border-stone-200/60"><a href="director.html" class="block py-4" data-en="Director">計畫主持人</a></li>
-        <li class="border-b border-stone-200/60"><a href="partners.html" class="block py-4" data-en="Partners">合作夥伴</a></li>
+        <li class="border-b border-stone-200/60"><a href="director.html" class="block py-4" data-en="Director" data-ja="研究代表者" data-de="Projektleiter">計畫主持人</a></li>
+        <li class="border-b border-stone-200/60"><a href="partners.html" class="block py-4" data-en="Partners" data-ja="パートナー" data-de="Partner">合作夥伴</a></li>
         <li class="border-b border-stone-200/60">
           <button id="mobileLessonsToggle" class="w-full flex items-center justify-between py-4">
-            <span data-en="Lessons">分享教案</span> <i class="fa-solid fa-chevron-down text-caption transition-transform"></i>
+            <span data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</span> <i class="fa-solid fa-chevron-down text-caption transition-transform"></i>
           </button>
           <ul id="mobileLessonsSub" class="mobile-sub pl-4 pb-3 space-y-3 text-stone-500">
-            <li><a href="lesson-gyro.html" class="block py-1" data-en="Wooden Gyro">木陀螺教案</a></li>
-            <li><a href="lesson-bird.html" class="block py-1" data-en="Flying Bird">飛鳥教案</a></li>
-            <li><a href="lesson-frog.html" class="block py-1" data-en="Croaking Frog Clapper">呱呱響板教案</a></li>
-            <li><a href="lesson-cablecar.html" class="block py-1" data-en="Aerial Cable Car">高空運輸車教案</a></li>
-            <li><a href="lesson-train.html" class="block py-1" data-en="Bumpy Train">蹦蹦車教案</a></li>
-            <li><a href="lessons.html" class="block py-1 text-forest-600 font-semibold" data-en="View All Lessons →">查看全部教案 →</a></li>
+            <li><a href="lesson-gyro.html" class="block py-1" data-en="Wooden Gyro" data-ja="木製ごま" data-de="Hölzerner Kreisel">木陀螺教案</a></li>
+            <li><a href="lesson-bird.html" class="block py-1" data-en="Flying Bird" data-ja="飛ぶ鳥" data-de="Fliegender Vogel">飛鳥教案</a></li>
+            <li><a href="lesson-frog.html" class="block py-1" data-en="Croaking Frog Clapper" data-ja="鳴くカエルのクラッカー" data-de="Quakender Frosch-Klapper">呱呱響板教案</a></li>
+            <li><a href="lesson-cablecar.html" class="block py-1" data-en="Aerial Cable Car" data-ja="空中ケーブルカー" data-de="Seilbahn">高空運輸車教案</a></li>
+            <li><a href="lesson-train.html" class="block py-1" data-en="Bumpy Train" data-ja="でこぼこ列車" data-de="Holpriger Zug">蹦蹦車教案</a></li>
+            <li><a href="lessons.html" class="block py-1 text-forest-600 font-semibold" data-en="View All Lessons →" data-ja="すべてのレッスンを見る →" data-de="Alle Lektionen ansehen →">查看全部教案 →</a></li>
           </ul>
         </li>
-        <li class="border-b border-stone-200/60"><a href="updates.html" class="block py-4" data-en="Latest Updates">最新動態</a></li>
-        <li><a href="contact.html" class="block py-4" data-en="Contact Us">聯繫我們</a></li>
+        <li class="border-b border-stone-200/60"><a href="updates.html" class="block py-4" data-en="Latest Updates" data-ja="最新情報" data-de="Neuigkeiten">最新動態</a></li>
+        <li><a href="contact.html" class="block py-4" data-en="Contact Us" data-ja="お問い合わせ" data-de="Kontakt">聯繫我們</a></li>
+        <li class="pt-4">
+          <div class="text-caption font-semibold text-stone-400 uppercase tracking-wider mb-3" data-en="Language" data-ja="言語" data-de="Sprache">語言</div>
+          <div class="mobile-lang-row grid grid-cols-4 gap-2">
+            <button type="button" class="lang-btn mobile-lang-btn active" data-lang="zh">中文</button>
+            <button type="button" class="lang-btn mobile-lang-btn" data-lang="en">EN</button>
+            <button type="button" class="lang-btn mobile-lang-btn" data-lang="ja">日本語</button>
+            <button type="button" class="lang-btn mobile-lang-btn" data-lang="de">DE</button>
+          </div>
+        </li>
       </ul>
     </div>
   </nav>
@@ -75,9 +91,9 @@ const footerHTML = `
           </div>
         </div>
         <div>
-          <h3 class="font-bold font-serif text-sub mb-5 text-forest-300" data-en="Contact Information">聯繫資訊</h3>
-          <p class="text-white/80 mb-3 text-body font-sans"><span data-en="Affiliation: ">任職學校：</span>國立臺北教育大學</p>
-          <p class="text-white/80 mb-3 text-body font-sans"><span data-en="Phone: ">聯絡電話：</span>0966519157</p>
+          <h3 class="font-bold font-serif text-sub mb-5 text-forest-300" data-en="Contact Information" data-ja="連絡先情報" data-de="Kontaktinformationen">聯繫資訊</h3>
+          <p class="text-white/80 mb-3 text-body font-sans"><span data-en="Affiliation: " data-ja="所属：" data-de="Institution: ">任職學校：</span>國立臺北教育大學</p>
+          <p class="text-white/80 mb-3 text-body font-sans"><span data-en="Phone: " data-ja="電話：" data-de="Telefon: ">聯絡電話：</span>0966519157</p>
           <p class="text-white/80 mb-6 text-body font-sans">E-mail：wtchang@mail.ntue.edu.tw</p>
           <div class="flex gap-5">
             <a href="https://www.facebook.com/share/g/1EfHD5RXL1/" target="_blank" rel="noopener" aria-label="Facebook">
@@ -86,18 +102,18 @@ const footerHTML = `
           </div>
         </div>
         <div>
-          <h3 class="font-bold font-serif text-sub mb-5 text-forest-300" data-en="Pages">頁面</h3>
+          <h3 class="font-bold font-serif text-sub mb-5 text-forest-300" data-en="Pages" data-ja="ページ" data-de="Seiten">頁面</h3>
           <div class="grid grid-cols-2 gap-x-4 gap-y-3 font-sans text-body">
-            <a href="director.html" class="text-white/80 hover:text-white transition-colors" data-en="Director">計畫主持人</a>
-            <a href="partners.html" class="text-white/80 hover:text-white transition-colors" data-en="Partners">合作夥伴</a>
-            <a href="lessons.html" class="text-white/80 hover:text-white transition-colors" data-en="Lessons">分享教案</a>
-            <a href="updates.html" class="text-white/80 hover:text-white transition-colors" data-en="Latest Updates">最新動態</a>
-            <a href="contact.html" class="text-white/80 hover:text-white transition-colors" data-en="Contact Us">聯繫我們</a>
+            <a href="director.html" class="text-white/80 hover:text-white transition-colors" data-en="Director" data-ja="研究代表者" data-de="Projektleiter">計畫主持人</a>
+            <a href="partners.html" class="text-white/80 hover:text-white transition-colors" data-en="Partners" data-ja="パートナー" data-de="Partner">合作夥伴</a>
+            <a href="lessons.html" class="text-white/80 hover:text-white transition-colors" data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</a>
+            <a href="updates.html" class="text-white/80 hover:text-white transition-colors" data-en="Latest Updates" data-ja="最新情報" data-de="Neuigkeiten">最新動態</a>
+            <a href="contact.html" class="text-white/80 hover:text-white transition-colors" data-en="Contact Us" data-ja="お問い合わせ" data-de="Kontakt">聯繫我們</a>
           </div>
         </div>
       </div>
       <div class="pt-6 text-center md:text-left font-sans">
-        <p class="text-caption text-white/40" data-en="© Copyright - Wooderful Toy Design">© Copyright - 木育玩具設計 WOODERFUL TOY DESIGN</p>
+        <p class="text-caption text-white/40" data-en="© Copyright - Wooderful Toy Design" data-ja="© Copyright - Wooderful Toy Design" data-de="© Copyright - Wooderful Toy Design">© Copyright - 木育玩具設計 WOODERFUL TOY DESIGN</p>
       </div>
     </div>
   </footer>
@@ -109,24 +125,24 @@ const lessonNotesHTML = `
   <section class="max-w-4xl mx-auto px-6 lg:px-0 mt-4 mb-20 reveal fade-up">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="bg-white border border-stone-200/60 rounded-md p-8">
-        <h3 class="text-h3 font-serif font-bold text-wood-800 mb-4 flex items-center gap-3"><i class="fa-solid fa-heart text-forest-600"></i> <span data-en="A Note for Parents &amp; Teachers">給大人的話</span></h3>
+        <h3 class="text-h3 font-serif font-bold text-wood-800 mb-4 flex items-center gap-3"><i class="fa-solid fa-heart text-forest-600"></i> <span data-en="A Note for Parents &amp; Teachers" data-ja="保護者・先生へ" data-de="Hinweis für Eltern &amp; Lehrer">給大人的話</span></h3>
         <ul class="space-y-3 text-body text-stone-600 leading-relaxed list-disc pl-5">
-          <li data-en="Time: Woodworking takes practice. Give children plenty of time to explore and finish at their own pace.">時間：木工是一項需要長時間練習的技術，多給孩子一些時間體驗與完成作品。</li>
-          <li data-en="Teaching: Ask open-ended questions and give children room to build it their own way.">教學：提出開放性的問題，給孩子空間，依照自己想要的方式製作。</li>
-          <li data-en="Planning: Use stories or scenarios to spark imagination, so children stay curious and enjoy the process.">規劃：以故事或情境激發孩子的想像力，讓孩子產生興趣，並享受製作的過程。</li>
-          <li data-en="Learning: What matters most isn&#39;t the finished piece but the trial and error along the way — it builds both craft skills and problem-solving ability.">學習：最重要的不是成果，而是反覆嘗試的過程，不僅讓孩子學習木工，也提升孩子解決問題的能力。</li>
+          <li data-en="Time: Woodworking takes practice. Give children plenty of time to explore and finish at their own pace." data-ja="時間：木工には練習が必要です。子どもたちが自分のペースでじっくり探求し、完成できるよう十分な時間を与えてください。" data-de="Zeit: Holzarbeit erfordert Übung. Geben Sie den Kindern genügend Zeit, in ihrem eigenen Tempo zu erkunden und das Werkstück fertigzustellen.">時間：木工是一項需要長時間練習的技術，多給孩子一些時間體驗與完成作品。</li>
+          <li data-en="Teaching: Ask open-ended questions and give children room to build it their own way." data-ja="指導：オープンな質問を投げかけ、子どもたちが自分なりのやり方で作れるように余地を残してあげましょう。" data-de="Unterricht: Stellen Sie offene Fragen und lassen Sie den Kindern Raum, das Projekt auf ihre eigene Weise umzusetzen.">教學：提出開放性的問題，給孩子空間，依照自己想要的方式製作。</li>
+          <li data-en="Planning: Use stories or scenarios to spark imagination, so children stay curious and enjoy the process." data-ja="企画：物語や情景を使って想像力を引き出し、子どもたちの好奇心を保ちながら制作を楽しめるようにしましょう。" data-de="Planung: Nutzen Sie Geschichten oder Szenarien, um die Fantasie anzuregen, damit die Kinder neugierig bleiben und den Prozess genießen.">規劃：以故事或情境激發孩子的想像力，讓孩子產生興趣，並享受製作的過程。</li>
+          <li data-en="Learning: What matters most isn&#39;t the finished piece but the trial and error along the way — it builds both craft skills and problem-solving ability." data-ja="学び：大切なのは完成品そのものではなく、試行錯誤の過程です。それが工作の技術だけでなく、問題解決の力も育みます。" data-de="Lernen: Nicht das fertige Werkstück zählt am meisten, sondern das Ausprobieren unterwegs — es fördert sowohl handwerkliches Können als auch Problemlösungsfähigkeit.">學習：最重要的不是成果，而是反覆嘗試的過程，不僅讓孩子學習木工，也提升孩子解決問題的能力。</li>
         </ul>
       </div>
       <div class="bg-white border border-stone-200/60 rounded-md p-8">
-        <h3 class="text-h3 font-serif font-bold text-wood-800 mb-4 flex items-center gap-3"><i class="fa-solid fa-spray-can-sparkles text-forest-600"></i> <span data-en="Caring for Your Wooden Toy">木製品的保護方式</span></h3>
-        <p class="text-body text-stone-600 mb-3" data-en="We recommend oiling any wooden parts once the project is complete:">建議完成品中，有木質的地方都能上油保養喔！以下為上油步驟：</p>
+        <h3 class="text-h3 font-serif font-bold text-wood-800 mb-4 flex items-center gap-3"><i class="fa-solid fa-spray-can-sparkles text-forest-600"></i> <span data-en="Caring for Your Wooden Toy" data-ja="木製おもちゃのお手入れ方法" data-de="Pflege Ihres Holzspielzeugs">木製品的保護方式</span></h3>
+        <p class="text-body text-stone-600 mb-3" data-en="We recommend oiling any wooden parts once the project is complete:" data-ja="作品が完成したら、木の部分にオイルを塗ってお手入れすることをおすすめします：" data-de="Wir empfehlen, alle Holzteile nach Fertigstellung des Projekts zu ölen:">建議完成品中，有木質的地方都能上油保養喔！以下為上油步驟：</p>
         <ol class="space-y-2 text-body text-stone-600 leading-relaxed list-decimal pl-5">
-          <li data-en="Prepare two light-colored cloths and a small amount of wood wax oil or olive oil.">預備兩塊淺色棉布與少許木蠟油或橄欖油。</li>
-          <li data-en="Dab a cloth with oil and apply it evenly over the surface of the wooden piece.">使用棉布沾塗油，均勻塗佈於木製品表面。</li>
-          <li data-en="With a second cloth, buff back and forth until the surface no longer feels tacky.">使用另外一塊棉布，用來回的方式推油，直到表面不會有明顯的沾黏感。</li>
-          <li data-en="Leave the piece in a well-ventilated spot to air-dry.">將製品置於通風處陰乾即可。</li>
+          <li data-en="Prepare two light-colored cloths and a small amount of wood wax oil or olive oil." data-ja="明るい色の布を2枚と、少量の木ワックスオイルまたはオリーブオイルを用意します。" data-de="Bereiten Sie zwei helle Tücher und etwas Holzwachsöl oder Olivenöl vor.">預備兩塊淺色棉布與少許木蠟油或橄欖油。</li>
+          <li data-en="Dab a cloth with oil and apply it evenly over the surface of the wooden piece." data-ja="布にオイルを含ませ、木製品の表面に均一に塗り広げます。" data-de="Tränken Sie ein Tuch mit Öl und tragen Sie es gleichmäßig auf die Oberfläche des Holzstücks auf.">使用棉布沾塗油，均勻塗佈於木製品表面。</li>
+          <li data-en="With a second cloth, buff back and forth until the surface no longer feels tacky." data-ja="もう1枚の布で、表面がべたつかなくなるまで前後にこすります。" data-de="Reiben Sie mit einem zweiten Tuch hin und her, bis sich die Oberfläche nicht mehr klebrig anfühlt.">使用另外一塊棉布，用來回的方式推油，直到表面不會有明顯的沾黏感。</li>
+          <li data-en="Leave the piece in a well-ventilated spot to air-dry." data-ja="風通しの良い場所に置いて自然乾燥させます。" data-de="Lassen Sie das Stück an einem gut belüfteten Ort trocknen.">將製品置於通風處陰乾即可。</li>
         </ol>
-        <p class="text-caption text-stone-400 mt-4" data-en="Contains small parts. Keep away from swallowing or inhalation risk — adult supervision is recommended.">本產品內含小零件，小心勿吞食或吸入，建議由成人陪同監督使用。</p>
+        <p class="text-caption text-stone-400 mt-4" data-en="Contains small parts. Keep away from swallowing or inhalation risk — adult supervision is recommended." data-ja="小さな部品が含まれています。誤飲・誤嚥に注意し、大人の監督のもとでご使用ください。" data-de="Enthält Kleinteile. Verschluckungs- und Erstickungsgefahr vermeiden — Aufsicht durch Erwachsene wird empfohlen.">本產品內含小零件，小心勿吞食或吸入，建議由成人陪同監督使用。</p>
       </div>
     </div>
   </section>
@@ -142,18 +158,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const lessonNotesContainer = document.getElementById("lesson-notes-container");
   if (lessonNotesContainer) lessonNotesContainer.innerHTML = lessonNotesHTML;
 
-  // 中英文切換：每個可翻譯的元素在 HTML 裡用 data-en="英文內容" 標記，
+  // 多語系切換：每個可翻譯的元素在 HTML 裡用 data-en / data-ja / data-de 標記對應的翻譯內容，
   // 中文就是元素原本寫在檔案裡的內容，不用另外標記。
   // 選擇的語言存在 localStorage，跨頁面導覽時會記住，不用每頁重選。
+  const LANG_LABELS = { zh: '中', en: 'EN', ja: '日', de: 'DE' };
+  const LANG_HTML_TAG = { zh: 'zh-TW', en: 'en', ja: 'ja', de: 'de' };
+
   function applyLanguage(lang) {
+    if (!LANG_LABELS[lang]) lang = 'zh';
     document.querySelectorAll('[data-en]').forEach((el) => {
       if (el.dataset.zhCache === undefined) el.dataset.zhCache = el.innerHTML;
-      el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.dataset.zhCache;
+      if (lang === 'zh') {
+        el.innerHTML = el.dataset.zhCache;
+      } else {
+        const translated = el.getAttribute(`data-${lang}`);
+        // 若該語言尚未補上翻譯，先退回英文，最後才退回中文，避免頁面出現空白
+        el.innerHTML = translated || el.getAttribute('data-en') || el.dataset.zhCache;
+      }
     });
     document.querySelectorAll('.lang-btn').forEach((btn) => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
-    document.documentElement.lang = lang === 'en' ? 'en' : 'zh-TW';
+    const currentLabel = document.getElementById('langCurrentLabel');
+    if (currentLabel) currentLabel.textContent = LANG_LABELS[lang];
+    document.documentElement.lang = LANG_HTML_TAG[lang] || 'zh-TW';
     try { localStorage.setItem('site-lang', lang); } catch (e) { /* 若無法使用 localStorage 就只切換當前頁面 */ }
   }
 
@@ -161,10 +189,29 @@ document.addEventListener("DOMContentLoaded", () => {
   try { savedLang = localStorage.getItem('site-lang') || 'zh'; } catch (e) { /* 忽略 */ }
   applyLanguage(savedLang);
 
+  // 語言選單開關（桌機版下拉選單）
+  const langToggleBtn = document.getElementById('langToggleBtn');
+  const langDropdown = document.getElementById('langDropdown');
+  if (langToggleBtn && langDropdown) {
+    langToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = langDropdown.classList.toggle('open');
+      langToggleBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    document.addEventListener('click', (e) => {
+      if (!langDropdown.contains(e.target) && !langToggleBtn.contains(e.target)) {
+        langDropdown.classList.remove('open');
+        langToggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('.lang-btn');
     if (!btn) return;
     applyLanguage(btn.dataset.lang);
+    if (langDropdown) langDropdown.classList.remove('open');
+    if (langToggleBtn) langToggleBtn.setAttribute('aria-expanded', 'false');
   });
 
   // 頁面切換淡出動畫：攔截站內連結，淡出後才真正跳轉

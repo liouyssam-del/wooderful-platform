@@ -56,14 +56,34 @@ h1, h2, h3, h4, .font-serif {
 /* 這是給頁尾的設定 */
 
 /* ─── 語系切換按鈕 ─── */
-.lang-switcher { border: 1px solid rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.1); }
-#navbar.scrolled .lang-switcher { border-color: rgba(106, 76, 45, 0.3); background: transparent; }
-.lang-btn { color: rgba(255, 255, 255, 0.8); }
-.lang-btn:hover { color: #ffffff; }
-.lang-btn.active { background: rgba(255, 255, 255, 0.2); color: #ffffff; }
-#navbar.scrolled .lang-btn { color: #6a4c2d; }
-#navbar.scrolled .lang-btn:hover { color: #5e8b3a; }
-#navbar.scrolled .lang-btn.active { background: #6a4c2d; color: #ffffff; }
+/* ─── 語系切換按鈕（桌機版：下拉選單，支援中/EN/日/DE 4 種語言） ─── */
+.lang-switcher-btn { border: 1px solid rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.9); }
+#navbar.scrolled .lang-switcher-btn { border-color: rgba(106, 76, 45, 0.3); background: transparent; color: #6a4c2d; }
+.lang-switcher-btn:hover { color: #ffffff; }
+#navbar.scrolled .lang-switcher-btn:hover { color: #5e8b3a; }
+#langToggleBtn[aria-expanded="true"] i { transform: rotate(180deg); }
+
+.lang-dropdown {
+  position: absolute; top: 100%; right: 0; margin-top: 0.5rem; width: 8rem;
+  background: #ffffff; border: 1px solid #e7e2d8; box-shadow: 0 20px 45px rgba(60,40,25,0.12);
+  border-radius: 0.5rem; padding: 0.4rem 0; z-index: 60;
+  opacity: 0; visibility: hidden; transform: translateY(8px); transition: all 0.25s ease;
+}
+.lang-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.lang-btn {
+  display: block; width: 100%; text-align: left; padding: 0.5rem 1rem;
+  font-size: 0.85rem; font-weight: 600; color: #6a4c2d; background: transparent; border: none; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.lang-btn:hover { background: #f4f1ea; color: #5e8b3a; }
+.lang-btn.active { color: #ffffff; background: #6a4c2d; }
+
+/* 手機版：語言切換改成 4 顆並排的小按鈕，放在漢堡選單清單最下方 */
+.mobile-lang-row .lang-btn.mobile-lang-btn {
+  text-align: center; border: 1px solid #e7e2d8; border-radius: 0.4rem; padding: 0.5rem 0;
+}
+.mobile-lang-row .lang-btn.mobile-lang-btn.active { border-color: #6a4c2d; }
 
 /* ─── 手機版漢堡選單（原本 lg 以下完全沒有導覽選單，這裡補上） ─── */
 .mobile-toggle {
@@ -124,3 +144,13 @@ h1, h2, h3, h4, .font-serif {
   display: inline-block; font-size: 1rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #5e8b3a; margin-bottom: 16px; position: relative;
 }
 .section-eyebrow::after { content: ''; display: block; width: 44px; height: 2px; background: linear-gradient(90deg, #5e8b3a, transparent); margin-top: 8px; }
+
+/* ─── 多語言排版修正 ───
+   text-justify（左右對齊）在中文很好看，但英文／日文／德文遇到長單字時，
+   瀏覽器會把字與字之間的空白硬拉開，出現一行只有幾個字、空白很大的怪異排版。
+   這裡依 <html lang="..."> 判斷，非中文時一律改回靠左對齊，避免切換語言後版面跑掉。 */
+html:lang(en) .text-justify,
+html:lang(ja) .text-justify,
+html:lang(de) .text-justify {
+  text-align: left;
+}
