@@ -1,0 +1,13 @@
+{
+  "name": "wooderful-toy-design-eleventy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "木育玩具設計網站 - 內容範本化建置工具（Eleventy）。目前只負責產生「最新動態」頁面，其餘頁面暫時維持原本手刻的靜態 HTML，之後會逐步把計畫主持人、教案頁面也納進來。",
+  "scripts": {
+    "build": "eleventy",
+    "watch": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}

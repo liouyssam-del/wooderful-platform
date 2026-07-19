@@ -1,30 +1,3 @@
-# Netlify 部署設定 — 木育玩具設計 (Wooderful Toy Design)
-# 這是純靜態網站，不需要 build step，直接把整個資料夾當作發布目錄。
-
 [build]
+  command = "npm install && npm run build"
   publish = "."
-  command = ""
-
-# 讓中文網址（例如 分享教案頁面/xxx.png）在部署後正常運作
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-
-# 圖片/靜態資源快取久一點，加快回訪載入速度
-[[headers]]
-  for = "/分享教案頁面/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# 找不到頁面時導回首頁，而不是顯示 Netlify 預設 404
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 404

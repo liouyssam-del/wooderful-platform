@@ -1,0 +1,44 @@
+# Decap CMS 設定檔
+# 這個檔案定義了教授登入後台後，會看到哪些「內容類型」可以編輯，
+# 以及每個類型裡有哪些欄位。目前只開放「最新動態」，
+# 之後「計畫主持人」「教案」也會用同樣的方式陸續加進來。
+
+backend:
+  name: git-gateway
+  branch: main   # 如果 GitHub repo 的預設分支不是 main，這裡要改成正確的名稱
+
+# 教授上傳的圖片會存放到這個資料夾，並自動產生對應的網址
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "updates"
+    label: "最新動態"
+    label_singular: "一則動態"
+    folder: "templates/updates"     # 每一則動態 = 這個資料夾底下的一個檔案
+    create: true                     # 允許教授新增動態
+    slug: "{{year}}-{{month}}-{{fields.title_zh}}"
+    fields:
+      - { label: "日期（用於排序，選一天即可）", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "日期顯示文字（例如 2026 / 06）", name: "date_label", widget: "string" }
+      - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
+      - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
+      - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
+      - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+      - { label: "內容（中文，必填）", name: "summary_zh", widget: "text" }
+      - { label: "內容（英文，可留白）", name: "summary_en", widget: "text", required: false }
+      - { label: "內容（日文，可留白）", name: "summary_ja", widget: "text", required: false }
+      - { label: "內容（德文，可留白）", name: "summary_de", widget: "text", required: false }
+      - label: "此篇不要顯示在網站上（隱藏）"
+        name: "permalink"
+        widget: "hidden"
+        default: false
+
+  # ─── 下一階段會加進來的內容類型（先保留這裡當備忘，還沒啟用） ───
+  # - name: "director"
+  #   label: "計畫主持人"
+  #   ...（榮譽事蹟、學歷、研究計畫等欄位，之後補上）
+  #
+  # - name: "lessons"
+  #   label: "教案"
+  #   ...（材料、步驟、圖片等欄位，之後補上）

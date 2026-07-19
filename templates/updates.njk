@@ -1,0 +1,104 @@
+---
+permalink: /updates.html
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>最新動態 - 木育玩具設計</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="tailwind-config.js"></script>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body { background-color: #fbf9f5; }
+
+    /* 影片背景頁首（跟首頁 #hero 同一套效果，尺寸縮小成內頁用） */
+    #updates-hero {
+      height: 70vh; padding-top: 100px; position: relative; display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden; isolation: isolate;
+    }
+    .yt-bg-wrapper {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; pointer-events: none; filter: brightness(1.1) saturate(1.2);
+    }
+    .yt-bg-wrapper iframe {
+      width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.77vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+
+    .update-card { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, background-color 0.3s ease; }
+    .update-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 44px rgba(0,0,0,0.25); background-color: rgba(255,255,255,0.16); }
+
+    .hero-shell {
+      position: relative; z-index: 2; width: min(88vw, 760px); padding: clamp(2rem, 4vw, 3.5rem);
+      border-radius: 2rem; border: 1px solid rgba(255, 255, 255, 0.5); background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(3px); text-align: center;
+    }
+    .hero-shell::after {
+      content: ''; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 1.5rem; pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-container"></div>
+
+<section id="updates-hero">
+  <div class="yt-bg-wrapper">
+    <iframe width="1059" height="595" src="https://www.youtube.com/embed/x5OXRa5_KAk?autoplay=1&mute=1&loop=1&playlist=x5OXRa5_KAk&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" title="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.55) 100%); z-index: -1;"></div>
+  <div class="hero-shell">
+    <div class="text-caption tracking-[0.4em] text-stone-200 uppercase mb-3" data-en="Latest Updates" data-ja="最新情報" data-de="Neuigkeiten">最新動態</div>
+    <h1 class="text-h1 font-serif font-bold tracking-widest mb-4 text-white" style="text-shadow: 0 2px 12px rgba(0,0,0,0.4);" data-en="Latest Updates" data-ja="最新情報" data-de="Neuigkeiten">最新動態</h1>
+    <div class="text-caption tracking-[0.3em] text-stone-300 uppercase font-medium">PROJECT NEWS</div>
+  </div>
+</section>
+
+<div class="max-w-7xl mx-auto px-6 lg:px-12 pt-8">
+  <div class="flex items-center gap-2 text-body text-stone-400 font-medium">
+    <a href="index.html" class="hover:text-forest-600"><i class="fa-solid fa-house-chimney text-caption"></i> <span data-en="Home" data-ja="ホーム" data-de="Startseite">首頁</span></a> <span>&gt;</span>
+    <span class="text-stone-600 font-semibold" data-en="Latest Updates" data-ja="最新情報" data-de="Neuigkeiten">最新動態</span>
+  </div>
+</div>
+
+<main class="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+
+  <div class="max-w-3xl mb-12 reveal fade-up">
+    <p class="text-lead text-stone-600 font-sans leading-relaxed" data-en="Follow the Wooderful Toy Design project's latest progress — from lesson outreach to hands-on results — updated regularly." data-ja="木育玩具設計プロジェクトの最新情報をお届けします——教案の普及活動から実践の成果まで、随時更新中です。" data-de="Verfolgen Sie die neuesten Fortschritte des Projekts Wooderful Toy Design — von der Verbreitung der Lehrpläne bis zu praktischen Ergebnissen — regelmäßig aktualisiert.">掌握木育玩具設計計畫最新進展、教案推廣與實作成果，持續更新資訊。</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal fade-up">
+    {%- for item in collections.updates %}
+    <div class="update-card rounded-2xl border border-stone-200/60 bg-gradient-to-br from-forest-700 to-forest-600 p-8 text-white">
+      <div class="text-sub uppercase tracking-[0.2em] text-forest-300 mb-3">{{ item.data.date_label }}</div>
+      <h3 class="font-serif text-card-title mb-4 font-bold"
+          data-en="{{ item.data.title_en | default(item.data.title_zh) }}"
+          data-ja="{{ item.data.title_ja | default(item.data.title_zh) }}"
+          data-de="{{ item.data.title_de | default(item.data.title_zh) }}">{{ item.data.title_zh }}</h3>
+      <p class="text-h3 leading-relaxed text-cream/90"
+         data-en="{{ item.data.summary_en | default(item.data.summary_zh) }}"
+         data-ja="{{ item.data.summary_ja | default(item.data.summary_zh) }}"
+         data-de="{{ item.data.summary_de | default(item.data.summary_zh) }}">{{ item.data.summary_zh }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+
+  <div class="mt-24 text-center border-t border-stone-200/60 pt-16 max-w-md mx-auto reveal fade-up">
+    <div class="w-12 h-12 bg-white border border-stone-200 rounded-full flex items-center justify-center text-forest-600 text-lg shadow-sm mx-auto mb-4">
+      <i class="fa-solid fa-bell"></i>
+    </div>
+    <h4 class="text-h3 font-serif font-bold text-wood-800 mb-1" data-en="More Updates Coming Soon" data-ja="さらに新着情報が続きます" data-de="Weitere Neuigkeiten folgen bald">還有更多動態持續更新中</h4>
+    <p class="text-stone-400 text-caption mb-6" data-en="Join us in promoting wood education" data-ja="一緒に木育教育を広めましょう" data-de="Machen Sie mit, Holzbildung zu fördern">加入我們，一起推廣木育教育</p>
+    <a href="contact.html" class="inline-block px-8 py-2 rounded-xl bg-forest-600 text-white font-semibold text-caption shadow-sm hover:bg-forest-700 transition-all" data-en="Contact Us" data-ja="お問い合わせ" data-de="Kontakt">聯繫我們</a>
+  </div>
+
+</main>
+
+<div id="footer-container"></div>
+<script src="layout.js"></script>
+</body>
+</html>
