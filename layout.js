@@ -8,7 +8,7 @@ const navbarHTML = `
         <div class="hidden lg:flex items-center gap-8">
           <ul class="flex items-center gap-8">
             <li><a href="director.html" class="nav-link text-body" data-en="Director" data-ja="研究代表者" data-de="Projektleiter">計畫主持人</a></li>
-            <li><a href="bamboo-play.html" class="nav-link text-body" data-en="Bamboo Play" data-ja="竹育楽" data-de="Bamboo Play">竹育樂</a></li>
+            <li><a href="bamboo-play.html" class="nav-link text-body" data-en="Bamboo Learning &amp; Joy" data-ja="竹育楽" data-de="Bamboo Learning &amp; Joy">竹育樂</a></li>
             <li><a href="partners.html" class="nav-link text-body" data-en="Partners" data-ja="パートナー" data-de="Partner">合作夥伴</a></li>
             <li class="relative group py-2">
               <a href="lessons.html" class="nav-link flex items-center gap-1 text-body">
@@ -50,7 +50,7 @@ const navbarHTML = `
     <div id="mobilePanel" class="mobile-panel lg:hidden">
       <ul class="px-6 py-4 text-body font-semibold">
         <li class="border-b border-stone-200/60"><a href="director.html" class="block py-4" data-en="Director" data-ja="研究代表者" data-de="Projektleiter">計畫主持人</a></li>
-        <li class="border-b border-stone-200/60"><a href="bamboo-play.html" class="block py-4" data-en="Bamboo Play" data-ja="竹育楽" data-de="Bamboo Play">竹育樂</a></li>
+        <li class="border-b border-stone-200/60"><a href="bamboo-play.html" class="block py-4" data-en="Bamboo Learning &amp; Joy" data-ja="竹育楽" data-de="Bamboo Learning &amp; Joy">竹育樂</a></li>
         <li class="border-b border-stone-200/60"><a href="partners.html" class="block py-4" data-en="Partners" data-ja="パートナー" data-de="Partner">合作夥伴</a></li>
         <li class="border-b border-stone-200/60">
           <button id="mobileLessonsToggle" class="w-full flex items-center justify-between py-4">
@@ -107,7 +107,7 @@ const footerHTML = `
           <h3 class="font-bold font-serif text-sub mb-5 text-forest-300" data-en="Pages" data-ja="ページ" data-de="Seiten">頁面</h3>
           <div class="grid grid-cols-2 gap-x-4 gap-y-3 font-sans text-body">
             <a href="director.html" class="text-white/80 hover:text-white transition-colors" data-en="Director" data-ja="研究代表者" data-de="Projektleiter">計畫主持人</a>
-            <a href="bamboo-play.html" class="text-white/80 hover:text-white transition-colors" data-en="Bamboo Play" data-ja="竹育楽" data-de="Bamboo Play">竹育樂</a>
+            <a href="bamboo-play.html" class="text-white/80 hover:text-white transition-colors" data-en="Bamboo Learning &amp; Joy" data-ja="竹育楽" data-de="Bamboo Learning &amp; Joy">竹育樂</a>
             <a href="partners.html" class="text-white/80 hover:text-white transition-colors" data-en="Partners" data-ja="パートナー" data-de="Partner">合作夥伴</a>
             <a href="lessons.html" class="text-white/80 hover:text-white transition-colors" data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</a>
             <a href="updates.html" class="text-white/80 hover:text-white transition-colors" data-en="Latest Updates" data-ja="最新情報" data-de="Neuigkeiten">最新動態</a>
