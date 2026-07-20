@@ -1,3 +1,15 @@
+// 告訴瀏覽器不要自動翻譯這個頁面：網站已經有自己的中/英/日/德語言切換器，
+// 如果瀏覽器（例如 Chrome 的「翻譯這個網頁」功能）自己動手翻譯 DOM 內容，
+// 會跟這裡的語言切換器互相打架，導致快取到錯誤、機翻走味的文字。
+(function () {
+  document.documentElement.setAttribute('translate', 'no');
+  document.documentElement.classList.add('notranslate');
+  var meta = document.createElement('meta');
+  meta.name = 'google';
+  meta.content = 'notranslate';
+  document.head.appendChild(meta);
+})();
+
 const navbarHTML = `
   <nav id="navbar">
     <div class="max-w-7xl mx-auto px-6 lg:px-12">
