@@ -30,20 +30,20 @@
 
     /* 分類卡片 */
     .activity-card {
-      background: #fff; border: 1px solid #e7e2d8; border-radius: 1rem; padding: 1.75rem 2rem;
+      background: #fff; border: 1px solid #e7e2d8; border-radius: 1rem; padding: 2.25rem 2.5rem;
       transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
     .activity-card:hover { box-shadow: 0 16px 32px rgba(45,73,32,0.10); transform: translateY(-3px); }
     .activity-date {
-      display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em;
-      color: #5e8b3a; background: #eef3e6; border-radius: 9999px; padding: 3px 14px; margin-bottom: 0.6rem;
+      display: inline-block; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em;
+      color: #2d4920; background: #dcebc9; border-radius: 9999px; padding: 4px 16px; margin-bottom: 0.75rem;
     }
     .activity-photo-cell img {
-      width: 100%; height: 240px; object-fit: contain; object-position: center; border-radius: 0.6rem;
-      border: 1px solid #e7e2d8; background: #f4f1ea; padding: 8px; box-sizing: border-box;
+      width: 100%; height: 340px; object-fit: contain; object-position: center; border-radius: 0.6rem;
+      border: 1px solid #e7e2d8; background: #f4f1ea; padding: 10px; box-sizing: border-box;
     }
-    .activity-photo-caption { font-size: 0.78rem; color: #a8998a; margin-top: 0.35rem; line-height: 1.4; }
-    .activity-source { font-size: 0.75rem; color: #b7ab9d; margin-top: 0.4rem; font-style: italic; }
+    .activity-photo-caption { font-size: 0.9rem; color: #7d7164; margin-top: 0.5rem; line-height: 1.5; }
+    .activity-source { font-size: 0.85rem; color: #8c8072; margin-top: 0.5rem; font-style: italic; }
   </style>
 </head>
 <body>
@@ -62,7 +62,7 @@
   </div>
 </section>
 
-<div class="max-w-6xl mx-auto px-6 lg:px-10 pt-8">
+<div class="max-w-7xl mx-auto px-6 lg:px-10 pt-8">
   <div class="flex items-center gap-2 text-body text-stone-400 font-medium">
     <a href="index.html" class="hover:text-forest-600"><i class="fa-solid fa-house-chimney text-caption"></i> <span data-en="Home" data-ja="ホーム" data-de="Startseite">首頁</span></a> <span>&gt;</span>
     <span class="text-stone-600 font-semibold" data-en="Latest Updates" data-ja="最新情報" data-de="Neuigkeiten">最新動態</span>
@@ -71,15 +71,15 @@
 
 <!-- 分類頁籤（沿用計畫主持人頁面同一套 sticky tab nav 樣式） -->
 <nav class="sticky top-[90px] z-40 bg-[#fcfbf7]/95 backdrop-blur-sm border-y border-stone-200/60 mt-8 mb-12">
-  <div class="max-w-6xl mx-auto px-6 lg:px-10 flex items-center justify-center gap-1 sm:gap-2 lg:justify-evenly overflow-x-auto py-3 no-scrollbar">
-    <a href="#intl" class="flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-full text-body font-semibold text-wood-700 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-earth-asia"></i> <span>國際交流</span></a>
-    <a href="#wood" class="flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-full text-body font-semibold text-wood-700 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-tree"></i> <span>木育玩具開發與推廣</span></a>
-    <a href="#bamboo" class="flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-full text-body font-semibold text-wood-700 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-seedling"></i> <span>竹育樂（2026~）</span></a>
-    <a href="#industry" class="flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-full text-body font-semibold text-wood-700 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-handshake"></i> <span>產學合作計畫成果</span></a>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-center gap-2 sm:gap-3 lg:justify-evenly overflow-x-auto py-4 no-scrollbar">
+    <a href="#intl" class="flex items-center gap-2 whitespace-nowrap px-5 py-2.5 rounded-full text-sub font-bold text-wood-800 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-earth-asia text-forest-600"></i> <span>國際交流</span></a>
+    <a href="#wood" class="flex items-center gap-2 whitespace-nowrap px-5 py-2.5 rounded-full text-sub font-bold text-wood-800 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-tree text-forest-600"></i> <span>木育玩具開發與推廣</span></a>
+    <a href="#bamboo" class="flex items-center gap-2 whitespace-nowrap px-5 py-2.5 rounded-full text-sub font-bold text-wood-800 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-seedling text-forest-600"></i> <span>竹育樂（2026~）</span></a>
+    <a href="#industry" class="flex items-center gap-2 whitespace-nowrap px-5 py-2.5 rounded-full text-sub font-bold text-wood-800 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-handshake text-forest-600"></i> <span>產學合作計畫成果</span></a>
   </div>
 </nav>
 
-<main class="max-w-6xl mx-auto px-6 lg:px-10 py-8">
+<main class="max-w-7xl mx-auto px-6 lg:px-10 py-8">
 
   <!-- ══════════════ 1. 國際交流 ══════════════ -->
   <section id="intl" class="scroll-mt-40 mb-24 reveal fade-up">
@@ -92,7 +92,7 @@
       <div class="activity-card">
         <div class="activity-date">2025 年 7 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">日本北海道木工與家具產業實地考察</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">於 2025 年 7 月 6 日至 19 日前往日本北海道札幌、小樽及旭川等地，實地考察木工工坊、家具製造產業及相關博物館，探討永續木育教育、傳統木工工藝，以及其在 STEAM 學習與設計教育中的應用。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">於 2025 年 7 月 6 日至 19 日前往日本北海道札幌、小樽及旭川等地，實地考察木工工坊、家具製造產業及相關博物館，探討永續木育教育、傳統木工工藝，以及其在 STEAM 學習與設計教育中的應用。</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="activity-photo-cell">
             <img src="images/updates/intl-01a-hokkaido-forest-museum.jpg" alt="札幌森林博物館木工工坊參訪">
@@ -109,7 +109,7 @@
       <div class="activity-card">
         <div class="activity-date">2025 年 3 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">日本京都竹工藝產業田野調查</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">本次考察聚焦於傳統竹工藝的當代表現與技術創新，深入參訪京都代表性竹工坊、工藝職人工作室及文化機構。透過實地觀察與專家交流，探討竹工藝在科技應用、產業創新、文化保存及跨域整合等方面的實踐經驗。此次參訪提供臺灣推動永續竹設計、文化創意產業及教育創新的重要國際案例與參考依據。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">本次考察聚焦於傳統竹工藝的當代表現與技術創新，深入參訪京都代表性竹工坊、工藝職人工作室及文化機構。透過實地觀察與專家交流，探討竹工藝在科技應用、產業創新、文化保存及跨域整合等方面的實踐經驗。此次參訪提供臺灣推動永續竹設計、文化創意產業及教育創新的重要國際案例與參考依據。</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="activity-photo-cell">
             <img src="images/updates/intl-02a-kyoto-lacquer-shop.jpg" alt="拜訪日本百年生漆老店">
@@ -126,7 +126,7 @@
       <div class="activity-card">
         <div class="activity-date">2024 年 6 月–9 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">永續設計價值與應用訪問研究計畫</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">以德國特里爾應用科技大學（Trier University of Applied Sciences）為研究場域，探討聯合國永續發展目標（SDGs）導向之設計教育與課程發展。研究內容包括參與 Matthias Sieveke 教授設計工作室課程、觀察設計學院行政管理模式，以及推動設計、教育與地方社區之跨域合作。此外，在正式研究訪問前一週，率領國立臺北教育大學 10 位學生赴德國，參加（2024 年 6 月 10 日至 17 日）臺德國際竹設計工作坊（已結案）。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">以德國特里爾應用科技大學（Trier University of Applied Sciences）為研究場域，探討聯合國永續發展目標（SDGs）導向之設計教育與課程發展。研究內容包括參與 Matthias Sieveke 教授設計工作室課程、觀察設計學院行政管理模式，以及推動設計、教育與地方社區之跨域合作。此外，在正式研究訪問前一週，率領國立臺北教育大學 10 位學生赴德國，參加（2024 年 6 月 10 日至 17 日）臺德國際竹設計工作坊（已結案）。</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="activity-photo-cell">
             <img src="images/updates/intl-03a-trier-workshop-opening.jpg" alt="臺德竹設計工作坊開幕">
@@ -143,7 +143,7 @@
       <div class="activity-card">
         <div class="activity-date">2024 年 11 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">德臺國際竹設計工作坊</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">主持並舉辦德臺國際竹設計工作坊計畫，合作單位：國立臺北教育大學、明志科技大學、國立臺灣大學、德國特里爾應用科技大學；辦理地點：國立臺灣工藝研究發展中心；活動期間：2024 年 11 月 4 日至 9 日（6 天）；參與人數：共 51 人，包括學生 45 人及教師、專家 6 人，其中國立臺北教育大學 21 人、國立臺灣大學 2 人、明志科技大學 10 人、德國特里爾應用科技大學學生 12 人，以及教師與工藝專家 6 人，國立臺北教育大學與明志科技大學經費贊助，特此致謝（已結案）。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">主持並舉辦德臺國際竹設計工作坊計畫，合作單位：國立臺北教育大學、明志科技大學、國立臺灣大學、德國特里爾應用科技大學；辦理地點：國立臺灣工藝研究發展中心；活動期間：2024 年 11 月 4 日至 9 日（6 天）；參與人數：共 51 人，包括學生 45 人及教師、專家 6 人，其中國立臺北教育大學 21 人、國立臺灣大學 2 人、明志科技大學 10 人、德國特里爾應用科技大學學生 12 人，以及教師與工藝專家 6 人，國立臺北教育大學與明志科技大學經費贊助，特此致謝（已結案）。</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="activity-photo-cell">
             <img src="images/updates/intl-04a-taiwan-germany-kite.jpg" alt="德臺竹設計工作坊活動-竹風箏">
@@ -160,7 +160,7 @@
       <div class="activity-card">
         <div class="activity-date">2019 年 12 月–2020 年 2 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">Z 世代數位生活體驗暨跨域人機互動設計實習計畫</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">合作單位：教育部學海築夢海外實習計畫暨 ASUS 新加坡設計中心。計畫研究團隊（5 位大學與碩士班同學），自 109 年 1 月中出發至新加坡 ASUS 電腦公司工業設計部，進行為期 1 個月的工作坊實習計畫（已結案）。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">合作單位：教育部學海築夢海外實習計畫暨 ASUS 新加坡設計中心。計畫研究團隊（5 位大學與碩士班同學），自 109 年 1 月中出發至新加坡 ASUS 電腦公司工業設計部，進行為期 1 個月的工作坊實習計畫（已結案）。</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="activity-photo-cell">
             <img src="images/updates/intl-05a-asus-checkin.jpg" alt="本校實習團隊ASUS報到">
@@ -191,8 +191,8 @@
         <p class="text-caption text-stone-400 mb-4">結案中／國科會計畫 NSTC 112-2410-H-152-023-；NSTC 113-2410-H-152-009-MY2</p>
 
         <div class="mb-6">
-          <p class="font-semibold text-wood-700 mb-2">2023 年 12 月：木育學堂 STEAM 創客與 SDGs 小學教案開發理念</p>
-          <p class="text-body text-stone-600 leading-relaxed mb-4">進行小學生生活型態分析（圖 a），進行 STEAM 創客與 SDGs 素材與木育教案內容難度評估（圖 b），邀請專家學者對可能之 STEAM 創客與 SDGs 與教案內容進行審查，經由數次修正確認內容後進行教案正式之開發流程。</p>
+          <p class="text-sub font-bold text-wood-800 mb-2">2023 年 12 月：木育學堂 STEAM 創客與 SDGs 小學教案開發理念</p>
+          <p class="text-sub text-stone-700 leading-relaxed mb-4">進行小學生生活型態分析（圖 a），進行 STEAM 創客與 SDGs 素材與木育教案內容難度評估（圖 b），邀請專家學者對可能之 STEAM 創客與 SDGs 與教案內容進行審查，經由數次修正確認內容後進行教案正式之開發流程。</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="activity-photo-cell">
               <img src="images/updates/wood-01a-lifestyle-analysis.jpg" alt="學童生活型態分析">
@@ -207,8 +207,8 @@
         </div>
 
         <div class="mb-6">
-          <p class="font-semibold text-wood-700 mb-2">2024 年 5 月：完成融合 STEAM 設計木育玩具之教案開發</p>
-          <p class="text-body text-stone-600 leading-relaxed mb-4">以木工六大加工技法為依據訂定學習目標開展設計，完成初、中、高三個階段的木育玩具材料包應用於國小教學；利用課程驗證，透過問卷評量開發玩具教案的學習成效（95 位小學同學參與）。</p>
+          <p class="text-sub font-bold text-wood-800 mb-2">2024 年 5 月：完成融合 STEAM 設計木育玩具之教案開發</p>
+          <p class="text-sub text-stone-700 leading-relaxed mb-4">以木工六大加工技法為依據訂定學習目標開展設計，完成初、中、高三個階段的木育玩具材料包應用於國小教學；利用課程驗證，透過問卷評量開發玩具教案的學習成效（95 位小學同學參與）。</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="activity-photo-cell">
               <img src="images/updates/wood-02a-workshop-photo.jpg" alt="木育學堂工作坊實況紀錄">
@@ -223,8 +223,8 @@
         </div>
 
         <div>
-          <p class="font-semibold text-wood-700 mb-2">2026 年 7 月：升級計畫成果分享平台</p>
-          <p class="text-body text-stone-600 leading-relaxed">配合木育學堂開發系列工作坊教案，結合更多合作社群及學校，免費分享研究成果，持續推廣木育 STEAM 教案。</p>
+          <p class="text-sub font-bold text-wood-800 mb-2">2026 年 7 月：升級計畫成果分享平台</p>
+          <p class="text-sub text-stone-700 leading-relaxed">配合木育學堂開發系列工作坊教案，結合更多合作社群及學校，免費分享研究成果，持續推廣木育 STEAM 教案。</p>
         </div>
       </div>
 
@@ -234,8 +234,8 @@
         <p class="text-caption text-stone-400 mb-4">國科會計畫 MOST 109-2410-H-152-003-；MOST 110-2410-H-152-012-MY2（已結案）</p>
 
         <div class="mb-6">
-          <p class="font-semibold text-wood-700 mb-2">2021 年 3 月：STEAM 木工玩具種子教師體驗</p>
-          <p class="text-body text-stone-600 leading-relaxed mb-4">STEAM 木工玩具與教案開發，進行教案問卷開發與評量，期能裨益小學教育。（共計 103 位大專同學參與）。</p>
+          <p class="text-sub font-bold text-wood-800 mb-2">2021 年 3 月：STEAM 木工玩具種子教師體驗</p>
+          <p class="text-sub text-stone-700 leading-relaxed mb-4">STEAM 木工玩具與教案開發，進行教案問卷開發與評量，期能裨益小學教育。（共計 103 位大專同學參與）。</p>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div class="activity-photo-cell">
               <img src="images/updates/wood-03-teacher-experience.jpg" alt="STEAM課程講解與實作體驗">
@@ -246,8 +246,8 @@
         </div>
 
         <div>
-          <p class="font-semibold text-wood-700 mb-2">2023 年 6 月：優化後之 STEAM 木育教案</p>
-          <p class="text-body text-stone-600 leading-relaxed mb-4">木陀螺教案、自動存錢筒教案（2022 年 8 月取得發明專利）與飛鳥教案。</p>
+          <p class="text-sub font-bold text-wood-800 mb-2">2023 年 6 月：優化後之 STEAM 木育教案</p>
+          <p class="text-sub text-stone-700 leading-relaxed mb-4">木陀螺教案、自動存錢筒教案（2022 年 8 月取得發明專利）與飛鳥教案。</p>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div class="activity-photo-cell">
               <img src="images/updates/wood-04-optimized-toys.jpg" alt="木陀螺、自動存錢筒、飛鳥教案">
@@ -261,10 +261,10 @@
       <div class="activity-card">
         <div class="activity-date">2023 年 4 月–6 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">6 場木育 STEAM 玩具開發系列工作坊與講座</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">本年度配合木育 STEAM 玩具開發系列工作坊與講座，包括大專、小教木育 STEAM 工作坊、STEAM 教育專家講座，以及專家會議（超過 180 人次參與）。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">本年度配合木育 STEAM 玩具開發系列工作坊與講座，包括大專、小教木育 STEAM 工作坊、STEAM 教育專家講座，以及專家會議（超過 180 人次參與）。</p>
         <div class="grid grid-cols-1 gap-4">
           <div class="activity-photo-cell">
-            <img src="images/updates/wood-05-workshop-series.jpg" alt="木育STEAM玩具開發系列工作坊與講座" style="height:240px;">
+            <img src="images/updates/wood-05-workshop-series.jpg" alt="木育STEAM玩具開發系列工作坊與講座" style="height:340px;">
           </div>
         </div>
         <div class="activity-source">木育 STEAM 玩具開發系列工作坊與講座（出處：本研究繪製）</div>
@@ -285,7 +285,7 @@
       <div class="activity-card">
         <div class="activity-date">2026 年 7 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">竹林場勘與竹材採集</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">為尋得適當竹材，團隊劉宗岳老師親赴阿里山海拔 1200 高度竹林場勘，陡坡採集竹材難度頗高，積極準備後續教案備料工作中。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">為尋得適當竹材，團隊劉宗岳老師親赴阿里山海拔 1200 高度竹林場勘，陡坡採集竹材難度頗高，積極準備後續教案備料工作中。</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="activity-photo-cell">
             <img src="images/updates/bamboo-01a-fresh-bamboo.jpg" alt="新鮮竹材">
@@ -302,7 +302,7 @@
       <div class="activity-card">
         <div class="activity-date">2026 年 7 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">小竹琴親子體驗社區推廣活動</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">團隊劉宗岳老師於台中龍井社區耕耘多年，社區竹樂器體驗活動，今年度起與本計畫合作，進行相關教案研發與推廣。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">團隊劉宗岳老師於台中龍井社區耕耘多年，社區竹樂器體驗活動，今年度起與本計畫合作，進行相關教案研發與推廣。</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="activity-photo-cell">
             <img src="images/updates/bamboo-02a-onsite-teaching.jpg" alt="現場教學">
@@ -319,7 +319,7 @@
       <div class="activity-card">
         <div class="activity-date">2026 年 5 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">竹藝與設計實務工作坊</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">竹采藝品有限公司林琮棋經理，國立臺北教育大學藝設系，指導孟宗竹工藝品製作體驗與實作，3 小時（共 9 人）。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">竹采藝品有限公司林琮棋經理，國立臺北教育大學藝設系，指導孟宗竹工藝品製作體驗與實作，3 小時（共 9 人）。</p>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div class="activity-photo-cell">
             <img src="images/updates/bamboo-03a-poster.jpg" alt="宣傳海報">
@@ -351,7 +351,7 @@
       <div class="activity-card">
         <div class="activity-date">2024 年 12 月–2025 年 11 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">竹好聽──竹材創新童玩產品開發</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">國立臺灣工藝研究發展中心產學合作計畫。合作單位：采竹工藝社林群涵竹工藝師。完成資料蒐集、市場分析、工作坊，深入分析竹材複合運用的可能性，拓展童玩設計於跨域整合之發展潛力（已結案）。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">國立臺灣工藝研究發展中心產學合作計畫。合作單位：采竹工藝社林群涵竹工藝師。完成資料蒐集、市場分析、工作坊，深入分析竹材複合運用的可能性，拓展童玩設計於跨域整合之發展潛力（已結案）。</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="activity-photo-cell">
             <img src="images/updates/industry-01a-concept.jpg" alt="主視覺與理念說明">
@@ -365,8 +365,8 @@
         <div class="activity-source">工藝中心產學合作案成果及亮點──趣味音感搖椅</div>
 
         <div class="mt-6 pt-6 border-t border-stone-100">
-          <p class="font-semibold text-wood-700 mb-2">2025 年 11 月：獲 2025 年竹藝產品開發競賽首獎肯定</p>
-          <p class="text-body text-stone-600 leading-relaxed mb-4">計畫成果衍伸共 5 件創作實體竹樂器設計作品；六音竹管拍筒琴（共同作者：張文德、劉宗岳、林琮棋），獲 2025 年竹藝產品開發競賽首獎／典藏（南投縣文化局主辦）／獎牌及獎金 8 萬元；其他 4 件作品（竹音箱鼓、竹手鼓、竹月鼓、竹圓鼓）獲入圍殊榮。</p>
+          <p class="text-sub font-bold text-wood-800 mb-2">2025 年 11 月：獲 2025 年竹藝產品開發競賽首獎肯定</p>
+          <p class="text-sub text-stone-700 leading-relaxed mb-4">計畫成果衍伸共 5 件創作實體竹樂器設計作品；六音竹管拍筒琴（共同作者：張文德、劉宗岳、林琮棋），獲 2025 年竹藝產品開發競賽首獎／典藏（南投縣文化局主辦）／獎牌及獎金 8 萬元；其他 4 件作品（竹音箱鼓、竹手鼓、竹月鼓、竹圓鼓）獲入圍殊榮。</p>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div class="activity-photo-cell">
               <img src="images/updates/industry-02a-clapper-instrument.jpg" alt="六音竹管拍筒琴">
@@ -385,10 +385,10 @@
         </div>
 
         <div class="mt-6 pt-6 border-t border-stone-100">
-          <p class="font-semibold text-wood-700 mb-2">2025 年 8 月：工藝新趣計畫期末成果展參展</p>
+          <p class="text-sub font-bold text-wood-800 mb-2">2025 年 8 月：工藝新趣計畫期末成果展參展</p>
           <div class="grid grid-cols-1 gap-4">
             <div class="activity-photo-cell">
-              <img src="images/updates/industry-03-exhibition.jpg" alt="計畫團隊與展示作品合照" style="height:260px;">
+              <img src="images/updates/industry-03-exhibition.jpg" alt="計畫團隊與展示作品合照" style="height:340px;">
               <div class="activity-photo-caption">計畫團隊與展示作品合照</div>
             </div>
           </div>
@@ -398,10 +398,10 @@
       <div class="activity-card">
         <div class="activity-date">2018 年 7 月–2020 年 7 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">童智創客樂！體感創作玩具之設計與開發</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">國科會產學合作計畫，合作單位：國科會暨和誼創新公司。主要開發成果：a. STEAM 幼兒教案開發；b. STEAM 工具開發；c. STEAM 玩具設計（已結案）。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">國科會產學合作計畫，合作單位：國科會暨和誼創新公司。主要開發成果：a. STEAM 幼兒教案開發；b. STEAM 工具開發；c. STEAM 玩具設計（已結案）。</p>
         <div class="grid grid-cols-1 gap-4">
           <div class="activity-photo-cell">
-            <img src="images/updates/industry-04-oled-partnership.jpg" alt="國科會產學合作案成果及亮點" style="height:220px;">
+            <img src="images/updates/industry-04-oled-partnership.jpg" alt="國科會產學合作案成果及亮點" style="height:340px;">
           </div>
         </div>
         <div class="activity-source">國科會產學合作案成果及亮點</div>
@@ -410,7 +410,7 @@
       <div class="activity-card">
         <div class="activity-date">2017 年 4 月–2019 年 12 月</div>
         <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2">光寶貝 OLED 光照互動玩具設計</h3>
-        <p class="text-body text-stone-600 leading-relaxed mb-4">合作單位：工研院電光所。補助經費：2,650,000 元，前 2 年為 OLED 玩具開發提案，第 3 年延續前兩年研究成果，進行最終版設計優化與小量產製作（圖 a）。該設計已取得專利，共生產 40 套 OLED 互動玩具產品，獲工研院電光所高度肯定。以工研院電光所暨國立臺北教育大學名義，致贈衛生福利部北區兒童之家、藍迪基金會附設兒童之家、財團法人新竹市私立新竹仁愛兒童之家、聖方濟育幼院（圖 b），各八套 OLED 發光拼圖玩具組，深受獲贈單位喜愛（已結案）。</p>
+        <p class="text-sub text-stone-700 leading-relaxed mb-4">合作單位：工研院電光所。補助經費：2,650,000 元，前 2 年為 OLED 玩具開發提案，第 3 年延續前兩年研究成果，進行最終版設計優化與小量產製作（圖 a）。該設計已取得專利，共生產 40 套 OLED 互動玩具產品，獲工研院電光所高度肯定。以工研院電光所暨國立臺北教育大學名義，致贈衛生福利部北區兒童之家、藍迪基金會附設兒童之家、財團法人新竹市私立新竹仁愛兒童之家、聖方濟育幼院（圖 b），各八套 OLED 發光拼圖玩具組，深受獲贈單位喜愛（已結案）。</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="activity-photo-cell">
             <img src="images/updates/industry-05a-oled-2019.jpg" alt="2019年度OLED互動玩具研發成果">
