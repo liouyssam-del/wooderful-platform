@@ -38,6 +38,13 @@
       display: inline-block; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em;
       color: #2d4920; background: #dcebc9; border-radius: 9999px; padding: 4px 16px; margin-bottom: 0.75rem;
     }
+    /* 分類頁籤：獨立字級設定，不受全站英/德文自動縮小規則影響，維持清楚易讀的大小 */
+    .tab-nav-link {
+      display: flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 9999px;
+      font-size: 16px !important; font-weight: 600; line-height: 1.3; color: #2d4920;
+      text-align: center; transition: background-color 0.2s ease;
+    }
+    .tab-nav-link:hover { background-color: #eef4ea; }
     .activity-photo-cell img {
       width: 100%; height: 340px; object-fit: contain; object-position: center; border-radius: 0.6rem;
       border: 1px solid #e7e2d8; background: #f4f1ea; padding: 10px; box-sizing: border-box;
@@ -71,11 +78,11 @@
 
 <!-- 分類頁籤（沿用計畫主持人頁面同一套 sticky tab nav 樣式） -->
 <nav class="sticky top-[90px] z-40 bg-[#fcfbf7]/95 backdrop-blur-sm border-y border-stone-200/60 mt-8 mb-12">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-center gap-2 sm:gap-3 lg:justify-evenly overflow-x-auto py-3 no-scrollbar">
-    <a href="#intl" class="flex items-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-full text-caption font-semibold hover:bg-forest-100 transition-colors" style="color:#2d4920;"><i class="fa-solid fa-earth-asia" style="color:#2d4920;"></i> <span data-en="International Exchange" data-ja="国際交流" data-de="Internationaler Austausch">國際交流</span></a>
-    <a href="#wood" class="flex items-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-full text-caption font-semibold hover:bg-forest-100 transition-colors" style="color:#2d4920;"><i class="fa-solid fa-tree" style="color:#2d4920;"></i> <span data-en="Wood Toy Development &amp; Promotion" data-ja="木育玩具の開発と普及" data-de="Entwicklung und Verbreitung von Holzbildungsspielzeug">木育玩具開發與推廣</span></a>
-    <a href="#bamboo" class="flex items-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-full text-caption font-semibold hover:bg-forest-100 transition-colors" style="color:#2d4920;"><i class="fa-solid fa-seedling" style="color:#2d4920;"></i> <span data-en="Bamboo Learning &amp; Joy (2026–)" data-ja="竹育楽（2026年～）" data-de="Bamboo Learning &amp; Joy (2026–)">竹育樂（2026~）</span></a>
-    <a href="#industry" class="flex items-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-full text-caption font-semibold hover:bg-forest-100 transition-colors" style="color:#2d4920;"><i class="fa-solid fa-handshake" style="color:#2d4920;"></i> <span data-en="Industry-Academia Collaboration Results" data-ja="産学連携プロジェクト成果" data-de="Ergebnisse der Industrie-Hochschul-Kooperation">產學合作計畫成果</span></a>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:justify-evenly py-3">
+    <a href="#intl" class="tab-nav-link"><i class="fa-solid fa-earth-asia"></i> <span data-en="International Activity" data-ja="国際交流" data-de="Internationale Aktivit&auml;t">國際交流</span></a>
+    <a href="#wood" class="tab-nav-link"><i class="fa-solid fa-tree"></i> <span data-en="Wood Toys Promote" data-ja="木育玩具の普及" data-de="Holzspielzeug-F&ouml;rderung">木育玩具開發與推廣</span></a>
+    <a href="#bamboo" class="tab-nav-link"><i class="fa-solid fa-seedling"></i> <span data-en="Joy of Bamboo" data-ja="竹育楽" data-de="Bambusfreude">竹育樂（2026~）</span></a>
+    <a href="#industry" class="tab-nav-link"><i class="fa-solid fa-handshake"></i> <span data-en="Collaborative Projects" data-ja="産学連携成果" data-de="Kooperationsprojekte">產學合作計畫成果</span></a>
   </div>
 </nav>
 
