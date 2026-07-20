@@ -21,7 +21,7 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .nav-link {
-  font-size: 1.05rem; font-weight: 600; color: #ffffff;
+  font-size: 18.4px; font-weight: 600; color: #ffffff;
   letter-spacing: 0.06em; text-shadow: 0 1px 3px rgba(0,0,0,0.4); 
   transition: all 0.3s ease;
 }
@@ -175,3 +175,6 @@ html:lang(en) .text-lead,    html:lang(de) .text-lead    { font-size: 19px; }
 html:lang(en) .text-card-title,    html:lang(de) .text-card-title    { font-size: 23px; }
 html:lang(en) .text-section-title, html:lang(de) .text-section-title { font-size: 34px; }
 html:lang(en) .text-display,       html:lang(de) .text-display       { font-size: 44px; }
+
+/* 主導覽列：英文／德文用稍大一點的 20px，中文／日文維持 18.4px */
+html:lang(en) .nav-link, html:lang(de) .nav-link { font-size: 19px; }
