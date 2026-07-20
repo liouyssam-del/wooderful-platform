@@ -177,4 +177,4 @@ html:lang(en) .text-section-title, html:lang(de) .text-section-title { font-size
 html:lang(en) .text-display,       html:lang(de) .text-display       { font-size: 44px; }
 
 /* 主導覽列：英文／德文用稍大一點的 20px，中文／日文維持 18.4px */
-html:lang(en) .nav-link, html:lang(de) .nav-link { font-size: 19px; }
+html:lang(en) .nav-link, html:lang(de) .nav-link { font-size: 18.6px; }
