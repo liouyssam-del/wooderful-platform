@@ -21,8 +21,8 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .nav-link {
-  font-size: 0.95rem; font-weight: 600; color: #ffffff;
-  letter-spacing: 0.08em; text-shadow: 0 1px 3px rgba(0,0,0,0.4); 
+  font-size: 1.05rem; font-weight: 600; color: #ffffff;
+  letter-spacing: 0.06em; text-shadow: 0 1px 3px rgba(0,0,0,0.4); 
   transition: all 0.3s ease;
 }
 #navbar.scrolled .nav-link { color: #3d2b20; text-shadow: none; }
@@ -165,13 +165,13 @@ html:lang(de) body {
   font-family: 'Arial Narrow', Arial, 'Helvetica Neue', sans-serif;
   letter-spacing: -0.01em;
 }
-html:lang(en) .text-caption, html:lang(de) .text-caption { font-size: 10px; }
-html:lang(en) .text-body,    html:lang(de) .text-body    { font-size: 13px; }
-html:lang(en) .text-sub,     html:lang(de) .text-sub     { font-size: 14px; }
-html:lang(en) .text-h3,      html:lang(de) .text-h3      { font-size: 16px; }
-html:lang(en) .text-h2,      html:lang(de) .text-h2      { font-size: 24px; }
-html:lang(en) .text-h1,      html:lang(de) .text-h1      { font-size: 34px; }
-html:lang(en) .text-lead,    html:lang(de) .text-lead    { font-size: 17px; }
-html:lang(en) .text-card-title,    html:lang(de) .text-card-title    { font-size: 22px; }
-html:lang(en) .text-section-title, html:lang(de) .text-section-title { font-size: 32px; }
-html:lang(en) .text-display,       html:lang(de) .text-display       { font-size: 42px; }
+html:lang(en) .text-caption, html:lang(de) .text-caption { font-size: 13px; }
+html:lang(en) .text-body,    html:lang(de) .text-body    { font-size: 14px; }
+html:lang(en) .text-sub,     html:lang(de) .text-sub     { font-size: 15px; }
+html:lang(en) .text-h3,      html:lang(de) .text-h3      { font-size: 18px; }
+html:lang(en) .text-h2,      html:lang(de) .text-h2      { font-size: 26px; }
+html:lang(en) .text-h1,      html:lang(de) .text-h1      { font-size: 36px; }
+html:lang(en) .text-lead,    html:lang(de) .text-lead    { font-size: 19px; }
+html:lang(en) .text-card-title,    html:lang(de) .text-card-title    { font-size: 23px; }
+html:lang(en) .text-section-title, html:lang(de) .text-section-title { font-size: 34px; }
+html:lang(en) .text-display,       html:lang(de) .text-display       { font-size: 44px; }
