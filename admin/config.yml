@@ -1,44 +1,83 @@
 # Decap CMS 設定檔
-# 這個檔案定義了教授登入後台後，會看到哪些「內容類型」可以編輯，
-# 以及每個類型裡有哪些欄位。目前只開放「最新動態」，
-# 之後「計畫主持人」「教案」也會用同樣的方式陸續加進來。
+# 這一版不需要任何「建置（build）」流程——教授在後台填表單存檔後，
+# 資料直接寫進 data/updates-extra.json，網站用 JavaScript 在瀏覽器端讀取顯示，
+# 重新整理頁面就會看到最新內容，Netlify 不需要跑 npm install 之類的步驟，風險比較低。
 
 backend:
   name: git-gateway
   branch: main   # 如果 GitHub repo 的預設分支不是 main，這裡要改成正確的名稱
 
 # 教授上傳的圖片會存放到這個資料夾，並自動產生對應的網址
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "images/updates"
+public_folder: "images/updates"
 
 collections:
-  - name: "updates"
-    label: "最新動態"
+  - name: "updates_extra"
+    label: "最新動態（新增項目）"
     label_singular: "一則動態"
-    folder: "templates/updates"     # 每一則動態 = 這個資料夾底下的一個檔案
-    create: true                     # 允許教授新增動態
-    slug: "{{year}}-{{month}}-{{fields.title_zh}}"
-    fields:
-      - { label: "日期（用於排序，選一天即可）", name: "date", widget: "date", format: "YYYY-MM-DD" }
-      - { label: "日期顯示文字（例如 2026 / 06）", name: "date_label", widget: "string" }
-      - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
-      - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
-      - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
-      - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
-      - { label: "內容（中文，必填）", name: "summary_zh", widget: "text" }
-      - { label: "內容（英文，可留白）", name: "summary_en", widget: "text", required: false }
-      - { label: "內容（日文，可留白）", name: "summary_ja", widget: "text", required: false }
-      - { label: "內容（德文，可留白）", name: "summary_de", widget: "text", required: false }
-      - label: "此篇不要顯示在網站上（隱藏）"
-        name: "permalink"
-        widget: "hidden"
-        default: false
+    files:
+      - name: "updates_extra"
+        label: "最新動態列表"
+        file: "data/updates-extra.json"
+        description: "在這裡新增、刪除或修改「最新動態」頁面的內容。存檔後重新整理網站頁面就會看到，不需要等待任何建置流程。"
+        fields:
+          - name: "items"
+            label: "動態列表"
+            widget: "list"
+            label_singular: "一則動態"
+            summary: "{{fields.date_label}} - {{fields.title_zh}}"
+            fields:
+              - label: "分類"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "國際交流", value: "intl" }
+                  - { label: "木育玩具開發與推廣", value: "wood" }
+                  - { label: "竹育樂（2026~）", value: "bamboo" }
+                  - { label: "產學合作計畫成果", value: "industry" }
+              - { label: "日期（用於排序，選一天即可）", name: "sort_date", widget: "date", format: "YYYY-MM-DD" }
+              - { label: "日期顯示文字（例如 2026 / 08）", name: "date_label", widget: "string" }
+              - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
+              - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
+              - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
+              - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
+              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
+              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
+              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - { label: "照片（可不填）", name: "image", widget: "image", required: false }
 
-  # ─── 下一階段會加進來的內容類型（先保留這裡當備忘，還沒啟用） ───
-  # - name: "director"
-  #   label: "計畫主持人"
-  #   ...（榮譽事蹟、學歷、研究計畫等欄位，之後補上）
-  #
-  # - name: "lessons"
-  #   label: "教案"
-  #   ...（材料、步驟、圖片等欄位，之後補上）
+  - name: "director_projects"
+    label: "計畫主持人（研究計畫）"
+    label_singular: "一筆研究計畫"
+    files:
+      - name: "director_projects_extra"
+        label: "研究計畫列表"
+        file: "data/director-projects-extra.json"
+        description: "在這裡新增「計畫主持人」頁面裡的研究計畫（國科會研究計畫 / 產學合作計畫）。存檔後重新整理網站頁面就會看到。"
+        fields:
+          - name: "items"
+            label: "計畫列表"
+            widget: "list"
+            label_singular: "一筆計畫"
+            summary: "{{fields.year_roc}} - {{fields.title_zh}}"
+            fields:
+              - label: "表格分類"
+                name: "table"
+                widget: "select"
+                options:
+                  - { label: "國科會研究計畫", value: "nstc" }
+                  - { label: "產學合作計畫", value: "industry" }
+              - { label: "民國年（例如 115 或 113-115）", name: "year_roc", widget: "string" }
+              - { label: "學門（中文，必填）", name: "field_zh", widget: "string" }
+              - { label: "學門（英文，可留白）", name: "field_en", widget: "string", required: false }
+              - { label: "學門（日文，可留白）", name: "field_ja", widget: "string", required: false }
+              - { label: "學門（德文，可留白）", name: "field_de", widget: "string", required: false }
+              - { label: "計畫名稱（中文，必填）", name: "title_zh", widget: "string" }
+              - { label: "計畫名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
+              - { label: "計畫名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
+              - { label: "計畫名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - { label: "起迄／狀態（中文，必填，例如：已結案／1年型／民112-113）", name: "duration_zh", widget: "string" }
+              - { label: "起迄／狀態（英文，可留白）", name: "duration_en", widget: "string", required: false }
+              - { label: "起迄／狀態（日文，可留白）", name: "duration_ja", widget: "string", required: false }
+              - { label: "起迄／狀態（德文，可留白）", name: "duration_de", widget: "string", required: false }
