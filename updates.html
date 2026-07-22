@@ -95,6 +95,7 @@
       <h2 class="text-h2 font-serif font-bold text-wood-800" data-en="International Exchange" data-ja="国際交流" data-de="Internationaler Austausch">國際交流</h2>
     </div>
     <div class="space-y-6">
+      <div id="dynamic-intl" class="space-y-6"></div>
 
       <div class="activity-card">
         <div class="activity-date" data-en="July 2025" data-ja="2025年7月" data-de="Juli 2025">2025 年 7 月</div>
@@ -191,6 +192,7 @@
       <h2 class="text-h2 font-serif font-bold text-wood-800" data-en="Wood Toy Development &amp; Promotion" data-ja="木育玩具の開発と普及" data-de="Entwicklung und Verbreitung von Holzbildungsspielzeug">木育玩具開發與推廣</h2>
     </div>
     <div class="space-y-6">
+      <div id="dynamic-wood" class="space-y-6"></div>
 
       <div class="activity-card">
         <div class="activity-date" data-en="2023&ndash;2026" data-ja="2023年～2026年" data-de="2023&ndash;2026">2023–2026</div>
@@ -288,6 +290,7 @@
       <a href="bamboo-play.html" class="ml-auto text-caption font-semibold text-forest-600 hover:text-forest-700 whitespace-nowrap" data-en="View Project Overview &rarr;" data-ja="計画概要を見る &rarr;" data-de="Projekt&uuml;bersicht ansehen &rarr;">查看計畫簡介 →</a>
     </div>
     <div class="space-y-6">
+      <div id="dynamic-bamboo" class="space-y-6"></div>
 
       <div class="activity-card">
         <div class="activity-date" data-en="July 2026" data-ja="2026年7月" data-de="Juli 2026">2026 年 7 月</div>
@@ -354,6 +357,7 @@
       <h2 class="text-h2 font-serif font-bold text-wood-800" data-en="Industry-Academia Collaboration Results" data-ja="産学連携プロジェクト成果" data-de="Ergebnisse der Industrie-Hochschul-Kooperation">產學合作計畫成果</h2>
     </div>
     <div class="space-y-6">
+      <div id="dynamic-industry" class="space-y-6"></div>
 
       <div class="activity-card">
         <div class="activity-date" data-en="December 2024 &ndash; November 2025" data-ja="2024年12月～2025年11月" data-de="Dezember 2024 &ndash; November 2025">2024 年 12 月–2025 年 11 月</div>
@@ -447,5 +451,47 @@
 
 <div id="footer-container"></div>
 <script src="layout.js"></script>
+<script>
+// 讀取教授透過後台新增的動態（data/updates-extra.json），插入對應分類的最上方。
+// 這個檔案是純資料，教授在 /admin/ 後台填表單新增，網站不需要重新建置，重新整理頁面就會看到。
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('data/updates-extra.json', { cache: 'no-store' })
+    .then((res) => (res.ok ? res.json() : { items: [] }))
+    .then((data) => {
+      const items = (data && Array.isArray(data.items)) ? data.items : [];
+      if (items.length === 0) return;
+
+      // 同分類的新資料由新到舊排序
+      items.sort((a, b) => new Date(b.sort_date || 0) - new Date(a.sort_date || 0));
+
+      items.forEach((item) => {
+        const container = document.getElementById('dynamic-' + item.category);
+        if (!container) return; // 分類名稱要對到 intl / wood / bamboo / industry
+
+        const card = document.createElement('div');
+        card.className = 'activity-card';
+
+        const imgHtml = item.image
+          ? `<div class="grid grid-cols-1 gap-4"><div class="activity-photo-cell"><img src="${item.image}" alt=""></div></div>`
+          : '';
+
+        card.innerHTML = `
+          <div class="activity-date" data-en="${item.date_label_en || item.date_label || ''}" data-ja="${item.date_label_ja || item.date_label || ''}" data-de="${item.date_label_de || item.date_label || ''}">${item.date_label || ''}</div>
+          <h3 class="text-h3 font-serif font-bold text-wood-800 mb-2" data-en="${item.title_en || item.title_zh || ''}" data-ja="${item.title_ja || item.title_zh || ''}" data-de="${item.title_de || item.title_zh || ''}">${item.title_zh || ''}</h3>
+          <p class="text-sub text-stone-700 leading-relaxed mb-4" data-en="${item.desc_en || item.desc_zh || ''}" data-ja="${item.desc_ja || item.desc_zh || ''}" data-de="${item.desc_de || item.desc_zh || ''}">${item.desc_zh || ''}</p>
+          ${imgHtml}
+        `;
+
+        container.appendChild(card);
+      });
+
+      // 新插入的卡片也要套用目前選擇的語言
+      if (window.applyLanguage && window.getCurrentLang) {
+        window.applyLanguage(window.getCurrentLang());
+      }
+    })
+    .catch(() => { /* 讀取失敗就靜默略過，不影響原本既有的靜態內容 */ });
+});
+</script>
 </body>
 </html>

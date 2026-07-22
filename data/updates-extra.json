@@ -1,16 +1,18 @@
-[
-  {
-    "category": "wood",
-    "date_label": "2026 / 08",
-    "sort_date": "2026-08-01",
-    "title_zh": "範例：這是一則示範動態",
-    "title_en": "Example: This is a sample update",
-    "title_ja": "例：これはサンプルの投稿です",
-    "title_de": "Beispiel: Dies ist ein Beispieleintrag",
-    "desc_zh": "教授您好，這是透過後台新增的示範內容，實際使用時可以直接刪除或編輯這一則。標題與內容中文為必填，英/日/德文可以先留空，網站會自動顯示中文版本。",
-    "desc_en": "",
-    "desc_ja": "",
-    "desc_de": "",
-    "image": ""
-  }
-]
+{
+  "items": [
+    {
+      "category": "wood",
+      "date_label": "2026 / 08",
+      "sort_date": "2026-08-01",
+      "title_zh": "範例：這是一則示範動態",
+      "title_en": "Example: This is a sample update",
+      "title_ja": "例：これはサンプルの投稿です",
+      "title_de": "Beispiel: Dies ist ein Beispieleintrag",
+      "desc_zh": "教授您好，這是透過後台新增的示範內容，實際使用時可以直接刪除或編輯這一則。標題與內容中文為必填，英/日/德文可以先留空，網站會自動顯示中文版本。",
+      "desc_en": "",
+      "desc_ja": "",
+      "desc_de": "",
+      "image": ""
+    }
+  ]
+}
