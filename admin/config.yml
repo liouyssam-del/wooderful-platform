@@ -1,11 +1,39 @@
 # Decap CMS 設定檔
 # 這一版不需要任何「建置（build）」流程——教授在後台填表單存檔後，
-# 資料直接寫進 data/updates-extra.json，網站用 JavaScript 在瀏覽器端讀取顯示，
+# 資料直接寫進 data/updates-extra.json 等資料檔，網站用 JavaScript 在瀏覽器端讀取顯示，
 # 重新整理頁面就會看到最新內容，Netlify 不需要跑 npm install 之類的步驟，風險比較低。
+#
+# 登入驗證改用 DecapBridge（因為 Netlify Identity 已經不開放新網站啟用）。
 
+# Use DecapBridge PKCE auth (required)
 backend:
   name: git-gateway
-  branch: main   # 如果 GitHub repo 的預設分支不是 main，這裡要改成正確的名稱
+  repo: liouyssam-del/wooderful-platform
+  branch: main
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/e8d16737-cbd5-4640-986a-03e88974208e/pkce
+  auth_token_endpoint: /sites/e8d16737-cbd5-4640-986a-03e88974208e/token
+  gateway_url: https://gateway.decapbridge.com
+
+  # See who did what (optional)
+  commit_messages:
+    create: Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    update: Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    delete: Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    uploadMedia: Upload "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    deleteMedia: Delete "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
+
+# Enable PKCE fields (optional, recommended)
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
+
+# Better Decap + Bridge logo (optional)
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
 # 教授上傳的圖片會存放到這個資料夾，並自動產生對應的網址
 media_folder: "images/updates"
