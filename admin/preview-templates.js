@@ -151,3 +151,98 @@ var DirectorProjectsPreview = createClass({
 
 CMS.registerPreviewTemplate('updates_extra', UpdatesExtraPreview);
 CMS.registerPreviewTemplate('director_projects', DirectorProjectsPreview);
+
+/* ── 分享教案：預覽卡片，模擬 lessons.html 的教案卡片樣式 ── */
+var LessonsExtraPreview = createClass({
+  render: function () {
+    var entry = this.props.entry;
+    var items = entry.getIn(['data', 'items']);
+    if (!items || items.size === 0) {
+      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何教案');
+    }
+
+    var cards = items.map(function (item, i) {
+      var titleZh = item.get('title_zh') || '（尚未填寫教案名稱）';
+      var summaryZh = item.get('summary_zh') || '';
+      var grade = item.get('grade') || '';
+      var duration = item.get('duration') || '';
+      var image = item.get('image') || '';
+      var materials = item.get('materials');
+      var steps = item.get('steps');
+
+      return h(
+        'div',
+        {
+          key: i,
+          style: {
+            background: '#fff',
+            border: '1px solid #e7e2d8',
+            borderRadius: '14px',
+            padding: '24px',
+            marginBottom: '18px',
+            fontFamily: '"Noto Sans TC", sans-serif',
+            textAlign: 'center',
+          },
+        },
+        image
+          ? h('img', {
+              src: image,
+              style: { width: '80px', height: '80px', objectFit: 'cover', borderRadius: '9999px', margin: '0 auto 12px auto', display: 'block' },
+            })
+          : null,
+        h(
+          'div',
+          {
+            style: {
+              display: 'inline-block',
+              fontSize: '12px',
+              fontWeight: 700,
+              color: '#5e8b3a',
+              background: '#eef4ea',
+              borderRadius: '9999px',
+              padding: '3px 14px',
+              marginBottom: '10px',
+            },
+          },
+          'STEAM 教案'
+        ),
+        h(
+          'h3',
+          { style: { fontFamily: '"Noto Serif TC", serif', fontWeight: 700, fontSize: '20px', color: '#3d2b20', margin: '0 0 8px 0' } },
+          titleZh
+        ),
+        summaryZh ? h('p', { style: { fontSize: '14px', color: '#5c5449', lineHeight: 1.6, margin: '0 0 10px 0' } }, summaryZh) : null,
+        h('p', { style: { fontSize: '13px', color: '#8c8072' } }, [grade, duration].filter(Boolean).join('　·　')),
+        materials && materials.size
+          ? h(
+              'div',
+              { style: { textAlign: 'left', marginTop: '14px', fontSize: '13px', color: '#5c5449' } },
+              h('strong', {}, '材料：'),
+              materials.toArray().join('、')
+            )
+          : null,
+        steps && steps.size
+          ? h(
+              'div',
+              { style: { textAlign: 'left', marginTop: '10px', fontSize: '13px', color: '#5c5449' } },
+              h('strong', {}, '步驟：'),
+              h(
+                'ol',
+                { style: { margin: '4px 0 0 0', paddingLeft: '20px' } },
+                steps.toArray().map(function (s, idx) { return h('li', { key: idx }, s); })
+              )
+            )
+          : null
+      );
+    });
+
+    return h(
+      'div',
+      { style: { padding: '24px', background: '#fbf9f5' } },
+      h('p', { style: { fontSize: '12px', color: '#a8998a', marginBottom: '16px' } }, '（預覽樣式僅供參考，實際網站排版可能略有差異）'),
+      cards.toArray()
+    );
+  },
+});
+
+CMS.registerPreviewTemplate('lessons_extra', LessonsExtraPreview);

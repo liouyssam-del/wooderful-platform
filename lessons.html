@@ -258,6 +258,7 @@
 </section>
 
 <script>
+async function initLessonsPage() {
   // 檢視切換（網格／列表）
   const lessonGrid = document.getElementById('lessonGrid');
   const gridBtn = document.getElementById('gridViewBtn');
@@ -270,6 +271,44 @@
     lessonGrid.classList.add('view-list');
     listBtn.classList.add('active'); gridBtn.classList.remove('active');
   });
+
+  // 讀取教授透過後台新增的教案（data/lessons-extra.json），插入卡片列表，
+  // 一定要在排序／分頁邏輯執行「之前」完成，新教案才會一起被排序、分頁。
+  try {
+    const res = await fetch('data/lessons-extra.json', { cache: 'no-store' });
+    const data = res.ok ? await res.json() : { items: [] };
+    const items = (data && Array.isArray(data.items)) ? data.items : [];
+
+    items.forEach((item) => {
+      const card = document.createElement('div');
+      card.className = 'lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up';
+      card.dataset.date = item.sort_date || '2026-01-01';
+
+      const avatarHtml = item.image
+        ? `<div class="avatar-wrapper"><img src="${item.image}" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner" /></div>`
+        : `<div class="avatar-wrapper flex items-center justify-center bg-[#eef4ea] rounded-full border-4 border-white shadow-inner"><i class="fa-solid fa-seedling text-forest-600 text-h1"></i></div>`;
+
+      card.innerHTML = `
+        <div>
+          ${avatarHtml}
+          <div class="tag-row mb-5"><span class="text-body font-bold bg-[#eef4ea] text-forest-600 px-4 py-1 rounded-full" data-en="STEAM Lesson Plan" data-ja="STEAM教案" data-de="STEAM-Lehrplan">STEAM 教案</span></div>
+          <h3 class="text-h2 font-serif font-bold text-wood-800 mb-5 tracking-wide" data-en="${item.title_en || item.title_zh || ''}" data-ja="${item.title_ja || item.title_zh || ''}" data-de="${item.title_de || item.title_zh || ''}">${item.title_zh || ''}</h3>
+          <div class="meta-row flex items-center justify-center gap-5 text-sub text-stone-500 mb-8 font-medium">
+            <span><i class="fa-solid fa-user-graduate mr-1.5"></i> <span>${item.grade || ''}</span></span>
+            <span><i class="fa-solid fa-clock mr-1.5"></i> <span>${item.duration || ''}</span></span>
+          </div>
+        </div>
+        <a href="lesson-view.html?slug=${encodeURIComponent(item.slug || '')}" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all" data-en="View Lesson &rarr;" data-ja="教案を見る &rarr;" data-de="Lektion ansehen &rarr;">查看教案 &rarr;</a>
+      `;
+      lessonGrid.insertBefore(card, lessonGrid.firstChild);
+    });
+
+    if (window.applyLanguage && window.getCurrentLang) {
+      window.applyLanguage(window.getCurrentLang());
+    }
+  } catch (e) {
+    /* 讀取失敗就靜默略過，不影響既有的靜態教案卡片 */
+  }
 
   // 依日期排序（由舊到新；之後新增教案只要加上 data-date 屬性，會自動排到正確位置）
   const allCards = Array.from(lessonGrid.querySelectorAll('.lesson-card'))
@@ -317,6 +356,9 @@
   }
 
   renderPage(1);
+}
+
+initLessonsPage();
 </script>
 
 <div id="footer-container"></div>

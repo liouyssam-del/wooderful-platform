@@ -109,3 +109,49 @@ collections:
               - { label: "起迄／狀態（英文，可留白）", name: "duration_en", widget: "string", required: false }
               - { label: "起迄／狀態（日文，可留白）", name: "duration_ja", widget: "string", required: false }
               - { label: "起迄／狀態（德文，可留白）", name: "duration_de", widget: "string", required: false }
+
+  - name: "lessons_extra"
+    label: "分享教案（新增項目）"
+    label_singular: "一份教案"
+    files:
+      - name: "lessons_extra"
+        label: "教案列表"
+        file: "data/lessons-extra.json"
+        description: "在這裡新增全新的教案。存檔後重新整理網站頁面就會看到，教案會出現在「分享教案」列表頁，並產生一個獨立的教案內容頁。"
+        fields:
+          - name: "items"
+            label: "教案列表"
+            widget: "list"
+            label_singular: "一份教案"
+            summary: "{{fields.title_zh}}"
+            fields:
+              - label: "網址代稱（英文/數字/連字號，例如 sailboat-race，同一份教案存檔後請勿更改，否則會變成新的網址）"
+                name: "slug"
+                widget: "string"
+                pattern: ['^[a-z0-9-]+$', "只能用小寫英文字母、數字、連字號（-），不能有空格或中文"]
+              - { label: "日期（用於排序，選一天即可）", name: "sort_date", widget: "date", format: "YYYY-MM-DD" }
+              - { label: "教案名稱（中文，必填）", name: "title_zh", widget: "string" }
+              - { label: "教案名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
+              - { label: "教案名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
+              - { label: "教案名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - { label: "一句話簡介（中文，必填）", name: "summary_zh", widget: "text" }
+              - { label: "一句話簡介（英文，可留白）", name: "summary_en", widget: "text", required: false }
+              - { label: "一句話簡介（日文，可留白）", name: "summary_ja", widget: "text", required: false }
+              - { label: "一句話簡介（德文，可留白）", name: "summary_de", widget: "text", required: false }
+              - { label: "適合年級", name: "grade", widget: "string" }
+              - { label: "教學時間", name: "duration", widget: "string" }
+              - { label: "參與人數", name: "group_size", widget: "string" }
+              - { label: "教學領域", name: "subject", widget: "string" }
+              - { label: "課程目標（中文，必填）", name: "objectives_zh", widget: "text" }
+              - { label: "課程目標（英文，可留白）", name: "objectives_en", widget: "text", required: false }
+              - { label: "課程目標（日文，可留白）", name: "objectives_ja", widget: "text", required: false }
+              - { label: "課程目標（德文，可留白）", name: "objectives_de", widget: "text", required: false }
+              - { label: "封面照片（可不填）", name: "image", widget: "image", required: false }
+              - label: "材料清單（每行一項，例如「木頭方塊 ×2」）"
+                name: "materials"
+                widget: "list"
+                default: []
+              - label: "製作步驟（每行一個步驟）"
+                name: "steps"
+                widget: "list"
+                default: []
