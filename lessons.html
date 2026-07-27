@@ -35,16 +35,30 @@
     #lessonGrid.view-list .lesson-card .meta-row { margin-bottom: 0; justify-content: flex-start; }
     #lessonGrid.view-list .lesson-card a.lesson-cta { width: auto; flex-shrink: 0; padding-left: 2rem; padding-right: 2rem; }
 
-    /* Slogan 區塊影片背景（頁面下方的「計畫標語」區塊，維持不變） */
-    #slogan-section {
-      position: relative; overflow: hidden; isolation: isolate; min-height: 40vh;
-      display: flex; align-items: center; justify-content: center; text-align: center;
+    /* 頁首背景影片（跟首頁／最新動態同一套效果與比例，比首頁 70vh 略小，介於首頁與最新動態 60vh 之間） */
+    #lessons-hero {
+      height: 65vh; padding-top: 100px; position: relative; display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden; isolation: isolate;
     }
     .yt-bg-wrapper {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; pointer-events: none; filter: brightness(1.1) saturate(1.2);
     }
     .yt-bg-wrapper iframe {
       width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.77vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    .hero-shell {
+      position: relative; z-index: 2; width: min(88vw, 760px); padding: clamp(2rem, 4vw, 3.5rem);
+      border-radius: 2rem; border: 1px solid rgba(255, 255, 255, 0.5); background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(3px); text-align: center;
+    }
+    .hero-shell::after {
+      content: ''; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 1.5rem; pointer-events: none;
+    }
+
+    /* Slogan 區塊影片背景（頁面下方的「計畫標語」區塊，維持不變，跟頁首共用同一套 .yt-bg-wrapper） */
+    #slogan-section {
+      position: relative; overflow: hidden; isolation: isolate; min-height: 40vh;
+      display: flex; align-items: center; justify-content: center; text-align: center;
     }
     #slogan-section .yt-bg-wrapper iframe { min-height: 100%; }
   </style>
@@ -53,13 +67,17 @@
 
 <div id="nav-container"></div>
 
-<header class="page-hero text-center text-white">
-  <div class="mt-12">
+<section id="lessons-hero">
+  <div class="yt-bg-wrapper">
+    <iframe width="1059" height="595" src="https://www.youtube.com/embed/KG0-jaev-yc?autoplay=1&mute=1&loop=1&playlist=KG0-jaev-yc&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" title="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.55) 100%); z-index: -1;"></div>
+  <div class="hero-shell">
     <div class="text-caption lg:text-body tracking-[0.4em] text-stone-200 uppercase mb-2" data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</div>
-    <h1 class="text-h1 font-serif font-bold tracking-widest mb-3" data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</h1>
+    <h1 class="text-h1 font-serif font-bold tracking-widest mb-3 text-white" style="text-shadow: 0 2px 12px rgba(0,0,0,0.4);" data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</h1>
     <div class="text-caption tracking-[0.3em] text-stone-300 uppercase font-medium">TEACHING RESOURCES</div>
   </div>
-</header>
+</section>
 
 <main class="max-w-7xl mx-auto px-6 lg:px-12 py-20">
 
