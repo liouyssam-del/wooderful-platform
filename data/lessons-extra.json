@@ -1,27 +1,21 @@
 {
   "items": [
     {
-      "slug": "example-lesson",
-      "title_zh": "範例教案：紙風車",
-      "summary_zh": "這是一份示範用的簡化版教案，實際使用時教授可以透過後台新增真正的教案內容，這一則可以直接刪除。",
-      "grade": "國小中年級以上",
-      "duration": "60 分鐘",
-      "group_size": "建議 20-30 人",
-      "subject": "自然科學、藝術與人文",
-      "objectives_zh": "認識風力與轉動的關係，訓練剪紙與組裝的手眼協調能力。",
-      "image": "",
-      "materials": [
-        "色紙 ×2",
-        "竹籤 ×1",
-        "圖釘 ×1",
-        "剪刀 ×1"
-      ],
-      "steps": [
-        "將色紙裁成正方形，畫出對角線。",
-        "沿對角線剪至中心點附近，留下中心不剪斷。",
-        "將四個角其中一個角向內折，用圖釘固定在竹籤上。",
-        "測試風車是否能順利轉動。"
-      ]
+      "group_size": "lesson-test",
+      "summary_en": "lesson-test",
+      "summary_zh": "lesson-test",
+      "steps": [],
+      "title_de": "lesson-test",
+      "slug": "lesson-test",
+      "materials": [],
+      "subject": "lesson-test",
+      "title_en": "lesson-test",
+      "objectives_zh": "lesson-test",
+      "duration": "lesson-test",
+      "title_zh": "lesson-test",
+      "grade": "lesson-test",
+      "image": "images/updates/bamboo-03b-artwork.jpg",
+      "title_ja": "lesson-test"
     }
   ]
 }

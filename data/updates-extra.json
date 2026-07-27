@@ -1,18 +1,17 @@
 {
   "items": [
     {
-      "date_label": "2026 / 08",
-      "desc_ja": "",
-      "title_de": "Beispiel: Dies ist ein Beispieleintrag",
-      "desc_de": "",
-      "sort_date": "2026-08-01",
-      "title_en": "Example: This is a sample update",
-      "title_zh": "範例：這是一則示範動態",
-      "desc_en": "",
-      "image": "",
-      "desc_zh": "測試",
-      "title_ja": "",
-      "category": "wood"
+      "date_label": "2026/07/24",
+      "desc_ja": "劉講師は授業用の教材を準備するため、自ら山へ竹を採取しに行きました。",
+      "title_de": "山で竹を採取する",
+      "desc_de": "Dozent Liu sammelte persönlich Bambus in den Bergen, um Materialien für den Unterricht vorzubereiten.",
+      "title_en": "Bamboo Harvesting Course",
+      "title_zh": "上山採竹課程備料",
+      "desc_en": "Instructor Liu personally harvested bamboo in the mountains to prepare materials for the course.",
+      "image": "images/updates/s__59867139_0.jpg",
+      "desc_zh": "劉老師上山採竹課程備料",
+      "title_ja": "Bambusernte in den Bergen",
+      "category": "bamboo"
     }
   ]
 }
