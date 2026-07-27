@@ -179,8 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const LANG_LABELS = { zh: '中', en: 'EN', ja: '日', de: 'DE' };
   const LANG_HTML_TAG = { zh: 'zh-TW', en: 'en', ja: 'ja', de: 'de' };
 
+  let currentLang = 'zh';
+
   function applyLanguage(lang) {
     if (!LANG_LABELS[lang]) lang = 'zh';
+    currentLang = lang;
     document.querySelectorAll('[data-en]').forEach((el) => {
       if (el.dataset.zhCache === undefined) el.dataset.zhCache = el.innerHTML;
       if (lang === 'zh') {
@@ -199,6 +202,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.documentElement.lang = LANG_HTML_TAG[lang] || 'zh-TW';
     try { localStorage.setItem('site-lang', lang); } catch (e) { /* 若無法使用 localStorage 就只切換當前頁面 */ }
   }
+
+  // 修正舊 bug：director.html / updates.html / lessons.html / lesson-view.html
+  // 在動態插入 CMS 資料後都會呼叫 window.applyLanguage(window.getCurrentLang())，
+  // 但這兩個函式從來沒有掛到 window 上，導致呼叫時直接噴錯、新插入的內容不會套用目前語言。
+  window.applyLanguage = applyLanguage;
+  window.getCurrentLang = () => currentLang;
 
   let savedLang = 'zh';
   try { savedLang = localStorage.getItem('site-lang') || 'zh'; } catch (e) { /* 忽略 */ }

@@ -258,6 +258,16 @@
 </section>
 
 <script>
+// CMS 項目沒有設定「排序日期」時，預設當作今天新增，讓它自動排在最新的位置
+// （與 updates.html 採用相同的邏輯，確保「分享教案」的下拉選單與圖卡檢視排序一致）。
+function todayISODate() {
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+}
+
 async function initLessonsPage() {
   // 檢視切換（網格／列表）：兩種檢視各自的每頁筆數不同（條列 15 筆／圖卡 5 筆）
   const lessonGrid = document.getElementById('lessonGrid');
@@ -291,7 +301,7 @@ async function initLessonsPage() {
     items.forEach((item) => {
       const card = document.createElement('div');
       card.className = 'lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up';
-      card.dataset.date = item.sort_date || '2026-01-01';
+      card.dataset.date = item.sort_date || todayISODate();
 
       // 支援新格式 images（第一張當作列表縮圖），並相容舊格式的單張 image 欄位
       const coverImage = (Array.isArray(item.images) && item.images.length > 0 && item.images[0].src)

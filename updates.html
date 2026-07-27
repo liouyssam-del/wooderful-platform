@@ -454,6 +454,17 @@
 <script>
 // 讀取教授透過後台新增的動態（data/updates-extra.json），插入對應分類的最上方。
 // 這個檔案是純資料，教授在 /admin/ 後台填表單新增，網站不需要重新建置，重新整理頁面就會看到。
+
+// CMS 項目沒有設定「排序日期」時，預設當作今天新增，讓它自動排在最新的位置
+// （與 lessons.html 採用相同的邏輯，確保各頁面排序行為一致）。
+function todayISODate() {
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   fetch('data/updates-extra.json', { cache: 'no-store' })
     .then((res) => (res.ok ? res.json() : { items: [] }))
@@ -461,8 +472,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const items = (data && Array.isArray(data.items)) ? data.items : [];
       if (items.length === 0) return;
 
-      // 同分類的新資料由新到舊排序
-      items.sort((a, b) => new Date(b.sort_date || 0) - new Date(a.sort_date || 0));
+      // 同分類的新資料由新到舊排序；沒有設定日期的項目視為「今天」，排在最前面
+      items.sort((a, b) => new Date(b.sort_date || todayISODate()) - new Date(a.sort_date || todayISODate()));
 
       items.forEach((item) => {
         const container = document.getElementById('dynamic-' + item.category);
