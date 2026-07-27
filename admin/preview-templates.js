@@ -288,248 +288,167 @@ var LessonsExtraPreview = createClass({
 
 CMS.registerPreviewTemplate('lessons_extra', LessonsExtraPreview);
 
-/* ── 以下為「計畫主持人（頁面內容）」8 個分頁的預覽樣式 ──
-   這些檔案都是 files 型 collection 的成員，registerPreviewTemplate 要用
-   每個檔案自己的 name（例如 director_header），不是外層 collection 的
-   name（director_profile），原理與上面 director_projects_extra 的修正相同。 */
+/* ── 「計畫主持人（頁面內容）」：8 個分頁全部整合成同一份檔案（director-profile.json），
+   在同一個預覽畫面裡由上到下依序顯示，registerPreviewTemplate 要用這個檔案自己的
+   name（director_profile_all），不是外層 collection 的 name（director_profile），
+   原理與上面 director_projects_extra 的修正相同。 */
 
 var previewWrap = { padding: '24px', background: '#fbf9f5', fontFamily: '"Noto Sans TC", sans-serif' };
 var previewNote = h('p', { style: { fontSize: '12px', color: '#a8998a', marginBottom: '16px' } }, '（預覽樣式僅供參考，實際網站排版可能略有差異）');
+var sectionHeading = function (text) {
+  return h('h3', { style: { fontSize: '17px', fontWeight: 700, color: '#446B2A', margin: '28px 0 12px 0', borderTop: '1px solid #e7e2d8', paddingTop: '20px' } }, text);
+};
 
-/* ── 頁首職稱：單位／現職兩行文字 ── */
-var DirectorHeaderPreview = createClass({
+var DirectorProfilePreview = createClass({
   render: function () {
     var entry = this.props.entry;
     var data = entry.get('data');
-    var affiliation = data.get('affiliation_zh') || '（尚未填寫單位）';
-    var position = data.get('position_zh') || '（尚未填寫現職）';
-    return h(
-      'div',
-      { style: previewWrap },
-      previewNote,
+
+    var header = data && data.get('header');
+    var honors = data && data.get('honors');
+    var education = data && data.get('education');
+    var exchange = data && data.get('exchange');
+    var teaching = data && data.get('teaching');
+    var publications = data && data.get('publications');
+    var thesis = data && data.get('thesis');
+    var personalResume = data && data.get('personal_resume');
+
+    var cellStyle = { padding: '10px 14px', fontSize: '14px', color: '#3d2b20', textAlign: 'left' };
+
+    /* ① 頁首職稱 */
+    var affiliation = (header && header.get('affiliation_zh')) || '（尚未填寫單位）';
+    var position = (header && header.get('position_zh')) || '（尚未填寫現職）';
+    var headerBlock = [
+      sectionHeading('① 頁首職稱'),
       h('div', { style: { background: '#eef4ea', borderRadius: '12px', padding: '20px 24px' } },
         h('p', { style: { fontSize: '15px', color: '#3d2b20', margin: '0 0 8px 0' } }, affiliation),
         h('p', { style: { fontSize: '15px', color: '#3d2b20', margin: 0 } }, position)
-      )
-    );
-  },
-});
+      ),
+    ];
 
-/* ── 榮譽：條列項目 ── */
-var DirectorHonorsPreview = createClass({
-  render: function () {
-    var entry = this.props.entry;
-    var items = entry.getIn(['data', 'items']);
-    if (!items || items.size === 0) {
-      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何項目');
-    }
-    return h(
-      'div',
-      { style: previewWrap },
-      previewNote,
-      h(
-        'ul',
-        { style: { margin: 0, paddingLeft: '20px' } },
-        items.toArray().map(function (item, i) {
-          return h('li', { key: i, style: { fontSize: '14px', color: '#3d2b20', marginBottom: '10px', lineHeight: 1.7 } }, item.get('text_zh') || '（尚未填寫）');
-        })
-      )
-    );
-  },
-});
+    /* ② 榮譽 */
+    var honorsItems = honors && honors.get('items');
+    var honorsBlock = [
+      sectionHeading('② 榮譽'),
+      honorsItems && honorsItems.size
+        ? h('ul', { style: { margin: 0, paddingLeft: '20px' } }, honorsItems.toArray().map(function (item, i) {
+            return h('li', { key: i, style: { fontSize: '14px', color: '#3d2b20', marginBottom: '10px', lineHeight: 1.7 } }, item.get('text_zh') || '（尚未填寫）');
+          }))
+        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目'),
+    ];
 
-/* ── 主要學歷：期間 + 多行內容 + 備註 ── */
-var DirectorEducationPreview = createClass({
-  render: function () {
-    var entry = this.props.entry;
-    var data = entry.get('data');
-    var rows = data.get('rows');
-    var noteZh = data.get('note_zh');
-    var rowEls = rows && rows.size
-      ? rows.toArray().map(function (row, i) {
-          var lines = row.get('lines');
-          return h(
-            'div',
-            { key: i, style: { marginBottom: '14px' } },
-            h('div', { style: { fontSize: '13px', fontWeight: 700, color: '#5e8b3a', marginBottom: '4px' } }, row.get('period') || ''),
-            lines && lines.size
-              ? lines.toArray().map(function (line, j) {
-                  return h('p', { key: j, style: { fontSize: '14px', color: '#3d2b20', margin: '0 0 2px 0' } }, line.get('zh') || '');
-                })
-              : null
-          );
-        })
-      : h('div', { style: { color: '#999' } }, '目前沒有任何項目');
-    return h(
-      'div',
-      { style: previewWrap },
-      previewNote,
-      rowEls,
-      noteZh ? h('p', { style: { fontSize: '13px', color: '#7d7164', marginTop: '12px' } }, noteZh) : null
-    );
-  },
-});
+    /* ③ 主要學歷 */
+    var eduRows = education && education.get('rows');
+    var eduNote = education && education.get('note_zh');
+    var educationBlock = [
+      sectionHeading('③ 主要學歷'),
+      eduRows && eduRows.size
+        ? eduRows.toArray().map(function (row, i) {
+            var lines = row.get('lines');
+            return h('div', { key: i, style: { marginBottom: '14px' } },
+              h('div', { style: { fontSize: '13px', fontWeight: 700, color: '#5e8b3a', marginBottom: '4px' } }, row.get('period') || ''),
+              lines && lines.size
+                ? lines.toArray().map(function (line, j) {
+                    return h('p', { key: j, style: { fontSize: '14px', color: '#3d2b20', margin: '0 0 2px 0' } }, line.get('zh') || '');
+                  })
+                : null
+            );
+          })
+        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目'),
+      eduNote ? h('p', { style: { fontSize: '13px', color: '#7d7164', marginTop: '12px' } }, eduNote) : null,
+    ];
 
-/* ── 國際交流：期間 + 內容列表 ── */
-var DirectorExchangePreview = createClass({
-  render: function () {
-    var entry = this.props.entry;
-    var items = entry.getIn(['data', 'items']);
-    if (!items || items.size === 0) {
-      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何項目');
-    }
-    return h(
-      'div',
-      { style: previewWrap },
-      previewNote,
-      items.toArray().map(function (item, i) {
-        return h(
-          'div',
-          { key: i, style: { marginBottom: '14px' } },
-          h('div', { style: { fontSize: '13px', fontWeight: 700, color: '#5e8b3a', marginBottom: '4px' } }, item.get('period') || ''),
-          h('p', { style: { fontSize: '14px', color: '#3d2b20', margin: 0 } }, item.get('desc_zh') || '（尚未填寫）')
-        );
-      })
-    );
-  },
-});
+    /* ④ 國際交流 */
+    var exchangeItems = exchange && exchange.get('items');
+    var exchangeBlock = [
+      sectionHeading('④ 國際交流'),
+      exchangeItems && exchangeItems.size
+        ? exchangeItems.toArray().map(function (item, i) {
+            return h('div', { key: i, style: { marginBottom: '14px' } },
+              h('div', { style: { fontSize: '13px', fontWeight: 700, color: '#5e8b3a', marginBottom: '4px' } }, item.get('period') || ''),
+              h('p', { style: { fontSize: '14px', color: '#3d2b20', margin: 0 } }, item.get('desc_zh') || '（尚未填寫）')
+            );
+          })
+        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目'),
+    ];
 
-/* ── 教學暨設計實務經歷：兩個列表（教學／設計實務）── */
-var DirectorTeachingPreview = createClass({
-  render: function () {
-    var entry = this.props.entry;
-    var data = entry.get('data');
-    var teaching = data.get('teaching');
-    var design = data.get('design');
-    function renderList(list) {
+    /* ⑤ 教學暨設計實務經歷 */
+    function renderPeriodList(list) {
       if (!list || list.size === 0) return h('div', { style: { color: '#999', fontSize: '13px' } }, '（尚未填寫）');
       return list.toArray().map(function (item, i) {
-        return h(
-          'div',
-          { key: i, style: { marginBottom: '10px' } },
+        return h('div', { key: i, style: { marginBottom: '10px' } },
           h('div', { style: { fontSize: '13px', fontWeight: 700, color: '#5e8b3a', marginBottom: '2px' } }, item.get('period') || ''),
           h('p', { style: { fontSize: '14px', color: '#3d2b20', margin: 0 } }, item.get('desc_zh') || '')
         );
       });
     }
-    return h(
-      'div',
-      { style: previewWrap },
-      previewNote,
+    var teachingBlock = [
+      sectionHeading('⑤ 教學暨設計實務經歷'),
       h('h4', { style: { fontSize: '15px', color: '#3d2b20', margin: '0 0 8px 0' } }, '【教學】'),
-      renderList(teaching),
+      renderPeriodList(teaching && teaching.get('teaching')),
       h('h4', { style: { fontSize: '15px', color: '#3d2b20', margin: '16px 0 8px 0' } }, '【設計實務】'),
-      renderList(design)
-    );
-  },
-});
+      renderPeriodList(teaching && teaching.get('design')),
+    ];
 
-/* ── 研究發表：五大類別，每類別一組引用清單（維持單一語言） ── */
-var DirectorPublicationsPreview = createClass({
-  render: function () {
-    var entry = this.props.entry;
-    var categories = entry.getIn(['data', 'categories']);
-    if (!categories || categories.size === 0) {
-      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何類別');
-    }
-    return h(
-      'div',
-      { style: previewWrap },
-      previewNote,
-      categories.toArray().map(function (cat, i) {
-        var items = cat.get('items');
-        return h(
-          'div',
-          { key: i, style: { marginBottom: '18px' } },
-          h('h4', { style: { fontSize: '15px', fontWeight: 700, color: '#2d4920', margin: '0 0 8px 0' } }, cat.get('title_zh') || '（尚未填寫類別標題）'),
-          items && items.size
-            ? h(
-                'ol',
-                { style: { margin: 0, paddingLeft: '20px' } },
-                items.toArray().map(function (text, j) {
-                  return h('li', { key: j, style: { fontSize: '13px', color: '#5c5449', marginBottom: '6px', lineHeight: 1.6 } }, text);
-                })
-              )
-            : h('div', { style: { color: '#999', fontSize: '13px' } }, '（此類別尚無引用項目）')
-        );
-      })
-    );
-  },
-});
-
-/* ── 研究生論文指導：題目／研究生／年份 ── */
-var DirectorThesisPreview = createClass({
-  render: function () {
-    var entry = this.props.entry;
-    var rows = entry.getIn(['data', 'rows']);
-    if (!rows || rows.size === 0) {
-      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何項目');
-    }
-    var cellStyle = { padding: '10px 14px', fontSize: '14px', color: '#3d2b20', textAlign: 'left' };
-    return h(
-      'div',
-      { style: previewWrap },
-      previewNote,
-      h(
-        'table',
-        { style: { width: '100%', borderCollapse: 'collapse', background: '#fff', border: '1px solid #e7e2d8', borderRadius: '8px' } },
-        h(
-          'thead',
-          {},
-          h(
-            'tr',
-            { style: { background: '#f4f1ea', borderBottom: '2px solid #e7e2d8' } },
-            h('th', { style: cellStyle }, '論文題目'),
-            h('th', { style: cellStyle }, '研究生'),
-            h('th', { style: cellStyle }, '畢業年')
-          )
-        ),
-        h(
-          'tbody',
-          {},
-          rows.toArray().map(function (row, i) {
-            return h(
-              'tr',
-              { key: i, style: { borderBottom: '1px solid #e7e2d8' } },
-              h('td', { style: cellStyle }, row.get('title_zh') || '（尚未填寫）'),
-              h('td', { style: cellStyle }, row.get('student_zh') || ''),
-              h('td', { style: cellStyle }, row.get('year') || '')
+    /* ⑥ 研究發表 */
+    var pubCategories = publications && publications.get('categories');
+    var publicationsBlock = [
+      sectionHeading('⑥ 研究發表'),
+      pubCategories && pubCategories.size
+        ? pubCategories.toArray().map(function (cat, i) {
+            var items = cat.get('items');
+            return h('div', { key: i, style: { marginBottom: '18px' } },
+              h('h4', { style: { fontSize: '15px', fontWeight: 700, color: '#2d4920', margin: '0 0 8px 0' } }, cat.get('title_zh') || '（尚未填寫類別標題）'),
+              items && items.size
+                ? h('ol', { style: { margin: 0, paddingLeft: '20px' } }, items.toArray().map(function (text, j) {
+                    return h('li', { key: j, style: { fontSize: '13px', color: '#5c5449', marginBottom: '6px', lineHeight: 1.6 } }, text);
+                  }))
+                : h('div', { style: { color: '#999', fontSize: '13px' } }, '（此類別尚無引用項目）')
             );
           })
-        )
-      )
-    );
-  },
-});
+        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何類別'),
+    ];
 
-/* ── 個人資歷：條列項目（教授文字尚未提供前可能為空） ── */
-var DirectorPersonalResumePreview = createClass({
-  render: function () {
-    var entry = this.props.entry;
-    var items = entry.getIn(['data', 'items']);
-    if (!items || items.size === 0) {
-      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何項目（前台會顯示「內容準備中」）');
-    }
+    /* ⑦ 研究生論文指導 */
+    var thesisRows = thesis && thesis.get('rows');
+    var thesisBlock = [
+      sectionHeading('⑦ 研究生論文指導'),
+      thesisRows && thesisRows.size
+        ? h('table', { style: { width: '100%', borderCollapse: 'collapse', background: '#fff', border: '1px solid #e7e2d8', borderRadius: '8px' } },
+            h('thead', {}, h('tr', { style: { background: '#f4f1ea', borderBottom: '2px solid #e7e2d8' } },
+              h('th', { style: cellStyle }, '論文題目'),
+              h('th', { style: cellStyle }, '研究生'),
+              h('th', { style: cellStyle }, '畢業年')
+            )),
+            h('tbody', {}, thesisRows.toArray().map(function (row, i) {
+              return h('tr', { key: i, style: { borderBottom: '1px solid #e7e2d8' } },
+                h('td', { style: cellStyle }, row.get('title_zh') || '（尚未填寫）'),
+                h('td', { style: cellStyle }, row.get('student_zh') || ''),
+                h('td', { style: cellStyle }, row.get('year') || '')
+              );
+            }))
+          )
+        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目'),
+    ];
+
+    /* ⑧ 個人資歷 */
+    var resumeItems = personalResume && personalResume.get('items');
+    var resumeBlock = [
+      sectionHeading('⑧ 個人資歷'),
+      resumeItems && resumeItems.size
+        ? h('ul', { style: { margin: 0, paddingLeft: '20px' } }, resumeItems.toArray().map(function (item, i) {
+            return h('li', { key: i, style: { fontSize: '14px', color: '#3d2b20', marginBottom: '10px', lineHeight: 1.7 } }, item.get('text_zh') || '（尚未填寫）');
+          }))
+        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目（前台會顯示「內容準備中」）'),
+    ];
+
     return h(
       'div',
       { style: previewWrap },
       previewNote,
-      h(
-        'ul',
-        { style: { margin: 0, paddingLeft: '20px' } },
-        items.toArray().map(function (item, i) {
-          return h('li', { key: i, style: { fontSize: '14px', color: '#3d2b20', marginBottom: '10px', lineHeight: 1.7 } }, item.get('text_zh') || '（尚未填寫）');
-        })
-      )
+      headerBlock, honorsBlock, educationBlock, exchangeBlock, teachingBlock, publicationsBlock, thesisBlock, resumeBlock
     );
   },
 });
 
-CMS.registerPreviewTemplate('director_header', DirectorHeaderPreview);
-CMS.registerPreviewTemplate('director_honors', DirectorHonorsPreview);
-CMS.registerPreviewTemplate('director_education', DirectorEducationPreview);
-CMS.registerPreviewTemplate('director_exchange', DirectorExchangePreview);
-CMS.registerPreviewTemplate('director_teaching', DirectorTeachingPreview);
-CMS.registerPreviewTemplate('director_publications', DirectorPublicationsPreview);
-CMS.registerPreviewTemplate('director_thesis', DirectorThesisPreview);
-CMS.registerPreviewTemplate('director_personal_resume', DirectorPersonalResumePreview);
+CMS.registerPreviewTemplate('director_profile_all', DirectorProfilePreview);

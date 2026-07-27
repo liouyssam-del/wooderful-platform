@@ -30,13 +30,27 @@
     details.acc > summary { list-style: none; cursor: pointer; }
     details.acc > summary::-webkit-details-marker { display: none; }
     details.acc[open] > summary .acc-chevron { transform: rotate(180deg); }
+
+    /* 頁首背景影片（跟首頁／分享教案頁同一套效果，套在既有的 .page-hero 版面上） */
+    .page-hero.page-hero--video { background: none; overflow: hidden; isolation: isolate; }
+    .page-hero .yt-bg-wrapper {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; pointer-events: none; filter: brightness(1.1) saturate(1.2);
+    }
+    .page-hero .yt-bg-wrapper iframe {
+      width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.77vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    .page-hero .hero-video-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.35); z-index: -1; }
   </style>
 </head>
 <body>
 
 <div id="nav-container"></div>
 
-<header class="page-hero text-center text-white">
+<header class="page-hero page-hero--video text-center text-white">
+  <div class="yt-bg-wrapper">
+    <iframe width="1059" height="595" src="https://www.youtube.com/embed/-F3rKMPP2yI?autoplay=1&mute=1&loop=1&playlist=-F3rKMPP2yI&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" title="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <div class="hero-video-overlay"></div>
   <div class="mt-12">
     <div class="text-caption tracking-[0.4em] text-stone-200 uppercase mb-3">DIRECTOR</div>
     <h1 class="text-h1 font-serif font-bold tracking-widest mb-4" data-en="Project Director" data-ja="プロジェクト代表者" data-de="Projektleiter">計畫主持人</h1>
@@ -400,7 +414,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <script>
-// 讀取「計畫主持人（頁面內容）」8 個分頁的 CMS 資料（data/director-*.json）。
+// 讀取「計畫主持人（頁面內容）」的 CMS 資料，8 個分頁整合在同一份檔案裡
+// （data/director-profile.json，每個分頁對應檔案裡的一個區塊）。
 // 讀取成功就覆蓋對應區塊原本寫死的內容；讀取失敗（或該分頁還沒有任何項目）
 // 就保留頁面上原本的靜態內容，當作降級處理，不會讓畫面開天窗。
 document.addEventListener('DOMContentLoaded', () => {
@@ -416,16 +431,16 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(() => null);
   }
 
-  Promise.all([
-    fetchJSON('data/director-header.json'),
-    fetchJSON('data/director-honors.json'),
-    fetchJSON('data/director-education.json'),
-    fetchJSON('data/director-exchange.json'),
-    fetchJSON('data/director-teaching.json'),
-    fetchJSON('data/director-publications.json'),
-    fetchJSON('data/director-thesis.json'),
-    fetchJSON('data/director-personal-resume.json'),
-  ]).then(([header, honors, education, exchange, teaching, publications, thesis, resume]) => {
+  fetchJSON('data/director-profile.json').then((profile) => {
+    profile = profile || {};
+    const header = profile.header;
+    const honors = profile.honors;
+    const education = profile.education;
+    const exchange = profile.exchange;
+    const teaching = profile.teaching;
+    const publications = profile.publications;
+    const thesis = profile.thesis;
+    const resume = profile.personal_resume;
 
     // 頁首職稱：照片右側的「單位」與「現職」兩行文字
     if (header) {

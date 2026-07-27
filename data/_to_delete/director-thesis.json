@@ -1,0 +1,169 @@
+{
+ "rows": [
+  {
+   "title_zh": "任務難度與拓樸結構對 NTUE App 操作績效與體驗之影響",
+   "title_en": "The Effects of Task Difficulty and Topological Structure on NTUE App Operational Performance and User Experience",
+   "title_ja": "タスク難易度とトポロジー構造がNTUEアプリの操作パフォーマンスとユーザー体験に与える影響",
+   "title_de": "Die Auswirkungen von Aufgabenschwierigkeit und topologischer Struktur auf die Bedienleistung und Nutzererfahrung der NTUE-App",
+   "student_zh": "張瑜洵",
+   "student_en": "Yu-Hsun Chang",
+   "student_ja": "張瑜洵",
+   "student_de": "Yu-Hsun Chang",
+   "year": "2026"
+  },
+  {
+   "title_zh": "STEAM 暨永續 SDGs 木育玩具之開發",
+   "title_en": "Development of STEAM and Sustainable SDGs Wood-Education Toys",
+   "title_ja": "STEAMと持続可能なSDGs木育玩具の開発",
+   "title_de": "Entwicklung von STEAM- und nachhaltigen SDGs-Holzbildungsspielzeugen",
+   "student_zh": "李宜萱",
+   "student_en": "Yi-Hsuan Li",
+   "student_ja": "李宜萱",
+   "student_de": "Yi-Hsuan Li",
+   "year": "2024"
+  },
+  {
+   "title_zh": "全國學生美展小學組平面設計優勝作品之評量",
+   "title_en": "An Evaluation of Award-Winning Graphic Design Works in the Elementary Division of the National Student Art Exhibition",
+   "title_ja": "全国学生美術展小学校部門受賞グラフィックデザイン作品の評価",
+   "title_de": "Eine Bewertung preisgekrönter Grafikdesign-Arbeiten in der Grundschulabteilung der National Student Art Exhibition",
+   "student_zh": "吳中硯",
+   "student_en": "Chung-Yen Wu",
+   "student_ja": "吳中硯",
+   "student_de": "Chung-Yen Wu",
+   "year": "2021"
+  },
+  {
+   "title_zh": "國小 STEAM 玩具教案評量研究",
+   "title_en": "A Study on the Evaluation of STEAM Toy Lesson Plans for Elementary School",
+   "title_ja": "小学校向けSTEAM玩具教案の評価に関する研究",
+   "title_de": "Eine Studie zur Bewertung von STEAM-Spielzeug-Lehrplänen für die Grundschule",
+   "student_zh": "白昀昕",
+   "student_en": "Yun-Hsin Pai",
+   "student_ja": "白昀昕",
+   "student_de": "Yun-Hsin Pai",
+   "year": "2020"
+  },
+  {
+   "title_zh": "斷捨離族群生活型態與消費行為初探",
+   "title_en": "A Preliminary Study on the Lifestyle and Consumer Behavior of the Danshari (Decluttering) Population",
+   "title_ja": "断捨離人口のライフスタイルと消費行動に関する予備的研究",
+   "title_de": "Eine vorläufige Studie zum Lebensstil und Konsumverhalten der Danshari-(Entrümpelungs-)Bevölkerung",
+   "student_zh": "汪心湘",
+   "student_en": "Hsin-Hsiang Wang",
+   "student_ja": "汪心湘",
+   "student_de": "Hsin-Hsiang Wang",
+   "year": "2020"
+  },
+  {
+   "title_zh": "少女與怪獸創作設計與論述–以陳翌雋水墨插畫為例",
+   "title_en": "Girls and Monsters: Creative Design and Discourse — Using Chen Yi-Chun's Ink Illustrations as a Case Study",
+   "title_ja": "少女と怪物：創作デザインと言説——陳翌雋の水墨イラストを事例として",
+   "title_de": "Mädchen und Monster: Kreatives Design und Diskurs — am Beispiel der Tuschillustrationen von Chen Yi-Chun",
+   "student_zh": "陳翌雋",
+   "student_en": "Yi-Chun Chen",
+   "student_ja": "陳翌雋",
+   "student_de": "Yi-Chun Chen",
+   "year": "2020"
+  },
+  {
+   "title_zh": "銀髮族智慧平板 3D 頭像 APP 介面之評估",
+   "title_en": "An Evaluation of Smart Tablet 3D Avatar App Interfaces for Older Adults",
+   "title_ja": "高齢者向けスマートタブレット3Dアバターアプリインターフェースの評価",
+   "title_de": "Eine Bewertung von 3D-Avatar-App-Oberflächen auf Smart-Tablets für ältere Erwachsene",
+   "student_zh": "王琪嫈",
+   "student_en": "Chi-Ying Wang",
+   "student_ja": "王琪嫈",
+   "student_de": "Chi-Ying Wang",
+   "year": "2019"
+  },
+  {
+   "title_zh": "影響數位 3D 建模績效因素研究",
+   "title_en": "A Study of Factors Affecting Digital 3D Modeling Performance",
+   "title_ja": "デジタル3Dモデリングの性能に影響する要因の研究",
+   "title_de": "Eine Studie der Faktoren, die die Leistung digitaler 3D-Modellierung beeinflussen",
+   "student_zh": "劉耕銘",
+   "student_en": "Geng-Ming Liu",
+   "student_ja": "劉耕銘",
+   "student_de": "Geng-Ming Liu",
+   "year": "2018"
+  },
+  {
+   "title_zh": "浮雲山水高明山琉璃創作研究",
+   "title_en": "A Study of Gao Ming-Shan's Floating Cloud Landscape Glass Art Creations",
+   "title_ja": "高明山の浮雲山水ガラス芸術作品の研究",
+   "title_de": "Eine Studie zu Gao Ming-Shans Glaskunstwerken „Schwebende Wolken-Landschaft",
+   "student_zh": "高明山",
+   "student_en": "Ming-Shan Kao",
+   "student_ja": "高明山",
+   "student_de": "Ming-Shan Kao",
+   "year": "2016"
+  },
+  {
+   "title_zh": "雲端科技與人際疏離　陳英徹軟陶雕塑創作研究",
+   "title_en": "Cloud Technology and Interpersonal Alienation: A Study of Chen Ying-Che's Polymer Clay Sculpture Creations",
+   "title_ja": "クラウド技術と対人疎外：陳英徹のポリマークレイ彫刻作品の研究",
+   "title_de": "Cloud-Technologie und zwischenmenschliche Entfremdung: Eine Studie zu Chen Ying-Ches Polymer-Ton-Skulpturen",
+   "student_zh": "陳英徹",
+   "student_en": "Ying-Che Chen",
+   "student_ja": "陳英徹",
+   "student_de": "Ying-Che Chen",
+   "year": "2016"
+  },
+  {
+   "title_zh": "高齡者網頁介面型式、性別、任務難度與使用性研究",
+   "title_en": "A Study on Web Interface Style, Gender, Task Difficulty, and Usability for Older Adults",
+   "title_ja": "高齢者向けウェブインターフェースのスタイル、性別、タスク難易度とユーザビリティに関する研究",
+   "title_de": "Eine Studie zu Webinterface-Stil, Geschlecht, Aufgabenschwierigkeit und Benutzerfreundlichkeit für ältere Erwachsene",
+   "student_zh": "張瀞方",
+   "student_en": "Jing-Fang Chang",
+   "student_ja": "張瀞方",
+   "student_de": "Jing-Fang Chang",
+   "year": "2014"
+  },
+  {
+   "title_zh": "銀髮族電子放大鏡介面設計與評估研究",
+   "title_en": "Interface Design and Evaluation of an Electronic Magnifier for Older Adults",
+   "title_ja": "高齢者向け電子拡大鏡のインターフェースデザインと評価",
+   "title_de": "Interfacedesign und Bewertung einer elektronischen Lupe für ältere Erwachsene",
+   "student_zh": "施宗豪",
+   "student_en": "Tsung-Hao Shih",
+   "student_ja": "施宗豪",
+   "student_de": "Tsung-Hao Shih",
+   "year": "2013"
+  },
+  {
+   "title_zh": "高齡者電子字典介面設計研究",
+   "title_en": "A Study on Electronic Dictionary Interface Design for Older Adults",
+   "title_ja": "高齢者向け電子辞書インターフェースデザインの研究",
+   "title_de": "Eine Studie zum Interfacedesign elektronischer Wörterbücher für ältere Erwachsene",
+   "student_zh": "黃達鈞",
+   "student_en": "Da-Chun Huang",
+   "student_ja": "黃達鈞",
+   "student_de": "Da-Chun Huang",
+   "year": "2013"
+  },
+  {
+   "title_zh": "智慧家庭使用者介面設計導入拓蹼結構之研究",
+   "title_en": "A Study on Applying Topological Structures to Smart Home User Interface Design",
+   "title_ja": "スマートホームユーザーインターフェースデザインへのトポロジー構造応用に関する研究",
+   "title_de": "Eine Studie zur Anwendung topologischer Strukturen im Interfacedesign für Smart Homes",
+   "student_zh": "邱宗偉",
+   "student_en": "Tsung-Wei Chiu",
+   "student_ja": "邱宗偉",
+   "student_de": "Tsung-Wei Chiu",
+   "year": "2012"
+  },
+  {
+   "title_zh": "兒童於魔術方塊介面與個體差異之操作績效研究",
+   "title_en": "A Study on Children's Operational Performance and Individual Differences with a Rubik's Cube Interface",
+   "title_ja": "ルービックキューブインターフェースにおける児童の操作パフォーマンスと個人差に関する研究",
+   "title_de": "Eine Studie zur Bedienleistung und den individuellen Unterschieden von Kindern bei einer Rubik's-Cube-Schnittstelle",
+   "student_zh": "許明弘",
+   "student_en": "Ming-Hung Hsu",
+   "student_ja": "許明弘",
+   "student_de": "Ming-Hung Hsu",
+   "year": "2012"
+  }
+ ]
+}
