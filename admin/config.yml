@@ -83,49 +83,13 @@ collections:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
 
-  - name: "director_projects"
-    label: "計畫主持人（研究計畫）"
-    label_singular: "一筆研究計畫"
-    files:
-      - name: "director_projects_extra"
-        label: "研究計畫列表"
-        file: "data/director-projects-extra.json"
-        description: "在這裡新增「計畫主持人」頁面裡的研究計畫（國科會研究計畫 / 產學合作計畫）。存檔後重新整理網站頁面就會看到。"
-        fields:
-          - name: "items"
-            label: "計畫列表"
-            widget: "list"
-            label_singular: "一筆計畫"
-            summary: "{{fields.year_roc}} - {{fields.title_zh}}"
-            fields:
-              - label: "表格分類"
-                name: "table"
-                widget: "select"
-                required: false
-                options:
-                  - { label: "國科會研究計畫", value: "nstc" }
-                  - { label: "產學合作計畫", value: "industry" }
-              - { label: "民國年（例如 115 或 113-115）", name: "year_roc", widget: "string", required: false }
-              - { label: "學門（中文，必填）", name: "field_zh", widget: "string" }
-              - { label: "學門（英文，可留白）", name: "field_en", widget: "string", required: false }
-              - { label: "學門（日文，可留白）", name: "field_ja", widget: "string", required: false }
-              - { label: "學門（德文，可留白）", name: "field_de", widget: "string", required: false }
-              - { label: "計畫名稱（中文，必填）", name: "title_zh", widget: "string" }
-              - { label: "計畫名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
-              - { label: "計畫名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
-              - { label: "計畫名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
-              - { label: "起迄／狀態（中文，必填，例如：已結案／1年型／民112-113）", name: "duration_zh", widget: "string" }
-              - { label: "起迄／狀態（英文，可留白）", name: "duration_en", widget: "string", required: false }
-              - { label: "起迄／狀態（日文，可留白）", name: "duration_ja", widget: "string", required: false }
-              - { label: "起迄／狀態（德文，可留白）", name: "duration_de", widget: "string", required: false }
-
   - name: "director_profile"
     label: "計畫主持人（頁面內容）"
     files:
       - name: "director_profile_all"
         label: "計畫主持人（頁面內容）"
         file: "data/director-profile.json"
-        description: "「計畫主持人」頁面除了研究計畫以外的所有分頁內容，整合在同一份表單裡編輯（往下捲動可以看到全部 8 個區塊：頁首職稱／榮譽／主要學歷／國際交流／教學暨設計實務經歷／研究發表／研究生論文指導／個人資歷）。存檔後重新整理「計畫主持人」頁面就會看到。"
+        description: "「計畫主持人」頁面的所有分頁內容，整合在同一份表單裡編輯（往下捲動可以看到全部 9 個區塊：頁首職稱／榮譽／主要學歷／國際交流／研究計畫／教學暨設計實務經歷／研究發表／研究生論文指導／個人資歷）。存檔後重新整理「計畫主持人」頁面就會看到。"
         fields:
           - name: "header"
             label: "① 頁首職稱（照片右側的「單位」與「現職」兩行文字）"
@@ -196,8 +160,39 @@ collections:
                   - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
                   - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
 
+          - name: "research_projects"
+            label: "⑤ 研究計畫（國科會研究計畫 / 產學合作計畫）"
+            widget: "object"
+            fields:
+              - name: "items"
+                label: "計畫列表"
+                widget: "list"
+                label_singular: "一筆計畫"
+                summary: "{{fields.year_roc}} - {{fields.title_zh}}"
+                fields:
+                  - label: "表格分類"
+                    name: "table"
+                    widget: "select"
+                    required: false
+                    options:
+                      - { label: "國科會研究計畫", value: "nstc" }
+                      - { label: "產學合作計畫", value: "industry" }
+                  - { label: "民國年（例如 115 或 113-115）", name: "year_roc", widget: "string", required: false }
+                  - { label: "學門（中文，必填）", name: "field_zh", widget: "string" }
+                  - { label: "學門（英文，可留白）", name: "field_en", widget: "string", required: false }
+                  - { label: "學門（日文，可留白）", name: "field_ja", widget: "string", required: false }
+                  - { label: "學門（德文，可留白）", name: "field_de", widget: "string", required: false }
+                  - { label: "計畫名稱（中文，必填）", name: "title_zh", widget: "string" }
+                  - { label: "計畫名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
+                  - { label: "計畫名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
+                  - { label: "計畫名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
+                  - { label: "起迄／狀態（中文，必填，例如：已結案／1年型／民112-113）", name: "duration_zh", widget: "string" }
+                  - { label: "起迄／狀態（英文，可留白）", name: "duration_en", widget: "string", required: false }
+                  - { label: "起迄／狀態（日文，可留白）", name: "duration_ja", widget: "string", required: false }
+                  - { label: "起迄／狀態（德文，可留白）", name: "duration_de", widget: "string", required: false }
+
           - name: "teaching"
-            label: "⑤ 教學暨設計實務經歷"
+            label: "⑥ 教學暨設計實務經歷"
             widget: "object"
             fields:
               - name: "teaching"
@@ -224,7 +219,7 @@ collections:
                   - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
 
           - name: "publications"
-            label: "⑥ 研究發表"
+            label: "⑦ 研究發表"
             widget: "object"
             fields:
               - name: "categories"
@@ -244,7 +239,7 @@ collections:
                     field: { label: "引用內容", name: "text", widget: "text" }
 
           - name: "thesis"
-            label: "⑦ 研究生論文指導"
+            label: "⑧ 研究生論文指導"
             widget: "object"
             fields:
               - name: "rows"
@@ -264,7 +259,7 @@ collections:
                   - { label: "畢業年", name: "year", widget: "string", required: false }
 
           - name: "personal_resume"
-            label: "⑧ 個人資歷"
+            label: "⑨ 個人資歷"
             widget: "object"
             fields:
               - name: "items"

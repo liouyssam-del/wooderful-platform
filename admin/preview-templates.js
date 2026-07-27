@@ -114,65 +114,7 @@ var UpdatesExtraPreview = createClass({
   },
 });
 
-/* ── 計畫主持人（研究計畫）：預覽表格列，模擬 director.html 的表格樣式 ── */
-var DirectorProjectsPreview = createClass({
-  render: function () {
-    var entry = this.props.entry;
-    var items = entry.getIn(['data', 'items']);
-    if (!items || items.size === 0) {
-      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何項目');
-    }
-
-    var tableLabels = { nstc: '國科會研究計畫', industry: '產學合作計畫' };
-    var cellStyle = { padding: '10px 14px', fontSize: '14px', color: '#3d2b20', textAlign: 'left' };
-
-    var rows = items.map(function (item, i) {
-      return h(
-        'tr',
-        { key: i, style: { borderBottom: '1px solid #e7e2d8' } },
-        h('td', { style: cellStyle }, item.get('year_roc') || ''),
-        h('td', { style: cellStyle }, item.get('field_zh') || ''),
-        h('td', { style: cellStyle }, item.get('title_zh') || '（尚未填寫）'),
-        h('td', { style: cellStyle }, item.get('duration_zh') || ''),
-        h(
-          'td',
-          { style: Object.assign({}, cellStyle, { color: '#5e8b3a', fontWeight: 600 }) },
-          tableLabels[item.get('table')] || item.get('table') || ''
-        )
-      );
-    });
-
-
-    return h(
-      'div',
-      { style: { padding: '24px', background: '#fbf9f5', fontFamily: '"Noto Sans TC", sans-serif' } },
-      h('p', { style: { fontSize: '12px', color: '#a8998a', marginBottom: '16px' } }, '（預覽樣式僅供參考，實際網站排版可能略有差異）'),
-      h(
-        'table',
-        { style: { width: '100%', borderCollapse: 'collapse', background: '#fff', border: '1px solid #e7e2d8', borderRadius: '8px' } },
-        h(
-          'thead',
-          {},
-          h(
-            'tr',
-            { style: { background: '#f4f1ea', borderBottom: '2px solid #e7e2d8' } },
-            h('th', { style: cellStyle }, '民國年'),
-            h('th', { style: cellStyle }, '學門'),
-            h('th', { style: cellStyle }, '計畫名稱'),
-            h('th', { style: cellStyle }, '起迄／狀態'),
-            h('th', { style: cellStyle }, '表格分類')
-          )
-        ),
-        h('tbody', {}, rows.toArray())
-      )
-    );
-  },
-});
-
 CMS.registerPreviewTemplate('updates_extra', UpdatesExtraPreview);
-// 修正舊 bug：files 型 collection 的預覽要註冊「檔案的 name」（director_projects_extra），
-// 不是外層 collection 的 name（director_projects），否則預覽會退回純文字、樣式不生效。
-CMS.registerPreviewTemplate('director_projects_extra', DirectorProjectsPreview);
 
 /* ── 分享教案：預覽卡片，模擬 lessons.html 的教案卡片樣式 ── */
 var LessonsExtraPreview = createClass({
@@ -308,6 +250,7 @@ var DirectorProfilePreview = createClass({
     var honors = data && data.get('honors');
     var education = data && data.get('education');
     var exchange = data && data.get('exchange');
+    var researchProjects = data && data.get('research_projects');
     var teaching = data && data.get('teaching');
     var publications = data && data.get('publications');
     var thesis = data && data.get('thesis');
@@ -372,7 +315,34 @@ var DirectorProfilePreview = createClass({
         : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目'),
     ];
 
-    /* ⑤ 教學暨設計實務經歷 */
+    /* ⑤ 研究計畫（國科會研究計畫 / 產學合作計畫） */
+    var projectTableLabels = { nstc: '國科會研究計畫', industry: '產學合作計畫' };
+    var projectItems = researchProjects && researchProjects.get('items');
+    var researchProjectsBlock = [
+      sectionHeading('⑤ 研究計畫'),
+      projectItems && projectItems.size
+        ? h('table', { style: { width: '100%', borderCollapse: 'collapse', background: '#fff', border: '1px solid #e7e2d8', borderRadius: '8px' } },
+            h('thead', {}, h('tr', { style: { background: '#f4f1ea', borderBottom: '2px solid #e7e2d8' } },
+              h('th', { style: cellStyle }, '民國年'),
+              h('th', { style: cellStyle }, '學門'),
+              h('th', { style: cellStyle }, '計畫名稱'),
+              h('th', { style: cellStyle }, '起迄／狀態'),
+              h('th', { style: cellStyle }, '表格分類')
+            )),
+            h('tbody', {}, projectItems.toArray().map(function (item, i) {
+              return h('tr', { key: i, style: { borderBottom: '1px solid #e7e2d8' } },
+                h('td', { style: cellStyle }, item.get('year_roc') || ''),
+                h('td', { style: cellStyle }, item.get('field_zh') || ''),
+                h('td', { style: cellStyle }, item.get('title_zh') || '（尚未填寫）'),
+                h('td', { style: cellStyle }, item.get('duration_zh') || ''),
+                h('td', { style: Object.assign({}, cellStyle, { color: '#5e8b3a', fontWeight: 600 }) }, projectTableLabels[item.get('table')] || item.get('table') || '')
+              );
+            }))
+          )
+        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目'),
+    ];
+
+    /* ⑥ 教學暨設計實務經歷 */
     function renderPeriodList(list) {
       if (!list || list.size === 0) return h('div', { style: { color: '#999', fontSize: '13px' } }, '（尚未填寫）');
       return list.toArray().map(function (item, i) {
@@ -383,17 +353,17 @@ var DirectorProfilePreview = createClass({
       });
     }
     var teachingBlock = [
-      sectionHeading('⑤ 教學暨設計實務經歷'),
+      sectionHeading('⑥ 教學暨設計實務經歷'),
       h('h4', { style: { fontSize: '15px', color: '#3d2b20', margin: '0 0 8px 0' } }, '【教學】'),
       renderPeriodList(teaching && teaching.get('teaching')),
       h('h4', { style: { fontSize: '15px', color: '#3d2b20', margin: '16px 0 8px 0' } }, '【設計實務】'),
       renderPeriodList(teaching && teaching.get('design')),
     ];
 
-    /* ⑥ 研究發表 */
+    /* ⑦ 研究發表 */
     var pubCategories = publications && publications.get('categories');
     var publicationsBlock = [
-      sectionHeading('⑥ 研究發表'),
+      sectionHeading('⑦ 研究發表'),
       pubCategories && pubCategories.size
         ? pubCategories.toArray().map(function (cat, i) {
             var items = cat.get('items');
@@ -412,7 +382,7 @@ var DirectorProfilePreview = createClass({
     /* ⑦ 研究生論文指導 */
     var thesisRows = thesis && thesis.get('rows');
     var thesisBlock = [
-      sectionHeading('⑦ 研究生論文指導'),
+      sectionHeading('⑧ 研究生論文指導'),
       thesisRows && thesisRows.size
         ? h('table', { style: { width: '100%', borderCollapse: 'collapse', background: '#fff', border: '1px solid #e7e2d8', borderRadius: '8px' } },
             h('thead', {}, h('tr', { style: { background: '#f4f1ea', borderBottom: '2px solid #e7e2d8' } },
@@ -434,7 +404,7 @@ var DirectorProfilePreview = createClass({
     /* ⑧ 個人資歷 */
     var resumeItems = personalResume && personalResume.get('items');
     var resumeBlock = [
-      sectionHeading('⑧ 個人資歷'),
+      sectionHeading('⑨ 個人資歷'),
       resumeItems && resumeItems.size
         ? h('ul', { style: { margin: 0, paddingLeft: '20px' } }, resumeItems.toArray().map(function (item, i) {
             return h('li', { key: i, style: { fontSize: '14px', color: '#3d2b20', marginBottom: '10px', lineHeight: 1.7 } }, item.get('text_zh') || '（尚未填寫）');
@@ -446,7 +416,7 @@ var DirectorProfilePreview = createClass({
       'div',
       { style: previewWrap },
       previewNote,
-      headerBlock, honorsBlock, educationBlock, exchangeBlock, teachingBlock, publicationsBlock, thesisBlock, resumeBlock
+      headerBlock, honorsBlock, educationBlock, exchangeBlock, researchProjectsBlock, teachingBlock, publicationsBlock, thesisBlock, resumeBlock
     );
   },
 });

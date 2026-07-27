@@ -150,6 +150,26 @@
    }
   ]
  },
+ "research_projects": {
+  "items": [
+   {
+    "table": "nstc",
+    "year_roc": "115",
+    "field_zh": "環境藝術與設計",
+    "field_en": "Environmental Art & Design",
+    "field_ja": "環境芸術とデザイン",
+    "field_de": "Umweltkunst & Design",
+    "title_zh": "範例：這是一則示範研究計畫",
+    "title_en": "Example: This is a sample research project",
+    "title_ja": "例：これはサンプルの研究計画です",
+    "title_de": "Beispiel: Dies ist ein Beispiel-Forschungsprojekt",
+    "duration_zh": "示範用，實際使用時請刪除或編輯這一則",
+    "duration_en": "",
+    "duration_ja": "",
+    "duration_de": ""
+   }
+  ]
+ },
  "teaching": {
   "teaching": [
    {

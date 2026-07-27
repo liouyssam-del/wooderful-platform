@@ -392,39 +392,7 @@
 <div id="footer-container"></div>
 <script src="layout.js"></script>
 <script>
-// 讀取教授透過後台新增的研究計畫（data/director-projects-extra.json），
-// 插入對應表格（國科會研究計畫 / 產學合作計畫）的最上方。
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('data/director-projects-extra.json', { cache: 'no-store' })
-    .then((res) => (res.ok ? res.json() : { items: [] }))
-    .then((data) => {
-      const items = (data && Array.isArray(data.items)) ? data.items : [];
-      if (items.length === 0) return;
-
-      items.forEach((item) => {
-        const containerId = item.table === 'industry' ? 'dynamic-industry-projects' : 'dynamic-nstc-projects';
-        const tbody = document.getElementById(containerId);
-        if (!tbody) return;
-
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${item.year_roc || ''}</td>
-          <td data-en="${item.field_en || item.field_zh || ''}" data-ja="${item.field_ja || item.field_zh || ''}" data-de="${item.field_de || item.field_zh || ''}">${item.field_zh || ''}</td>
-          <td data-en="${item.title_en || item.title_zh || ''}" data-ja="${item.title_ja || item.title_zh || ''}" data-de="${item.title_de || item.title_zh || ''}">${item.title_zh || ''}</td>
-          <td data-en="${item.duration_en || item.duration_zh || ''}" data-ja="${item.duration_ja || item.duration_zh || ''}" data-de="${item.duration_de || item.duration_zh || ''}">${item.duration_zh || ''}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-
-      if (window.applyLanguage && window.getCurrentLang) {
-        window.applyLanguage(window.getCurrentLang());
-      }
-    })
-    .catch(() => { /* 讀取失敗就靜默略過，不影響既有的靜態內容 */ });
-});
-</script>
-<script>
-// 讀取「計畫主持人（頁面內容）」的 CMS 資料，8 個分頁整合在同一份檔案裡
+// 讀取「計畫主持人（頁面內容）」的 CMS 資料，所有分頁（包含研究計畫）整合在同一份檔案裡
 // （data/director-profile.json，每個分頁對應檔案裡的一個區塊）。
 // 讀取成功就覆蓋對應區塊原本寫死的內容；讀取失敗（或該分頁還沒有任何項目）
 // 就保留頁面上原本的靜態內容，當作降級處理，不會讓畫面開天窗。
@@ -447,10 +415,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const honors = profile.honors;
     const education = profile.education;
     const exchange = profile.exchange;
+    const researchProjects = profile.research_projects;
     const teaching = profile.teaching;
     const publications = profile.publications;
     const thesis = profile.thesis;
     const resume = profile.personal_resume;
+
+    // 研究計畫：插入對應表格（國科會研究計畫 / 產學合作計畫）的最上方
+    if (researchProjects && Array.isArray(researchProjects.items) && researchProjects.items.length > 0) {
+      researchProjects.items.forEach((item) => {
+        const containerId = item.table === 'industry' ? 'dynamic-industry-projects' : 'dynamic-nstc-projects';
+        const tbody = document.getElementById(containerId);
+        if (!tbody) return;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${esc(item.year_roc)}</td>
+          <td data-en="${esc(item.field_en || item.field_zh)}" data-ja="${esc(item.field_ja || item.field_zh)}" data-de="${esc(item.field_de || item.field_zh)}">${esc(item.field_zh)}</td>
+          <td data-en="${esc(item.title_en || item.title_zh)}" data-ja="${esc(item.title_ja || item.title_zh)}" data-de="${esc(item.title_de || item.title_zh)}">${esc(item.title_zh)}</td>
+          <td data-en="${esc(item.duration_en || item.duration_zh)}" data-ja="${esc(item.duration_ja || item.duration_zh)}" data-de="${esc(item.duration_de || item.duration_zh)}">${esc(item.duration_zh)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
 
     // 頁首職稱：照片右側的「單位」與「現職」兩行文字
     if (header) {
