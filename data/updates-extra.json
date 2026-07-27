@@ -1,18 +1,3 @@
 {
-  "items": [
-    {
-      "date_label": "2026 / 08",
-      "desc_ja": "",
-      "title_de": "Beispiel: Dies ist ein Beispieleintrag",
-      "desc_de": "",
-      "sort_date": "2026-08-01",
-      "title_en": "Example: This is a sample update",
-      "title_zh": "範例：這是一則示範動態",
-      "desc_en": "",
-      "image": "",
-      "desc_zh": "測試",
-      "title_ja": "",
-      "category": "wood"
-    }
-  ]
+  "items": []
 }
