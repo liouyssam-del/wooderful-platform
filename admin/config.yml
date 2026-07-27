@@ -58,22 +58,30 @@ collections:
               - label: "分類"
                 name: "category"
                 widget: "select"
+                required: false
                 options:
                   - { label: "國際交流", value: "intl" }
                   - { label: "木育玩具開發與推廣", value: "wood" }
                   - { label: "竹育樂（2026~）", value: "bamboo" }
                   - { label: "產學合作計畫成果", value: "industry" }
-              - { label: "日期（用於排序，選一天即可）", name: "sort_date", widget: "date", format: "YYYY-MM-DD" }
-              - { label: "日期顯示文字（例如 2026 / 08）", name: "date_label", widget: "string" }
+              - { label: "日期（用於排序，選一天即可）", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+              - { label: "日期顯示文字（例如 2026 / 08）", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
               - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
               - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
-              - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
+              - { label: "內容（中文，可留白）", name: "desc_zh", widget: "text", required: false }
               - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
               - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
               - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
-              - { label: "照片（可不填）", name: "image", widget: "image", required: false }
+              - label: "照片（可新增多張，每張可加說明；可留白）"
+                name: "images"
+                widget: "list"
+                required: false
+                default: []
+                fields:
+                  - { label: "圖片", name: "src", widget: "image" }
+                  - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
 
   - name: "director_projects"
     label: "計畫主持人（研究計畫）"
@@ -93,10 +101,11 @@ collections:
               - label: "表格分類"
                 name: "table"
                 widget: "select"
+                required: false
                 options:
                   - { label: "國科會研究計畫", value: "nstc" }
                   - { label: "產學合作計畫", value: "industry" }
-              - { label: "民國年（例如 115 或 113-115）", name: "year_roc", widget: "string" }
+              - { label: "民國年（例如 115 或 113-115）", name: "year_roc", widget: "string", required: false }
               - { label: "學門（中文，必填）", name: "field_zh", widget: "string" }
               - { label: "學門（英文，可留白）", name: "field_en", widget: "string", required: false }
               - { label: "學門（日文，可留白）", name: "field_ja", widget: "string", required: false }
@@ -125,33 +134,42 @@ collections:
             label_singular: "一份教案"
             summary: "{{fields.title_zh}}"
             fields:
-              - label: "網址代稱（英文/數字/連字號，例如 sailboat-race，同一份教案存檔後請勿更改，否則會變成新的網址）"
+              - label: "網址代稱（英文/數字/連字號，例如 sailboat-race，同一份教案存檔後請勿更改，否則會變成新的網址；必填）"
                 name: "slug"
                 widget: "string"
                 pattern: ['^[a-z0-9-]+$', "只能用小寫英文字母、數字、連字號（-），不能有空格或中文"]
-              - { label: "日期（用於排序，選一天即可）", name: "sort_date", widget: "date", format: "YYYY-MM-DD" }
+              - { label: "日期（用於排序，選一天即可）", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
               - { label: "教案名稱（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "教案名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
               - { label: "教案名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
               - { label: "教案名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
-              - { label: "一句話簡介（中文，必填）", name: "summary_zh", widget: "text" }
+              - { label: "一句話簡介（中文，可留白）", name: "summary_zh", widget: "text", required: false }
               - { label: "一句話簡介（英文，可留白）", name: "summary_en", widget: "text", required: false }
               - { label: "一句話簡介（日文，可留白）", name: "summary_ja", widget: "text", required: false }
               - { label: "一句話簡介（德文，可留白）", name: "summary_de", widget: "text", required: false }
-              - { label: "適合年級", name: "grade", widget: "string" }
-              - { label: "教學時間", name: "duration", widget: "string" }
-              - { label: "參與人數", name: "group_size", widget: "string" }
-              - { label: "教學領域", name: "subject", widget: "string" }
-              - { label: "課程目標（中文，必填）", name: "objectives_zh", widget: "text" }
+              - { label: "適合年級", name: "grade", widget: "string", required: false }
+              - { label: "教學時間", name: "duration", widget: "string", required: false }
+              - { label: "參與人數", name: "group_size", widget: "string", required: false }
+              - { label: "教學領域", name: "subject", widget: "string", required: false }
+              - { label: "課程目標（中文，可留白）", name: "objectives_zh", widget: "text", required: false }
               - { label: "課程目標（英文，可留白）", name: "objectives_en", widget: "text", required: false }
               - { label: "課程目標（日文，可留白）", name: "objectives_ja", widget: "text", required: false }
               - { label: "課程目標（德文，可留白）", name: "objectives_de", widget: "text", required: false }
-              - { label: "封面照片（可不填）", name: "image", widget: "image", required: false }
+              - label: "照片（可新增多張，每張可加說明；可留白，第一張會當作列表縮圖）"
+                name: "images"
+                widget: "list"
+                required: false
+                default: []
+                fields:
+                  - { label: "圖片", name: "src", widget: "image" }
+                  - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
               - label: "材料清單（每行一項，例如「木頭方塊 ×2」）"
                 name: "materials"
                 widget: "list"
+                required: false
                 default: []
               - label: "製作步驟（每行一個步驟）"
                 name: "steps"
                 widget: "list"
+                required: false
                 default: []

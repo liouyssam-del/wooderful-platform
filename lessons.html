@@ -259,17 +259,26 @@
 
 <script>
 async function initLessonsPage() {
-  // 檢視切換（網格／列表）
+  // 檢視切換（網格／列表）：兩種檢視各自的每頁筆數不同（條列 15 筆／圖卡 5 筆）
   const lessonGrid = document.getElementById('lessonGrid');
   const gridBtn = document.getElementById('gridViewBtn');
   const listBtn = document.getElementById('listViewBtn');
+  const PER_PAGE = { grid: 5, list: 15 };
+  let currentView = 'grid';
+
   gridBtn.addEventListener('click', () => {
+    if (currentView === 'grid') return;
+    currentView = 'grid';
     lessonGrid.classList.remove('view-list');
     gridBtn.classList.add('active'); listBtn.classList.remove('active');
+    renderPage(1);
   });
   listBtn.addEventListener('click', () => {
+    if (currentView === 'list') return;
+    currentView = 'list';
     lessonGrid.classList.add('view-list');
     listBtn.classList.add('active'); gridBtn.classList.remove('active');
+    renderPage(1);
   });
 
   // 讀取教授透過後台新增的教案（data/lessons-extra.json），插入卡片列表，
@@ -284,8 +293,13 @@ async function initLessonsPage() {
       card.className = 'lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up';
       card.dataset.date = item.sort_date || '2026-01-01';
 
-      const avatarHtml = item.image
-        ? `<div class="avatar-wrapper"><img src="${item.image}" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner" /></div>`
+      // 支援新格式 images（第一張當作列表縮圖），並相容舊格式的單張 image 欄位
+      const coverImage = (Array.isArray(item.images) && item.images.length > 0 && item.images[0].src)
+        ? item.images[0].src
+        : (item.image || '');
+
+      const avatarHtml = coverImage
+        ? `<div class="avatar-wrapper"><img src="${coverImage}" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner" /></div>`
         : `<div class="avatar-wrapper flex items-center justify-center bg-[#eef4ea] rounded-full border-4 border-white shadow-inner"><i class="fa-solid fa-seedling text-forest-600 text-h1"></i></div>`;
 
       card.innerHTML = `
@@ -310,24 +324,29 @@ async function initLessonsPage() {
     /* 讀取失敗就靜默略過，不影響既有的靜態教案卡片 */
   }
 
-  // 依日期排序（由舊到新；之後新增教案只要加上 data-date 屬性，會自動排到正確位置）
-  const allCards = Array.from(lessonGrid.querySelectorAll('.lesson-card'))
-    .sort((a, b) => new Date(a.dataset.date) - new Date(b.dataset.date));
+  // 依日期排序：由新到舊（sort_date 最新的排最前面／圖卡模式時排在左上）。
+  // 「敬請期待」預告卡片（data-date="9999-12-31"）永遠固定在最後一筆，不參與新舊排序。
+  const allCardsRaw = Array.from(lessonGrid.querySelectorAll('.lesson-card'));
+  const placeholderCards = allCardsRaw.filter((c) => c.dataset.date === '9999-12-31');
+  const regularCards = allCardsRaw
+    .filter((c) => c.dataset.date !== '9999-12-31')
+    .sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
+  const allCards = regularCards.concat(placeholderCards);
   allCards.forEach(card => lessonGrid.appendChild(card));
 
-  // 分頁（每頁 3 筆，教案增加時會自動產生更多頁）
-  const PER_PAGE = 3;
-  const totalPages = Math.max(1, Math.ceil(allCards.length / PER_PAGE));
+  // 分頁：條列檢視每頁 15 筆、圖卡檢視每頁 5 筆，超過時顯示頁碼控制
   const paginationEl = document.getElementById('pagination');
   let currentPage = 1;
 
   function renderPage(page) {
-    currentPage = page;
+    const perPage = PER_PAGE[currentView];
+    const totalPages = Math.max(1, Math.ceil(allCards.length / perPage));
+    currentPage = Math.min(Math.max(1, page), totalPages);
     allCards.forEach((card, i) => {
-      const inPage = Math.floor(i / PER_PAGE) + 1 === page;
+      const inPage = Math.floor(i / perPage) + 1 === currentPage;
       card.style.display = inPage ? '' : 'none';
     });
-    renderPagination();
+    renderPagination(totalPages);
   }
 
   function pageButton(label, page, opts = {}) {
@@ -341,7 +360,7 @@ async function initLessonsPage() {
     return btn;
   }
 
-  function renderPagination() {
+  function renderPagination(totalPages) {
     paginationEl.innerHTML = '';
     if (totalPages <= 1) return; // 只有一頁時不顯示分頁列
     paginationEl.appendChild(pageButton('‹', currentPage - 1, { disabled: currentPage === 1 }));

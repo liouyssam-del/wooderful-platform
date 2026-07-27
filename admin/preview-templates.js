@@ -25,7 +25,8 @@ var UpdatesExtraPreview = createClass({
       var dateLabel = item.get('date_label') || '';
       var titleZh = item.get('title_zh') || '（尚未填寫標題）';
       var descZh = item.get('desc_zh') || '';
-      var image = item.get('image') || '';
+      var images = item.get('images'); // 圖片清單（新格式，每張可加說明）
+      var legacyImage = item.get('image'); // 舊格式：單張圖片欄位（相容用）
 
       return h(
         'div',
@@ -76,9 +77,28 @@ var UpdatesExtraPreview = createClass({
               descZh
             )
           : null,
-        image
+        images && images.size
+          ? h(
+              'div',
+              { style: { display: 'flex', flexWrap: 'wrap', gap: '12px' } },
+              images.toArray().map(function (img, idx) {
+                var src = img.get ? img.get('src') : '';
+                var caption = img.get ? img.get('caption') : '';
+                if (!src) return null;
+                return h(
+                  'div',
+                  { key: idx, style: { width: '160px' } },
+                  h('img', {
+                    src: src,
+                    style: { width: '100%', maxHeight: '160px', objectFit: 'contain', borderRadius: '8px', border: '1px solid #e7e2d8', background: '#f4f1ea', padding: '6px', boxSizing: 'border-box' },
+                  }),
+                  caption ? h('div', { style: { fontSize: '12px', color: '#7d7164', marginTop: '4px' } }, caption) : null
+                );
+              })
+            )
+          : legacyImage
           ? h('img', {
-              src: image,
+              src: legacyImage,
               style: { maxWidth: '100%', maxHeight: '220px', borderRadius: '8px', border: '1px solid #e7e2d8' },
             })
           : null
@@ -150,7 +170,9 @@ var DirectorProjectsPreview = createClass({
 });
 
 CMS.registerPreviewTemplate('updates_extra', UpdatesExtraPreview);
-CMS.registerPreviewTemplate('director_projects', DirectorProjectsPreview);
+// 修正舊 bug：files 型 collection 的預覽要註冊「檔案的 name」（director_projects_extra），
+// 不是外層 collection 的 name（director_projects），否則預覽會退回純文字、樣式不生效。
+CMS.registerPreviewTemplate('director_projects_extra', DirectorProjectsPreview);
 
 /* ── 分享教案：預覽卡片，模擬 lessons.html 的教案卡片樣式 ── */
 var LessonsExtraPreview = createClass({
@@ -166,7 +188,9 @@ var LessonsExtraPreview = createClass({
       var summaryZh = item.get('summary_zh') || '';
       var grade = item.get('grade') || '';
       var duration = item.get('duration') || '';
-      var image = item.get('image') || '';
+      var images = item.get('images'); // 圖片清單（新格式），第一張當作縮圖
+      var legacyImage = item.get('image'); // 舊格式：單張圖片欄位（相容用）
+      var coverImage = (images && images.size && images.get(0).get('src')) || legacyImage || '';
       var materials = item.get('materials');
       var steps = item.get('steps');
 
@@ -184,9 +208,9 @@ var LessonsExtraPreview = createClass({
             textAlign: 'center',
           },
         },
-        image
+        coverImage
           ? h('img', {
-              src: image,
+              src: coverImage,
               style: { width: '80px', height: '80px', objectFit: 'cover', borderRadius: '9999px', margin: '0 auto 12px auto', display: 'block' },
             })
           : null,
@@ -213,6 +237,23 @@ var LessonsExtraPreview = createClass({
         ),
         summaryZh ? h('p', { style: { fontSize: '14px', color: '#5c5449', lineHeight: 1.6, margin: '0 0 10px 0' } }, summaryZh) : null,
         h('p', { style: { fontSize: '13px', color: '#8c8072' } }, [grade, duration].filter(Boolean).join('　·　')),
+        images && images.size > 1
+          ? h(
+              'div',
+              { style: { display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center', marginTop: '10px' } },
+              images.toArray().slice(1).map(function (img, idx) {
+                var src = img.get ? img.get('src') : '';
+                var caption = img.get ? img.get('caption') : '';
+                if (!src) return null;
+                return h(
+                  'div',
+                  { key: idx, style: { width: '70px' } },
+                  h('img', { src: src, style: { width: '100%', height: '70px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e7e2d8' } }),
+                  caption ? h('div', { style: { fontSize: '11px', color: '#8c8072', marginTop: '2px' } }, caption) : null
+                );
+              })
+            )
+          : null,
         materials && materials.size
           ? h(
               'div',
