@@ -178,7 +178,7 @@ collections:
                       - { label: "國科會研究計畫", value: "nstc" }
                       - { label: "產學合作計畫", value: "industry" }
                   - { label: "民國年（例如 115 或 113-115）", name: "year_roc", widget: "string", required: false }
-                  - { label: "學門（中文，必填）", name: "field_zh", widget: "string" }
+                  - { label: "學門（中文，可留白）", name: "field_zh", widget: "string", required: false }
                   - { label: "學門（英文，可留白）", name: "field_en", widget: "string", required: false }
                   - { label: "學門（日文，可留白）", name: "field_ja", widget: "string", required: false }
                   - { label: "學門（德文，可留白）", name: "field_de", widget: "string", required: false }
@@ -186,7 +186,7 @@ collections:
                   - { label: "計畫名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
                   - { label: "計畫名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
                   - { label: "計畫名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
-                  - { label: "起迄／狀態（中文，必填，例如：已結案／1年型／民112-113）", name: "duration_zh", widget: "string" }
+                  - { label: "起迄／狀態（中文，可留白，例如：已結案／1年型／民112-113）", name: "duration_zh", widget: "string", required: false }
                   - { label: "起迄／狀態（英文，可留白）", name: "duration_en", widget: "string", required: false }
                   - { label: "起迄／狀態（日文，可留白）", name: "duration_ja", widget: "string", required: false }
                   - { label: "起迄／狀態（德文，可留白）", name: "duration_de", widget: "string", required: false }

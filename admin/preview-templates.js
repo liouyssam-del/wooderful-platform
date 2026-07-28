@@ -254,18 +254,24 @@ var DirectorProfilePreview = createClass({
     var teaching = data && data.get('teaching');
     var publications = data && data.get('publications');
     var thesis = data && data.get('thesis');
-    var personalResume = data && data.get('personal_resume');
 
     var cellStyle = { padding: '10px 14px', fontSize: '14px', color: '#3d2b20', textAlign: 'left' };
 
-    /* ① 頁首職稱 */
+    /* ① 頁首職稱／現職／個人資歷（現職欄位可分行填寫，每行預覽成獨立的條列項目，與前台顯示一致） */
     var affiliation = (header && header.get('affiliation_zh')) || '（尚未填寫單位）';
-    var position = (header && header.get('position_zh')) || '（尚未填寫現職）';
+    var positionRaw = (header && header.get('position_zh')) || '';
+    var positionLines = positionRaw
+      ? positionRaw.split(/\r?\n/).map(function (s) { return s.trim(); }).filter(Boolean)
+      : [];
     var headerBlock = [
-      sectionHeading('① 頁首職稱'),
+      sectionHeading('① 頁首職稱／現職／個人資歷'),
       h('div', { style: { background: '#eef4ea', borderRadius: '12px', padding: '20px 24px' } },
-        h('p', { style: { fontSize: '15px', color: '#3d2b20', margin: '0 0 8px 0' } }, affiliation),
-        h('p', { style: { fontSize: '15px', color: '#3d2b20', margin: 0 } }, position)
+        h('p', { style: { fontSize: '15px', color: '#3d2b20', margin: '0 0 10px 0' } }, affiliation),
+        positionLines.length
+          ? h('ul', { style: { margin: 0, paddingLeft: '20px' } }, positionLines.map(function (line, i) {
+              return h('li', { key: i, style: { fontSize: '15px', color: '#3d2b20', marginBottom: '4px', lineHeight: 1.7 } }, line);
+            }))
+          : h('p', { style: { fontSize: '15px', color: '#999', margin: 0 } }, '（尚未填寫現職／個人資歷）')
       ),
     ];
 
@@ -401,22 +407,11 @@ var DirectorProfilePreview = createClass({
         : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目'),
     ];
 
-    /* ⑧ 個人資歷 */
-    var resumeItems = personalResume && personalResume.get('items');
-    var resumeBlock = [
-      sectionHeading('⑨ 個人資歷'),
-      resumeItems && resumeItems.size
-        ? h('ul', { style: { margin: 0, paddingLeft: '20px' } }, resumeItems.toArray().map(function (item, i) {
-            return h('li', { key: i, style: { fontSize: '14px', color: '#3d2b20', marginBottom: '10px', lineHeight: 1.7 } }, item.get('text_zh') || '（尚未填寫）');
-          }))
-        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目（前台會顯示「內容準備中」）'),
-    ];
-
     return h(
       'div',
       { style: previewWrap },
       previewNote,
-      headerBlock, honorsBlock, educationBlock, exchangeBlock, researchProjectsBlock, teachingBlock, publicationsBlock, thesisBlock, resumeBlock
+      headerBlock, honorsBlock, educationBlock, exchangeBlock, researchProjectsBlock, teachingBlock, publicationsBlock, thesisBlock
     );
   },
 });

@@ -85,14 +85,15 @@
     <div class="lg:col-span-9 text-center lg:text-left">
       <h2 class="text-h1 font-serif font-black text-wood-800 tracking-wide mb-2" data-en="Wen-Te Chang" data-ja="張文德" data-de="Chang Wen-Te">張文德</h2>
       <p id="director-affiliation" class="text-sub text-forest-600 font-bold mb-3" data-en="National Taipei University of Education | Department of Arts and Design (Graduate Institute)" data-ja="国立台北教育大学｜芸術・造形デザイン学系（大学院）" data-de="National Taipei University of Education | Institut für Kunst und Design (Graduiertenschule)">國立臺北教育大學｜藝術與造形設計學系（所）</p>
-      <p id="director-position" class="text-body text-stone-600 font-semibold" data-en="Current Position: Professor, Department of Arts and Design, National Taipei University of Education / Director, Center for Teaching and Learning Development" data-ja="現職：国立台北教育大学 芸術・造形デザイン学系 教授／教学発展センター長" data-de="Aktuelle Position: Professor, Institut für Kunst und Design, National Taipei University of Education / Leiter, Zentrum für Lehr- und Lernentwicklung">現職：國立臺北教育大學藝術與造形設計學系 專任教授／教學發展中心 主任</p>
+      <ul id="director-position" class="text-body text-stone-600 font-semibold mt-1 space-y-1.5 list-disc pl-5 text-left inline-block">
+        <li data-en="Current Position: Professor, Department of Arts and Design, National Taipei University of Education / Director, Center for Teaching and Learning Development" data-ja="現職：国立台北教育大学 芸術・造形デザイン学系 教授／教学発展センター長" data-de="Aktuelle Position: Professor, Institut für Kunst und Design, National Taipei University of Education / Leiter, Zentrum für Lehr- und Lernentwicklung">現職：國立臺北教育大學藝術與造形設計學系 專任教授／教學發展中心 主任</li>
+      </ul>
     </div>
   </div>
 
   <!-- 上方分頁選單（取代原本左側選單） -->
   <nav class="sticky top-[90px] z-40 bg-[#fcfbf7]/95 backdrop-blur-sm border-y border-stone-200/60 -mx-6 lg:-mx-10 px-6 lg:px-10 mb-16">
     <div class="flex items-center justify-center gap-1 sm:gap-2 lg:justify-evenly overflow-x-auto py-3 no-scrollbar">
-      <a href="#resume" class="flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-full text-body font-semibold text-wood-700 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-id-card"></i> <span data-en="Personal Resume" data-ja="個人略歴" data-de="Persönlicher Lebenslauf">個人資歷</span></a>
       <a href="#honors" class="flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-full text-body font-semibold text-wood-700 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-award"></i> <span data-en="Honors" data-ja="栄誉" data-de="Auszeichnungen">榮譽</span></a>
       <a href="#edu" class="flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-full text-body font-semibold text-wood-700 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-graduation-cap"></i> <span data-en="Education" data-ja="学歴" data-de="Ausbildung">主要學歷</span></a>
       <a href="#exchange" class="flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-full text-body font-semibold text-wood-700 hover:bg-forest-100 hover:text-forest-700 transition-colors"><i class="fa-solid fa-earth-asia"></i> <span data-en="International Exchange" data-ja="国際交流" data-de="Internationaler Austausch">國際交流</span></a>
@@ -105,17 +106,6 @@
 
   <!-- 主要內容 -->
   <div class="space-y-20">
-
-      <!-- 個人資歷（排在第一項；教授文字尚未提供，先建立架構，內容留白／預留文字） -->
-      <section id="resume" class="scroll-mt-40 reveal fade-up">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="w-12 h-12 rounded-full bg-[#f4f1ea] border border-stone-200 flex items-center justify-center text-forest-600 shrink-0"><i class="fa-solid fa-id-card text-h3"></i></div>
-          <h3 class="text-h2 font-serif font-bold text-wood-800" data-en="Personal Resume" data-ja="個人略歴" data-de="Persönlicher Lebenslauf">個人資歷</h3>
-        </div>
-        <div id="resume-content">
-          <p class="text-body text-stone-400" data-en="Content in preparation — please check back soon." data-ja="内容準備中です。しばらくお待ちください。" data-de="Inhalt in Vorbereitung – bitte schauen Sie bald wieder vorbei.">內容準備中</p>
-        </div>
-      </section>
 
       <!-- 榮譽 -->
       <section id="honors" class="scroll-mt-32 reveal fade-up">
@@ -419,7 +409,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const teaching = profile.teaching;
     const publications = profile.publications;
     const thesis = profile.thesis;
-    const resume = profile.personal_resume;
 
     // 研究計畫：插入對應表格（國科會研究計畫 / 產學合作計畫）的最上方
     if (researchProjects && Array.isArray(researchProjects.items) && researchProjects.items.length > 0) {
@@ -450,20 +439,19 @@ document.addEventListener('DOMContentLoaded', () => {
         aff.dataset.de = header.affiliation_de || header.affiliation_zh;
       }
       if (pos && header.position_zh) {
-        pos.textContent = header.position_zh;
-        pos.dataset.en = header.position_en || header.position_zh;
-        pos.dataset.ja = header.position_ja || header.position_zh;
-        pos.dataset.de = header.position_de || header.position_zh;
-      }
-    }
-
-    // 個人資歷（教授文字尚未提供前，維持頁面上「內容準備中」的預設文字）
-    if (resume && Array.isArray(resume.items) && resume.items.length > 0) {
-      const wrap = document.getElementById('resume-content');
-      if (wrap) {
-        wrap.innerHTML = '<ul class="space-y-4 text-body text-stone-600 leading-relaxed list-disc pl-5">' +
-          resume.items.map((it) => `<li data-en="${esc(it.text_en || it.text_zh)}" data-ja="${esc(it.text_ja || it.text_zh)}" data-de="${esc(it.text_de || it.text_zh)}">${esc(it.text_zh)}</li>`).join('') +
-          '</ul>';
+        // 現職／個人資歷：依換行符號（\n）切成一行一行，各自渲染成獨立的條列項目（<li>），
+        // 不是把整段文字塞進同一個節點讓換行被吃掉——教授要的是看得出行距的條列效果。
+        const splitLines = (text) => String(text || '').split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
+        const zhLines = splitLines(header.position_zh);
+        const enLines = splitLines(header.position_en);
+        const jaLines = splitLines(header.position_ja);
+        const deLines = splitLines(header.position_de);
+        pos.innerHTML = zhLines.map((zhLine, i) => {
+          const en = enLines[i] || zhLine;
+          const ja = jaLines[i] || zhLine;
+          const de = deLines[i] || zhLine;
+          return `<li data-en="${esc(en)}" data-ja="${esc(ja)}" data-de="${esc(de)}">${esc(zhLine)}</li>`;
+        }).join('');
       }
     }
 
