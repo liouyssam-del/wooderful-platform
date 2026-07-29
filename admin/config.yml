@@ -64,8 +64,8 @@ collections:
                   - { label: "木育玩具開發與推廣", value: "wood" }
                   - { label: "竹育樂（2026~）", value: "bamboo" }
                   - { label: "產學合作計畫成果", value: "industry" }
-              - { label: "日期（用於排序，選一天即可）", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
-              - { label: "日期顯示文字（例如 2026 / 08）", name: "date_label", widget: "string", required: false }
+              - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+              - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
               - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
@@ -74,7 +74,8 @@ collections:
               - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
               - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
               - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
-              - label: "照片（可新增多張，每張可加說明；可留白）"
+              - label: "照片"
+                hint: "可新增多張，每張可加說明；可留白。"
                 name: "images"
                 widget: "list"
                 required: false
@@ -92,14 +93,15 @@ collections:
         description: "「計畫主持人」頁面的所有分頁內容，整合在同一份表單裡編輯（往下捲動可以看到全部 9 個區塊：頁首職稱／榮譽／主要學歷／國際交流／研究計畫／教學暨設計實務經歷／研究發表／研究生論文指導／個人資歷）。存檔後重新整理「計畫主持人」頁面就會看到。"
         fields:
           - name: "header"
-            label: "① 頁首職稱（照片右側的「單位」與「現職」兩行文字）"
+            label: "① 頁首職稱"
+            hint: "照片右側的「單位」與「現職」兩行文字。"
             widget: "object"
             fields:
-              - { label: "單位（中文，必填，例如：國立臺北教育大學｜藝術與造形設計學系（所））", name: "affiliation_zh", widget: "string" }
+              - { label: "單位（中文，必填）", hint: "例如：國立臺北教育大學｜藝術與造形設計學系（所）", name: "affiliation_zh", widget: "string" }
               - { label: "單位（英文，可留白）", name: "affiliation_en", widget: "string", required: false }
               - { label: "單位（日文，可留白）", name: "affiliation_ja", widget: "string", required: false }
               - { label: "單位（德文，可留白）", name: "affiliation_de", widget: "string", required: false }
-              - { label: "現職（中文，必填，例如：現職：國立臺北教育大學藝術與造形設計學系 專任教授／教學發展中心 主任）", name: "position_zh", widget: "text" }
+              - { label: "現職（中文，必填）", hint: "例如：現職：國立臺北教育大學藝術與造形設計學系 專任教授／教學發展中心 主任", name: "position_zh", widget: "text" }
               - { label: "現職（英文，可留白）", name: "position_en", widget: "text", required: false }
               - { label: "現職（日文，可留白）", name: "position_ja", widget: "text", required: false }
               - { label: "現職（德文，可留白）", name: "position_de", widget: "text", required: false }
@@ -129,9 +131,10 @@ collections:
                 label_singular: "一筆學歷"
                 summary: "{{fields.period}}"
                 fields:
-                  - { label: "期間（例如：2002/9–2009/1）", name: "period", widget: "string", required: false }
+                  - { label: "期間", hint: "例如：2002/9–2009/1", name: "period", widget: "string", required: false }
                   - name: "lines"
-                    label: "內容（可分多行，例如學位一行、論文題目一行）"
+                    label: "內容"
+                    hint: "可分多行，例如學位一行、論文題目一行。"
                     widget: "list"
                     label_singular: "一行文字"
                     fields:
@@ -139,7 +142,7 @@ collections:
                       - { label: "內容（英文，可留白）", name: "en", widget: "text", required: false }
                       - { label: "內容（日文，可留白）", name: "ja", widget: "text", required: false }
                       - { label: "內容（德文，可留白）", name: "de", widget: "text", required: false }
-              - { label: "備註（中文，可留白，例如：近年主持專題研究計畫...）", name: "note_zh", widget: "text", required: false }
+              - { label: "備註（中文，可留白）", hint: "例如：近年主持專題研究計畫...", name: "note_zh", widget: "text", required: false }
               - { label: "備註（英文，可留白）", name: "note_en", widget: "text", required: false }
               - { label: "備註（日文，可留白）", name: "note_ja", widget: "text", required: false }
               - { label: "備註（德文，可留白）", name: "note_de", widget: "text", required: false }
@@ -154,14 +157,15 @@ collections:
                 label_singular: "一筆交流經歷"
                 summary: "{{fields.period}}"
                 fields:
-                  - { label: "期間（例如：2024/6–2024/9）", name: "period", widget: "string", required: false }
+                  - { label: "期間", hint: "例如：2024/6–2024/9", name: "period", widget: "string", required: false }
                   - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
                   - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
                   - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
                   - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
 
           - name: "research_projects"
-            label: "⑤ 研究計畫（國科會研究計畫 / 產學合作計畫）"
+            label: "⑤ 研究計畫"
+            hint: "國科會研究計畫 / 產學合作計畫"
             widget: "object"
             fields:
               - name: "items"
@@ -177,7 +181,7 @@ collections:
                     options:
                       - { label: "國科會研究計畫", value: "nstc" }
                       - { label: "產學合作計畫", value: "industry" }
-                  - { label: "民國年（例如 115 或 113-115）", name: "year_roc", widget: "string", required: false }
+                  - { label: "民國年", hint: "例如 115 或 113-115", name: "year_roc", widget: "string", required: false }
                   - { label: "學門（中文，必填）", name: "field_zh", widget: "string" }
                   - { label: "學門（英文，可留白）", name: "field_en", widget: "string", required: false }
                   - { label: "學門（日文，可留白）", name: "field_ja", widget: "string", required: false }
@@ -186,7 +190,7 @@ collections:
                   - { label: "計畫名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
                   - { label: "計畫名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
                   - { label: "計畫名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
-                  - { label: "起迄／狀態（中文，必填，例如：已結案／1年型／民112-113）", name: "duration_zh", widget: "string" }
+                  - { label: "起迄／狀態（中文，必填）", hint: "例如：已結案／1年型／民112-113", name: "duration_zh", widget: "string" }
                   - { label: "起迄／狀態（英文，可留白）", name: "duration_en", widget: "string", required: false }
                   - { label: "起迄／狀態（日文，可留白）", name: "duration_ja", widget: "string", required: false }
                   - { label: "起迄／狀態（德文，可留白）", name: "duration_de", widget: "string", required: false }
@@ -201,7 +205,7 @@ collections:
                 label_singular: "一筆教學經歷"
                 summary: "{{fields.period}}"
                 fields:
-                  - { label: "期間（例如：2021/8–迄今）", name: "period", widget: "string", required: false }
+                  - { label: "期間", hint: "例如：2021/8–迄今", name: "period", widget: "string", required: false }
                   - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
                   - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
                   - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
@@ -212,7 +216,7 @@ collections:
                 label_singular: "一筆設計實務經歷"
                 summary: "{{fields.period}}"
                 fields:
-                  - { label: "期間（例如：1994/8–1997/8）", name: "period", widget: "string", required: false }
+                  - { label: "期間", hint: "例如：1994/8–1997/8", name: "period", widget: "string", required: false }
                   - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
                   - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
                   - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
@@ -223,23 +227,25 @@ collections:
             widget: "object"
             fields:
               - name: "categories"
-                label: "類別列表（學術期刊論文／相關學報出版論文／國際學術研討會／發明專利／新型專利）"
+                label: "類別列表"
+                hint: "學術期刊論文／相關學報出版論文／國際學術研討會／發明專利／新型專利"
                 widget: "list"
                 label_singular: "一個類別"
                 summary: "{{fields.title_zh}}"
                 fields:
-                  - { label: "類別標題（中文，必填，例如：學術期刊論文（＊通訊作者）2007–2022）", name: "title_zh", widget: "string" }
+                  - { label: "類別標題（中文，必填）", hint: "例如：學術期刊論文（＊通訊作者）2007–2022", name: "title_zh", widget: "string" }
                   - { label: "類別標題（英文，可留白）", name: "title_en", widget: "string", required: false }
                   - { label: "類別標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
                   - { label: "類別標題（德文，可留白）", name: "title_de", widget: "string", required: false }
-                  - label: "引用項目列表（每項一則，維持單一語言，這些引用文字不隨網站語言切換）"
+                  - label: "引用項目列表"
+                    hint: "每項一則，維持單一語言，這些引用文字不隨網站語言切換。"
                     name: "items"
                     widget: "list"
                     label_singular: "一則引用"
                     summary: "{{fields.text}}"
                     fields:
                       - { label: "引用內容", name: "text", widget: "text" }
-                      - { label: "原文連結（可留白，例如期刊 DOI 網址；填了的話前台會把這筆引用做成可點擊連結，開新分頁）", name: "url", widget: "string", required: false }
+                      - { label: "原文連結（可留白）", hint: "例如期刊 DOI 網址；填了的話前台會把這筆引用做成可點擊連結，開新分頁。", name: "url", widget: "string", required: false }
 
           - name: "thesis"
             label: "⑧ 研究生論文指導"
@@ -276,19 +282,21 @@ collections:
             label_singular: "一份教案"
             summary: "{{fields.title_zh}}"
             fields:
-              - label: "網址代稱（英文/數字/連字號，例如 sailboat-race，同一份教案存檔後請勿更改，否則會變成新的網址；必填）"
+              - label: "網址代稱（必填）"
+                hint: "英文/數字/連字號，例如 sailboat-race；同一份教案存檔後請勿更改，否則會變成新的網址。"
                 name: "slug"
                 widget: "string"
                 pattern: ['^[a-z0-9-]+$', "只能用小寫英文字母、數字、連字號（-），不能有空格或中文"]
               - label: "教案呈現方式"
+                hint: "完整教案頁＝逐欄填寫下面的簡介／課程目標／材料／步驟等欄位；PNG 圖片頁＝直接上傳教案截圖，改用最下面的「教案頁面圖片」欄位。"
                 name: "type"
                 widget: "select"
                 default: "html"
                 required: false
                 options:
-                  - { label: "完整教案頁（逐欄填寫下面的簡介／課程目標／材料／步驟等欄位）", value: "html" }
-                  - { label: "PNG 圖片頁（直接上傳教案截圖，不用逐欄填寫，最下面的「教案頁面圖片」欄位）", value: "images" }
-              - { label: "日期（用於排序，選一天即可）", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+                  - { label: "完整教案頁", value: "html" }
+                  - { label: "PNG 圖片頁", value: "images" }
+              - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
               - { label: "教案名稱（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "教案名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
               - { label: "教案名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
@@ -305,7 +313,8 @@ collections:
               - { label: "課程目標（英文，可留白）", name: "objectives_en", widget: "text", required: false }
               - { label: "課程目標（日文，可留白）", name: "objectives_ja", widget: "text", required: false }
               - { label: "課程目標（德文，可留白）", name: "objectives_de", widget: "text", required: false }
-              - label: "照片（可新增多張，每張可加說明；可留白，第一張會當作列表縮圖。這是活動花絮照片，不是教案內容本身——PNG 圖片頁教案請改用下面的「教案頁面圖片」欄位）"
+              - label: "照片"
+                hint: "可新增多張，每張可加說明；可留白，第一張會當作列表縮圖。這是活動花絮照片，不是教案內容本身——PNG 圖片頁教案請改用下面的「教案頁面圖片」欄位。"
                 name: "images"
                 widget: "list"
                 required: false
@@ -313,44 +322,50 @@ collections:
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
-              - label: "教案頁面圖片（中文／預設版本，必填：依序上傳教案截圖，通常 1 張就夠，教案有好幾頁的話可以多傳幾張；第一張會自動當作列表縮圖／封面，上傳後這份教案在網站上就會用「教案呈現方式＝PNG 圖片頁」的瀏覽頁顯示。切換到英／日／德文時，如果下面對應語言的圖片沒有上傳，會自動顯示這裡的中文版圖片）"
+              - label: "教案頁面圖片（中文／預設版本）"
+                hint: "依序上傳教案截圖，通常 1 張就夠，好幾頁可以多傳幾張；第一張自動當作列表縮圖／封面。切換到英／日／德文時，若對應語言沒上傳圖片，會自動顯示這裡的中文版。"
                 name: "page_images"
                 widget: "list"
                 required: false
                 default: []
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
-                  - { label: "圖片說明（可不填，僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上；可以用這欄自己標註「第幾頁」方便之後編輯辨識，例如「p1」）", name: "caption", widget: "string", required: false }
-              - label: "教案頁面圖片（英文版，可留白；留白時網站切到英文會自動改顯示上面的中文版圖片）"
+                  - { label: "圖片說明（可不填）", hint: "僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上；可標註「第幾頁」方便之後編輯辨識，例如「p1」。", name: "caption", widget: "string", required: false }
+              - label: "教案頁面圖片（英文版）"
+                hint: "可留白；留白時網站切到英文會自動改顯示中文版圖片。"
                 name: "page_images_en"
                 widget: "list"
                 required: false
                 default: []
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
-                  - { label: "圖片說明（可不填，僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上；可以用這欄自己標註「英文／第幾頁」方便之後編輯辨識，例如「en-p1」）", name: "caption", widget: "string", required: false }
-              - label: "教案頁面圖片（日文版，可留白；留白時網站切到日文會依序改顯示英文版、找不到再顯示中文版圖片）"
+                  - { label: "圖片說明（可不填）", hint: "可標註「英文／第幾頁」方便之後編輯辨識，例如「en-p1」。", name: "caption", widget: "string", required: false }
+              - label: "教案頁面圖片（日文版）"
+                hint: "可留白；留白時網站切到日文會依序改顯示英文版、找不到再顯示中文版圖片。"
                 name: "page_images_ja"
                 widget: "list"
                 required: false
                 default: []
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
-                  - { label: "圖片說明（可不填，僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上；可以用這欄自己標註「日文／第幾頁」方便之後編輯辨識，例如「ja-p1」）", name: "caption", widget: "string", required: false }
-              - label: "教案頁面圖片（德文版，可留白；留白時網站切到德文會依序改顯示英文版、找不到再顯示中文版圖片）"
+                  - { label: "圖片說明（可不填）", hint: "可標註「日文／第幾頁」方便之後編輯辨識，例如「ja-p1」。", name: "caption", widget: "string", required: false }
+              - label: "教案頁面圖片（德文版）"
+                hint: "可留白；留白時網站切到德文會依序改顯示英文版、找不到再顯示中文版圖片。"
                 name: "page_images_de"
                 widget: "list"
                 required: false
                 default: []
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
-                  - { label: "圖片說明（可不填，僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上；可以用這欄自己標註「德文／第幾頁」方便之後編輯辨識，例如「de-p1」）", name: "caption", widget: "string", required: false }
-              - label: "材料清單（每行一項，例如「木頭方塊 ×2」）"
+                  - { label: "圖片說明（可不填）", hint: "可標註「德文／第幾頁」方便之後編輯辨識，例如「de-p1」。", name: "caption", widget: "string", required: false }
+              - label: "材料清單"
+                hint: "每行一項，例如「木頭方塊 ×2」。"
                 name: "materials"
                 widget: "list"
                 required: false
                 default: []
-              - label: "製作步驟（每行一個步驟）"
+              - label: "製作步驟"
+                hint: "每行一個步驟。"
                 name: "steps"
                 widget: "list"
                 required: false
