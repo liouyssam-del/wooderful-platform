@@ -236,7 +236,10 @@ collections:
                     name: "items"
                     widget: "list"
                     label_singular: "一則引用"
-                    field: { label: "引用內容", name: "text", widget: "text" }
+                    summary: "{{fields.text}}"
+                    fields:
+                      - { label: "引用內容", name: "text", widget: "text" }
+                      - { label: "原文連結（可留白，例如期刊 DOI 網址；填了的話前台會把這筆引用做成可點擊連結，開新分頁）", name: "url", widget: "string", required: false }
 
           - name: "thesis"
             label: "⑧ 研究生論文指導"
@@ -257,21 +260,6 @@ collections:
                   - { label: "研究生（日文，可留白）", name: "student_ja", widget: "string", required: false }
                   - { label: "研究生（德文，可留白）", name: "student_de", widget: "string", required: false }
                   - { label: "畢業年", name: "year", widget: "string", required: false }
-
-          - name: "personal_resume"
-            label: "⑨ 個人資歷"
-            widget: "object"
-            fields:
-              - name: "items"
-                label: "資歷項目列表（教授文字尚未提供前可留空，頁面會顯示「內容準備中」）"
-                widget: "list"
-                label_singular: "一項資歷"
-                summary: "{{fields.text_zh}}"
-                fields:
-                  - { label: "內容（中文，必填）", name: "text_zh", widget: "text" }
-                  - { label: "內容（英文，可留白）", name: "text_en", widget: "text", required: false }
-                  - { label: "內容（日文，可留白）", name: "text_ja", widget: "text", required: false }
-                  - { label: "內容（德文，可留白）", name: "text_de", widget: "text", required: false }
 
   - name: "lessons_extra"
     label: "分享教案（新增項目）"

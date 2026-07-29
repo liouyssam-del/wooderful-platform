@@ -24,7 +24,7 @@ const navbarHTML = `
             <li><a href="partners.html" class="nav-link text-body" data-en="Partners" data-ja="パートナー" data-de="Partner">合作夥伴</a></li>
             <li class="relative group py-2">
               <a href="lessons.html" class="nav-link flex items-center gap-1 text-body">
-                <span data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</span> <i class="fa-solid fa-chevron-down text-caption transition-transform group-hover:rotate-180"></i>
+                <span data-en="Lesson Plans" data-ja="学習指導案（例）" data-de="Muster-Unterrichtsentwurf">分享教案</span> <i class="fa-solid fa-chevron-down text-caption transition-transform group-hover:rotate-180"></i>
               </a>
               <div class="dropdown-wrap">
                 <ul class="dropdown-menu">
@@ -66,7 +66,7 @@ const navbarHTML = `
         <li class="border-b border-stone-200/60"><a href="partners.html" class="block py-4" data-en="Partners" data-ja="パートナー" data-de="Partner">合作夥伴</a></li>
         <li class="border-b border-stone-200/60">
           <button id="mobileLessonsToggle" class="w-full flex items-center justify-between py-4">
-            <span data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</span> <i class="fa-solid fa-chevron-down text-caption transition-transform"></i>
+            <span data-en="Lesson Plans" data-ja="学習指導案（例）" data-de="Muster-Unterrichtsentwurf">分享教案</span> <i class="fa-solid fa-chevron-down text-caption transition-transform"></i>
           </button>
           <ul id="mobileLessonsSub" class="mobile-sub pl-4 pb-3 space-y-3 text-stone-500">
             <li><a href="lesson-gyro.html" class="block py-1" data-en="Wooden Gyro" data-ja="木製ごま" data-de="Hölzerner Kreisel">木陀螺教案</a></li>
@@ -121,7 +121,7 @@ const footerHTML = `
             <a href="director.html" class="text-white/80 hover:text-white transition-colors" data-en="Director" data-ja="研究代表者" data-de="Projektleiter">計畫主持人</a>
             <a href="bamboo-play.html" class="text-white/80 hover:text-white transition-colors" data-en="Bamboo Learning &amp; Joy" data-ja="竹育楽" data-de="Bamboo Learning &amp; Joy">竹育樂</a>
             <a href="partners.html" class="text-white/80 hover:text-white transition-colors" data-en="Partners" data-ja="パートナー" data-de="Partner">合作夥伴</a>
-            <a href="lessons.html" class="text-white/80 hover:text-white transition-colors" data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</a>
+            <a href="lessons.html" class="text-white/80 hover:text-white transition-colors" data-en="Lesson Plans" data-ja="学習指導案（例）" data-de="Muster-Unterrichtsentwurf">分享教案</a>
             <a href="updates.html" class="text-white/80 hover:text-white transition-colors" data-en="Latest Updates" data-ja="最新情報" data-de="Neuigkeiten">最新動態</a>
             <a href="contact.html" class="text-white/80 hover:text-white transition-colors" data-en="Contact Us" data-ja="お問い合わせ" data-de="Kontakt">聯繫我們</a>
           </div>

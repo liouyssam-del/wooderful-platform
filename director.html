@@ -27,6 +27,11 @@
     #thesis .director-table td:nth-child(2), #thesis .director-table th:nth-child(2) { width: 30%; }
     #thesis .director-table td:nth-child(3), #thesis .director-table th:nth-child(3) { width: 15%; white-space: nowrap; }
     .pub-list { font-size: 0.88rem; line-height: 2; color: #57534e; }
+    .pub-list .pub-item { display: block; text-indent: -2em; padding-left: 2em; margin-bottom: 0.85em; }
+    .pub-list .pub-item:last-child { margin-bottom: 0; }
+    .pub-list a.pub-link { color: #446b2a; text-decoration: underline; text-decoration-color: rgba(68,107,42,0.35); text-underline-offset: 2px; transition: color 0.15s ease; }
+    .pub-list a.pub-link:hover { color: #2d4920; text-decoration-color: currentColor; }
+    .pub-list a.pub-link .pub-link-icon { font-size: 0.78em; margin-left: 0.3em; }
     details.acc > summary { list-style: none; cursor: pointer; }
     details.acc > summary::-webkit-details-marker { display: none; }
     details.acc[open] > summary .acc-chevron { transform: rotate(180deg); }
@@ -40,7 +45,7 @@
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; pointer-events: none; filter: brightness(1.1) saturate(1.2);
     }
     .yt-bg-wrapper iframe {
-      width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.77vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 100vw; height: 56.25vw; min-height: 100%; min-width: 115.56vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     }
     .hero-shell {
       position: relative; z-index: 2; width: min(88vw, 760px); padding: clamp(2rem, 4vw, 3.5rem);
@@ -240,18 +245,18 @@
               <i class="fa-solid fa-chevron-down text-stone-400 acc-chevron transition-transform"></i>
             </summary>
             <div class="pub-list px-6 pb-6 border-t border-stone-100 pt-4">
-              Chang, W.-T. (2022). On The 3D VR Simulated Rubik's Cube Game for Smart Pads, Symmetry, 14(6/1194), 11p, (SCI: IF 2.713, 2020/ JCR rank: 29/71 (Q2) in 'Multidisciplinary Sciences) (MOST 110-2410-H-152-012-MY2).<br>
-              Chang, W.-T. (2020). The effects of age, gender, and control device in a virtual-reality driving simulation, Symmetry, 12(6/995), 9p, (SCI: IF 2.713, 2020/ JCR rank: 29/71 (Q2) in 'Multidisciplinary Sciences) (NSC 101-2628-H-130-002-MY2).<br>
-              柯志祥、張文德＊（2019），「擴增實境使用者操作介面研究—以銀髮族3D試戴系統為例」，資訊社會研究，36，151-188（MOST 106-2410-H-152-017-MY2）.<br>
-              Chang, W.-T. (2018). Effects of Gender, Topology, and Task Complexity on the Usability of Dictionary Apps for an Elderly Cohort, Journal of the Science of Design (JSSD), 2(1), 7-14. (MOST 103–2410–H–130–052-)<br>
-              Chang, W.-T. (2017). On The Effects of Topology, Gender, and Task Type on Web Browsing Performance in Senior Citizens, Journal of Ergonomic Study, 19(1), 1-11.<br>
-              Chang, W.-T.＊ &amp; Chien, Y.-H. (2015). The Effects of Sex, Topological Structure, and Task Type on Hypertext Navigational Performance, Perceptual &amp; Motor Skills: Learning &amp; Memory, 120(3), 776-86. (SSCI: IF 0.546, 2014/15) (MOST 103–2410–H–130–052-)<br>
-              Chien, Y.-H. &amp; Chang, W.-T. (2015). Effect of Message Framing and Exemplars on Promotion Organ Donation, Psychological Reports: Employment Psychology &amp; Marketing, 117(3), 692-702. (SSCI: IF 0.53, 2014/15)<br>
-              Chang, W.-T.＊, &amp; Chen, C.-H., (2011). The effects of topology and task complexity on digital-speech-desktop interface design and evaluation, Journal of the Society for Information Display, 19(10), 700-705. (SCI: Optics 43/78 (Q2), IF 0.867, 2010) (NSC 99-2410-H-130-042-)<br>
-              Chang, W.-T., Shih, L.-H. S., &amp; Huang, K.-C. (2012). Color of light-source and background luminance on perceived convexity and concavity of a blurred 3D hemisphere, Perceptual &amp; Motor Skills: Perception, 115(1), 91-104. (SSCI: Psychology 84/80, IF 0.487, 2011)<br>
-              Huang, K.-C., Chang, W.-T., &amp; Wei, W.-L. (2010). Effects of visual field, exposure time, and set size on icon search with varied delays using an LCD monitor, Journal of the Society for Information Display, 18(6), 427-433. (SCI: Optics 33/71 (Q2), IF 1.033, 2009)<br>
-              Chen, C.-H., Chang, W.-C., &amp; Chang, W.-T.＊ (2009). Gender differences with regard to wayfinding strategies, navigational support design, and task difficulties for user wayfinding. Journal of Environmental Psychology, 29(2), 220-226. (SSCI: Psychology, Multidisciplinary 29/102, IF 1.17)<br>
-              陳建雄、張文智、張文德＊（2007, 12），「尋路績效自我評鑑量表」之發展，測驗學刊，54(2)，355-376，（TSSCI）（NSC 94-2213-E-011-030）.
+              <div class="pub-item">Chang, W.-T. (2022). On The 3D VR Simulated Rubik's Cube Game for Smart Pads, Symmetry, 14(6/1194), 11p, (SCI: IF 2.713, 2020/ JCR rank: 29/71 (Q2) in 'Multidisciplinary Sciences) (MOST 110-2410-H-152-012-MY2).</div>
+              <div class="pub-item">Chang, W.-T. (2020). The effects of age, gender, and control device in a virtual-reality driving simulation, Symmetry, 12(6/995), 9p, (SCI: IF 2.713, 2020/ JCR rank: 29/71 (Q2) in 'Multidisciplinary Sciences) (NSC 101-2628-H-130-002-MY2).</div>
+              <div class="pub-item">柯志祥、張文德＊（2019），「擴增實境使用者操作介面研究—以銀髮族3D試戴系統為例」，資訊社會研究，36，151-188（MOST 106-2410-H-152-017-MY2）.</div>
+              <div class="pub-item">Chang, W.-T. (2018). Effects of Gender, Topology, and Task Complexity on the Usability of Dictionary Apps for an Elderly Cohort, Journal of the Science of Design (JSSD), 2(1), 7-14. (MOST 103–2410–H–130–052-)</div>
+              <div class="pub-item">Chang, W.-T. (2017). On The Effects of Topology, Gender, and Task Type on Web Browsing Performance in Senior Citizens, Journal of Ergonomic Study, 19(1), 1-11.</div>
+              <div class="pub-item">Chang, W.-T.＊ &amp; Chien, Y.-H. (2015). The Effects of Sex, Topological Structure, and Task Type on Hypertext Navigational Performance, Perceptual &amp; Motor Skills: Learning &amp; Memory, 120(3), 776-86. (SSCI: IF 0.546, 2014/15) (MOST 103–2410–H–130–052-)</div>
+              <div class="pub-item">Chien, Y.-H. &amp; Chang, W.-T. (2015). Effect of Message Framing and Exemplars on Promotion Organ Donation, Psychological Reports: Employment Psychology &amp; Marketing, 117(3), 692-702. (SSCI: IF 0.53, 2014/15)</div>
+              <div class="pub-item">Chang, W.-T.＊, &amp; Chen, C.-H., (2011). The effects of topology and task complexity on digital-speech-desktop interface design and evaluation, Journal of the Society for Information Display, 19(10), 700-705. (SCI: Optics 43/78 (Q2), IF 0.867, 2010) (NSC 99-2410-H-130-042-)</div>
+              <div class="pub-item">Chang, W.-T., Shih, L.-H. S., &amp; Huang, K.-C. (2012). Color of light-source and background luminance on perceived convexity and concavity of a blurred 3D hemisphere, Perceptual &amp; Motor Skills: Perception, 115(1), 91-104. (SSCI: Psychology 84/80, IF 0.487, 2011)</div>
+              <div class="pub-item">Huang, K.-C., Chang, W.-T., &amp; Wei, W.-L. (2010). Effects of visual field, exposure time, and set size on icon search with varied delays using an LCD monitor, Journal of the Society for Information Display, 18(6), 427-433. (SCI: Optics 33/71 (Q2), IF 1.033, 2009)</div>
+              <div class="pub-item">Chen, C.-H., Chang, W.-C., &amp; Chang, W.-T.＊ (2009). Gender differences with regard to wayfinding strategies, navigational support design, and task difficulties for user wayfinding. Journal of Environmental Psychology, 29(2), 220-226. (SSCI: Psychology, Multidisciplinary 29/102, IF 1.17)</div>
+              <div class="pub-item">陳建雄、張文智、張文德＊（2007, 12），「尋路績效自我評鑑量表」之發展，測驗學刊，54(2)，355-376，（TSSCI）（NSC 94-2213-E-011-030）.</div>
             </div>
           </details>
 
@@ -262,15 +267,15 @@
               <i class="fa-solid fa-chevron-down text-stone-400 acc-chevron transition-transform"></i>
             </summary>
             <div class="pub-list px-6 pb-6 border-t border-stone-100 pt-4">
-              江潤華、張文德＊（2025），玩具教案評量尺度開發研究，設計學年刊，13，65-86.（國科會計畫補助／計畫編號：MOST 110-2410-H-152-012-MY2）<br>
-              陳宏彰、張文德＊、吳中硯（2024），平面設計創作評量工具開發–以全國美術比賽小學組為例，基礎造形學報，20，01-37.<br>
-              張文德、陳翌雋、吳中硯（2021），水墨插畫創作研究–以少女與怪獸聯想為例，華梵藝術與設計學報，14，53-70.<br>
-              張文德（2019），OLED 玩具設計與開發—工研院學研計畫成果，基礎造形學報，7，47-70.（工研院產學合作案補助）<br>
-              高明山、張文德＊（2018），山林心象之琉璃創作研究，基礎造形學報，6，28-53.<br>
-              張文德（2017），365 構想發展—天馬行空集思廣益，國立台北教育大學編印：教學魔法師數位平台—教學創新與實踐，59-66.（教育部教學卓越計畫補助）<br>
-              張文德（2017），年齡、拓蹼與任務複雜度於介面之可用性評量—以智慧電視介面設計為例，設計學年刊，5，95-118.<br>
-              江潤華、林展立、莊慶昌、張文德＊（2014），介面、熟悉度、性別因素對魔術方塊遊戲績效之影響，設計學年刊，2，159-178.<br>
-              簡佑宏、閻建政、張文德＊（2013），器官捐贈海報之勸服力，設計學年刊，1，217-234.
+              <div class="pub-item">江潤華、張文德＊（2025），玩具教案評量尺度開發研究，設計學年刊，13，65-86.（國科會計畫補助／計畫編號：MOST 110-2410-H-152-012-MY2）</div>
+              <div class="pub-item">陳宏彰、張文德＊、吳中硯（2024），平面設計創作評量工具開發–以全國美術比賽小學組為例，基礎造形學報，20，01-37.</div>
+              <div class="pub-item">張文德、陳翌雋、吳中硯（2021），水墨插畫創作研究–以少女與怪獸聯想為例，華梵藝術與設計學報，14，53-70.</div>
+              <div class="pub-item">張文德（2019），OLED 玩具設計與開發—工研院學研計畫成果，基礎造形學報，7，47-70.（工研院產學合作案補助）</div>
+              <div class="pub-item">高明山、張文德＊（2018），山林心象之琉璃創作研究，基礎造形學報，6，28-53.</div>
+              <div class="pub-item">張文德（2017），365 構想發展—天馬行空集思廣益，國立台北教育大學編印：教學魔法師數位平台—教學創新與實踐，59-66.（教育部教學卓越計畫補助）</div>
+              <div class="pub-item">張文德（2017），年齡、拓蹼與任務複雜度於介面之可用性評量—以智慧電視介面設計為例，設計學年刊，5，95-118.</div>
+              <div class="pub-item">江潤華、林展立、莊慶昌、張文德＊（2014），介面、熟悉度、性別因素對魔術方塊遊戲績效之影響，設計學年刊，2，159-178.</div>
+              <div class="pub-item">簡佑宏、閻建政、張文德＊（2013），器官捐贈海報之勸服力，設計學年刊，1，217-234.</div>
             </div>
           </details>
 
@@ -281,38 +286,38 @@
               <i class="fa-solid fa-chevron-down text-stone-400 acc-chevron transition-transform"></i>
             </summary>
             <div class="pub-list px-6 pb-6 border-t border-stone-100 pt-4">
-              Zong-Yue Liou, Yu-Hsun Chang, Tsung-Chi Lin &amp; Wen-Te Chang＊ (2025/12/accepted). Resonant Bamboo–A Bionic Approach to Musical Furniture Design, IASDR 2025– About Design Next (in Digit file), Dec. 02-05, 2025, Taipei (Songshan Cultural and Creative Park), Taiwan, 8p.<br>
-              張瑜洵、張文德（2025/10）中華文化平安扣意象之 AI 圖像生成現代傢俱設計，「設計＋」2025 視覺藝術與設計學術研討會，國立臺南大學，12p.<br>
-              張瑜洵、吳悅翎、李鍇朮、王強強、張文德（2025/05）中華文化平安扣意象之 AI 圖像生成現代傢俱設計，「設計＋」2025 視覺藝術與設計學術研討會，國立臺南大學，12p.<br>
-              朱倩儀、張文德（2024, 5），人工智能之女性健康福祉可行性研究，2024 中華民國設計學會第 29 屆「人工智慧 X 永續設計」國際設計研討會，明志科技大學，臺北，民國113年5月25日，Poster.<br>
-              Chang, W.-T. (2023, 7). On the Influence Factors for 3D Digital Model Building, International Conference on Computational Intelligence and Communication Networks (ICCICN-23) (in Digit file), 7-8, July, Finland, 11p.<br>
-              張文德、李宜萱、顏韻臻（2023, 5），圖學與 3D 數位建模相關研究，2023 中華民國設計學會第28屆「設計虛實論」國際設計研討會，高雄義守大學，民國112年5月6日，Poster.<br>
-              李宜萱、張文德（2022, 10），仿生設計—「鯨詠」鯨魚揚聲器產品設計，2022「視覺設計。未來式」國際學術研討會暨設計工作營，國立臺灣藝術大學設計學院視覺傳達設計學系，臺北，民國111年10月21日，8p.<br>
-              張文德、吳中硯（2021, 11），視覺藝術創作評量向度初探，2021ICWVCD視覺傳達設計國際研討會暨基礎造形論壇，國立雲林科技大學視覺傳達設計系，雲林，民國110年11月12日，6p.<br>
-              張文德、陳翌雋、潘妍均、吳中硯（2020, 12），少女花獸聯想之插畫創作，2020中華色彩學會「色彩與設計」學術研討會(in Digit file)，華梵大學新北中心，台北，民國109年12月19日，5p.<br>
-              Chang, W.-T. (2019, 7). On the Primary Evaluation of AR Computer Interface Design for the Elders, IASTEM – 637th International Conference on Science Technology and Management (2019ICSTM) (in Digit file), 2-3, July, Singapore, 4p.<br>
-              張文德、白昀昕（2018, 11），情境故事法於玩具說明影片之應用實例，2018「文化創意學術研討會暨亞洲基礎造形論壇」，國立高雄科技大學文化創意產業系，高雄，民國108年11月30日，6p.<br>
-              張文德、簡佑宏（2018, 9），體感創作玩具之設計初探，International Conference on Creativity, STEAM and Maker Education (ICCSM2018) (in Digit file)，國立師範大學，臺北，民國107年9月29~30日，8p.<br>
-              Chang, W.-T.＊, &amp; Huang, K.-C. (2018, 7). On The Qualitative Evaluation of the AR 3D Portrait App for the Elders, The 8th International Conference on Engineering and Applied Science (2018ICEAS) (in Digit file), 17-19, July, Seoul, Korea, 10p.<br>
-              張文德＊、王琪嫈（2018, 5），銀髮族智慧平板3D頭像APP介面評估初探，2018中華民國設計學會第二十三屆學術研究成果研討會 (in Digit file)，東南科技大學，臺北，民國106年5月26日，10p.<br>
-              張文德＊、劉耕銘（2017, 12），LOGO與色彩計畫教學研究, 2017「創新、設計、經營」國際研討會暨亞洲基礎造形論壇(in Digit file)，國立台北商業大學，桃園，民國106年12月8日，6p.<br>
-              張文德＊、游章雄、張循鋰、劉耕銘（2017, 11），OLED幼兒玩具骰子設計, 2017台灣感性研討會&lt;感性與創意實踐&gt; (in Digit file)，佛光大學，宜蘭，民國106年11月24~25日，6p.<br>
-              Chang, W.-T.＊ &amp; Liu, K.-M. (2017, 10), On the Marketing Strategic Analysis of OLED Toy Designs, 6th 3E International Conference– "Enjoyment, Elderly, Edutainment"(in Digit file), October 21-23, 2017, National Taitung University, Taitung, Taiwan, 1p.<br>
-              張文德＊、游章雄、簡佑宏、劉耕銘（2017, 5），虛擬3D魔術方塊遊戲介面設計初探，CID 2017中華民國設計學會第二十二屆學術研究成果研討會 (in Digit file)，亞洲大學，臺中，民國106年5月27日，8p.<br>
-              張文德＊、簡佑宏、劉耕銘（2017, 3），銀髮族擴增實境3D試戴介面設計之個案研究，EST 2017第24屆中華民國人因工程學會年會暨學術研討會 (in Digit file)，國立金門大學，金門，民國106年3月12日，8p.<br>
-              Chien, Y.-H., Chang W.-T., Chuang, C.-C., &amp; Chen, S.-H. (2016, 7). A Taiwanese user experience questionnaire, 7th International Conference on Applied Human Factors and Ergonomics (AHFE 2016) (in Digit file), 27-31 July, Florida, USA, 9p.<br>
-              Huang, K.-C., &amp; Chang, W.-T. (2016, 7). Effects of drawing direction and angle on stability of point-to-point drawing task varying length of drawing for the elderly, NETs International Conference on internet studies 2016 (in Digit file), 22-24, July, Osaka, Japan, 16p.<br>
-              Chang, W.-T.＊, Huang, K.-C., &amp; Chuang, C.-C. (2015, 8). Usability Evaluation of The Smart TV, HCI International 2015 Conference (in Digit file), 2-7 Aug., Los Angeles, CA, USA, 5p.<br>
-              Chang, W.-T.＊, Lin, C.-L., Huang, K.-C., &amp; Chuang, C.-C. (2015, 7). On the Influencing Factors of Dictionary App Interface Design for the Elders, 6th International Conference on Applied Human Factors and Ergonomics (AHFE 2015) (in Digit file), 26-30 July, Las Vegas, USA, 6p.<br>
-              張文德＊、簡佑宏、李炫瑩（2015, 5），跨校系設計教學研究–以刀具開發為例, 2015第二十屆中華民國設計學會設計研究成果發表研討會暨2015國際設計研究論壇暨研討會 (in Digit file)，國立雲林科技大學，雲林，民國104年5月17日，6p.<br>
-              Wu, C.-Y., Wu, C.-F., &amp; Chang, W.-T.＊ (2015, 5). On the Factors of the Web Browsing Performance for the Elderly Citizens, 2015 International Congress on Engineering and Information (in Digit file), 07-09 May, Kyoto, Japan, 8p.<br>
-              Chang, W.-T.＊ &amp; Huang, K.-C. (2014, 5). A study on the Comparison of Real and VR 3D Simulated Rubik's Cube Game Performance, ACED 2014 – 1st Asian Conference on Ergonomics &amp; Design 2014 (in Digit file), 21-24 May, Jeju, South Korea, 5p.<br>
-              張文德、張瀞方、陳遠修（2014, 5），網頁結構操作績效測試—以銀髮族電動代步車網頁設計為例，2014中華民國設計學會設計學術研究成果研討會-設計系譜再進化 (in Digit file)，大同大學，臺北，民國103年5月17日，6p.<br>
-              張文德（2013, 8）. 單元反覆–單元圖像之2D、色彩、半立體與全立體造形設計, 2013 Conference on Asia Society of Basic Design and Art in Tianjin (ASBDA)，August 18-22，天津美院，6p.<br>
-              張文德、施宗豪、黃達鈞（2013），銀髮族視力輔助介面設計評估研究，2013設計與創意加值學術研討會，玄奘大學，新竹，民國102年11月15日，10p.<br>
-              黃達鈞＊、張文德（2013），高齡者電子字典介面設計初探，2013中華民國設計學會設計學術研究成果研討會 (in Digit file)，義守大學，高雄，民國102年5月25日，8p.<br>
-              Chang, W.-T.＊, Shih, L.-H., Chiang, Z.-H., &amp; Huang, K.-Ch. (2013). On the reading performance of text layout, switch position, topic of text, and luminance contrast for Chinese E-books interface design, 15th International Conference on Human-Computer Interaction (in Digit file), 20-25 July, Organized by HCI INTERNATIONAL 2013, Las Vegas, 9p.<br>
-              Chang, W.-T.＊, Wu, C.-H., &amp; Lin, C.-L. (2013). World vision—an image analysis and regeneration through point, line and plane, 2013 KSBDA International Spring Conference &amp; Exhibition-Article (in Digit file), May 29-June 1, Organized by Korea Society of Basic Design &amp; Art, 2p.
+              <div class="pub-item">Zong-Yue Liou, Yu-Hsun Chang, Tsung-Chi Lin &amp; Wen-Te Chang＊ (2025/12/accepted). Resonant Bamboo–A Bionic Approach to Musical Furniture Design, IASDR 2025– About Design Next (in Digit file), Dec. 02-05, 2025, Taipei (Songshan Cultural and Creative Park), Taiwan, 8p.</div>
+              <div class="pub-item">張瑜洵、張文德（2025/10）中華文化平安扣意象之 AI 圖像生成現代傢俱設計，「設計＋」2025 視覺藝術與設計學術研討會，國立臺南大學，12p.</div>
+              <div class="pub-item">張瑜洵、吳悅翎、李鍇朮、王強強、張文德（2025/05）中華文化平安扣意象之 AI 圖像生成現代傢俱設計，「設計＋」2025 視覺藝術與設計學術研討會，國立臺南大學，12p.</div>
+              <div class="pub-item">朱倩儀、張文德（2024, 5），人工智能之女性健康福祉可行性研究，2024 中華民國設計學會第 29 屆「人工智慧 X 永續設計」國際設計研討會，明志科技大學，臺北，民國113年5月25日，Poster.</div>
+              <div class="pub-item">Chang, W.-T. (2023, 7). On the Influence Factors for 3D Digital Model Building, International Conference on Computational Intelligence and Communication Networks (ICCICN-23) (in Digit file), 7-8, July, Finland, 11p.</div>
+              <div class="pub-item">張文德、李宜萱、顏韻臻（2023, 5），圖學與 3D 數位建模相關研究，2023 中華民國設計學會第28屆「設計虛實論」國際設計研討會，高雄義守大學，民國112年5月6日，Poster.</div>
+              <div class="pub-item">李宜萱、張文德（2022, 10），仿生設計—「鯨詠」鯨魚揚聲器產品設計，2022「視覺設計。未來式」國際學術研討會暨設計工作營，國立臺灣藝術大學設計學院視覺傳達設計學系，臺北，民國111年10月21日，8p.</div>
+              <div class="pub-item">張文德、吳中硯（2021, 11），視覺藝術創作評量向度初探，2021ICWVCD視覺傳達設計國際研討會暨基礎造形論壇，國立雲林科技大學視覺傳達設計系，雲林，民國110年11月12日，6p.</div>
+              <div class="pub-item">張文德、陳翌雋、潘妍均、吳中硯（2020, 12），少女花獸聯想之插畫創作，2020中華色彩學會「色彩與設計」學術研討會(in Digit file)，華梵大學新北中心，台北，民國109年12月19日，5p.</div>
+              <div class="pub-item">Chang, W.-T. (2019, 7). On the Primary Evaluation of AR Computer Interface Design for the Elders, IASTEM – 637th International Conference on Science Technology and Management (2019ICSTM) (in Digit file), 2-3, July, Singapore, 4p.</div>
+              <div class="pub-item">張文德、白昀昕（2018, 11），情境故事法於玩具說明影片之應用實例，2018「文化創意學術研討會暨亞洲基礎造形論壇」，國立高雄科技大學文化創意產業系，高雄，民國108年11月30日，6p.</div>
+              <div class="pub-item">張文德、簡佑宏（2018, 9），體感創作玩具之設計初探，International Conference on Creativity, STEAM and Maker Education (ICCSM2018) (in Digit file)，國立師範大學，臺北，民國107年9月29~30日，8p.</div>
+              <div class="pub-item">Chang, W.-T.＊, &amp; Huang, K.-C. (2018, 7). On The Qualitative Evaluation of the AR 3D Portrait App for the Elders, The 8th International Conference on Engineering and Applied Science (2018ICEAS) (in Digit file), 17-19, July, Seoul, Korea, 10p.</div>
+              <div class="pub-item">張文德＊、王琪嫈（2018, 5），銀髮族智慧平板3D頭像APP介面評估初探，2018中華民國設計學會第二十三屆學術研究成果研討會 (in Digit file)，東南科技大學，臺北，民國106年5月26日，10p.</div>
+              <div class="pub-item">張文德＊、劉耕銘（2017, 12），LOGO與色彩計畫教學研究, 2017「創新、設計、經營」國際研討會暨亞洲基礎造形論壇(in Digit file)，國立台北商業大學，桃園，民國106年12月8日，6p.</div>
+              <div class="pub-item">張文德＊、游章雄、張循鋰、劉耕銘（2017, 11），OLED幼兒玩具骰子設計, 2017台灣感性研討會&lt;感性與創意實踐&gt; (in Digit file)，佛光大學，宜蘭，民國106年11月24~25日，6p.</div>
+              <div class="pub-item">Chang, W.-T.＊ &amp; Liu, K.-M. (2017, 10), On the Marketing Strategic Analysis of OLED Toy Designs, 6th 3E International Conference– "Enjoyment, Elderly, Edutainment"(in Digit file), October 21-23, 2017, National Taitung University, Taitung, Taiwan, 1p.</div>
+              <div class="pub-item">張文德＊、游章雄、簡佑宏、劉耕銘（2017, 5），虛擬3D魔術方塊遊戲介面設計初探，CID 2017中華民國設計學會第二十二屆學術研究成果研討會 (in Digit file)，亞洲大學，臺中，民國106年5月27日，8p.</div>
+              <div class="pub-item">張文德＊、簡佑宏、劉耕銘（2017, 3），銀髮族擴增實境3D試戴介面設計之個案研究，EST 2017第24屆中華民國人因工程學會年會暨學術研討會 (in Digit file)，國立金門大學，金門，民國106年3月12日，8p.</div>
+              <div class="pub-item">Chien, Y.-H., Chang W.-T., Chuang, C.-C., &amp; Chen, S.-H. (2016, 7). A Taiwanese user experience questionnaire, 7th International Conference on Applied Human Factors and Ergonomics (AHFE 2016) (in Digit file), 27-31 July, Florida, USA, 9p.</div>
+              <div class="pub-item">Huang, K.-C., &amp; Chang, W.-T. (2016, 7). Effects of drawing direction and angle on stability of point-to-point drawing task varying length of drawing for the elderly, NETs International Conference on internet studies 2016 (in Digit file), 22-24, July, Osaka, Japan, 16p.</div>
+              <div class="pub-item">Chang, W.-T.＊, Huang, K.-C., &amp; Chuang, C.-C. (2015, 8). Usability Evaluation of The Smart TV, HCI International 2015 Conference (in Digit file), 2-7 Aug., Los Angeles, CA, USA, 5p.</div>
+              <div class="pub-item">Chang, W.-T.＊, Lin, C.-L., Huang, K.-C., &amp; Chuang, C.-C. (2015, 7). On the Influencing Factors of Dictionary App Interface Design for the Elders, 6th International Conference on Applied Human Factors and Ergonomics (AHFE 2015) (in Digit file), 26-30 July, Las Vegas, USA, 6p.</div>
+              <div class="pub-item">張文德＊、簡佑宏、李炫瑩（2015, 5），跨校系設計教學研究–以刀具開發為例, 2015第二十屆中華民國設計學會設計研究成果發表研討會暨2015國際設計研究論壇暨研討會 (in Digit file)，國立雲林科技大學，雲林，民國104年5月17日，6p.</div>
+              <div class="pub-item">Wu, C.-Y., Wu, C.-F., &amp; Chang, W.-T.＊ (2015, 5). On the Factors of the Web Browsing Performance for the Elderly Citizens, 2015 International Congress on Engineering and Information (in Digit file), 07-09 May, Kyoto, Japan, 8p.</div>
+              <div class="pub-item">Chang, W.-T.＊ &amp; Huang, K.-C. (2014, 5). A study on the Comparison of Real and VR 3D Simulated Rubik's Cube Game Performance, ACED 2014 – 1st Asian Conference on Ergonomics &amp; Design 2014 (in Digit file), 21-24 May, Jeju, South Korea, 5p.</div>
+              <div class="pub-item">張文德、張瀞方、陳遠修（2014, 5），網頁結構操作績效測試—以銀髮族電動代步車網頁設計為例，2014中華民國設計學會設計學術研究成果研討會-設計系譜再進化 (in Digit file)，大同大學，臺北，民國103年5月17日，6p.</div>
+              <div class="pub-item">張文德（2013, 8）. 單元反覆–單元圖像之2D、色彩、半立體與全立體造形設計, 2013 Conference on Asia Society of Basic Design and Art in Tianjin (ASBDA)，August 18-22，天津美院，6p.</div>
+              <div class="pub-item">張文德、施宗豪、黃達鈞（2013），銀髮族視力輔助介面設計評估研究，2013設計與創意加值學術研討會，玄奘大學，新竹，民國102年11月15日，10p.</div>
+              <div class="pub-item">黃達鈞＊、張文德（2013），高齡者電子字典介面設計初探，2013中華民國設計學會設計學術研究成果研討會 (in Digit file)，義守大學，高雄，民國102年5月25日，8p.</div>
+              <div class="pub-item">Chang, W.-T.＊, Shih, L.-H., Chiang, Z.-H., &amp; Huang, K.-Ch. (2013). On the reading performance of text layout, switch position, topic of text, and luminance contrast for Chinese E-books interface design, 15th International Conference on Human-Computer Interaction (in Digit file), 20-25 July, Organized by HCI INTERNATIONAL 2013, Las Vegas, 9p.</div>
+              <div class="pub-item">Chang, W.-T.＊, Wu, C.-H., &amp; Lin, C.-L. (2013). World vision—an image analysis and regeneration through point, line and plane, 2013 KSBDA International Spring Conference &amp; Exhibition-Article (in Digit file), May 29-June 1, Organized by Korea Society of Basic Design &amp; Art, 2p.</div>
             </div>
           </details>
 
@@ -323,7 +328,7 @@
               <i class="fa-solid fa-chevron-down text-stone-400 acc-chevron transition-transform"></i>
             </summary>
             <div class="pub-list px-6 pb-6 border-t border-stone-100 pt-4">
-              自動存錢裝置及其組裝辦法（科技部／童樂會-學童STEAM木育玩具設計與教具開發(II/III) 計畫編號：MOST 110-2410-H-152-012-MY2），專利號：I774526。
+              <div class="pub-item">自動存錢裝置及其組裝辦法（科技部／童樂會-學童STEAM木育玩具設計與教具開發(II/III) 計畫編號：MOST 110-2410-H-152-012-MY2），專利號：I774526。</div>
             </div>
           </details>
 
@@ -334,12 +339,12 @@
               <i class="fa-solid fa-chevron-down text-stone-400 acc-chevron transition-transform"></i>
             </summary>
             <div class="pub-list px-6 pb-6 border-t border-stone-100 pt-4">
-              搖椅音箱鼓（113-114 年新工藝新趣補助計畫—竹好聽–竹材創新樂器產品開發），證號：設計第 D242962 號／發表日期 2026/02/11。<br>
-              玩具椅之結構（科技部產學合作計畫－童智創客樂–體感創作玩具之設計與開發；MOST 107-2622-H-152-001-CC2），專利號：M587558。<br>
-              魔術方塊行動裝置（科技部福祉設計科學模式下之數位世界－福祉樂活。銀髮族虛擬3D空間遊戲App開發研究；MOST 103-2420-H-130-006-MY2），專利號：M587551。<br>
-              虛擬3D電動輔助載具（科技部銀髮族產品設計之虛擬3D互動體驗與介面設計相關因素研究；NSC 101-2628-H-130-002-MY2），專利號：M589296。<br>
-              臉部模擬試穿裝置（科技部微笑吧!銀髮族。臉部辨識AR行動APP介面開發；MOST 106-2410-H-152-017-MY2），專利號：M589314。<br>
-              透明光照互動玩具之結構（工研院學研計畫：光寶貝! OLED光照互動玩具設計(I/II/III)；學校代號：106C403；107C403；108C403）。目前正與廠商洽談，此專利案之量產、商品市場及技術移轉合約等事宜，專利號：M587769。
+              <div class="pub-item">搖椅音箱鼓（113-114 年新工藝新趣補助計畫—竹好聽–竹材創新樂器產品開發），證號：設計第 D242962 號／發表日期 2026/02/11。</div>
+              <div class="pub-item">玩具椅之結構（科技部產學合作計畫－童智創客樂–體感創作玩具之設計與開發；MOST 107-2622-H-152-001-CC2），專利號：M587558。</div>
+              <div class="pub-item">魔術方塊行動裝置（科技部福祉設計科學模式下之數位世界－福祉樂活。銀髮族虛擬3D空間遊戲App開發研究；MOST 103-2420-H-130-006-MY2），專利號：M587551。</div>
+              <div class="pub-item">虛擬3D電動輔助載具（科技部銀髮族產品設計之虛擬3D互動體驗與介面設計相關因素研究；NSC 101-2628-H-130-002-MY2），專利號：M589296。</div>
+              <div class="pub-item">臉部模擬試穿裝置（科技部微笑吧!銀髮族。臉部辨識AR行動APP介面開發；MOST 106-2410-H-152-017-MY2），專利號：M589314。</div>
+              <div class="pub-item">透明光照互動玩具之結構（工研院學研計畫：光寶貝! OLED光照互動玩具設計(I/II/III)；學校代號：106C403；107C403；108C403）。目前正與廠商洽談，此專利案之量產、商品市場及技術移轉合約等事宜，專利號：M587769。</div>
             </div>
           </details>
 
@@ -513,7 +518,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (wrap) {
         wrap.innerHTML = publications.categories.map((cat) => {
           const items = Array.isArray(cat.items) ? cat.items : [];
-          const body = items.map((t) => esc(t)).join('<br>\n              ');
+          const body = items.map((it) => {
+            const text = typeof it === 'string' ? it : ((it && it.text) || '');
+            const url = (it && typeof it === 'object' && it.url) ? String(it.url).trim() : '';
+            if (url) {
+              return `<div class="pub-item"><a class="pub-link" href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}<i class="fa-solid fa-arrow-up-right-from-square pub-link-icon"></i></a></div>`;
+            }
+            return `<div class="pub-item">${esc(text)}</div>`;
+          }).join('\n              ');
           return `
           <details class="acc bg-white border border-stone-200/60 rounded-md">
             <summary class="flex items-center justify-between px-6 py-4">
