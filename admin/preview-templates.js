@@ -130,9 +130,13 @@ var LessonsExtraPreview = createClass({
       var summaryZh = item.get('summary_zh') || '';
       var grade = item.get('grade') || '';
       var duration = item.get('duration') || '';
-      var images = item.get('images'); // 圖片清單（新格式），第一張當作縮圖
+      var lessonType = item.get('type') || 'html'; // 教案呈現方式：html（完整教案頁，預設）／images（PNG 圖片頁）
+      var images = item.get('images'); // 圖片清單（活動花絮照片），第一張當作縮圖
+      var pageImages = item.get('page_images'); // PNG 圖片頁專用：教案內容本身的頁面截圖
       var legacyImage = item.get('image'); // 舊格式：單張圖片欄位（相容用）
-      var coverImage = (images && images.size && images.get(0).get('src')) || legacyImage || '';
+      var coverImage = (images && images.size && images.get(0).get('src'))
+        || (pageImages && pageImages.size && pageImages.get(0).get('src'))
+        || legacyImage || '';
       var materials = item.get('materials');
       var steps = item.get('steps');
 
@@ -155,6 +159,18 @@ var LessonsExtraPreview = createClass({
               src: coverImage,
               style: { width: '80px', height: '80px', objectFit: 'cover', borderRadius: '9999px', margin: '0 auto 12px auto', display: 'block' },
             })
+          : null,
+        lessonType === 'images'
+          ? h(
+              'div',
+              {
+                style: {
+                  display: 'inline-block', fontSize: '12px', fontWeight: 700, color: '#6a4c2d',
+                  background: '#f5efe6', borderRadius: '9999px', padding: '3px 14px', marginBottom: '8px', marginRight: '6px',
+                },
+              },
+              'PNG 圖片頁' + (pageImages && pageImages.size > 1 ? '（共 ' + pageImages.size + ' 頁）' : '')
+            )
           : null,
         h(
           'div',
@@ -192,6 +208,21 @@ var LessonsExtraPreview = createClass({
                   { key: idx, style: { width: '70px' } },
                   h('img', { src: src, style: { width: '100%', height: '70px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e7e2d8' } }),
                   caption ? h('div', { style: { fontSize: '11px', color: '#8c8072', marginTop: '2px' } }, caption) : null
+                );
+              })
+            )
+          : null,
+        pageImages && pageImages.size > 1
+          ? h(
+              'div',
+              { style: { display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center', marginTop: '10px' } },
+              pageImages.toArray().map(function (img, idx) {
+                var src = img.get ? img.get('src') : '';
+                if (!src) return null;
+                return h(
+                  'div',
+                  { key: idx, style: { width: '56px', height: '56px', border: idx === 0 ? '2px solid #446b2a' : '1px solid #e7e2d8', borderRadius: '6px', overflow: 'hidden' } },
+                  h('img', { src: src, style: { width: '100%', height: '100%', objectFit: 'cover' } })
                 );
               })
             )
@@ -254,24 +285,18 @@ var DirectorProfilePreview = createClass({
     var teaching = data && data.get('teaching');
     var publications = data && data.get('publications');
     var thesis = data && data.get('thesis');
+    var personalResume = data && data.get('personal_resume');
 
     var cellStyle = { padding: '10px 14px', fontSize: '14px', color: '#3d2b20', textAlign: 'left' };
 
-    /* ① 頁首職稱／現職／個人資歷（現職欄位可分行填寫，每行預覽成獨立的條列項目，與前台顯示一致） */
+    /* ① 頁首職稱 */
     var affiliation = (header && header.get('affiliation_zh')) || '（尚未填寫單位）';
-    var positionRaw = (header && header.get('position_zh')) || '';
-    var positionLines = positionRaw
-      ? positionRaw.split(/\r?\n/).map(function (s) { return s.trim(); }).filter(Boolean)
-      : [];
+    var position = (header && header.get('position_zh')) || '（尚未填寫現職）';
     var headerBlock = [
-      sectionHeading('① 頁首職稱／現職／個人資歷'),
+      sectionHeading('① 頁首職稱'),
       h('div', { style: { background: '#eef4ea', borderRadius: '12px', padding: '20px 24px' } },
-        h('p', { style: { fontSize: '15px', color: '#3d2b20', margin: '0 0 10px 0' } }, affiliation),
-        positionLines.length
-          ? h('ul', { style: { margin: 0, paddingLeft: '20px' } }, positionLines.map(function (line, i) {
-              return h('li', { key: i, style: { fontSize: '15px', color: '#3d2b20', marginBottom: '4px', lineHeight: 1.7 } }, line);
-            }))
-          : h('p', { style: { fontSize: '15px', color: '#999', margin: 0 } }, '（尚未填寫現職／個人資歷）')
+        h('p', { style: { fontSize: '15px', color: '#3d2b20', margin: '0 0 8px 0' } }, affiliation),
+        h('p', { style: { fontSize: '15px', color: '#3d2b20', margin: 0 } }, position)
       ),
     ];
 
@@ -407,11 +432,22 @@ var DirectorProfilePreview = createClass({
         : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目'),
     ];
 
+    /* ⑧ 個人資歷 */
+    var resumeItems = personalResume && personalResume.get('items');
+    var resumeBlock = [
+      sectionHeading('⑨ 個人資歷'),
+      resumeItems && resumeItems.size
+        ? h('ul', { style: { margin: 0, paddingLeft: '20px' } }, resumeItems.toArray().map(function (item, i) {
+            return h('li', { key: i, style: { fontSize: '14px', color: '#3d2b20', marginBottom: '10px', lineHeight: 1.7 } }, item.get('text_zh') || '（尚未填寫）');
+          }))
+        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目（前台會顯示「內容準備中」）'),
+    ];
+
     return h(
       'div',
       { style: previewWrap },
       previewNote,
-      headerBlock, honorsBlock, educationBlock, exchangeBlock, researchProjectsBlock, teachingBlock, publicationsBlock, thesisBlock
+      headerBlock, honorsBlock, educationBlock, exchangeBlock, researchProjectsBlock, teachingBlock, publicationsBlock, thesisBlock, resumeBlock
     );
   },
 });

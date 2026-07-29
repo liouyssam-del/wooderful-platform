@@ -28,7 +28,9 @@
     #lessonGrid.view-list .lesson-card {
       flex-direction: row; align-items: center; text-align: left; padding: 1.5rem 2rem; gap: 2rem;
     }
-    #lessonGrid.view-list .avatar-wrapper { width: 90px; height: 90px; margin: 0; flex-shrink: 0; }
+    /* 條列檢視只給快速掃視標題用，不載入縮圖（一頁最多 15 筆，全部載入縮圖會拖慢畫面，
+       跟圖卡檢視的「看照片選教案」用途也做出區隔） */
+    #lessonGrid.view-list .avatar-wrapper { display: none; }
     #lessonGrid.view-list .lesson-card > div:first-child { display: flex; align-items: center; gap: 1.5rem; flex: 1; }
     #lessonGrid.view-list .lesson-card h3 { margin-bottom: 0.25rem; }
     #lessonGrid.view-list .lesson-card .tag-row { margin-bottom: 0.5rem; }
@@ -303,14 +305,26 @@ async function initLessonsPage() {
       card.className = 'lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up';
       card.dataset.date = item.sort_date || todayISODate();
 
-      // 支援新格式 images（第一張當作列表縮圖），並相容舊格式的單張 image 欄位
+      // 支援新格式 images（第一張當作列表縮圖），PNG 圖片頁教案（type: "images"）則用
+      // page_images 的第一張當縮圖，並相容舊格式的單張 image 欄位
       const coverImage = (Array.isArray(item.images) && item.images.length > 0 && item.images[0].src)
         ? item.images[0].src
+        : (Array.isArray(item.page_images) && item.page_images.length > 0 && item.page_images[0].src)
+        ? item.page_images[0].src
         : (item.image || '');
 
       const avatarHtml = coverImage
         ? `<div class="avatar-wrapper"><img src="${coverImage}" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner" /></div>`
         : `<div class="avatar-wrapper flex items-center justify-center bg-[#eef4ea] rounded-full border-4 border-white shadow-inner"><i class="fa-solid fa-seedling text-forest-600 text-h1"></i></div>`;
+
+      // 教案呈現方式：type "images"（PNG 圖片頁）開共用瀏覽頁 lesson-viewer.html，
+      // 其餘（含沒有設定 type 的舊資料，視為預設的「html」）維持原本的 lesson-view.html
+      const isImagePages = item.type === 'images'
+        && Array.isArray(item.page_images)
+        && item.page_images.some((img) => img && img.src);
+      const detailHref = isImagePages
+        ? `lesson-viewer.html?id=${encodeURIComponent(item.slug || '')}`
+        : `lesson-view.html?slug=${encodeURIComponent(item.slug || '')}`;
 
       card.innerHTML = `
         <div>
@@ -322,7 +336,7 @@ async function initLessonsPage() {
             <span><i class="fa-solid fa-clock mr-1.5"></i> <span>${item.duration || ''}</span></span>
           </div>
         </div>
-        <a href="lesson-view.html?slug=${encodeURIComponent(item.slug || '')}" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all" data-en="View Lesson &rarr;" data-ja="教案を見る &rarr;" data-de="Lektion ansehen &rarr;">查看教案 &rarr;</a>
+        <a href="${detailHref}" class="lesson-cta block w-full py-4 rounded-xl border border-stone-200 text-h3 font-bold text-wood-600 hover:bg-forest-600 hover:text-white hover:border-forest-600 transition-all" data-en="View Lesson &rarr;" data-ja="教案を見る &rarr;" data-de="Lektion ansehen &rarr;">查看教案 &rarr;</a>
       `;
       lessonGrid.insertBefore(card, lessonGrid.firstChild);
     });

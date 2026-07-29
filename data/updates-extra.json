@@ -12,6 +12,23 @@
       "desc_zh": "劉老師上山採竹課程備料",
       "title_ja": "Bambusernte in den Bergen",
       "category": "bamboo"
+    },
+    {
+      "images": [
+        {
+          "src": "images/updates/竹實作現場1.png",
+          "caption": "a. 實作現場-1    b.實作現場-2"
+        },
+        {
+          "src": "images/updates/完成測試.png",
+          "caption": "c.完成與測試紀錄"
+        }
+      ],
+      "category": "bamboo",
+      "sort_date": "",
+      "date_label": "2026年5月",
+      "title_zh": "原竹拍筒琴種子教師培訓",
+      "desc_zh": "嘗試開發大型竹樂器教案，甄選4位國北教大藝設系同學，進行樂器製作工法與原理教學，以2天時間進行試做與測試，成果與效果佳。"
     }
   ]
 }

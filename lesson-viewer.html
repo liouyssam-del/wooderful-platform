@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">教案 - 木育玩具設計</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="tailwind-config.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background-color: #fbf9f5; }
+
+    /* 教案「頁面圖片」瀏覽頁——PNG 圖片頁教案專用，像簡化版的 PDF 閱讀器：
+       只有 1 張圖時單純置中顯示；超過 1 張才會顯示下方縮圖列與翻頁控制。 */
+    .viewer-frame { background: #fff; border: 1px solid #e7e2d8; border-radius: 0.5rem; padding: 1rem; box-shadow: 0 1px 4px rgba(60,40,25,0.05); }
+    .viewer-nav-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+      padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #e7e2d8; background: #fff;
+      color: #6a4c2d; font-weight: 600; font-size: 0.9rem; transition: all 0.2s ease;
+    }
+    .viewer-nav-btn:hover:not(:disabled) { background: #eef4ea; border-color: #cfe1a6; color: #446b2a; }
+    .viewer-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .viewer-nav-btn.viewer-nav-btn--jump { padding-left: 0.7rem; padding-right: 0.7rem; font-size: 0.8rem; }
+
+    .thumb-strip { display: flex; gap: 0.75rem; overflow-x: auto; padding: 0.25rem 0.25rem 0.75rem; scrollbar-width: thin; }
+    .thumb-strip::-webkit-scrollbar { height: 6px; }
+    .thumb-strip::-webkit-scrollbar-thumb { background: #e7e2d8; border-radius: 9999px; }
+    .thumb-item {
+      flex-shrink: 0; width: 84px; height: 84px; border-radius: 0.4rem; overflow: hidden; cursor: pointer;
+      border: 2px solid transparent; opacity: 0.55; transition: all 0.2s ease; background: #f4f1ea;
+    }
+    .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
+    .thumb-item:hover { opacity: 0.85; }
+    .thumb-item.active { border-color: #446b2a; opacity: 1; }
+  </style>
+</head>
+<body>
+
+<div id="nav-container"></div>
+
+<header class="page-hero text-center text-white">
+  <div class="mt-12">
+    <div class="text-caption tracking-[0.4em] text-stone-200 uppercase mb-3" data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</div>
+    <h1 id="viewer-title-hero" class="text-h1 font-serif font-bold tracking-widest mb-4">載入中…</h1>
+    <div class="text-caption tracking-[0.3em] text-stone-300 uppercase font-medium">TEACHING RESOURCES</div>
+  </div>
+</header>
+
+<div class="max-w-5xl mx-auto px-6 lg:px-12 pt-8">
+  <div class="flex items-center gap-2 text-body text-stone-400 font-medium">
+    <a href="index.html" class="hover:text-forest-600"><i class="fa-solid fa-house-chimney text-caption"></i> <span data-en="Home" data-ja="ホーム" data-de="Startseite">首頁</span></a> <span>&gt;</span>
+    <a href="lessons.html" class="hover:text-forest-600" data-en="Lessons" data-ja="レッスン" data-de="Lektionen">分享教案</a> <span>&gt;</span>
+    <span id="viewer-title-breadcrumb" class="text-stone-600 font-semibold">載入中…</span>
+  </div>
+</div>
+
+<main class="max-w-5xl mx-auto px-6 lg:px-12 py-12">
+
+  <div id="viewer-loading" class="text-center text-stone-400 py-20">
+    <i class="fa-solid fa-spinner fa-spin text-h2 mb-4"></i>
+    <p>教案載入中…</p>
+  </div>
+
+  <div id="viewer-not-found" class="hidden text-center text-stone-400 py-20">
+    <i class="fa-solid fa-circle-question text-h1 mb-4"></i>
+    <p class="text-h3">找不到這份教案，網址可能有誤。</p>
+    <a href="lessons.html" class="inline-block mt-6 px-6 py-2 rounded-full bg-forest-600 text-white font-semibold">回到教案列表</a>
+  </div>
+
+  <div id="viewer-content" class="hidden">
+
+    <div class="text-center mb-8 reveal fade-up">
+      <span class="text-body font-bold bg-[#eef4ea] text-forest-600 px-4 py-1 rounded-full" data-en="STEAM Lesson Plan" data-ja="STEAM教案" data-de="STEAM-Lehrplan">STEAM 教案</span>
+      <h2 id="viewer-title-main" class="text-h1 font-serif font-black text-wood-800 tracking-wide mt-4"></h2>
+    </div>
+
+    <div class="viewer-frame reveal fade-up">
+      <img id="viewer-main-image" src="" alt="" class="w-full max-h-[72vh] object-contain mx-auto rounded-sm">
+    </div>
+
+    <div id="viewer-controls" class="hidden flex-col items-center mt-6 reveal fade-up">
+      <div class="flex items-center justify-center gap-2 mb-4 flex-wrap">
+        <button id="viewer-first" class="viewer-nav-btn viewer-nav-btn--jump" aria-label="第一頁"><i class="fa-solid fa-angles-left"></i></button>
+        <button id="viewer-prev" class="viewer-nav-btn"><i class="fa-solid fa-angle-left"></i> <span data-en="Previous" data-ja="前へ" data-de="Zurück">上一頁</span></button>
+        <span id="viewer-counter" class="text-body text-stone-500 font-semibold px-3">1 / 1</span>
+        <button id="viewer-next" class="viewer-nav-btn"><span data-en="Next" data-ja="次へ" data-de="Weiter">下一頁</span> <i class="fa-solid fa-angle-right"></i></button>
+        <button id="viewer-last" class="viewer-nav-btn viewer-nav-btn--jump" aria-label="最後一頁"><i class="fa-solid fa-angles-right"></i></button>
+      </div>
+      <div id="viewer-thumbs" class="thumb-strip w-full"></div>
+    </div>
+
+    <div class="mt-16 text-center border-t border-stone-200/60 pt-16 max-w-md mx-auto reveal fade-up">
+      <a href="lessons.html" class="inline-block px-8 py-2 rounded-xl bg-forest-600 text-white font-semibold text-caption shadow-sm hover:bg-forest-700 transition-all" data-en="Back to All Lessons" data-ja="教案一覧に戻る" data-de="Zurück zur Übersicht">回到教案列表</a>
+    </div>
+
+  </div>
+</main>
+
+<div id="footer-container"></div>
+<script src="layout.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const loadingEl = document.getElementById('viewer-loading');
+  const notFoundEl = document.getElementById('viewer-not-found');
+  const contentEl = document.getElementById('viewer-content');
+
+  if (!id) {
+    loadingEl.classList.add('hidden');
+    notFoundEl.classList.remove('hidden');
+    return;
+  }
+
+  fetch('data/lessons-extra.json', { cache: 'no-store' })
+    .then((res) => (res.ok ? res.json() : { items: [] }))
+    .then((data) => {
+      const items = (data && Array.isArray(data.items)) ? data.items : [];
+      const lesson = items.find((it) => it.slug === id);
+      const pages = lesson && Array.isArray(lesson.page_images)
+        ? lesson.page_images.filter((img) => img && img.src)
+        : [];
+
+      loadingEl.classList.add('hidden');
+      if (!lesson || pages.length === 0) {
+        notFoundEl.classList.remove('hidden');
+        return;
+      }
+
+      function setText(id, zh, en, ja, de) {
+        const el = document.getElementById(id);
+        el.textContent = zh || '';
+        el.setAttribute('data-en', en || zh || '');
+        el.setAttribute('data-ja', ja || zh || '');
+        el.setAttribute('data-de', de || zh || '');
+      }
+
+      document.getElementById('page-title').textContent = (lesson.title_zh || '') + ' - 木育玩具設計';
+      setText('viewer-title-hero', lesson.title_zh, lesson.title_en, lesson.title_ja, lesson.title_de);
+      setText('viewer-title-breadcrumb', lesson.title_zh, lesson.title_en, lesson.title_ja, lesson.title_de);
+      setText('viewer-title-main', lesson.title_zh, lesson.title_en, lesson.title_ja, lesson.title_de);
+
+      const mainImageEl = document.getElementById('viewer-main-image');
+      const controlsEl = document.getElementById('viewer-controls');
+      const thumbsEl = document.getElementById('viewer-thumbs');
+      const counterEl = document.getElementById('viewer-counter');
+      const firstBtn = document.getElementById('viewer-first');
+      const prevBtn = document.getElementById('viewer-prev');
+      const nextBtn = document.getElementById('viewer-next');
+      const lastBtn = document.getElementById('viewer-last');
+
+      let currentIndex = 0;
+
+      function altText(idx) {
+        return pages[idx].caption || `${lesson.title_zh || '教案'} — ${idx + 1}/${pages.length}`;
+      }
+
+      function renderThumbs() {
+        thumbsEl.innerHTML = pages.map((img, idx) => `
+          <div class="thumb-item${idx === currentIndex ? ' active' : ''}" data-index="${idx}" title="${(img.caption || '').replace(/"/g, '&quot;')}">
+            <img src="${img.src}" alt="">
+          </div>
+        `).join('');
+        thumbsEl.querySelectorAll('.thumb-item').forEach((el) => {
+          el.addEventListener('click', () => goTo(Number(el.dataset.index)));
+        });
+      }
+
+      function goTo(idx) {
+        currentIndex = Math.min(Math.max(0, idx), pages.length - 1);
+        mainImageEl.src = pages[currentIndex].src;
+        mainImageEl.alt = altText(currentIndex);
+        counterEl.textContent = `${currentIndex + 1} / ${pages.length}`;
+        firstBtn.disabled = currentIndex === 0;
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === pages.length - 1;
+        lastBtn.disabled = currentIndex === pages.length - 1;
+        thumbsEl.querySelectorAll('.thumb-item').forEach((el, i) => {
+          el.classList.toggle('active', i === currentIndex);
+        });
+        const activeThumb = thumbsEl.querySelector('.thumb-item.active');
+        if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+
+      // 只有 1 張圖：單純置中顯示，不顯示翻頁控制與縮圖列
+      mainImageEl.src = pages[0].src;
+      mainImageEl.alt = altText(0);
+
+      if (pages.length > 1) {
+        controlsEl.classList.remove('hidden');
+        controlsEl.classList.add('flex');
+        renderThumbs();
+        goTo(0);
+
+        firstBtn.addEventListener('click', () => goTo(0));
+        prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+        nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+        lastBtn.addEventListener('click', () => goTo(pages.length - 1));
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
+          if (e.key === 'ArrowRight') goTo(currentIndex + 1);
+        });
+      }
+
+      contentEl.classList.remove('hidden');
+
+      if (window.applyLanguage && window.getCurrentLang) {
+        window.applyLanguage(window.getCurrentLang());
+      }
+    })
+    .catch(() => {
+      loadingEl.classList.add('hidden');
+      notFoundEl.classList.remove('hidden');
+    });
+});
+</script>
+</body>
+</html>

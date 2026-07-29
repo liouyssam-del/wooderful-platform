@@ -178,7 +178,7 @@ collections:
                       - { label: "國科會研究計畫", value: "nstc" }
                       - { label: "產學合作計畫", value: "industry" }
                   - { label: "民國年（例如 115 或 113-115）", name: "year_roc", widget: "string", required: false }
-                  - { label: "學門（中文，可留白）", name: "field_zh", widget: "string", required: false }
+                  - { label: "學門（中文，必填）", name: "field_zh", widget: "string" }
                   - { label: "學門（英文，可留白）", name: "field_en", widget: "string", required: false }
                   - { label: "學門（日文，可留白）", name: "field_ja", widget: "string", required: false }
                   - { label: "學門（德文，可留白）", name: "field_de", widget: "string", required: false }
@@ -186,7 +186,7 @@ collections:
                   - { label: "計畫名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
                   - { label: "計畫名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
                   - { label: "計畫名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
-                  - { label: "起迄／狀態（中文，可留白，例如：已結案／1年型／民112-113）", name: "duration_zh", widget: "string", required: false }
+                  - { label: "起迄／狀態（中文，必填，例如：已結案／1年型／民112-113）", name: "duration_zh", widget: "string" }
                   - { label: "起迄／狀態（英文，可留白）", name: "duration_en", widget: "string", required: false }
                   - { label: "起迄／狀態（日文，可留白）", name: "duration_ja", widget: "string", required: false }
                   - { label: "起迄／狀態（德文，可留白）", name: "duration_de", widget: "string", required: false }
@@ -280,7 +280,7 @@ collections:
       - name: "lessons_extra"
         label: "教案列表"
         file: "data/lessons-extra.json"
-        description: "在這裡新增全新的教案。存檔後重新整理網站頁面就會看到，教案會出現在「分享教案」列表頁，並產生一個獨立的教案內容頁。"
+        description: "在這裡新增全新的教案，有兩種上架方式：①「完整教案頁」——把下面的表單欄位（簡介／課程目標／材料／步驟等）逐一填寫，適合想呈現完整教學內容的教案；②「PNG 圖片頁」——不用逐欄填寫，直接把教案做成一張一張的截圖上傳（大多數教案只需要 1 張），適合想快速上架的教案。存檔後重新整理網站頁面就會看到，教案會出現在「分享教案」列表頁。"
         fields:
           - name: "items"
             label: "教案列表"
@@ -292,6 +292,14 @@ collections:
                 name: "slug"
                 widget: "string"
                 pattern: ['^[a-z0-9-]+$', "只能用小寫英文字母、數字、連字號（-），不能有空格或中文"]
+              - label: "教案呈現方式"
+                name: "type"
+                widget: "select"
+                default: "html"
+                required: false
+                options:
+                  - { label: "完整教案頁（逐欄填寫下面的簡介／課程目標／材料／步驟等欄位）", value: "html" }
+                  - { label: "PNG 圖片頁（直接上傳教案截圖，不用逐欄填寫，最下面的「教案頁面圖片」欄位）", value: "images" }
               - { label: "日期（用於排序，選一天即可）", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
               - { label: "教案名稱（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "教案名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
@@ -309,7 +317,7 @@ collections:
               - { label: "課程目標（英文，可留白）", name: "objectives_en", widget: "text", required: false }
               - { label: "課程目標（日文，可留白）", name: "objectives_ja", widget: "text", required: false }
               - { label: "課程目標（德文，可留白）", name: "objectives_de", widget: "text", required: false }
-              - label: "照片（可新增多張，每張可加說明；可留白，第一張會當作列表縮圖）"
+              - label: "照片（可新增多張，每張可加說明；可留白，第一張會當作列表縮圖。這是活動花絮照片，不是教案內容本身——PNG 圖片頁教案請改用下面的「教案頁面圖片」欄位）"
                 name: "images"
                 widget: "list"
                 required: false
@@ -317,6 +325,14 @@ collections:
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
+              - label: "教案頁面圖片（PNG 圖片頁專用：依序上傳教案截圖，通常 1 張就夠，教案有好幾頁的話可以多傳幾張；第一張會自動當作列表縮圖／封面，上傳後這份教案在網站上就會用「教案呈現方式＝PNG 圖片頁」的瀏覽頁顯示）"
+                name: "page_images"
+                widget: "list"
+                required: false
+                default: []
+                fields:
+                  - { label: "圖片", name: "src", widget: "image" }
+                  - { label: "圖片說明（可不填，僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上）", name: "caption", widget: "string", required: false }
               - label: "材料清單（每行一項，例如「木頭方塊 ×2」）"
                 name: "materials"
                 widget: "list"
