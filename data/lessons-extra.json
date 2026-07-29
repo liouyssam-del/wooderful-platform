@@ -1,23 +1,6 @@
 {
   "items": [
     {
-      "group_size": "lesson-test",
-      "summary_en": "lesson-test",
-      "summary_zh": "lesson-test",
-      "steps": [],
-      "title_de": "lesson-test",
-      "slug": "lesson-test",
-      "materials": [],
-      "subject": "lesson-test",
-      "title_en": "lesson-test",
-      "objectives_zh": "lesson-test",
-      "duration": "lesson-test",
-      "title_zh": "lesson-test",
-      "grade": "lesson-test",
-      "image": "images/updates/bamboo-03b-artwork.jpg",
-      "title_ja": "lesson-test"
-    },
-    {
       "type": "images",
       "images": [],
       "page_images": [
@@ -37,7 +20,8 @@
       "materials": [],
       "steps": [],
       "slug": "bamboo-instument",
-      "sort_date": "2026-07-29"
+      "sort_date": "2026-07-29",
+      "title_zh": "拍打竹樂器"
     }
   ]
 }
