@@ -313,14 +313,38 @@ collections:
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
-              - label: "教案頁面圖片（PNG 圖片頁專用：依序上傳教案截圖，通常 1 張就夠，教案有好幾頁的話可以多傳幾張；第一張會自動當作列表縮圖／封面，上傳後這份教案在網站上就會用「教案呈現方式＝PNG 圖片頁」的瀏覽頁顯示）"
+              - label: "教案頁面圖片（中文／預設版本，必填：依序上傳教案截圖，通常 1 張就夠，教案有好幾頁的話可以多傳幾張；第一張會自動當作列表縮圖／封面，上傳後這份教案在網站上就會用「教案呈現方式＝PNG 圖片頁」的瀏覽頁顯示。切換到英／日／德文時，如果下面對應語言的圖片沒有上傳，會自動顯示這裡的中文版圖片）"
                 name: "page_images"
                 widget: "list"
                 required: false
                 default: []
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
-                  - { label: "圖片說明（可不填，僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上）", name: "caption", widget: "string", required: false }
+                  - { label: "圖片說明（可不填，僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上；可以用這欄自己標註「第幾頁」方便之後編輯辨識，例如「p1」）", name: "caption", widget: "string", required: false }
+              - label: "教案頁面圖片（英文版，可留白；留白時網站切到英文會自動改顯示上面的中文版圖片）"
+                name: "page_images_en"
+                widget: "list"
+                required: false
+                default: []
+                fields:
+                  - { label: "圖片", name: "src", widget: "image" }
+                  - { label: "圖片說明（可不填，僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上；可以用這欄自己標註「英文／第幾頁」方便之後編輯辨識，例如「en-p1」）", name: "caption", widget: "string", required: false }
+              - label: "教案頁面圖片（日文版，可留白；留白時網站切到日文會依序改顯示英文版、找不到再顯示中文版圖片）"
+                name: "page_images_ja"
+                widget: "list"
+                required: false
+                default: []
+                fields:
+                  - { label: "圖片", name: "src", widget: "image" }
+                  - { label: "圖片說明（可不填，僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上；可以用這欄自己標註「日文／第幾頁」方便之後編輯辨識，例如「ja-p1」）", name: "caption", widget: "string", required: false }
+              - label: "教案頁面圖片（德文版，可留白；留白時網站切到德文會依序改顯示英文版、找不到再顯示中文版圖片）"
+                name: "page_images_de"
+                widget: "list"
+                required: false
+                default: []
+                fields:
+                  - { label: "圖片", name: "src", widget: "image" }
+                  - { label: "圖片說明（可不填，僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上；可以用這欄自己標註「德文／第幾頁」方便之後編輯辨識，例如「de-p1」）", name: "caption", widget: "string", required: false }
               - label: "材料清單（每行一項，例如「木頭方塊 ×2」）"
                 name: "materials"
                 widget: "list"

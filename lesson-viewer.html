@@ -114,14 +114,32 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // 依語言挑選「教案頁面圖片」：英／日／德文優先用自己語言上傳的版本；
+  // 日／德文如果沒有自己的版本，會先退回英文版，找不到英文版才退回中文版——
+  // 跟網站其他文字欄位（data-en/ja/de）的退回邏輯一致，方便老師之後只上傳部分語言的圖片也不會開天窗。
+  function pagesFor(lesson, lang) {
+    const clean = (list) => (Array.isArray(list) ? list.filter((img) => img && img.src) : []);
+    const zh = clean(lesson.page_images);
+    const en = clean(lesson.page_images_en);
+    if (lang === 'en') return en.length ? en : zh;
+    if (lang === 'ja') {
+      const ja = clean(lesson.page_images_ja);
+      return ja.length ? ja : (en.length ? en : zh);
+    }
+    if (lang === 'de') {
+      const de = clean(lesson.page_images_de);
+      return de.length ? de : (en.length ? en : zh);
+    }
+    return zh;
+  }
+
   fetch('data/lessons-extra.json', { cache: 'no-store' })
     .then((res) => (res.ok ? res.json() : { items: [] }))
     .then((data) => {
       const items = (data && Array.isArray(data.items)) ? data.items : [];
       const lesson = items.find((it) => it.slug === id);
-      const pages = lesson && Array.isArray(lesson.page_images)
-        ? lesson.page_images.filter((img) => img && img.src)
-        : [];
+      const initialLang = (window.getCurrentLang && window.getCurrentLang()) || 'zh';
+      let pages = lesson ? pagesFor(lesson, initialLang) : [];
 
       loadingEl.classList.add('hidden');
       if (!lesson || pages.length === 0) {
@@ -184,26 +202,44 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
 
-      // 只有 1 張圖：單純置中顯示，不顯示翻頁控制與縮圖列
-      mainImageEl.src = pages[0].src;
-      mainImageEl.alt = altText(0);
+      // 依目前的 pages 陣列重新顯示：只有 1 張圖時單純置中顯示，不顯示翻頁控制與縮圖列，超過 1 張才顯示。
+      // 語言切換造成頁數改變時（例如中文版有 3 頁、英文版只上傳 1 頁）也會重新判斷要不要顯示翻頁控制。
+      function renderCurrentPages() {
+        currentIndex = 0;
+        mainImageEl.src = pages[0].src;
+        mainImageEl.alt = altText(0);
 
-      if (pages.length > 1) {
-        controlsEl.classList.remove('hidden');
-        controlsEl.classList.add('flex');
-        renderThumbs();
-        goTo(0);
-
-        firstBtn.addEventListener('click', () => goTo(0));
-        prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
-        nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
-        lastBtn.addEventListener('click', () => goTo(pages.length - 1));
-
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
-          if (e.key === 'ArrowRight') goTo(currentIndex + 1);
-        });
+        if (pages.length > 1) {
+          controlsEl.classList.remove('hidden');
+          controlsEl.classList.add('flex');
+          renderThumbs();
+          goTo(0);
+        } else {
+          controlsEl.classList.add('hidden');
+          controlsEl.classList.remove('flex');
+          thumbsEl.innerHTML = '';
+        }
       }
+
+      renderCurrentPages();
+
+      firstBtn.addEventListener('click', () => goTo(0));
+      prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+      nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+      lastBtn.addEventListener('click', () => goTo(pages.length - 1));
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
+        if (e.key === 'ArrowRight') goTo(currentIndex + 1);
+      });
+
+      // 語言切換時換成對應語言的「教案頁面圖片」（該語言沒有另外上傳的話，會自動退回英文、最後退回中文，不會開天窗）。
+      document.addEventListener('site:langchange', (e) => {
+        const nextPages = pagesFor(lesson, e.detail.lang);
+        if (nextPages.length === 0) return; // 中文版一定要有圖，理論上不會發生；保險起見不清空畫面
+        pages = nextPages;
+        renderCurrentPages();
+      });
 
       contentEl.classList.remove('hidden');
 

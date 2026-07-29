@@ -201,6 +201,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentLabel) currentLabel.textContent = LANG_LABELS[lang];
     document.documentElement.lang = LANG_HTML_TAG[lang] || 'zh-TW';
     try { localStorage.setItem('site-lang', lang); } catch (e) { /* 若無法使用 localStorage 就只切換當前頁面 */ }
+    // 廣播語言切換事件，讓有額外語言相依內容的頁面（例如教案「頁面圖片」瀏覽頁）
+    // 可以在使用者切換語言時，即時更新那些不是靠 data-en/ja/de 屬性處理的內容。
+    document.dispatchEvent(new CustomEvent('site:langchange', { detail: { lang } }));
   }
 
   // 修正舊 bug：director.html / updates.html / lessons.html / lesson-view.html
