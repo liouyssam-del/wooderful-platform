@@ -14,6 +14,14 @@
       "category": "bamboo"
     },
     {
+      "date_label": "2026年5月",
+      "desc_ja": "国立台北教育大学芸術デザイン学科の学生4名が、2日間の大型竹楽器製作・試作・検証ワークショップに参加し、教材としての有効性を確認した。",
+      "title_de": "Seed-Lehrkräfteausbildung für die Bambus-Schlagröhrentrommel (Pa Tong Qin)",
+      "desc_de": "Vier NTUE-Studierende nahmen an einem zweitägigen Workshop zu Konstruktion, Prototypenbau und Erprobung großformatiger Bambusinstrumente teil. Die Pilotdurchführung verlief erfolgreich und bestätigte das Unterrichtskonzept.",
+      "sort_date": "",
+      "title_en": "Seed Teacher Training for the Primitive Bamboo Slit Drum (Pa Tong Qin)",
+      "title_zh": "原竹拍筒琴種子教師培訓",
+      "desc_en": "Four NTUE Arts and Design students participated in a two-day workshop on large-scale bamboo instrument construction, prototyping, and testing. The pilot training produced excellent outcomes and validated the instructional approach.",
       "images": [
         {
           "src": "images/updates/竹實作現場1.png",
@@ -24,11 +32,9 @@
           "caption": "c.完成與測試紀錄"
         }
       ],
-      "category": "bamboo",
-      "sort_date": "",
-      "date_label": "2026年5月",
-      "title_zh": "原竹拍筒琴種子教師培訓",
-      "desc_zh": "嘗試開發大型竹樂器教案，甄選4位國北教大藝設系同學，進行樂器製作工法與原理教學，以2天時間進行試做與測試，成果與效果佳。"
+      "desc_zh": "嘗試開發大型竹樂器教案，甄選4位國北教大藝設系同學，進行樂器製作工法與原理教學，以2天時間進行試做與測試，成果與效果佳。",
+      "title_ja": "竹製打筒琴（パートンチン）種子教員研修",
+      "category": "bamboo"
     }
   ]
 }
