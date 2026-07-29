@@ -16,6 +16,28 @@
       "grade": "lesson-test",
       "image": "images/updates/bamboo-03b-artwork.jpg",
       "title_ja": "lesson-test"
+    },
+    {
+      "type": "images",
+      "images": [],
+      "page_images": [
+        {
+          "src": "images/updates/拍打竹樂器頁面_中文.png"
+        },
+        {
+          "src": "images/updates/拍打竹樂器頁面_英文.jpg"
+        },
+        {
+          "src": "images/updates/拍打竹樂器頁面_日文.png"
+        },
+        {
+          "src": "images/updates/拍打竹樂器頁面_德文.png"
+        }
+      ],
+      "materials": [],
+      "steps": [],
+      "slug": "bamboo-instument",
+      "sort_date": "2026-07-29"
     }
   ]
 }
