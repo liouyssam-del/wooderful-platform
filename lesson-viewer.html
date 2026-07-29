@@ -34,6 +34,29 @@
     .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
     .thumb-item:hover { opacity: 0.85; }
     .thumb-item.active { border-color: #446b2a; opacity: 1; }
+
+    /* 點擊圖片放大：教案頁面截圖通常資訊量很大（整頁流程＋照片＋文字），
+       容器再怎麼加寬還是可能不夠看清楚，所以額外做一個接近全螢幕的放大檢視。 */
+    #viewer-main-image { cursor: zoom-in; }
+    .viewer-zoom-hint {
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      margin-top: 0.75rem; font-size: 0.85rem; color: #a89f8f; user-select: none;
+    }
+    #viewer-lightbox {
+      position: fixed; inset: 0; z-index: 9999; background: rgba(24, 18, 12, 0.94);
+      display: none; align-items: center; justify-content: center; padding: 2.5rem 1.25rem;
+    }
+    #viewer-lightbox.open { display: flex; }
+    #viewer-lightbox img {
+      max-width: 96vw; max-height: 92vh; object-fit: contain; border-radius: 0.375rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5); cursor: zoom-out;
+    }
+    #viewer-lightbox-close {
+      position: absolute; top: 1.25rem; right: 1.25rem; width: 44px; height: 44px; border-radius: 9999px;
+      background: rgba(255,255,255,0.14); color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; cursor: pointer; border: none; transition: background 0.2s ease;
+    }
+    #viewer-lightbox-close:hover { background: rgba(255,255,255,0.28); }
   </style>
 </head>
 <body>
@@ -48,7 +71,7 @@
   </div>
 </header>
 
-<div class="max-w-5xl mx-auto px-6 lg:px-12 pt-8">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 pt-8">
   <div class="flex items-center gap-2 text-body text-stone-400 font-medium">
     <a href="index.html" class="hover:text-forest-600"><i class="fa-solid fa-house-chimney text-caption"></i> <span data-en="Home" data-ja="ホーム" data-de="Startseite">首頁</span></a> <span>&gt;</span>
     <a href="lessons.html" class="hover:text-forest-600" data-en="Lesson Plans" data-ja="学習指導案（例）" data-de="Muster-Unterrichtsentwurf">分享教案</a> <span>&gt;</span>
@@ -56,7 +79,7 @@
   </div>
 </div>
 
-<main class="max-w-5xl mx-auto px-6 lg:px-12 py-12">
+<main class="max-w-7xl mx-auto px-6 lg:px-12 py-12">
 
   <div id="viewer-loading" class="text-center text-stone-400 py-20">
     <i class="fa-solid fa-spinner fa-spin text-h2 mb-4"></i>
@@ -77,7 +100,11 @@
     </div>
 
     <div class="viewer-frame reveal fade-up">
-      <img id="viewer-main-image" src="" alt="" class="w-full max-h-[72vh] object-contain mx-auto rounded-sm">
+      <img id="viewer-main-image" src="" alt="" class="w-full max-h-[85vh] object-contain mx-auto rounded-sm">
+    </div>
+    <div class="viewer-zoom-hint">
+      <i class="fa-solid fa-magnifying-glass-plus"></i>
+      <span data-en="Click the image to enlarge" data-ja="画像をクリックすると拡大表示" data-de="Zum Vergrößern auf das Bild klicken">點擊圖片可放大閱讀</span>
     </div>
 
     <div id="viewer-controls" class="hidden flex-col items-center mt-6 reveal fade-up">
@@ -99,6 +126,12 @@
 </main>
 
 <div id="footer-container"></div>
+
+<div id="viewer-lightbox" aria-hidden="true">
+  <button id="viewer-lightbox-close" type="button" aria-label="關閉"><i class="fa-solid fa-xmark"></i></button>
+  <img id="viewer-lightbox-image" src="" alt="">
+</div>
+
 <script src="layout.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -168,6 +201,34 @@ document.addEventListener('DOMContentLoaded', () => {
       const prevBtn = document.getElementById('viewer-prev');
       const nextBtn = document.getElementById('viewer-next');
       const lastBtn = document.getElementById('viewer-last');
+
+      // 點圖放大：直接讀當下 mainImageEl 顯示的圖（不用另外同步狀態），
+      // 翻頁換圖後再點一次，燈箱裡看到的自然就是新的那一頁。
+      const lightboxEl = document.getElementById('viewer-lightbox');
+      const lightboxImageEl = document.getElementById('viewer-lightbox-image');
+      const lightboxCloseBtn = document.getElementById('viewer-lightbox-close');
+
+      function openLightbox() {
+        if (!mainImageEl.src) return;
+        lightboxImageEl.src = mainImageEl.src;
+        lightboxImageEl.alt = mainImageEl.alt;
+        lightboxEl.classList.add('open');
+        lightboxEl.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        lightboxEl.classList.remove('open');
+        lightboxEl.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      mainImageEl.addEventListener('click', openLightbox);
+      lightboxCloseBtn.addEventListener('click', closeLightbox);
+      lightboxEl.addEventListener('click', (e) => {
+        if (e.target !== lightboxCloseBtn && !lightboxCloseBtn.contains(e.target)) closeLightbox(); // 點圖片本身或背景都會關閉，跟游標的 zoom-out 提示一致
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightboxEl.classList.contains('open')) closeLightbox();
+      });
 
       let currentIndex = 0;
 
