@@ -301,6 +301,11 @@ collections:
               - { label: "教案名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
               - { label: "教案名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
               - { label: "教案名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - label: "列表縮圖"
+                hint: "「分享教案」列表頁圓形縮圖專用，建議上傳一張方形、主體居中、畫面單純的照片。不填的話會自動改用「照片」或「教案頁面圖片」的第一張，但那些通常不適合裁成圓形，容易顯示效果不佳。"
+                name: "cover_image"
+                widget: "image"
+                required: false
               - { label: "一句話簡介（中文，可留白）", name: "summary_zh", widget: "text", required: false }
               - { label: "一句話簡介（英文，可留白）", name: "summary_en", widget: "text", required: false }
               - { label: "一句話簡介（日文，可留白）", name: "summary_ja", widget: "text", required: false }

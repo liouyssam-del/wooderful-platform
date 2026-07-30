@@ -305,9 +305,12 @@ async function initLessonsPage() {
       card.className = 'lesson-card bg-white rounded-2xl p-10 border border-stone-200/40 shadow-sm flex flex-col justify-between text-center group reveal fade-up';
       card.dataset.date = item.sort_date || todayISODate();
 
-      // 支援新格式 images（第一張當作列表縮圖），PNG 圖片頁教案（type: "images"）則用
-      // page_images 的第一張當縮圖，並相容舊格式的單張 image 欄位
-      const coverImage = (Array.isArray(item.images) && item.images.length > 0 && item.images[0].src)
+      // 縮圖優先順序：① CMS 專屬「列表縮圖」欄位（cover_image，最適合圓形裁切）
+      // ② images（活動花絮照片）第一張 ③ page_images（PNG 教案頁面截圖）第一張
+      // ④ 相容舊格式的單張 image 欄位
+      const coverImage = item.cover_image
+        ? item.cover_image
+        : (Array.isArray(item.images) && item.images.length > 0 && item.images[0].src)
         ? item.images[0].src
         : (Array.isArray(item.page_images) && item.page_images.length > 0 && item.page_images[0].src)
         ? item.page_images[0].src
