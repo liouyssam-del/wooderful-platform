@@ -9,6 +9,7 @@
         {},
         {}
       ],
+      "group_size": "10",
       "steps": [],
       "page_images": [
         {
@@ -18,6 +19,7 @@
       "title_de": "Bambus-Schlaginstrument",
       "slug": "bamboo1",
       "materials": [],
+      "subject": "跨域",
       "page_images_ja": [
         {
           "src": "images/updates/1-j.png"
@@ -25,7 +27,9 @@
       ],
       "sort_date": "2026-07-29",
       "title_en": "Percussion Bamboo Instrument",
+      "duration": "16小時",
       "title_zh": "拍打竹樂器",
+      "grade": "小學3年級",
       "page_images_de": [
         {
           "src": "images/updates/1-g.png"
@@ -35,7 +39,7 @@
         {}
       ],
       "images": [],
-      "type": "html",
+      "type": "images",
       "title_ja": "打楽器型竹楽器（だがっきがた たけがっき"
     }
   ]
