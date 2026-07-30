@@ -1,27 +1,42 @@
 {
   "items": [
     {
-      "type": "images",
-      "images": [],
+      "page_images_en": [
+        {
+          "src": "images/updates/1-1-e-0623-abccc_頁面_31.jpg"
+        },
+        {},
+        {},
+        {}
+      ],
+      "steps": [],
       "page_images": [
         {
-          "src": "images/updates/拍打竹樂器頁面_中文.png"
-        },
-        {
-          "src": "images/updates/拍打竹樂器頁面_英文.jpg"
-        },
-        {
-          "src": "images/updates/拍打竹樂器頁面_日文.png"
-        },
-        {
-          "src": "images/updates/拍打竹樂器頁面_德文.png"
+          "src": "images/updates/1-c.png"
         }
       ],
+      "title_de": "Bambus-Schlaginstrument",
+      "slug": "bamboo1",
       "materials": [],
-      "steps": [],
-      "slug": "bamboo-instument",
+      "page_images_ja": [
+        {
+          "src": "images/updates/1-j.png"
+        }
+      ],
       "sort_date": "2026-07-29",
-      "title_zh": "拍打竹樂器"
+      "title_en": "Percussion Bamboo Instrument",
+      "title_zh": "拍打竹樂器",
+      "page_images_de": [
+        {
+          "src": "images/updates/1-g.png"
+        },
+        {},
+        {},
+        {}
+      ],
+      "images": [],
+      "type": "html",
+      "title_ja": "打楽器型竹楽器（だがっきがた たけがっき"
     }
   ]
 }
