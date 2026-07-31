@@ -4,10 +4,7 @@
       "page_images_en": [
         {
           "src": "images/updates/1-1-e-0623-abccc_頁面_31.jpg"
-        },
-        {},
-        {},
-        {}
+        }
       ],
       "group_size": "10",
       "steps": [],
@@ -27,19 +24,17 @@
       ],
       "sort_date": "2026-07-29",
       "title_en": "Percussion Bamboo Instrument",
+      "cover_image": "images/updates/1-0730.jpg",
       "duration": "16小時",
       "title_zh": "拍打竹樂器",
       "grade": "小學3年級",
       "page_images_de": [
         {
           "src": "images/updates/1-g.png"
-        },
-        {},
-        {},
-        {}
+        }
       ],
       "images": [],
-      "type": "images",
+      "type": "html",
       "title_ja": "打楽器型竹楽器（だがっきがた たけがっき"
     }
   ]
