@@ -39,6 +39,13 @@ logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 media_folder: "images/updates"
 public_folder: "images/updates"
 
+# 開啟「草稿」流程：改選項、加/刪圖片、動任何欄位後，先按「Save」存成草稿（不會上線），
+# 確認沒問題後再自己按「Publish」才會真正發布到正式網站。這樣萬一存草稿後不小心按到
+# 上一頁或整個關掉重開，之前存過的草稿還在，不用整份重填。
+# 這是全站設定，最新動態／計畫主持人／分享教案三個分頁都會一起套用這個「先存草稿、
+# 再手動發布」的流程，不是只有分享教案而已。
+publish_mode: editorial_workflow
+
 collections:
   - name: "updates_extra"
     label: "最新動態（新增項目）"
@@ -75,7 +82,7 @@ collections:
               - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
               - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
               - label: "照片"
-                hint: "可新增多張，每張可加說明；可留白。"
+                hint: "可新增多張，每張可加說明，建議 3MB 以內；可留白。"
                 name: "images"
                 widget: "list"
                 required: false
@@ -94,9 +101,14 @@ collections:
         fields:
           - name: "header"
             label: "① 頁首職稱"
-            hint: "照片右側的「單位」與「現職」兩行文字。"
+            hint: "大頭照，以及照片右側的「單位」與「現職」兩行文字。"
             widget: "object"
             fields:
+              - label: "大頭照"
+                hint: "建議直式或方形、人像置中、3MB 以內；不上傳的話會維持網站目前的照片不變。"
+                name: "photo"
+                widget: "image"
+                required: false
               - { label: "單位（中文，必填）", hint: "例如：國立臺北教育大學｜藝術與造形設計學系（所）", name: "affiliation_zh", widget: "string" }
               - { label: "單位（英文，可留白）", name: "affiliation_en", widget: "string", required: false }
               - { label: "單位（日文，可留白）", name: "affiliation_ja", widget: "string", required: false }
@@ -288,21 +300,21 @@ collections:
                 widget: "string"
                 pattern: ['^[a-z0-9-]+$', "只能用小寫英文字母、數字、連字號（-），不能有空格或中文"]
               - label: "教案呈現方式"
-                hint: "完整教案頁＝逐欄填寫下面的簡介／課程目標／材料／步驟等欄位；PNG 圖片頁＝直接上傳教案截圖，改用最下面的「教案頁面圖片」欄位。"
+                hint: "PNG 圖片頁＝直接上傳教案截圖（目前主要新增方式，改用下面的「教案頁面圖片」欄位）；完整教案頁＝逐欄填寫下面的簡介／課程目標／材料／步驟等欄位。"
                 name: "type"
                 widget: "select"
-                default: "html"
+                default: "images"
                 required: false
                 options:
-                  - { label: "完整教案頁", value: "html" }
                   - { label: "PNG 圖片頁", value: "images" }
+                  - { label: "完整教案頁", value: "html" }
               - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
               - { label: "教案名稱（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "教案名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
               - { label: "教案名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
               - { label: "教案名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
               - label: "封面照片"
-                hint: "「分享教案」列表頁圓形縮圖專用，建議上傳一張方形、主體居中、畫面單純的照片。不填的話會自動改用「照片」或「教案頁面圖片」的第一張，但那些通常不適合裁成圓形，容易顯示效果不佳。"
+                hint: "「分享教案」列表頁圓形縮圖專用，建議上傳一張方形、主體居中、畫面單純的照片，3MB 以內。不填的話會自動改用「照片」或「教案頁面圖片」的第一張，但那些通常不適合裁成圓形，容易顯示效果不佳。"
                 name: "cover_image"
                 widget: "image"
                 required: false
@@ -314,12 +326,8 @@ collections:
               - { label: "教學時間", name: "duration", widget: "string", required: false }
               - { label: "參與人數", name: "group_size", widget: "string", required: false }
               - { label: "教學領域", name: "subject", widget: "string", required: false }
-              - { label: "課程目標（中文，可留白）", name: "objectives_zh", widget: "text", required: false }
-              - { label: "課程目標（英文，可留白）", name: "objectives_en", widget: "text", required: false }
-              - { label: "課程目標（日文，可留白）", name: "objectives_ja", widget: "text", required: false }
-              - { label: "課程目標（德文，可留白）", name: "objectives_de", widget: "text", required: false }
               - label: "照片"
-                hint: "可新增多張，每張可加說明；可留白，第一張會當作列表縮圖。這是活動花絮照片，不是教案內容本身——PNG 圖片頁教案請改用下面的「教案頁面圖片」欄位。"
+                hint: "可新增多張，每張可加說明，建議 3MB 以內；可留白，第一張會當作列表縮圖。這是活動花絮照片，不是教案內容本身——PNG 圖片頁教案請改用下面的「教案頁面圖片」欄位。"
                 name: "images"
                 widget: "list"
                 required: false
@@ -328,7 +336,7 @@ collections:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
               - label: "教案頁面圖片（中文／預設版本）"
-                hint: "依序上傳教案截圖，通常 1 張就夠，好幾頁可以多傳幾張；第一張自動當作列表縮圖／封面。切換到英／日／德文時，若對應語言沒上傳圖片，會自動顯示這裡的中文版。"
+                hint: "★ 目前主要的新增教案方式。依序上傳教案截圖，通常 1 張就夠，好幾頁可以多傳幾張，建議直式、單張 3MB 以內；第一張自動當作列表縮圖／封面。切換到英／日／德文時，若對應語言沒上傳圖片，會自動顯示這裡的中文版。"
                 name: "page_images"
                 widget: "list"
                 required: false
@@ -337,7 +345,7 @@ collections:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", hint: "僅供內部備註／無障礙替代文字，不會顯示在瀏覽頁上；可標註「第幾頁」方便之後編輯辨識，例如「p1」。", name: "caption", widget: "string", required: false }
               - label: "教案頁面圖片（英文版）"
-                hint: "可留白；留白時網站切到英文會自動改顯示中文版圖片。"
+                hint: "可留白；留白時網站切到英文會自動改顯示中文版圖片。建議直式、單張 3MB 以內。"
                 name: "page_images_en"
                 widget: "list"
                 required: false
@@ -346,7 +354,7 @@ collections:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", hint: "可標註「英文／第幾頁」方便之後編輯辨識，例如「en-p1」。", name: "caption", widget: "string", required: false }
               - label: "教案頁面圖片（日文版）"
-                hint: "可留白；留白時網站切到日文會依序改顯示英文版、找不到再顯示中文版圖片。"
+                hint: "可留白；留白時網站切到日文會依序改顯示英文版、找不到再顯示中文版圖片。建議直式、單張 3MB 以內。"
                 name: "page_images_ja"
                 widget: "list"
                 required: false
@@ -355,7 +363,7 @@ collections:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", hint: "可標註「日文／第幾頁」方便之後編輯辨識，例如「ja-p1」。", name: "caption", widget: "string", required: false }
               - label: "教案頁面圖片（德文版）"
-                hint: "可留白；留白時網站切到德文會依序改顯示英文版、找不到再顯示中文版圖片。"
+                hint: "可留白；留白時網站切到德文會依序改顯示英文版、找不到再顯示中文版圖片。建議直式、單張 3MB 以內。"
                 name: "page_images_de"
                 widget: "list"
                 required: false
@@ -363,14 +371,22 @@ collections:
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", hint: "可標註「德文／第幾頁」方便之後編輯辨識，例如「de-p1」。", name: "caption", widget: "string", required: false }
+              - label: "課程目標（中文，可留白）"
+                hint: "以下（課程目標／材料清單／製作步驟）僅「教案呈現方式＝完整教案頁」時前台才會顯示，PNG 圖片頁教案可以略過不填。"
+                name: "objectives_zh"
+                widget: "text"
+                required: false
+              - { label: "課程目標（英文，可留白）", name: "objectives_en", widget: "text", required: false }
+              - { label: "課程目標（日文，可留白）", name: "objectives_ja", widget: "text", required: false }
+              - { label: "課程目標（德文，可留白）", name: "objectives_de", widget: "text", required: false }
               - label: "材料清單"
-                hint: "每行一項，例如「木頭方塊 ×2」。"
+                hint: "每行一項，例如「木頭方塊 ×2」。僅「完整教案頁」使用。"
                 name: "materials"
                 widget: "list"
                 required: false
                 default: []
               - label: "製作步驟"
-                hint: "每行一個步驟。"
+                hint: "每行一個步驟。僅「完整教案頁」使用。"
                 name: "steps"
                 widget: "list"
                 required: false

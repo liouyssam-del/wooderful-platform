@@ -32,8 +32,9 @@
     .pub-list a.pub-link { color: #446b2a; text-decoration: underline; text-decoration-color: rgba(68,107,42,0.35); text-underline-offset: 2px; transition: color 0.15s ease; }
     .pub-list a.pub-link:hover { color: #2d4920; text-decoration-color: currentColor; }
     .pub-list a.pub-link .pub-link-icon { font-size: 0.78em; margin-left: 0.3em; }
-    .pub-list a.pub-search-btn { display: inline-flex; align-items: center; justify-content: center; width: 1.35em; height: 1.35em; margin-left: 0.4em; border-radius: 999px; color: #A57A4E; background: rgba(165,122,78,0.1); font-size: 0.78em; vertical-align: -0.15em; transition: color 0.15s ease, background 0.15s ease; }
-    .pub-list a.pub-search-btn:hover { color: #fff; background: #A57A4E; }
+    .pub-list a.pub-search-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.3em; width: auto; height: 1.9em; margin-left: 0.5em; padding: 0 0.6em; border-radius: 999px; color: #8a5f34; background: #f1e6d8; border: 1px solid rgba(165,122,78,0.55); font-size: 0.8em; font-weight: 600; vertical-align: -0.35em; white-space: nowrap; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease; }
+    .pub-list a.pub-search-btn::after { content: "搜尋原文"; }
+    .pub-list a.pub-search-btn:hover { color: #fff; background: #A57A4E; border-color: #A57A4E; }
     details.acc > summary { list-style: none; cursor: pointer; }
     details.acc > summary::-webkit-details-marker { display: none; }
     details.acc[open] > summary .acc-chevron { transform: rotate(180deg); }
@@ -87,7 +88,7 @@
   <!-- 大頭照與姓名 -->
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-16 reveal fade-up">
     <div class="lg:col-span-3">
-      <img src="https://wooderful-tw.com/wp-content/uploads/2023/05/素材-28.jpg" alt="張文德" class="w-40 h-40 lg:w-full lg:h-auto object-cover rounded-2xl border border-stone-200 shadow-sm mx-auto">
+      <img id="director-photo" src="https://wooderful-tw.com/wp-content/uploads/2023/05/素材-28.jpg" alt="張文德" class="w-40 h-40 lg:w-full lg:h-auto object-cover rounded-2xl border border-stone-200 shadow-sm mx-auto">
     </div>
     <div class="lg:col-span-9 text-center lg:text-left">
       <h2 class="text-h1 font-serif font-black text-wood-800 tracking-wide mb-2" data-en="Wen-Te Chang" data-ja="張文德" data-de="Chang Wen-Te">張文德</h2>
@@ -437,6 +438,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 頁首職稱：照片右側的「單位」與「現職」兩行文字
     if (header) {
+      const photoEl = document.getElementById('director-photo');
+      if (photoEl && header.photo) {
+        photoEl.src = header.photo;
+      }
       const aff = document.getElementById('director-affiliation');
       const pos = document.getElementById('director-position');
       if (aff && header.affiliation_zh) {
