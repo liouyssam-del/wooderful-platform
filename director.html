@@ -32,9 +32,8 @@
     .pub-list a.pub-link { color: #446b2a; text-decoration: underline; text-decoration-color: rgba(68,107,42,0.35); text-underline-offset: 2px; transition: color 0.15s ease; }
     .pub-list a.pub-link:hover { color: #2d4920; text-decoration-color: currentColor; }
     .pub-list a.pub-link .pub-link-icon { font-size: 0.78em; margin-left: 0.3em; }
-    .pub-list a.pub-search-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.3em; width: auto; height: 1.9em; margin-left: 0.5em; padding: 0 0.6em; border-radius: 999px; color: #8a5f34; background: #f1e6d8; border: 1px solid rgba(165,122,78,0.55); font-size: 0.8em; font-weight: 600; vertical-align: -0.35em; white-space: nowrap; transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease; }
-    .pub-list a.pub-search-btn::after { content: "搜尋原文"; }
-    .pub-list a.pub-search-btn:hover { color: #fff; background: #A57A4E; border-color: #A57A4E; }
+    .pub-list a.pub-search-btn { display: inline-flex; align-items: center; justify-content: center; width: 1.7em; height: 1.7em; margin-left: 0.35em; border-radius: 999px; color: #fff; background: #A57A4E; font-size: 0.75em; vertical-align: -0.28em; transition: background 0.15s ease, transform 0.15s ease; }
+    .pub-list a.pub-search-btn:hover { background: #2d4920; transform: scale(1.08); }
     details.acc > summary { list-style: none; cursor: pointer; }
     details.acc > summary::-webkit-details-marker { display: none; }
     details.acc[open] > summary .acc-chevron { transform: rotate(180deg); }
@@ -534,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 尚未在 CMS 填入原文連結時，改提供一個搜尋按鈕，用篇名去 Google Scholar 搜尋、開新分頁，
             // 之後只要在 CMS 補上「原文連結」欄位，就會自動改用真正的連結取代這個搜尋按鈕。
             const scholarUrl = `https://scholar.google.com/scholar?q=${encodeURIComponent(text)}`;
-            return `<div class="pub-item">${esc(text)}<a class="pub-search-btn" href="${esc(scholarUrl)}" target="_blank" rel="noopener" title="以篇名搜尋原文" aria-label="以篇名搜尋原文"><i class="fa-solid fa-magnifying-glass"></i></a></div>`;
+            return `<div class="pub-item">${esc(text)} <a class="pub-search-btn" href="${esc(scholarUrl)}" target="_blank" rel="noopener" title="以篇名搜尋原文" aria-label="以篇名搜尋原文"><i class="fa-solid fa-magnifying-glass"></i></a></div>`;
           }).join('\n              ');
           return `
           <details class="acc bg-white border border-stone-200/60 rounded-md">
