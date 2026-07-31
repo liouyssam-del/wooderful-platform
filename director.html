@@ -32,6 +32,8 @@
     .pub-list a.pub-link { color: #446b2a; text-decoration: underline; text-decoration-color: rgba(68,107,42,0.35); text-underline-offset: 2px; transition: color 0.15s ease; }
     .pub-list a.pub-link:hover { color: #2d4920; text-decoration-color: currentColor; }
     .pub-list a.pub-link .pub-link-icon { font-size: 0.78em; margin-left: 0.3em; }
+    .pub-list a.pub-search-btn { display: inline-flex; align-items: center; justify-content: center; width: 1.35em; height: 1.35em; margin-left: 0.4em; border-radius: 999px; color: #A57A4E; background: rgba(165,122,78,0.1); font-size: 0.78em; vertical-align: -0.15em; transition: color 0.15s ease, background 0.15s ease; }
+    .pub-list a.pub-search-btn:hover { color: #fff; background: #A57A4E; }
     details.acc > summary { list-style: none; cursor: pointer; }
     details.acc > summary::-webkit-details-marker { display: none; }
     details.acc[open] > summary .acc-chevron { transform: rotate(180deg); }
@@ -524,7 +526,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (url) {
               return `<div class="pub-item"><a class="pub-link" href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}<i class="fa-solid fa-arrow-up-right-from-square pub-link-icon"></i></a></div>`;
             }
-            return `<div class="pub-item">${esc(text)}</div>`;
+            // 尚未在 CMS 填入原文連結時，改提供一個搜尋按鈕，用篇名去 Google Scholar 搜尋、開新分頁，
+            // 之後只要在 CMS 補上「原文連結」欄位，就會自動改用真正的連結取代這個搜尋按鈕。
+            const scholarUrl = `https://scholar.google.com/scholar?q=${encodeURIComponent(text)}`;
+            return `<div class="pub-item">${esc(text)}<a class="pub-search-btn" href="${esc(scholarUrl)}" target="_blank" rel="noopener" title="以篇名搜尋原文" aria-label="以篇名搜尋原文"><i class="fa-solid fa-magnifying-glass"></i></a></div>`;
           }).join('\n              ');
           return `
           <details class="acc bg-white border border-stone-200/60 rounded-md">
