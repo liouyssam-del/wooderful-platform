@@ -38,21 +38,36 @@
       "title_ja": "打楽器型竹楽器（だがっきがた たけがっき"
     },
     {
-      "page_images_en": [],
+      "page_images_en": [
+        {
+          "src": "images/updates/1-e-mmm.jpg"
+        }
+      ],
       "steps": [],
       "page_images": [
         {
-          "src": "images/updates/1-j.png"
+          "src": "images/updates/1-c-m.png"
         }
       ],
-      "slug": "123",
+      "title_de": "Mini-Bambus-Xylophon",
       "materials": [],
-      "page_images_ja": [],
-      "sort_date": "2026-07-31",
-      "cover_image": "images/updates/bamboo-02a-onsite-teaching.jpg",
-      "page_images_de": [],
+      "page_images_ja": [
+        {
+          "src": "images/updates/1-j-m.png"
+        }
+      ],
+      "sort_date": "2026-08-02",
+      "title_en": "Mini Bamboo Xylophone",
+      "cover_image": "images/updates/snap-1.jpg",
+      "title_zh": "小竹琴",
+      "page_images_de": [
+        {
+          "src": "images/updates/1-g-m.png"
+        }
+      ],
       "images": [],
-      "type": "images"
+      "type": "images",
+      "title_ja": "ミニ竹木琴"
     }
   ]
 }
