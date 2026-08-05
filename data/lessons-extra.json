@@ -50,7 +50,7 @@
         }
       ],
       "title_de": "Mini-Bambus-Xylophon",
-      "slug": "456",
+      "slug": "bamboo-xylophone",
       "materials": [],
       "page_images_ja": [
         {
@@ -69,23 +69,6 @@
       "images": [],
       "type": "images",
       "title_ja": "ミニ竹木琴"
-    },
-    {
-      "page_images_en": [],
-      "steps": [],
-      "page_images": [
-        {
-          "src": "images/updates/1-1-e-0623-abccc_頁面_31.jpg"
-        }
-      ],
-      "slug": "256",
-      "materials": [],
-      "page_images_ja": [],
-      "sort_date": "2026-08-05",
-      "title_zh": "123",
-      "page_images_de": [],
-      "images": [],
-      "type": "images"
     }
   ]
 }
