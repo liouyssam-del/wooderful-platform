@@ -524,9 +524,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (wrap) {
         wrap.innerHTML = publications.categories.map((cat) => {
           const items = Array.isArray(cat.items) ? cat.items : [];
+          // 「國際學術研討會」這個分類，老師確認不需要附原文連結／搜尋按鈕，一律維持純文字即可。
+          const noSourceLink = /國際學術研討會/.test(String(cat.title_zh || ''));
           const body = items.map((it) => {
             const text = typeof it === 'string' ? it : ((it && it.text) || '');
             const url = (it && typeof it === 'object' && it.url) ? String(it.url).trim() : '';
+            if (noSourceLink) {
+              return `<div class="pub-item">${esc(text)}</div>`;
+            }
             if (url) {
               return `<div class="pub-item"><a class="pub-link" href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}<i class="fa-solid fa-arrow-up-right-from-square pub-link-icon"></i></a></div>`;
             }
