@@ -8,10 +8,7 @@ var createClass = window.createClass;
 var UpdatesExtraPreview = createClass({
   render: function () {
     var entry = this.props.entry;
-    var items = entry.getIn(['data', 'items']);
-    if (!items || items.size === 0) {
-      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何項目');
-    }
+    var data = entry.get('data');
 
     var categoryLabels = {
       intl: '國際交流',
@@ -20,8 +17,25 @@ var UpdatesExtraPreview = createClass({
       industry: '產學合作計畫成果',
     };
 
-    var cards = items.map(function (item, i) {
-      var category = item.get('category') || '';
+    // 資料依分類分成 4 組獨立清單（intl / wood / bamboo / industry），這裡攤平成一個陣列，
+    // 並補回 category 方便沿用底下既有的卡片渲染邏輯。
+    var items = [];
+    ['intl', 'wood', 'bamboo', 'industry'].forEach(function (cat) {
+      var list = data && data.get(cat);
+      if (list && list.size) {
+        list.forEach(function (item) {
+          items.push({ category: cat, item: item });
+        });
+      }
+    });
+
+    if (items.length === 0) {
+      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何項目');
+    }
+
+    var cards = items.map(function (entryPair, i) {
+      var category = entryPair.category;
+      var item = entryPair.item;
       var dateLabel = item.get('date_label') || '';
       var titleZh = item.get('title_zh') || '（尚未填寫標題）';
       var descZh = item.get('desc_zh') || '';
@@ -109,7 +123,7 @@ var UpdatesExtraPreview = createClass({
       'div',
       { style: { padding: '24px', background: '#fbf9f5' } },
       h('p', { style: { fontSize: '12px', color: '#a8998a', marginBottom: '16px' } }, '（預覽樣式僅供參考，實際網站排版可能略有差異）'),
-      cards.toArray()
+      cards
     );
   },
 });
@@ -391,27 +405,44 @@ var DirectorProfilePreview = createClass({
     ];
 
     /* ⑦ 研究發表 */
+    // 一般分類（學術期刊論文／相關學報出版論文／發明專利／新型專利）：引用內容＋原文連結。
     var pubCategories = publications && publications.get('categories');
+    function renderCatBlock(cat, key) {
+      var items = cat.get('items');
+      return h('div', { key: key, style: { marginBottom: '18px' } },
+        h('h4', { style: { fontSize: '15px', fontWeight: 700, color: '#2d4920', margin: '0 0 8px 0' } }, cat.get('title_zh') || '（尚未填寫類別標題）'),
+        items && items.size
+          ? h('ol', { style: { margin: 0, paddingLeft: '20px' } }, items.toArray().map(function (item, j) {
+              var text = (item && item.get) ? (item.get('text') || '') : item;
+              var url = (item && item.get) ? item.get('url') : '';
+              return h('li', { key: j, style: { fontSize: '13px', color: '#5c5449', marginBottom: '6px', lineHeight: 1.6 } },
+                text,
+                url ? h('span', { style: { color: '#446b2a', marginLeft: '6px' } }, '🔗') : null
+              );
+            }))
+          : h('div', { style: { color: '#999', fontSize: '13px' } }, '（此類別尚無引用項目）')
+      );
+    }
+    // 「國際學術研討會」已獨立一區（international_conference），引用內容＋英/日/德文，不附連結。
+    var intlConf = publications && publications.get('international_conference');
+    var catBlocks = pubCategories && pubCategories.size ? pubCategories.toArray().map(renderCatBlock) : [];
+    if (intlConf) {
+      var intlItems = intlConf.get('items');
+      catBlocks.push(
+        h('div', { key: 'intl_conf', style: { marginBottom: '18px' } },
+          h('h4', { style: { fontSize: '15px', fontWeight: 700, color: '#2d4920', margin: '0 0 8px 0' } }, intlConf.get('title_zh') || '（尚未填寫類別標題）'),
+          intlItems && intlItems.size
+            ? h('ol', { style: { margin: 0, paddingLeft: '20px' } }, intlItems.toArray().map(function (item, j) {
+                var text = (item && item.get) ? (item.get('text') || '') : item;
+                return h('li', { key: j, style: { fontSize: '13px', color: '#5c5449', marginBottom: '6px', lineHeight: 1.6 } }, text);
+              }))
+            : h('div', { style: { color: '#999', fontSize: '13px' } }, '（此類別尚無引用項目）')
+        )
+      );
+    }
     var publicationsBlock = [
       sectionHeading('⑦ 研究發表'),
-      pubCategories && pubCategories.size
-        ? pubCategories.toArray().map(function (cat, i) {
-            var items = cat.get('items');
-            return h('div', { key: i, style: { marginBottom: '18px' } },
-              h('h4', { style: { fontSize: '15px', fontWeight: 700, color: '#2d4920', margin: '0 0 8px 0' } }, cat.get('title_zh') || '（尚未填寫類別標題）'),
-              items && items.size
-                ? h('ol', { style: { margin: 0, paddingLeft: '20px' } }, items.toArray().map(function (item, j) {
-                    var text = (item && item.get) ? (item.get('text') || '') : item;
-                    var url = (item && item.get) ? item.get('url') : '';
-                    return h('li', { key: j, style: { fontSize: '13px', color: '#5c5449', marginBottom: '6px', lineHeight: 1.6 } },
-                      text,
-                      url ? h('span', { style: { color: '#446b2a', marginLeft: '6px' } }, '🔗') : null
-                    );
-                  }))
-                : h('div', { style: { color: '#999', fontSize: '13px' } }, '（此類別尚無引用項目）')
-            );
-          })
-        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何類別'),
+      catBlocks.length ? catBlocks : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何類別'),
     ];
 
     /* ⑦ 研究生論文指導 */

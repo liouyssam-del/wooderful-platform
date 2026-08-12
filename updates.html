@@ -467,9 +467,16 @@ function todayISODate() {
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('data/updates-extra.json', { cache: 'no-store' })
-    .then((res) => (res.ok ? res.json() : { items: [] }))
+    .then((res) => (res.ok ? res.json() : {}))
     .then((data) => {
-      const items = (data && Array.isArray(data.items)) ? data.items : [];
+      // 資料現在依分類分成 4 組（intl / wood / bamboo / industry），對應後台的 4 個獨立清單；
+      // 這裡把 4 組攤平成一個陣列，並補回 category 欄位，後面的排序、插入邏輯維持不變。
+      const CATEGORY_KEYS = ['intl', 'wood', 'bamboo', 'industry'];
+      const items = [];
+      CATEGORY_KEYS.forEach((cat) => {
+        const arr = (data && Array.isArray(data[cat])) ? data[cat] : [];
+        arr.forEach((it) => items.push(Object.assign({}, it, { category: cat })));
+      });
       if (items.length === 0) return;
 
       // 同分類的新資料由新到舊排序；沒有設定日期的項目視為「今天」，排在最前面

@@ -518,33 +518,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 研究發表（五大類別；除了「國際學術研討會」這個分類，其餘引用文字維持單一語言，不隨網站語言切換）
-    if (publications && Array.isArray(publications.categories) && publications.categories.length > 0) {
+    // 研究發表：一般分類（學術期刊論文／相關學報出版論文／發明專利／新型專利）用「引用內容＋原文連結」；
+    // 「國際學術研討會」已經拆到 publications.international_conference 單獨一區，用「引用內容＋英/日/德文」，
+    // 不附原文連結／搜尋按鈕（老師已確認這個分類不需要連結），版面順序維持跟以前一樣。
+    if (publications) {
       const wrap = document.getElementById('publications-list');
       if (wrap) {
-        wrap.innerHTML = publications.categories.map((cat) => {
+        const renderItem = (it, multilingual) => {
+          const text = typeof it === 'string' ? it : ((it && it.text) || '');
+          if (multilingual) {
+            const en = (it && typeof it === 'object' && it.text_en) ? it.text_en : text;
+            const ja = (it && typeof it === 'object' && it.text_ja) ? it.text_ja : text;
+            const de = (it && typeof it === 'object' && it.text_de) ? it.text_de : text;
+            return `<div class="pub-item" data-en="${esc(en)}" data-ja="${esc(ja)}" data-de="${esc(de)}">${esc(text)}</div>`;
+          }
+          const url = (it && typeof it === 'object' && it.url) ? String(it.url).trim() : '';
+          if (url) {
+            return `<div class="pub-item"><a class="pub-link" href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}<i class="fa-solid fa-arrow-up-right-from-square pub-link-icon"></i></a></div>`;
+          }
+          // 尚未在 CMS 填入原文連結時，改提供一個搜尋按鈕，用篇名去 Google Scholar 搜尋、開新分頁，
+          // 之後只要在 CMS 補上「原文連結」欄位，就會自動改用真正的連結取代這個搜尋按鈕。
+          const scholarUrl = `https://scholar.google.com/scholar?q=${encodeURIComponent(text)}`;
+          return `<div class="pub-item">${esc(text)} <a class="pub-search-btn" href="${esc(scholarUrl)}" target="_blank" rel="noopener" title="以篇名搜尋原文" aria-label="以篇名搜尋原文"><i class="fa-solid fa-magnifying-glass"></i></a></div>`;
+        };
+        const renderCat = (cat, multilingual) => {
           const items = Array.isArray(cat.items) ? cat.items : [];
-          // 「國際學術研討會」這個分類，老師確認不需要附原文連結／搜尋按鈕，一律維持純文字即可。
-          const noSourceLink = /國際學術研討會/.test(String(cat.title_zh || ''));
-          const body = items.map((it) => {
-            const text = typeof it === 'string' ? it : ((it && it.text) || '');
-            const url = (it && typeof it === 'object' && it.url) ? String(it.url).trim() : '';
-            if (noSourceLink) {
-              // 這個分類的引用文字有機器翻譯草稿（text_en / text_ja / text_de，尚未逐筆確認），
-              // 用 data-en/ja/de 掛上去，讓網站切換語言時這裡也會跟著換；沒有翻譯草稿的欄位就退回顯示原文。
-              const en = (it && typeof it === 'object' && it.text_en) ? it.text_en : text;
-              const ja = (it && typeof it === 'object' && it.text_ja) ? it.text_ja : text;
-              const de = (it && typeof it === 'object' && it.text_de) ? it.text_de : text;
-              return `<div class="pub-item" data-en="${esc(en)}" data-ja="${esc(ja)}" data-de="${esc(de)}">${esc(text)}</div>`;
-            }
-            if (url) {
-              return `<div class="pub-item"><a class="pub-link" href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}<i class="fa-solid fa-arrow-up-right-from-square pub-link-icon"></i></a></div>`;
-            }
-            // 尚未在 CMS 填入原文連結時，改提供一個搜尋按鈕，用篇名去 Google Scholar 搜尋、開新分頁，
-            // 之後只要在 CMS 補上「原文連結」欄位，就會自動改用真正的連結取代這個搜尋按鈕。
-            const scholarUrl = `https://scholar.google.com/scholar?q=${encodeURIComponent(text)}`;
-            return `<div class="pub-item">${esc(text)} <a class="pub-search-btn" href="${esc(scholarUrl)}" target="_blank" rel="noopener" title="以篇名搜尋原文" aria-label="以篇名搜尋原文"><i class="fa-solid fa-magnifying-glass"></i></a></div>`;
-          }).join('\n              ');
+          const body = items.map((it) => renderItem(it, multilingual)).join('\n              ');
           return `
           <details class="acc bg-white border border-stone-200/60 rounded-md">
             <summary class="flex items-center justify-between px-6 py-4">
@@ -555,7 +554,16 @@ document.addEventListener('DOMContentLoaded', () => {
               ${body}
             </div>
           </details>`;
-        }).join('');
+        };
+        const catsArr = Array.isArray(publications.categories) ? publications.categories : [];
+        const intl = publications.international_conference || null;
+        // 版面順序維持跟以前一樣：學術期刊論文、相關學報出版論文、國際學術研討會、發明專利、新型專利
+        const blocks = [];
+        if (catsArr[0]) blocks.push(renderCat(catsArr[0], false));
+        if (catsArr[1]) blocks.push(renderCat(catsArr[1], false));
+        if (intl) blocks.push(renderCat(intl, true));
+        for (let i = 2; i < catsArr.length; i++) blocks.push(renderCat(catsArr[i], false));
+        wrap.innerHTML = blocks.join('');
       }
     }
 

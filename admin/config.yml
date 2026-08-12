@@ -56,21 +56,87 @@ collections:
         file: "data/updates-extra.json"
         description: "在這裡新增、刪除或修改「最新動態」頁面的內容。存檔後重新整理網站頁面就會看到，不需要等待任何建置流程。"
         fields:
-          - name: "items"
-            label: "動態列表"
+          - name: "intl"
+            label: "國際交流"
             widget: "list"
             label_singular: "一則動態"
             summary: "{{fields.date_label}} - {{fields.title_zh}}"
             fields:
-              - label: "分類"
-                name: "category"
-                widget: "select"
+              - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+              - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
+              - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
+              - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
+              - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
+              - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - { label: "內容（中文，可留白）", name: "desc_zh", widget: "text", required: false }
+              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
+              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
+              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - label: "照片"
+                hint: "可新增多張，每張可加說明，建議 3MB 以內；可留白。"
+                name: "images"
+                widget: "list"
                 required: false
-                options:
-                  - { label: "國際交流", value: "intl" }
-                  - { label: "木育玩具開發與推廣", value: "wood" }
-                  - { label: "竹育樂（2026~）", value: "bamboo" }
-                  - { label: "產學合作計畫成果", value: "industry" }
+                default: []
+                fields:
+                  - { label: "圖片", name: "src", widget: "image" }
+                  - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
+          - name: "wood"
+            label: "木育玩具開發與推廣"
+            widget: "list"
+            label_singular: "一則動態"
+            summary: "{{fields.date_label}} - {{fields.title_zh}}"
+            fields:
+              - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+              - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
+              - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
+              - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
+              - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
+              - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - { label: "內容（中文，可留白）", name: "desc_zh", widget: "text", required: false }
+              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
+              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
+              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - label: "照片"
+                hint: "可新增多張，每張可加說明，建議 3MB 以內；可留白。"
+                name: "images"
+                widget: "list"
+                required: false
+                default: []
+                fields:
+                  - { label: "圖片", name: "src", widget: "image" }
+                  - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
+          - name: "bamboo"
+            label: "竹育樂（2026~）"
+            widget: "list"
+            label_singular: "一則動態"
+            summary: "{{fields.date_label}} - {{fields.title_zh}}"
+            fields:
+              - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+              - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
+              - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
+              - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
+              - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
+              - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - { label: "內容（中文，可留白）", name: "desc_zh", widget: "text", required: false }
+              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
+              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
+              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - label: "照片"
+                hint: "可新增多張，每張可加說明，建議 3MB 以內；可留白。"
+                name: "images"
+                widget: "list"
+                required: false
+                default: []
+                fields:
+                  - { label: "圖片", name: "src", widget: "image" }
+                  - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
+          - name: "industry"
+            label: "產學合作計畫成果"
+            widget: "list"
+            label_singular: "一則動態"
+            summary: "{{fields.date_label}} - {{fields.title_zh}}"
+            fields:
               - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
               - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
@@ -240,7 +306,7 @@ collections:
             fields:
               - name: "categories"
                 label: "類別列表"
-                hint: "學術期刊論文／相關學報出版論文／國際學術研討會／發明專利／新型專利"
+                hint: "學術期刊論文／相關學報出版論文／發明專利／新型專利。（「國際學術研討會」已經獨立到下面單獨一區，不在這裡。）"
                 widget: "list"
                 label_singular: "一個類別"
                 summary: "{{fields.title_zh}}"
@@ -257,10 +323,27 @@ collections:
                     summary: "{{fields.text}}"
                     fields:
                       - { label: "引用內容", name: "text", widget: "text" }
-                      - { label: "引用內容（英文，可留白）", hint: "目前只有「國際學術研討會」這個分類的引用文字會依網站語言切換顯示；不填的話，切換到英文版時會顯示中文原文。", name: "text_en", widget: "string", required: false }
+                      - { label: "原文連結（可留白）", hint: "例如期刊 DOI 網址，或是網站裡已經上傳好的 PDF 檔案連結；填了的話前台會把這筆引用做成可點擊連結，開新分頁。", name: "url", widget: "string", required: false }
+              - name: "international_conference"
+                label: "國際學術研討會（獨立一區）"
+                hint: "這個分類跟上面「類別列表」是分開的，因為它的引用文字會依網站語言（中/英/日/德）切換顯示，不需要原文連結。"
+                widget: "object"
+                fields:
+                  - { label: "類別標題（中文，必填）", hint: "例如：國際學術研討會 2013–迄今", name: "title_zh", widget: "string" }
+                  - { label: "類別標題（英文，可留白）", name: "title_en", widget: "string", required: false }
+                  - { label: "類別標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
+                  - { label: "類別標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+                  - label: "引用項目列表"
+                    hint: "每項一則，這裡的英/日/德文會隨網站語言切換自動顯示；沒填的話該語言會顯示中文（或原文）。"
+                    name: "items"
+                    widget: "list"
+                    label_singular: "一則引用"
+                    summary: "{{fields.text}}"
+                    fields:
+                      - { label: "引用內容（原文，必填）", name: "text", widget: "text" }
+                      - { label: "引用內容（英文，可留白）", hint: "不填的話，切換到英文版時會顯示原文。", name: "text_en", widget: "string", required: false }
                       - { label: "引用內容（日文，可留白）", name: "text_ja", widget: "string", required: false }
                       - { label: "引用內容（德文，可留白）", name: "text_de", widget: "string", required: false }
-                      - { label: "原文連結（可留白）", hint: "例如期刊 DOI 網址，或是網站裡已經上傳好的 PDF 檔案連結；填了的話前台會把這筆引用做成可點擊連結，開新分頁。「國際學術研討會」這個分類例外，就算填了這裡，前台也不會顯示連結（老師已確認這個分類不需要連結）。", name: "url", widget: "string", required: false }
 
           - name: "thesis"
             label: "⑧ 研究生論文指導"
