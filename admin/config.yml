@@ -257,6 +257,9 @@ collections:
                     summary: "{{fields.text}}"
                     fields:
                       - { label: "引用內容", name: "text", widget: "text" }
+                      - { label: "引用內容（英文，可留白）", hint: "目前只有「國際學術研討會」這個分類的引用文字會依網站語言切換顯示；不填的話，切換到英文版時會顯示中文原文。", name: "text_en", widget: "string", required: false }
+                      - { label: "引用內容（日文，可留白）", name: "text_ja", widget: "string", required: false }
+                      - { label: "引用內容（德文，可留白）", name: "text_de", widget: "string", required: false }
                       - { label: "原文連結（可留白）", hint: "例如期刊 DOI 網址，或是網站裡已經上傳好的 PDF 檔案連結；填了的話前台會把這筆引用做成可點擊連結，開新分頁。「國際學術研討會」這個分類例外，就算填了這裡，前台也不會顯示連結（老師已確認這個分類不需要連結）。", name: "url", widget: "string", required: false }
 
           - name: "thesis"

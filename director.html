@@ -518,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 研究發表（五大類別；引用文字維持單一語言，不隨網站語言切換，與原本內容一致）
+    // 研究發表（五大類別；除了「國際學術研討會」這個分類，其餘引用文字維持單一語言，不隨網站語言切換）
     if (publications && Array.isArray(publications.categories) && publications.categories.length > 0) {
       const wrap = document.getElementById('publications-list');
       if (wrap) {
@@ -530,7 +530,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const text = typeof it === 'string' ? it : ((it && it.text) || '');
             const url = (it && typeof it === 'object' && it.url) ? String(it.url).trim() : '';
             if (noSourceLink) {
-              return `<div class="pub-item">${esc(text)}</div>`;
+              // 這個分類的引用文字有機器翻譯草稿（text_en / text_ja / text_de，尚未逐筆確認），
+              // 用 data-en/ja/de 掛上去，讓網站切換語言時這裡也會跟著換；沒有翻譯草稿的欄位就退回顯示原文。
+              const en = (it && typeof it === 'object' && it.text_en) ? it.text_en : text;
+              const ja = (it && typeof it === 'object' && it.text_ja) ? it.text_ja : text;
+              const de = (it && typeof it === 'object' && it.text_de) ? it.text_de : text;
+              return `<div class="pub-item" data-en="${esc(en)}" data-ja="${esc(ja)}" data-de="${esc(de)}">${esc(text)}</div>`;
             }
             if (url) {
               return `<div class="pub-item"><a class="pub-link" href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}<i class="fa-solid fa-arrow-up-right-from-square pub-link-icon"></i></a></div>`;
