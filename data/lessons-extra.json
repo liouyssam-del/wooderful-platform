@@ -50,13 +50,14 @@
         }
       ],
       "title_de": "Mini-Bambus-Xylophon",
+      "slug": "bamboo-xylophone",
       "materials": [],
       "page_images_ja": [
         {
           "src": "images/updates/1-j-m.png"
         }
       ],
-      "sort_date": "2026-08-02",
+      "sort_date": "2026-08-18",
       "title_en": "Mini Bamboo Xylophone",
       "cover_image": "images/updates/snap-1.jpg",
       "title_zh": "小竹琴",
@@ -66,7 +67,7 @@
         }
       ],
       "images": [],
-      "type": "images",
+      "type": "html",
       "title_ja": "ミニ竹木琴"
     }
   ]
