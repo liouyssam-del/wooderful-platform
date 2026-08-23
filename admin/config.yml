@@ -51,13 +51,13 @@ collections:
     label: "最新動態（新增項目）"
     label_singular: "一則動態"
     files:
-      - name: "updates_extra"
-        label: "最新動態列表"
-        file: "data/updates-extra.json"
-        description: "在這裡新增、刪除或修改「最新動態」頁面的內容。存檔後重新整理網站頁面就會看到，不需要等待任何建置流程。"
+      - name: "updates_intl"
+        label: "國際交流"
+        file: "data/updates-intl.json"
+        description: "「最新動態」頁面「國際交流」分類的項目。存檔後重新整理網站頁面就會看到，不需要等待任何建置流程。"
         fields:
-          - name: "intl"
-            label: "國際交流"
+          - name: "items"
+            label: "動態列表"
             widget: "list"
             label_singular: "一則動態"
             summary: "{{fields.date_label}} - {{fields.title_zh}}"
@@ -81,8 +81,14 @@ collections:
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
-          - name: "wood"
-            label: "木育玩具開發與推廣"
+
+      - name: "updates_wood"
+        label: "木育玩具開發與推廣"
+        file: "data/updates-wood.json"
+        description: "「最新動態」頁面「木育玩具開發與推廣」分類的項目。存檔後重新整理網站頁面就會看到，不需要等待任何建置流程。"
+        fields:
+          - name: "items"
+            label: "動態列表"
             widget: "list"
             label_singular: "一則動態"
             summary: "{{fields.date_label}} - {{fields.title_zh}}"
@@ -106,8 +112,14 @@ collections:
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
-          - name: "bamboo"
-            label: "竹育樂（2026~）"
+
+      - name: "updates_bamboo"
+        label: "竹育樂（2026~）"
+        file: "data/updates-bamboo.json"
+        description: "「最新動態」頁面「竹育樂（2026~）」分類的項目。存檔後重新整理網站頁面就會看到，不需要等待任何建置流程。"
+        fields:
+          - name: "items"
+            label: "動態列表"
             widget: "list"
             label_singular: "一則動態"
             summary: "{{fields.date_label}} - {{fields.title_zh}}"
@@ -131,8 +143,14 @@ collections:
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", name: "caption", widget: "string", required: false }
-          - name: "industry"
-            label: "產學合作計畫成果"
+
+      - name: "updates_industry"
+        label: "產學合作計畫成果"
+        file: "data/updates-industry.json"
+        description: "「最新動態」頁面「產學合作計畫成果」分類的項目。存檔後重新整理網站頁面就會看到，不需要等待任何建置流程。"
+        fields:
+          - name: "items"
+            label: "動態列表"
             widget: "list"
             label_singular: "一則動態"
             summary: "{{fields.date_label}} - {{fields.title_zh}}"

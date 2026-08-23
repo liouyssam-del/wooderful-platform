@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "date_label": "2026/07/24",
+      "desc_ja": "劉講師は授業用の教材を準備するため、自ら山へ竹を採取しに行きました。",
+      "title_de": "山で竹を採取する",
+      "desc_de": "Dozent Liu sammelte persönlich Bambus in den Bergen, um Materialien für den Unterricht vorzubereiten.",
+      "title_en": "Bamboo Harvesting Course",
+      "title_zh": "上山採竹課程備料",
+      "desc_en": "Instructor Liu personally harvested bamboo in the mountains to prepare materials for the course.",
+      "images": [
+        {
+          "src": "images/updates/s__59867140_0.jpg"
+        },
+        {
+          "src": "images/updates/s__59867142_0.jpg"
+        },
+        {
+          "src": "images/updates/s__59867139_0.jpg"
+        },
+        {
+          "src": "images/updates/s__59867143_0.jpg"
+        }
+      ],
+      "image": "images/updates/s__59867139_0.jpg",
+      "desc_zh": "劉老師上山採竹課程備料",
+      "title_ja": "Bambusernte in den Bergen"
+    },
+    {
+      "date_label": "2026年5月",
+      "desc_ja": "国立台北教育大学芸術デザイン学科の学生4名が、2日間の大型竹楽器製作・試作・検証ワークショップに参加し、教材としての有効性を確認した。",
+      "title_de": "Seed-Lehrkräfteausbildung für die Bambus-Schlagröhrentrommel (Pa Tong Qin)",
+      "desc_de": "Vier NTUE-Studierende nahmen an einem zweitägigen Workshop zu Konstruktion, Prototypenbau und Erprobung großformatiger Bambusinstrumente teil. Die Pilotdurchführung verlief erfolgreich und bestätigte das Unterrichtskonzept.",
+      "sort_date": "2026-05-08",
+      "title_en": "Seed Teacher Training for the Primitive Bamboo Slit Drum (Pa Tong Qin)",
+      "title_zh": "原竹拍筒琴種子教師培訓",
+      "desc_en": "Four NTUE Arts and Design students participated in a two-day workshop on large-scale bamboo instrument construction, prototyping, and testing. The pilot training produced excellent outcomes and validated the instructional approach.",
+      "images": [
+        {
+          "src": "images/updates/竹實作現場1.png",
+          "caption": "a. Hands-on Workshop (I) b. Hands-on Workshop (II)"
+        },
+        {
+          "src": "images/updates/完成測試.png",
+          "caption": "c. Completed Prototype and Testing"
+        }
+      ],
+      "desc_zh": "嘗試開發大型竹樂器教案，甄選4位國北教大藝設系同學，進行樂器製作工法與原理教學，以2天時間進行試做與測試，成果與效果佳。",
+      "title_ja": "竹製打筒琴（パートンチン）種子教員研修"
+    }
+  ]
+}

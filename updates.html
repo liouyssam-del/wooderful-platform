@@ -452,8 +452,11 @@
 <div id="footer-container"></div>
 <script src="layout.js"></script>
 <script>
-// 讀取教授透過後台新增的動態（data/updates-extra.json），插入對應分類的最上方。
-// 這個檔案是純資料，教授在 /admin/ 後台填表單新增，網站不需要重新建置，重新整理頁面就會看到。
+// 讀取教授透過後台新增的動態，插入對應分類的最上方。
+// 4 個分類（國際交流／木育玩具／竹育樂／產學合作）各自獨立一個 CMS 項目、獨立一個 JSON 檔
+// （data/updates-intl.json／updates-wood.json／updates-bamboo.json／updates-industry.json），
+// 教授在後台編輯時不用再面對一份夾雜 4 個分類的大表單。這些檔案都是純資料，教授在 /admin/
+// 後台填表單新增，網站不需要重新建置，重新整理頁面就會看到。
 
 // CMS 項目沒有設定「排序日期」時，預設當作今天新增，讓它自動排在最新的位置
 // （與 lessons.html 採用相同的邏輯，確保各頁面排序行為一致）。
@@ -465,16 +468,25 @@ function todayISODate() {
   return `${yyyy}-${mm}-${dd}`;
 }
 
+function fetchUpdatesJSON(path) {
+  return fetch(path, { cache: 'no-store' }).then((res) => (res.ok ? res.json() : { items: [] })).catch(() => ({ items: [] }));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('data/updates-extra.json', { cache: 'no-store' })
-    .then((res) => (res.ok ? res.json() : {}))
-    .then((data) => {
-      // 資料現在依分類分成 4 組（intl / wood / bamboo / industry），對應後台的 4 個獨立清單；
-      // 這裡把 4 組攤平成一個陣列，並補回 category 欄位，後面的排序、插入邏輯維持不變。
-      const CATEGORY_KEYS = ['intl', 'wood', 'bamboo', 'industry'];
+  const CATEGORY_FILES = {
+    intl: 'data/updates-intl.json',
+    wood: 'data/updates-wood.json',
+    bamboo: 'data/updates-bamboo.json',
+    industry: 'data/updates-industry.json',
+  };
+  const CATEGORY_KEYS = Object.keys(CATEGORY_FILES);
+  Promise.all(CATEGORY_KEYS.map((cat) => fetchUpdatesJSON(CATEGORY_FILES[cat])))
+    .then((results) => {
+      // 把 4 個檔案的結果攤平成一個陣列，並補回 category 欄位，後面的排序、插入邏輯維持不變。
       const items = [];
-      CATEGORY_KEYS.forEach((cat) => {
-        const arr = (data && Array.isArray(data[cat])) ? data[cat] : [];
+      CATEGORY_KEYS.forEach((cat, i) => {
+        const data = results[i];
+        const arr = (data && Array.isArray(data.items)) ? data.items : [];
         arr.forEach((it) => items.push(Object.assign({}, it, { category: cat })));
       });
       if (items.length === 0) return;

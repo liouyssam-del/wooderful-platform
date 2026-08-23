@@ -4,38 +4,15 @@
 var h = window.h;
 var createClass = window.createClass;
 
-/* ── 最新動態：預覽卡片，模擬 updates.html 的 .activity-card 樣式 ── */
-var UpdatesExtraPreview = createClass({
-  render: function () {
-    var entry = this.props.entry;
-    var data = entry.get('data');
-
-    var categoryLabels = {
-      intl: '國際交流',
-      wood: '木育玩具開發與推廣',
-      bamboo: '竹育樂',
-      industry: '產學合作計畫成果',
-    };
-
-    // 資料依分類分成 4 組獨立清單（intl / wood / bamboo / industry），這裡攤平成一個陣列，
-    // 並補回 category 方便沿用底下既有的卡片渲染邏輯。
-    var items = [];
-    ['intl', 'wood', 'bamboo', 'industry'].forEach(function (cat) {
-      var list = data && data.get(cat);
-      if (list && list.size) {
-        list.forEach(function (item) {
-          items.push({ category: cat, item: item });
-        });
-      }
-    });
-
-    if (items.length === 0) {
+/* ── 最新動態：預覽卡片，模擬 updates.html 的 .activity-card 樣式 ──
+   4 個分類（國際交流／木育玩具／竹育樂／產學合作）各自獨立一個檔案、獨立一個預覽元件，
+   不再是一份夾雜 4 個分類清單的大表單。共用同一個 renderUpdateCards() 畫卡片。 */
+function renderUpdateCards(items, categoryLabel) {
+    if (!items || items.size === 0) {
       return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何項目');
     }
 
-    var cards = items.map(function (entryPair, i) {
-      var category = entryPair.category;
-      var item = entryPair.item;
+    var cards = items.toArray().map(function (item, i) {
       var dateLabel = item.get('date_label') || '';
       var titleZh = item.get('title_zh') || '（尚未填寫標題）';
       var descZh = item.get('desc_zh') || '';
@@ -69,7 +46,7 @@ var UpdatesExtraPreview = createClass({
               marginBottom: '10px',
             },
           },
-          dateLabel + (category ? '　·　' + (categoryLabels[category] || category) : '')
+          dateLabel + (categoryLabel ? '　·　' + categoryLabel : '')
         ),
         h(
           'h3',
@@ -125,10 +102,35 @@ var UpdatesExtraPreview = createClass({
       h('p', { style: { fontSize: '12px', color: '#a8998a', marginBottom: '16px' } }, '（預覽樣式僅供參考，實際網站排版可能略有差異）'),
       cards
     );
+}
+
+var UpdatesIntlPreview = createClass({
+  render: function () {
+    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '國際交流');
   },
 });
+CMS.registerPreviewTemplate('updates_intl', UpdatesIntlPreview);
 
-CMS.registerPreviewTemplate('updates_extra', UpdatesExtraPreview);
+var UpdatesWoodPreview = createClass({
+  render: function () {
+    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '木育玩具開發與推廣');
+  },
+});
+CMS.registerPreviewTemplate('updates_wood', UpdatesWoodPreview);
+
+var UpdatesBambooPreview = createClass({
+  render: function () {
+    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '竹育樂');
+  },
+});
+CMS.registerPreviewTemplate('updates_bamboo', UpdatesBambooPreview);
+
+var UpdatesIndustryPreview = createClass({
+  render: function () {
+    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '產學合作計畫成果');
+  },
+});
+CMS.registerPreviewTemplate('updates_industry', UpdatesIndustryPreview);
 
 /* ── 分享教案：預覽卡片，模擬 lessons.html 的教案卡片樣式 ── */
 var LessonsExtraPreview = createClass({
