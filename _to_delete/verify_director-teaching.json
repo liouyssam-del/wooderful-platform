@@ -1,0 +1,76 @@
+{
+  "teaching": [
+    {
+      "period": "2021/8–迄今",
+      "desc_zh": "國立臺北教育大學藝術與造形設計學系 專任教授",
+      "desc_en": "Professor, Department of Arts & Design, National Taipei University of Education",
+      "desc_ja": "国立台北教育大学 芸術・造形デザイン学系 専任教授",
+      "desc_de": "Professor, Institut für Kunst und Design, National Taipei University of Education"
+    },
+    {
+      "period": "2015/2–2021/7",
+      "desc_zh": "國立臺北教育大學藝術與造形設計學系 專任副教授",
+      "desc_en": "Associate Professor, Department of Arts & Design, National Taipei University of Education",
+      "desc_ja": "国立台北教育大学 芸術・造形デザイン学系 専任准教授",
+      "desc_de": "Associate Professor, Institut für Kunst und Design, National Taipei University of Education"
+    },
+    {
+      "period": "2012/2–2015/1",
+      "desc_zh": "銘傳大學商品設計學系（所）專任副教授",
+      "desc_en": "Associate Professor, Department of Commercial Design, Ming Chuan University",
+      "desc_ja": "銘傳大学 商品デザイン学系 専任准教授",
+      "desc_de": "Associate Professor, Institut für Produktdesign, Ming Chuan University"
+    },
+    {
+      "period": "2009/2–2012/1",
+      "desc_zh": "銘傳大學商品設計學系（所）專任助理教授",
+      "desc_en": "Assistant Professor, Department of Commercial Design, Ming Chuan University",
+      "desc_ja": "銘傳大学 商品デザイン学系 専任助理教授",
+      "desc_de": "Assistant Professor, Institut für Produktdesign, Ming Chuan University"
+    },
+    {
+      "period": "2009/8–2007/1",
+      "desc_zh": "國立臺北教育大學藝術與造形設計學系 兼任助理教授",
+      "desc_en": "Adjunct Assistant Professor, Department of Arts & Design, National Taipei University of Education",
+      "desc_ja": "国立台北教育大学 芸術・造形デザイン学系 兼任助理教授",
+      "desc_de": "Außerplanmäßiger Assistant Professor, Institut für Kunst und Design, National Taipei University of Education"
+    },
+    {
+      "period": "2004/8–2008/7",
+      "desc_zh": "國立臺北教育大學造形設計學系 兼任講師",
+      "desc_en": "Adjunct Lecturer, Department of Design, National Taipei University of Education",
+      "desc_ja": "国立台北教育大学 造形デザイン学系 兼任講師",
+      "desc_de": "Außerplanmäßiger Dozent, Institut für Design, National Taipei University of Education"
+    },
+    {
+      "period": "2011/2–2011/7",
+      "desc_zh": "明志科技大學設計學系 兼任助理教授",
+      "desc_en": "Adjunct Assistant Professor, Department of Design, Ming Chi University of Technology",
+      "desc_ja": "明志科技大学 デザイン学系 兼任助理教授",
+      "desc_de": "Außerplanmäßiger Assistant Professor, Institut für Design, Ming Chi University of Technology"
+    },
+    {
+      "period": "1988/8–2009/1",
+      "desc_zh": "銘傳大學商品設計學系 專任講師",
+      "desc_en": "Full-time Lecturer, Department of Commercial Design, Ming Chuan University",
+      "desc_ja": "銘傳大学 商品デザイン学系 専任講師",
+      "desc_de": "Vollzeitdozent, Institut für Produktdesign, Ming Chuan University"
+    }
+  ],
+  "design": [
+    {
+      "period": "1994/8–1997/8",
+      "desc_zh": "信昌事務機器股份有限公司　工業設計師　年資 3 年",
+      "desc_en": "Industrial Designer, Hsin Chang Business Machines Co., Ltd. — 3 years",
+      "desc_ja": "工業デザイナー、信昌事務機器股份有限公司——3年",
+      "desc_de": "Industriedesigner, Hsin Chang Business Machines Co., Ltd. — 3 Jahre"
+    },
+    {
+      "period": "1988/8–1989/8",
+      "desc_zh": "春泰工業股份有限公司　設計師　年資 1 年",
+      "desc_en": "Designer, Chuen Tai Industrial Co., Ltd. — 1 year",
+      "desc_ja": "デザイナー、春泰工業股份有限公司 — 1年",
+      "desc_de": "Designer, Chuen Tai Industrial Co., Ltd. — 1 Jahr"
+    }
+  ]
+}

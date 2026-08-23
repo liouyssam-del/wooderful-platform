@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "duration_ja": "",
+      "year_roc": "115",
+      "field_de": "Umweltkunst & Design",
+      "title_de": "Beispiel: Dies ist ein Beispiel-Forschungsprojekt",
+      "duration_de": "",
+      "field_en": "Environmental Art & Design",
+      "table": "nstc",
+      "title_en": "Example: This is a sample research project",
+      "field_zh": "環境藝術與設計",
+      "duration_en": "",
+      "title_zh": "範例：這是一則示範研究計畫",
+      "duration_zh": "示範用，實際使用時請刪除或編輯這一則",
+      "field_ja": "環境芸術とデザイン",
+      "title_ja": "例：これはサンプルの研究計画です"
+    }
+  ]
+}

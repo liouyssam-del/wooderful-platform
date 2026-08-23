@@ -389,8 +389,9 @@
 <div id="footer-container"></div>
 <script src="layout.js"></script>
 <script>
-// 讀取「計畫主持人（頁面內容）」的 CMS 資料，所有分頁（包含研究計畫）整合在同一份檔案裡
-// （data/director-profile.json，每個分頁對應檔案裡的一個區塊）。
+// 讀取「計畫主持人（頁面內容）」的 CMS 資料。原本 8 個分頁整合在同一份檔案裡，
+// 現在已經拆成 8 個各自獨立的 JSON 檔案（data/director-header.json、director-honors.json…），
+// 對應後台「計畫主持人」collection 底下 8 個各自獨立的項目，方便單獨編輯。
 // 讀取成功就覆蓋對應區塊原本寫死的內容；讀取失敗（或該分頁還沒有任何項目）
 // 就保留頁面上原本的靜態內容，當作降級處理，不會讓畫面開天窗。
 document.addEventListener('DOMContentLoaded', () => {
@@ -407,18 +408,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   Promise.all([
-    fetchJSON('data/director-profile.json'),
+    fetchJSON('data/director-header.json'),
     fetchJSON('data/director-honors.json'),
-  ]).then(([profile, honorsFile]) => {
-    profile = profile || {};
-    const header = profile.header;
-    const honors = honorsFile || profile.honors; // 榮譽已獨立成 data/director-honors.json；profile.honors 是舊格式的相容備援
-    const education = profile.education;
-    const exchange = profile.exchange;
-    const researchProjects = profile.research_projects;
-    const teaching = profile.teaching;
-    const publications = profile.publications;
-    const thesis = profile.thesis;
+    fetchJSON('data/director-education.json'),
+    fetchJSON('data/director-exchange.json'),
+    fetchJSON('data/director-projects-extra.json'),
+    fetchJSON('data/director-teaching.json'),
+    fetchJSON('data/director-publications.json'),
+    fetchJSON('data/director-thesis.json'),
+  ]).then(([header, honors, education, exchange, researchProjects, teaching, publications, thesis]) => {
 
     // 研究計畫：插入對應表格（國科會研究計畫 / 產學合作計畫）的最上方
     if (researchProjects && Array.isArray(researchProjects.items) && researchProjects.items.length > 0) {

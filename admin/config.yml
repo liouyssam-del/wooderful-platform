@@ -176,196 +176,195 @@ collections:
               - { label: "內容（日文，可留白）", name: "text_ja", widget: "text", required: false }
               - { label: "內容（德文，可留白）", name: "text_de", widget: "text", required: false }
 
-      - name: "director_profile_all"
-        label: "計畫主持人（頁面內容）"
-        file: "data/director-profile.json"
-        description: "「計畫主持人」頁面大部分分頁內容，整合在同一份表單裡編輯（往下捲動可以看到：頁首職稱／主要學歷／國際交流／研究計畫／教學暨設計實務經歷／研究發表／研究生論文指導／個人資歷）。「榮譽」已經獨立成下面單獨一個項目。存檔後重新整理「計畫主持人」頁面就會看到。"
+      - name: "director_header"
+        label: "① 頁首職稱"
+        file: "data/director-header.json"
+        description: "大頭照，以及照片右側的「單位」與「現職」兩行文字。存檔後重新整理「計畫主持人」頁面就會看到。"
         fields:
-          - name: "header"
-            label: "① 頁首職稱"
-            hint: "大頭照，以及照片右側的「單位」與「現職」兩行文字。"
-            widget: "object"
+          - label: "大頭照"
+            hint: "建議直式或方形、人像置中、3MB 以內；不上傳的話會維持網站目前的照片不變。"
+            name: "photo"
+            widget: "image"
+            required: false
+          - { label: "單位（中文，必填）", hint: "例如：國立臺北教育大學｜藝術與造形設計學系（所）", name: "affiliation_zh", widget: "string" }
+          - { label: "單位（英文，可留白）", name: "affiliation_en", widget: "string", required: false }
+          - { label: "單位（日文，可留白）", name: "affiliation_ja", widget: "string", required: false }
+          - { label: "單位（德文，可留白）", name: "affiliation_de", widget: "string", required: false }
+          - { label: "現職（中文，必填）", hint: "例如：現職：國立臺北教育大學藝術與造形設計學系 專任教授／教學發展中心 主任", name: "position_zh", widget: "text" }
+          - { label: "現職（英文，可留白）", name: "position_en", widget: "text", required: false }
+          - { label: "現職（日文，可留白）", name: "position_ja", widget: "text", required: false }
+          - { label: "現職（德文，可留白）", name: "position_de", widget: "text", required: false }
+
+      - name: "director_education"
+        label: "③ 主要學歷"
+        file: "data/director-education.json"
+        description: "存檔後重新整理「計畫主持人」頁面就會看到。"
+        fields:
+          - name: "rows"
+            label: "學歷列表"
+            widget: "list"
+            label_singular: "一筆學歷"
+            summary: "{{fields.period}}"
             fields:
-              - label: "大頭照"
-                hint: "建議直式或方形、人像置中、3MB 以內；不上傳的話會維持網站目前的照片不變。"
-                name: "photo"
-                widget: "image"
+              - { label: "期間", hint: "例如：2002/9–2009/1", name: "period", widget: "string", required: false }
+              - name: "lines"
+                label: "內容"
+                hint: "可分多行，例如學位一行、論文題目一行。"
+                widget: "list"
+                label_singular: "一行文字"
+                fields:
+                  - { label: "內容（中文，必填）", name: "zh", widget: "text" }
+                  - { label: "內容（英文，可留白）", name: "en", widget: "text", required: false }
+                  - { label: "內容（日文，可留白）", name: "ja", widget: "text", required: false }
+                  - { label: "內容（德文，可留白）", name: "de", widget: "text", required: false }
+          - { label: "備註（中文，可留白）", hint: "例如：近年主持專題研究計畫...", name: "note_zh", widget: "text", required: false }
+          - { label: "備註（英文，可留白）", name: "note_en", widget: "text", required: false }
+          - { label: "備註（日文，可留白）", name: "note_ja", widget: "text", required: false }
+          - { label: "備註（德文，可留白）", name: "note_de", widget: "text", required: false }
+
+      - name: "director_exchange"
+        label: "④ 國際交流"
+        file: "data/director-exchange.json"
+        description: "存檔後重新整理「計畫主持人」頁面就會看到。"
+        fields:
+          - name: "items"
+            label: "國際交流列表"
+            widget: "list"
+            label_singular: "一筆交流經歷"
+            summary: "{{fields.period}}"
+            fields:
+              - { label: "期間", hint: "例如：2024/6–2024/9", name: "period", widget: "string", required: false }
+              - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
+              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
+              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
+              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+
+      - name: "director_research_projects"
+        label: "⑤ 研究計畫"
+        file: "data/director-projects-extra.json"
+        description: "國科會研究計畫 / 產學合作計畫。存檔後重新整理「計畫主持人」頁面就會看到。"
+        fields:
+          - name: "items"
+            label: "計畫列表"
+            widget: "list"
+            label_singular: "一筆計畫"
+            summary: "{{fields.year_roc}} - {{fields.title_zh}}"
+            fields:
+              - label: "表格分類"
+                name: "table"
+                widget: "select"
                 required: false
-              - { label: "單位（中文，必填）", hint: "例如：國立臺北教育大學｜藝術與造形設計學系（所）", name: "affiliation_zh", widget: "string" }
-              - { label: "單位（英文，可留白）", name: "affiliation_en", widget: "string", required: false }
-              - { label: "單位（日文，可留白）", name: "affiliation_ja", widget: "string", required: false }
-              - { label: "單位（德文，可留白）", name: "affiliation_de", widget: "string", required: false }
-              - { label: "現職（中文，必填）", hint: "例如：現職：國立臺北教育大學藝術與造形設計學系 專任教授／教學發展中心 主任", name: "position_zh", widget: "text" }
-              - { label: "現職（英文，可留白）", name: "position_en", widget: "text", required: false }
-              - { label: "現職（日文，可留白）", name: "position_ja", widget: "text", required: false }
-              - { label: "現職（德文，可留白）", name: "position_de", widget: "text", required: false }
+                options:
+                  - { label: "國科會研究計畫", value: "nstc" }
+                  - { label: "產學合作計畫", value: "industry" }
+              - { label: "民國年", hint: "例如 115 或 113-115", name: "year_roc", widget: "string", required: false }
+              - { label: "學門（中文，必填）", name: "field_zh", widget: "string" }
+              - { label: "學門（英文，可留白）", name: "field_en", widget: "string", required: false }
+              - { label: "學門（日文，可留白）", name: "field_ja", widget: "string", required: false }
+              - { label: "學門（德文，可留白）", name: "field_de", widget: "string", required: false }
+              - { label: "計畫名稱（中文，必填）", name: "title_zh", widget: "string" }
+              - { label: "計畫名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
+              - { label: "計畫名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
+              - { label: "計畫名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - { label: "起迄／狀態（中文，必填）", hint: "例如：已結案／1年型／民112-113", name: "duration_zh", widget: "string" }
+              - { label: "起迄／狀態（英文，可留白）", name: "duration_en", widget: "string", required: false }
+              - { label: "起迄／狀態（日文，可留白）", name: "duration_ja", widget: "string", required: false }
+              - { label: "起迄／狀態（德文，可留白）", name: "duration_de", widget: "string", required: false }
 
-
-          - name: "education"
-            label: "③ 主要學歷"
-            widget: "object"
-            fields:
-              - name: "rows"
-                label: "學歷列表"
-                widget: "list"
-                label_singular: "一筆學歷"
-                summary: "{{fields.period}}"
-                fields:
-                  - { label: "期間", hint: "例如：2002/9–2009/1", name: "period", widget: "string", required: false }
-                  - name: "lines"
-                    label: "內容"
-                    hint: "可分多行，例如學位一行、論文題目一行。"
-                    widget: "list"
-                    label_singular: "一行文字"
-                    fields:
-                      - { label: "內容（中文，必填）", name: "zh", widget: "text" }
-                      - { label: "內容（英文，可留白）", name: "en", widget: "text", required: false }
-                      - { label: "內容（日文，可留白）", name: "ja", widget: "text", required: false }
-                      - { label: "內容（德文，可留白）", name: "de", widget: "text", required: false }
-              - { label: "備註（中文，可留白）", hint: "例如：近年主持專題研究計畫...", name: "note_zh", widget: "text", required: false }
-              - { label: "備註（英文，可留白）", name: "note_en", widget: "text", required: false }
-              - { label: "備註（日文，可留白）", name: "note_ja", widget: "text", required: false }
-              - { label: "備註（德文，可留白）", name: "note_de", widget: "text", required: false }
-
-          - name: "exchange"
-            label: "④ 國際交流"
-            widget: "object"
-            fields:
-              - name: "items"
-                label: "國際交流列表"
-                widget: "list"
-                label_singular: "一筆交流經歷"
-                summary: "{{fields.period}}"
-                fields:
-                  - { label: "期間", hint: "例如：2024/6–2024/9", name: "period", widget: "string", required: false }
-                  - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
-                  - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
-                  - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
-                  - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
-
-          - name: "research_projects"
-            label: "⑤ 研究計畫"
-            hint: "國科會研究計畫 / 產學合作計畫"
-            widget: "object"
-            fields:
-              - name: "items"
-                label: "計畫列表"
-                widget: "list"
-                label_singular: "一筆計畫"
-                summary: "{{fields.year_roc}} - {{fields.title_zh}}"
-                fields:
-                  - label: "表格分類"
-                    name: "table"
-                    widget: "select"
-                    required: false
-                    options:
-                      - { label: "國科會研究計畫", value: "nstc" }
-                      - { label: "產學合作計畫", value: "industry" }
-                  - { label: "民國年", hint: "例如 115 或 113-115", name: "year_roc", widget: "string", required: false }
-                  - { label: "學門（中文，必填）", name: "field_zh", widget: "string" }
-                  - { label: "學門（英文，可留白）", name: "field_en", widget: "string", required: false }
-                  - { label: "學門（日文，可留白）", name: "field_ja", widget: "string", required: false }
-                  - { label: "學門（德文，可留白）", name: "field_de", widget: "string", required: false }
-                  - { label: "計畫名稱（中文，必填）", name: "title_zh", widget: "string" }
-                  - { label: "計畫名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
-                  - { label: "計畫名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
-                  - { label: "計畫名稱（德文，可留白）", name: "title_de", widget: "string", required: false }
-                  - { label: "起迄／狀態（中文，必填）", hint: "例如：已結案／1年型／民112-113", name: "duration_zh", widget: "string" }
-                  - { label: "起迄／狀態（英文，可留白）", name: "duration_en", widget: "string", required: false }
-                  - { label: "起迄／狀態（日文，可留白）", name: "duration_ja", widget: "string", required: false }
-                  - { label: "起迄／狀態（德文，可留白）", name: "duration_de", widget: "string", required: false }
-
+      - name: "director_teaching"
+        label: "⑥ 教學暨設計實務經歷"
+        file: "data/director-teaching.json"
+        description: "存檔後重新整理「計畫主持人」頁面就會看到。"
+        fields:
           - name: "teaching"
-            label: "⑥ 教學暨設計實務經歷"
-            widget: "object"
+            label: "【教學】列表"
+            widget: "list"
+            label_singular: "一筆教學經歷"
+            summary: "{{fields.period}}"
             fields:
-              - name: "teaching"
-                label: "【教學】列表"
-                widget: "list"
-                label_singular: "一筆教學經歷"
-                summary: "{{fields.period}}"
-                fields:
-                  - { label: "期間", hint: "例如：2021/8–迄今", name: "period", widget: "string", required: false }
-                  - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
-                  - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
-                  - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
-                  - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
-              - name: "design"
-                label: "【設計實務】列表"
-                widget: "list"
-                label_singular: "一筆設計實務經歷"
-                summary: "{{fields.period}}"
-                fields:
-                  - { label: "期間", hint: "例如：1994/8–1997/8", name: "period", widget: "string", required: false }
-                  - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
-                  - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
-                  - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
-                  - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - { label: "期間", hint: "例如：2021/8–迄今", name: "period", widget: "string", required: false }
+              - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
+              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
+              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
+              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+          - name: "design"
+            label: "【設計實務】列表"
+            widget: "list"
+            label_singular: "一筆設計實務經歷"
+            summary: "{{fields.period}}"
+            fields:
+              - { label: "期間", hint: "例如：1994/8–1997/8", name: "period", widget: "string", required: false }
+              - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
+              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
+              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
+              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
 
-          - name: "publications"
-            label: "⑦ 研究發表"
+      - name: "director_publications"
+        label: "⑦ 研究發表"
+        file: "data/director-publications.json"
+        description: "存檔後重新整理「計畫主持人」頁面就會看到。"
+        fields:
+          - name: "categories"
+            label: "類別列表"
+            hint: "學術期刊論文／相關學報出版論文／發明專利／新型專利。（「國際學術研討會」已經獨立到下面單獨一區，不在這裡。）"
+            widget: "list"
+            label_singular: "一個類別"
+            summary: "{{fields.title_zh}}"
+            fields:
+              - { label: "類別標題（中文，必填）", hint: "例如：學術期刊論文（＊通訊作者）2007–2022", name: "title_zh", widget: "string" }
+              - { label: "類別標題（英文，可留白）", name: "title_en", widget: "string", required: false }
+              - { label: "類別標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
+              - { label: "類別標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - label: "引用項目列表"
+                hint: "每項一則，維持單一語言，這些引用文字不隨網站語言切換。"
+                name: "items"
+                widget: "list"
+                label_singular: "一則引用"
+                summary: "{{fields.text}}"
+                fields:
+                  - { label: "引用內容", name: "text", widget: "text" }
+                  - { label: "原文連結（可留白）", hint: "例如期刊 DOI 網址，或是網站裡已經上傳好的 PDF 檔案連結；填了的話前台會把這筆引用做成可點擊連結，開新分頁。", name: "url", widget: "string", required: false }
+          - name: "international_conference"
+            label: "國際學術研討會（獨立一區）"
+            hint: "這個分類跟上面「類別列表」是分開的，因為它的引用文字會依網站語言（中/英/日/德）切換顯示，不需要原文連結。"
             widget: "object"
             fields:
-              - name: "categories"
-                label: "類別列表"
-                hint: "學術期刊論文／相關學報出版論文／發明專利／新型專利。（「國際學術研討會」已經獨立到下面單獨一區，不在這裡。）"
+              - { label: "類別標題（中文，必填）", hint: "例如：國際學術研討會 2013–迄今", name: "title_zh", widget: "string" }
+              - { label: "類別標題（英文，可留白）", name: "title_en", widget: "string", required: false }
+              - { label: "類別標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
+              - { label: "類別標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - label: "引用項目列表"
+                hint: "每項一則，這裡的英/日/德文會隨網站語言切換自動顯示；沒填的話該語言會顯示中文（或原文）。"
+                name: "items"
                 widget: "list"
-                label_singular: "一個類別"
-                summary: "{{fields.title_zh}}"
+                label_singular: "一則引用"
+                summary: "{{fields.text}}"
                 fields:
-                  - { label: "類別標題（中文，必填）", hint: "例如：學術期刊論文（＊通訊作者）2007–2022", name: "title_zh", widget: "string" }
-                  - { label: "類別標題（英文，可留白）", name: "title_en", widget: "string", required: false }
-                  - { label: "類別標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
-                  - { label: "類別標題（德文，可留白）", name: "title_de", widget: "string", required: false }
-                  - label: "引用項目列表"
-                    hint: "每項一則，維持單一語言，這些引用文字不隨網站語言切換。"
-                    name: "items"
-                    widget: "list"
-                    label_singular: "一則引用"
-                    summary: "{{fields.text}}"
-                    fields:
-                      - { label: "引用內容", name: "text", widget: "text" }
-                      - { label: "原文連結（可留白）", hint: "例如期刊 DOI 網址，或是網站裡已經上傳好的 PDF 檔案連結；填了的話前台會把這筆引用做成可點擊連結，開新分頁。", name: "url", widget: "string", required: false }
-              - name: "international_conference"
-                label: "國際學術研討會（獨立一區）"
-                hint: "這個分類跟上面「類別列表」是分開的，因為它的引用文字會依網站語言（中/英/日/德）切換顯示，不需要原文連結。"
-                widget: "object"
-                fields:
-                  - { label: "類別標題（中文，必填）", hint: "例如：國際學術研討會 2013–迄今", name: "title_zh", widget: "string" }
-                  - { label: "類別標題（英文，可留白）", name: "title_en", widget: "string", required: false }
-                  - { label: "類別標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
-                  - { label: "類別標題（德文，可留白）", name: "title_de", widget: "string", required: false }
-                  - label: "引用項目列表"
-                    hint: "每項一則，這裡的英/日/德文會隨網站語言切換自動顯示；沒填的話該語言會顯示中文（或原文）。"
-                    name: "items"
-                    widget: "list"
-                    label_singular: "一則引用"
-                    summary: "{{fields.text}}"
-                    fields:
-                      - { label: "引用內容（原文，必填）", name: "text", widget: "text" }
-                      - { label: "引用內容（英文，可留白）", hint: "不填的話，切換到英文版時會顯示原文。", name: "text_en", widget: "string", required: false }
-                      - { label: "引用內容（日文，可留白）", name: "text_ja", widget: "string", required: false }
-                      - { label: "引用內容（德文，可留白）", name: "text_de", widget: "string", required: false }
+                  - { label: "引用內容（原文，必填）", name: "text", widget: "text" }
+                  - { label: "引用內容（英文，可留白）", hint: "不填的話，切換到英文版時會顯示原文。", name: "text_en", widget: "string", required: false }
+                  - { label: "引用內容（日文，可留白）", name: "text_ja", widget: "string", required: false }
+                  - { label: "引用內容（德文，可留白）", name: "text_de", widget: "string", required: false }
 
-          - name: "thesis"
-            label: "⑧ 研究生論文指導"
-            widget: "object"
+      - name: "director_thesis"
+        label: "⑧ 研究生論文指導"
+        file: "data/director-thesis.json"
+        description: "存檔後重新整理「計畫主持人」頁面就會看到。"
+        fields:
+          - name: "rows"
+            label: "論文指導列表"
+            widget: "list"
+            label_singular: "一筆論文指導"
+            summary: "{{fields.year}} - {{fields.title_zh}}"
             fields:
-              - name: "rows"
-                label: "論文指導列表"
-                widget: "list"
-                label_singular: "一筆論文指導"
-                summary: "{{fields.year}} - {{fields.title_zh}}"
-                fields:
-                  - { label: "論文題目（中文，必填）", name: "title_zh", widget: "string" }
-                  - { label: "論文題目（英文，可留白）", name: "title_en", widget: "string", required: false }
-                  - { label: "論文題目（日文，可留白）", name: "title_ja", widget: "string", required: false }
-                  - { label: "論文題目（德文，可留白）", name: "title_de", widget: "string", required: false }
-                  - { label: "研究生（中文，必填）", name: "student_zh", widget: "string" }
-                  - { label: "研究生（英文，可留白）", name: "student_en", widget: "string", required: false }
-                  - { label: "研究生（日文，可留白）", name: "student_ja", widget: "string", required: false }
-                  - { label: "研究生（德文，可留白）", name: "student_de", widget: "string", required: false }
-                  - { label: "畢業年", name: "year", widget: "string", required: false }
+              - { label: "論文題目（中文，必填）", name: "title_zh", widget: "string" }
+              - { label: "論文題目（英文，可留白）", name: "title_en", widget: "string", required: false }
+              - { label: "論文題目（日文，可留白）", name: "title_ja", widget: "string", required: false }
+              - { label: "論文題目（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - { label: "研究生（中文，必填）", name: "student_zh", widget: "string" }
+              - { label: "研究生（英文，可留白）", name: "student_en", widget: "string", required: false }
+              - { label: "研究生（日文，可留白）", name: "student_ja", widget: "string", required: false }
+              - { label: "研究生（德文，可留白）", name: "student_de", widget: "string", required: false }
+              - { label: "畢業年", name: "year", widget: "string", required: false }
 
   - name: "lessons_extra"
     label: "分享教案（新增項目）"
