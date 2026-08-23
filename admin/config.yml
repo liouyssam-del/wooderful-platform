@@ -160,10 +160,26 @@ collections:
   - name: "director_profile"
     label: "計畫主持人（頁面內容）"
     files:
+      - name: "director_honors"
+        label: "② 榮譽"
+        file: "data/director-honors.json"
+        description: "「計畫主持人」頁面的「榮譽」區塊，獨立成自己的一份清單，方便單獨新增/修改，不用捲動一整條大表單。存檔後重新整理「計畫主持人」頁面就會看到。"
+        fields:
+          - name: "items"
+            label: "榮譽項目列表"
+            widget: "list"
+            label_singular: "一項榮譽"
+            summary: "{{fields.text_zh}}"
+            fields:
+              - { label: "內容（中文，必填）", name: "text_zh", widget: "text" }
+              - { label: "內容（英文，可留白）", name: "text_en", widget: "text", required: false }
+              - { label: "內容（日文，可留白）", name: "text_ja", widget: "text", required: false }
+              - { label: "內容（德文，可留白）", name: "text_de", widget: "text", required: false }
+
       - name: "director_profile_all"
         label: "計畫主持人（頁面內容）"
         file: "data/director-profile.json"
-        description: "「計畫主持人」頁面的所有分頁內容，整合在同一份表單裡編輯（往下捲動可以看到全部 9 個區塊：頁首職稱／榮譽／主要學歷／國際交流／研究計畫／教學暨設計實務經歷／研究發表／研究生論文指導／個人資歷）。存檔後重新整理「計畫主持人」頁面就會看到。"
+        description: "「計畫主持人」頁面大部分分頁內容，整合在同一份表單裡編輯（往下捲動可以看到：頁首職稱／主要學歷／國際交流／研究計畫／教學暨設計實務經歷／研究發表／研究生論文指導／個人資歷）。「榮譽」已經獨立成下面單獨一個項目。存檔後重新整理「計畫主持人」頁面就會看到。"
         fields:
           - name: "header"
             label: "① 頁首職稱"
@@ -184,20 +200,6 @@ collections:
               - { label: "現職（日文，可留白）", name: "position_ja", widget: "text", required: false }
               - { label: "現職（德文，可留白）", name: "position_de", widget: "text", required: false }
 
-          - name: "honors"
-            label: "② 榮譽"
-            widget: "object"
-            fields:
-              - name: "items"
-                label: "榮譽項目列表"
-                widget: "list"
-                label_singular: "一項榮譽"
-                summary: "{{fields.text_zh}}"
-                fields:
-                  - { label: "內容（中文，必填）", name: "text_zh", widget: "text" }
-                  - { label: "內容（英文，可留白）", name: "text_en", widget: "text", required: false }
-                  - { label: "內容（日文，可留白）", name: "text_ja", widget: "text", required: false }
-                  - { label: "內容（德文，可留白）", name: "text_de", widget: "text", required: false }
 
           - name: "education"
             label: "③ 主要學歷"

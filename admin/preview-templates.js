@@ -286,13 +286,32 @@ var sectionHeading = function (text) {
   return h('h3', { style: { fontSize: '17px', fontWeight: 700, color: '#446B2A', margin: '28px 0 12px 0', borderTop: '1px solid #e7e2d8', paddingTop: '20px' } }, text);
 };
 
+/* ── 「榮譽」：已從「計畫主持人」大表單獨立出來的一份清單 ── */
+var DirectorHonorsPreview = createClass({
+  render: function () {
+    var entry = this.props.entry;
+    var items = entry.getIn(['data', 'items']);
+    return h(
+      'div',
+      { style: previewWrap },
+      previewNote,
+      sectionHeading('② 榮譽'),
+      items && items.size
+        ? h('ul', { style: { margin: 0, paddingLeft: '20px' } }, items.toArray().map(function (item, i) {
+            return h('li', { key: i, style: { fontSize: '14px', color: '#3d2b20', marginBottom: '10px', lineHeight: 1.7 } }, item.get('text_zh') || '（尚未填寫）');
+          }))
+        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目')
+    );
+  },
+});
+CMS.registerPreviewTemplate('director_honors', DirectorHonorsPreview);
+
 var DirectorProfilePreview = createClass({
   render: function () {
     var entry = this.props.entry;
     var data = entry.get('data');
 
     var header = data && data.get('header');
-    var honors = data && data.get('honors');
     var education = data && data.get('education');
     var exchange = data && data.get('exchange');
     var researchProjects = data && data.get('research_projects');
@@ -311,17 +330,6 @@ var DirectorProfilePreview = createClass({
         h('p', { style: { fontSize: '15px', color: '#3d2b20', margin: '0 0 8px 0' } }, affiliation),
         h('p', { style: { fontSize: '15px', color: '#3d2b20', margin: 0 } }, position)
       ),
-    ];
-
-    /* ② 榮譽 */
-    var honorsItems = honors && honors.get('items');
-    var honorsBlock = [
-      sectionHeading('② 榮譽'),
-      honorsItems && honorsItems.size
-        ? h('ul', { style: { margin: 0, paddingLeft: '20px' } }, honorsItems.toArray().map(function (item, i) {
-            return h('li', { key: i, style: { fontSize: '14px', color: '#3d2b20', marginBottom: '10px', lineHeight: 1.7 } }, item.get('text_zh') || '（尚未填寫）');
-          }))
-        : h('div', { style: { color: '#999', fontSize: '13px' } }, '目前沒有任何項目'),
     ];
 
     /* ③ 主要學歷 */
@@ -471,7 +479,7 @@ var DirectorProfilePreview = createClass({
       'div',
       { style: previewWrap },
       previewNote,
-      headerBlock, honorsBlock, educationBlock, exchangeBlock, researchProjectsBlock, teachingBlock, publicationsBlock, thesisBlock
+      headerBlock, educationBlock, exchangeBlock, researchProjectsBlock, teachingBlock, publicationsBlock, thesisBlock
     );
   },
 });

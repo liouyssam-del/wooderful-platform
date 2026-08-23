@@ -406,10 +406,13 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(() => null);
   }
 
-  fetchJSON('data/director-profile.json').then((profile) => {
+  Promise.all([
+    fetchJSON('data/director-profile.json'),
+    fetchJSON('data/director-honors.json'),
+  ]).then(([profile, honorsFile]) => {
     profile = profile || {};
     const header = profile.header;
-    const honors = profile.honors;
+    const honors = honorsFile || profile.honors; // 榮譽已獨立成 data/director-honors.json；profile.honors 是舊格式的相容備援
     const education = profile.education;
     const exchange = profile.exchange;
     const researchProjects = profile.research_projects;
