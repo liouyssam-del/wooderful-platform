@@ -178,3 +178,12 @@ html:lang(en) .text-display,       html:lang(de) .text-display       { font-size
 
 /* 主導覽列：英文／德文用稍大一點的 20px，中文／日文維持 18.4px */
 html:lang(en) .nav-link, html:lang(de) .nav-link { font-size: 18.6px; }
+
+
+/* 手機板：頁面主標題（每頁最上方的大標題，例如「最新動態」「分享教案」「計畫主持人」）
+   放大 1 倍，方便手機瀏覽時更清楚醒目；桌機／平板尺寸不受影響。
+   用 !important 確保優先於上面的英/德文字級調整（html:lang(en/de) .text-h1 等）。 */
+@media (max-width: 640px) {
+  h1.text-h1 { font-size: 92px !important; }
+  h1.text-display { font-size: 112px !important; }
+}

@@ -62,7 +62,7 @@ collections:
             label_singular: "一則動態"
             summary: "{{fields.date_label}} - {{fields.title_zh}}"
             fields:
-              - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+              - { label: "日期（用於排序，必填）", hint: "這個日期決定顯示順序（新到舊），跟下面「日期顯示文字」是兩個獨立欄位，兩個都要填。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: true }
               - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
@@ -93,7 +93,7 @@ collections:
             label_singular: "一則動態"
             summary: "{{fields.date_label}} - {{fields.title_zh}}"
             fields:
-              - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+              - { label: "日期（用於排序，必填）", hint: "這個日期決定顯示順序（新到舊），跟下面「日期顯示文字」是兩個獨立欄位，兩個都要填。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: true }
               - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
@@ -124,7 +124,7 @@ collections:
             label_singular: "一則動態"
             summary: "{{fields.date_label}} - {{fields.title_zh}}"
             fields:
-              - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+              - { label: "日期（用於排序，必填）", hint: "這個日期決定顯示順序（新到舊），跟下面「日期顯示文字」是兩個獨立欄位，兩個都要填。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: true }
               - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
@@ -155,7 +155,7 @@ collections:
             label_singular: "一則動態"
             summary: "{{fields.date_label}} - {{fields.title_zh}}"
             fields:
-              - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+              - { label: "日期（用於排序，必填）", hint: "這個日期決定顯示順序（新到舊），跟下面「日期顯示文字」是兩個獨立欄位，兩個都要填。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: true }
               - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
@@ -413,7 +413,7 @@ collections:
                 options:
                   - { label: "PNG 圖片頁", value: "images" }
                   - { label: "完整教案頁", value: "html" }
-              - { label: "日期（用於排序）", hint: "選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+              - { label: "日期（用於排序，必填）", hint: "這個日期決定「分享教案」列表頁的排序（新到舊），選一天即可。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: true }
               - { label: "教案名稱（中文，必填）", name: "title_zh", widget: "string" }
               - { label: "教案名稱（英文，可留白）", name: "title_en", widget: "string", required: false }
               - { label: "教案名稱（日文，可留白）", name: "title_ja", widget: "string", required: false }
