@@ -186,4 +186,14 @@ html:lang(en) .nav-link, html:lang(de) .nav-link { font-size: 18.6px; }
 @media (max-width: 640px) {
   h1.text-h1 { font-size: 92px !important; }
   h1.text-display { font-size: 112px !important; }
+
+  /* 首頁 Hero 主標「木育玩具設計」是全站唯一 6 個字的標題（其他頁都只有 4~5 個字），
+     用跟其他頁一樣的 112px 在手機窄螢幕上會擠成 3 行，還跟下面圓形木育圖示重疊。
+     這裡單獨縮小到 76px，讓它維持在 2 行以內、不會壓到圖示，其餘頁面標題不受影響。 */
+  h1.hero-title.text-display { font-size: 76px !important; }
+
+  /* 導覽列 LOGO：桌機刻意讓 150px 高的 LOGO 超出 90px 高的導覽列（設計上的視覺效果），
+     但手機螢幕窄，150px 的 LOGO 會佔掉將近一半畫面、蓋住下方 Hero 標題文字。
+     手機板縮小到 80px，維持「LOGO 稍微超出導覽列」的效果，但不會再壓到下方內容。 */
+  .logo-img { height: 80px !important; }
 }
