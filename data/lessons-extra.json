@@ -106,18 +106,34 @@
       "title_ja": "竹セミ"
     },
     {
-      "page_images_en": [],
+      "page_images_en": [
+        {
+          "src": "images/updates/竹風鈴-e.png"
+        }
+      ],
       "steps": [],
-      "page_images": [],
+      "page_images": [
+        {
+          "src": "images/updates/竹風鈴-c.png"
+        }
+      ],
       "title_de": "Bambus-Windspiel",
       "slug": "bamboo-chimes",
       "materials": [],
-      "page_images_ja": [],
+      "page_images_ja": [
+        {
+          "src": "images/updates/竹風鈴-j.png"
+        }
+      ],
       "sort_date": "2026-09-06",
       "title_en": "Bamboo wind chime",
       "cover_image": "images/updates/竹風鈴.jpg",
       "title_zh": "竹風鈴",
-      "page_images_de": [],
+      "page_images_de": [
+        {
+          "src": "images/updates/竹風鈴-g.png"
+        }
+      ],
       "images": [],
       "type": "images",
       "title_ja": "竹風鈴（たけふうりん / Takefūrin）"
