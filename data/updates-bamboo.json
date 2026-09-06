@@ -3,7 +3,7 @@
     {
       "date_label": "2026/07/24",
       "desc_ja": "劉講師は授業用の教材を準備するため、自ら山へ竹を採取しに行きました。",
-      "title_de": "山で竹を採取する",
+      "title_de": "Bambusernte in den Bergen",
       "desc_de": "Dozent Liu sammelte persönlich Bambus in den Bergen, um Materialien für den Unterricht vorzubereiten.",
       "title_en": "Bamboo Harvesting Course",
       "title_zh": "上山採竹課程備料",
@@ -24,7 +24,7 @@
       ],
       "image": "images/updates/s__59867139_0.jpg",
       "desc_zh": "劉老師上山採竹課程備料",
-      "title_ja": "Bambusernte in den Bergen",
+      "title_ja": "山で竹を採取する",
       "sort_date": "2026-07-24"
     },
     {
@@ -79,7 +79,13 @@
           "src": "images/updates/bamboo-camp-0826-d.jpg",
           "caption": "d. 大合照"
         }
-      ]
+      ],
+      "title_en": "Muzha Farmers' Association Summer Bamboo Instrument Making Camp",
+      "title_ja": "木柵農会 夏期竹楽器制作キャンプ",
+      "title_de": "Sommer-Workshop für Bambusinstrumentenbau der Muzha-Bauernvereinigung",
+      "desc_en": "Planned by Mr. Liu Tsung-Yueh with support from Professor Wen-Te Chang's team at the Department of Arts and Design, NTUE, this workshop for the Muzha Farmers' Association's summer program guided participants through making and performing small, medium, and large bamboo musical instruments. Three students from the Department of Arts and Design, NTUE, worked with 19 students from various elementary and junior high schools in the Muzha area. Over five days, participants completed instrument-making and ensemble practice, producing 19 small bamboo xylophones (one per student) plus one bamboo slit drum and one alto bamboo xylophone, and performed two ensemble pieces — a fruitful outcome.",
+      "desc_ja": "劉宗岳先生の企画、国立台北教育大学芸術与造形設計学系・張文德教授チームの協力のもと、木柵農会の夏期プログラムとして小型竹琴、中型・大型竹楽器の製作と演奏のワークショップを実施。国北教大芸設系の学生3名が指導にあたり、木柵地区の複数の小中学校から集まった児童生徒19名が参加。5日間で楽器製作と合奏練習を完了し、小竹琴19台（1人1台）、拍筒琴と中音竹琴各1台を製作、2曲の合奏を披露するなど、充実した成果を収めた。",
+      "desc_de": "Geplant von Herrn Liu Tsung-Yueh mit Unterstützung des Teams von Professor Wen-Te Chang vom Institut für Kunst und Design der National Taipei University of Education, fand im Rahmen des Sommerprogramms der Muzha-Bauernvereinigung ein Workshop zum Bau und Spiel kleiner, mittlerer und großer Bambusinstrumente statt. Drei Studierende des Instituts für Kunst und Design betreuten 19 Schülerinnen und Schüler aus mehreren Grund- und Mittelschulen des Bezirks Muzha. Innerhalb von fünf Tagen wurden Instrumentenbau und Ensembleproben abgeschlossen: Es entstanden 19 kleine Bambus-Xylophone (eines pro Person) sowie je eine Bambus-Schlagröhrentrommel und ein Alt-Bambus-Xylophon, und zwei Ensemblestücke wurden aufgeführt – ein rundum gelungenes Ergebnis."
     }
   ]
 }

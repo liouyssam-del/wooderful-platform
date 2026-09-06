@@ -78,12 +78,14 @@
       "materials": [],
       "page_images_ja": [],
       "sort_date": "2026-09-02",
-      "title_en": "bamboocicada",
+      "title_en": "Bamboo Cicada",
       "cover_image": "images/updates/竹蟬.jpg",
       "title_zh": "竹蟬",
       "page_images_de": [],
       "images": [],
-      "type": "images"
+      "type": "images",
+      "title_ja": "竹セミ",
+      "title_de": "Bambuszikade"
     }
   ]
 }
