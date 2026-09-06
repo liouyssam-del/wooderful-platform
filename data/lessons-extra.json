@@ -73,13 +73,13 @@
     {
       "page_images_en": [
         {
-          "src": "images/updates/1-e-mmm.jpg"
+          "src": "images/updates/竹蟬-e.png"
         }
       ],
       "steps": [],
       "page_images": [
         {
-          "src": "images/updates/1-c-m.png"
+          "src": "images/updates/竹蟬-c.png"
         }
       ],
       "title_de": "Bambuszikade",
@@ -87,7 +87,7 @@
       "materials": [],
       "page_images_ja": [
         {
-          "src": "images/updates/1-j-m.png"
+          "src": "images/updates/竹蟬-j.png"
         }
       ],
       "sort_date": "2026-09-06",
@@ -96,7 +96,7 @@
       "title_zh": "竹蟬",
       "page_images_de": [
         {
-          "src": "images/updates/1-g-m.png"
+          "src": "images/updates/竹蟬-g.png"
         }
       ],
       "images": [
