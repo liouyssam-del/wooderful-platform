@@ -86,6 +86,23 @@
       "type": "images",
       "title_ja": "竹セミ",
       "title_de": "Bambuszikade"
+    },
+    {
+      "page_images_en": [],
+      "steps": [],
+      "page_images": [],
+      "title_de": "Bambus-Windspiel",
+      "slug": "bamboo-chimes",
+      "materials": [],
+      "page_images_ja": [],
+      "sort_date": "2026-09-06",
+      "title_en": "Bamboo wind chime",
+      "cover_image": "images/updates/竹風鈴.jpg",
+      "title_zh": "竹風鈴",
+      "page_images_de": [],
+      "images": [],
+      "type": "images",
+      "title_ja": "竹風鈴（たけふうりん / Takefūrin）"
     }
   ]
 }
