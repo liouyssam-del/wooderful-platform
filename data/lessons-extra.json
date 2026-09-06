@@ -71,19 +71,37 @@
       "title_ja": "ミニ竹木琴"
     },
     {
-      "page_images_en": [],
+      "page_images_en": [
+        {
+          "src": "images/updates/1-e-mmm.jpg"
+        }
+      ],
       "steps": [],
-      "page_images": [],
+      "page_images": [
+        {
+          "src": "images/updates/1-c-m.png"
+        }
+      ],
       "title_de": "Bambuszikade",
       "slug": "bamboo-cicada",
       "materials": [],
-      "page_images_ja": [],
-      "sort_date": "2026-09-02",
-      "title_en": "Bamboo Cicada",
+      "page_images_ja": [
+        {
+          "src": "images/updates/1-j-m.png"
+        }
+      ],
+      "sort_date": "2026-09-06",
+      "title_en": "Bamboo cicada",
       "cover_image": "images/updates/竹蟬.jpg",
       "title_zh": "竹蟬",
-      "page_images_de": [],
-      "images": [],
+      "page_images_de": [
+        {
+          "src": "images/updates/1-g-m.png"
+        }
+      ],
+      "images": [
+        {}
+      ],
       "type": "images",
       "title_ja": "竹セミ"
     },
