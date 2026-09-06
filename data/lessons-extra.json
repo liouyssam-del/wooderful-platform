@@ -71,38 +71,105 @@
       "title_ja": "ミニ竹木琴"
     },
     {
-      "page_images_en": [],
+      "page_images_en": [
+        {
+          "src": "images/updates/1-e-mmm.jpg"
+        }
+      ],
       "steps": [],
-      "page_images": [],
+      "page_images": [
+        {
+          "src": "images/updates/1-c-m.png"
+        }
+      ],
+      "title_de": "Bambuszikade",
       "slug": "bamboo-cicada",
       "materials": [],
-      "page_images_ja": [],
-      "sort_date": "2026-09-02",
-      "title_en": "Bamboo Cicada",
+      "page_images_ja": [
+        {
+          "src": "images/updates/1-j-m.png"
+        }
+      ],
+      "sort_date": "2026-09-06",
+      "title_en": "Bamboo cicada",
       "cover_image": "images/updates/竹蟬.jpg",
       "title_zh": "竹蟬",
-      "page_images_de": [],
-      "images": [],
+      "page_images_de": [
+        {
+          "src": "images/updates/1-g-m.png"
+        }
+      ],
+      "images": [
+        {}
+      ],
       "type": "images",
-      "title_ja": "竹セミ",
-      "title_de": "Bambuszikade"
+      "title_ja": "竹セミ"
     },
     {
-      "page_images_en": [],
+      "page_images_en": [
+        {
+          "src": "images/updates/竹風鈴-e.png"
+        }
+      ],
       "steps": [],
-      "page_images": [],
+      "page_images": [
+        {
+          "src": "images/updates/竹風鈴-c.png"
+        }
+      ],
       "title_de": "Bambus-Windspiel",
       "slug": "bamboo-chimes",
       "materials": [],
-      "page_images_ja": [],
+      "page_images_ja": [
+        {
+          "src": "images/updates/竹風鈴-j.png"
+        }
+      ],
       "sort_date": "2026-09-06",
       "title_en": "Bamboo wind chime",
       "cover_image": "images/updates/竹風鈴.jpg",
       "title_zh": "竹風鈴",
-      "page_images_de": [],
+      "page_images_de": [
+        {
+          "src": "images/updates/竹風鈴-g.png"
+        }
+      ],
       "images": [],
       "type": "images",
       "title_ja": "竹風鈴（たけふうりん / Takefūrin）"
+    },
+    {
+      "page_images_en": [
+        {
+          "src": "images/updates/竹蛙-e.png"
+        }
+      ],
+      "steps": [],
+      "page_images": [
+        {
+          "src": "images/updates/竹蛙-c.png"
+        }
+      ],
+      "title_de": "Frosch aus Bambus",
+      "slug": "bamboo-jumpfrog",
+      "materials": [],
+      "page_images_ja": [
+        {
+          "src": "images/updates/竹蛙-j.png"
+        }
+      ],
+      "sort_date": "2026-09-06",
+      "title_en": "Bamboo jumping",
+      "cover_image": "images/updates/竹青蛙.png",
+      "title_zh": "竹青蛙",
+      "page_images_de": [
+        {
+          "src": "images/updates/竹蛙-g.png"
+        }
+      ],
+      "images": [],
+      "type": "images",
+      "title_ja": "竹の蛙（たけのかえる)"
     }
   ]
 }
