@@ -28,12 +28,15 @@ const navbarHTML = `
               </a>
               <div class="dropdown-wrap">
                 <ul class="dropdown-menu">
-                  <li><a href="lesson-gyro.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Wooden Gyro" data-ja="木製ごま" data-de="Hölzerner Kreisel">木陀螺教案</a></li>
-                  <li><a href="lesson-bird.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Flying Bird" data-ja="飛ぶ鳥" data-de="Fliegender Vogel">飛鳥教案</a></li>
-                  <li><a href="lesson-frog.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Croaking Frog Clapper" data-ja="鳴くカエルのクラッカー" data-de="Quakender Frosch-Klapper">呱呱響板教案</a></li>
-                  <li><a href="lesson-cablecar.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Aerial Cable Car" data-ja="空中ケーブルカー" data-de="Seilbahn">高空運輸車教案</a></li>
-                  <li><a href="lesson-train.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Bumpy Train" data-ja="でこぼこ列車" data-de="Holpriger Zug">蹦蹦車教案</a></li>
-                  <li class="border-t border-stone-100"><a href="lessons.html" class="block px-5 py-2.5 text-caption font-semibold text-forest-600 hover:bg-forest-100" data-en="View All Lessons →" data-ja="すべてのレッスンを見る →" data-de="Alle Lektionen ansehen →">查看全部教案 →</a></li>
+                  <!-- 以下 5 筆是 JS 載入前的暫時內容，頁面載入後會被 layout.js 的 refreshLessonsDropdown()
+                       自動替換成「目前最新的 5 份教案」（混合這裡的舊教案跟後台 CMS 新增的教案，依日期排序），
+                       不用再手動維護這份清單。 -->
+                  <li class="lessons-dyn-item"><a href="lesson-gyro.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Wooden Gyro" data-ja="木製ごま" data-de="Hölzerner Kreisel">木陀螺教案</a></li>
+                  <li class="lessons-dyn-item"><a href="lesson-bird.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Flying Bird" data-ja="飛ぶ鳥" data-de="Fliegender Vogel">飛鳥教案</a></li>
+                  <li class="lessons-dyn-item"><a href="lesson-frog.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Croaking Frog Clapper" data-ja="鳴くカエルのクラッカー" data-de="Quakender Frosch-Klapper">呱呱響板教案</a></li>
+                  <li class="lessons-dyn-item"><a href="lesson-cablecar.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Aerial Cable Car" data-ja="空中ケーブルカー" data-de="Seilbahn">高空運輸車教案</a></li>
+                  <li class="lessons-dyn-item"><a href="lesson-train.html" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="Bumpy Train" data-ja="でこぼこ列車" data-de="Holpriger Zug">蹦蹦車教案</a></li>
+                  <li class="border-t border-stone-100" id="lessonsDropdownViewAll"><a href="lessons.html" class="block px-5 py-2.5 text-caption font-semibold text-forest-600 hover:bg-forest-100" data-en="View All Lessons →" data-ja="すべてのレッスンを見る →" data-de="Alle Lektionen ansehen →">查看全部教案 →</a></li>
                 </ul>
               </div>
             </li>
@@ -69,12 +72,13 @@ const navbarHTML = `
             <span data-en="Lesson Plans" data-ja="学習指導案（例）" data-de="Muster-Unterrichtsentwurf">分享教案</span> <i class="fa-solid fa-chevron-down text-caption transition-transform"></i>
           </button>
           <ul id="mobileLessonsSub" class="mobile-sub pl-4 pb-3 space-y-3 text-stone-500">
-            <li><a href="lesson-gyro.html" class="block py-1" data-en="Wooden Gyro" data-ja="木製ごま" data-de="Hölzerner Kreisel">木陀螺教案</a></li>
-            <li><a href="lesson-bird.html" class="block py-1" data-en="Flying Bird" data-ja="飛ぶ鳥" data-de="Fliegender Vogel">飛鳥教案</a></li>
-            <li><a href="lesson-frog.html" class="block py-1" data-en="Croaking Frog Clapper" data-ja="鳴くカエルのクラッカー" data-de="Quakender Frosch-Klapper">呱呱響板教案</a></li>
-            <li><a href="lesson-cablecar.html" class="block py-1" data-en="Aerial Cable Car" data-ja="空中ケーブルカー" data-de="Seilbahn">高空運輸車教案</a></li>
-            <li><a href="lesson-train.html" class="block py-1" data-en="Bumpy Train" data-ja="でこぼこ列車" data-de="Holpriger Zug">蹦蹦車教案</a></li>
-            <li><a href="lessons.html" class="block py-1 text-forest-600 font-semibold" data-en="View All Lessons →" data-ja="すべてのレッスンを見る →" data-de="Alle Lektionen ansehen →">查看全部教案 →</a></li>
+            <!-- 同桌機版下拉選單，載入後會被 refreshLessonsDropdown() 自動換成最新 5 筆。 -->
+            <li class="lessons-dyn-item"><a href="lesson-gyro.html" class="block py-1" data-en="Wooden Gyro" data-ja="木製ごま" data-de="Hölzerner Kreisel">木陀螺教案</a></li>
+            <li class="lessons-dyn-item"><a href="lesson-bird.html" class="block py-1" data-en="Flying Bird" data-ja="飛ぶ鳥" data-de="Fliegender Vogel">飛鳥教案</a></li>
+            <li class="lessons-dyn-item"><a href="lesson-frog.html" class="block py-1" data-en="Croaking Frog Clapper" data-ja="鳴くカエルのクラッカー" data-de="Quakender Frosch-Klapper">呱呱響板教案</a></li>
+            <li class="lessons-dyn-item"><a href="lesson-cablecar.html" class="block py-1" data-en="Aerial Cable Car" data-ja="空中ケーブルカー" data-de="Seilbahn">高空運輸車教案</a></li>
+            <li class="lessons-dyn-item"><a href="lesson-train.html" class="block py-1" data-en="Bumpy Train" data-ja="でこぼこ列車" data-de="Holpriger Zug">蹦蹦車教案</a></li>
+            <li id="mobileLessonsViewAllLi"><a href="lessons.html" class="block py-1 text-forest-600 font-semibold" data-en="View All Lessons →" data-ja="すべてのレッスンを見る →" data-de="Alle Lektionen ansehen →">查看全部教案 →</a></li>
           </ul>
         </li>
         <li class="border-b border-stone-200/60"><a href="updates.html" class="block py-4" data-en="Latest Updates" data-ja="最新情報" data-de="Neuigkeiten">最新動態</a></li>
@@ -163,12 +167,90 @@ const lessonNotesHTML = `
   </section>
 `;
 
+// 導覽列「分享教案」下拉選單：以前是寫死 5 筆連結，新教案（不管是這裡列的舊教案子頁，
+// 還是後台 CMS 新增的教案）都不會自動出現，要手動改這個檔案才會更新，容易忘記。
+// 現在改成：下面列出「舊教案子頁」的固定資料（因為這些是獨立 html 檔，沒有存在 CMS 資料裡），
+// 跟後台 data/lessons-extra.json 讀到的教案合併、依日期排序，選單永遠自動顯示「目前最新的 5 筆」。
+const LEGACY_LESSONS = [
+  { href: 'lesson-bird.html', date: '2026-07-01', zh: '飛鳥教案', en: 'Flying Bird', ja: '飛ぶ鳥', de: 'Fliegender Vogel' },
+  { href: 'lesson-bank.html', date: '2026-06-01', zh: '自動存錢筒教案', en: 'Automatic Piggy Bank', ja: '自動貯金箱', de: 'Automatisches Sparschwein' },
+  { href: 'lesson-gyro.html', date: '2025-09-01', zh: '木陀螺教案', en: 'Wooden Gyro', ja: '木製ごま', de: 'Hölzerner Kreisel' },
+  { href: 'lesson-frog.html', date: '2018-01-01', zh: '呱呱響板教案', en: 'Croaking Frog Clapper', ja: '鳴くカエルのクラッカー', de: 'Quakender Frosch-Klapper' },
+  { href: 'lesson-crawler.html', date: '2018-02-01', zh: '爬行高手教案', en: 'Crawling Master', ja: '匍匐の達人', de: 'Krabbelmeister' },
+  { href: 'lesson-wobblecar.html', date: '2018-03-01', zh: '搖搖平行車教案', en: 'Wobbly Parallel Car', ja: 'ぐらぐら平行カー', de: 'Wackliges Parallelauto' },
+  { href: 'lesson-cablecar.html', date: '2018-04-01', zh: '高空運輸車教案', en: 'Aerial Cable Car', ja: '空中ケーブルカー', de: 'Seilbahn' },
+  { href: 'lesson-train.html', date: '2018-05-01', zh: '蹦蹦車教案', en: 'Bumpy Train', ja: 'でこぼこ列車', de: 'Holpriger Zug' },
+  { href: 'lesson-mosaic.html', date: '2018-06-01', zh: '木皮馬賽克教案', en: 'Wood Veneer Mosaic', ja: '木皮モザイク', de: 'Holzfurnier-Mosaik' },
+  { href: 'lesson-sailcar.html', date: '2018-07-01', zh: '風帆車教案', en: 'Sailboat Car', ja: '風帆カー', de: 'Segelwagen' },
+];
+
+async function refreshLessonsDropdown() {
+  const desktopList = document.querySelector('#navbar .dropdown-menu');
+  const mobileList = document.getElementById('mobileLessonsSub');
+  if (!desktopList && !mobileList) return;
+
+  // 讀取後台 CMS 新增的教案，跟上面的舊教案合併排序；讀取失敗（例如離線）就只用舊教案清單，
+  // 選單還是看得到東西，不會整個空白。
+  let cmsItems = [];
+  try {
+    const res = await fetch('data/lessons-extra.json', { cache: 'no-store' });
+    const data = res.ok ? await res.json() : { items: [] };
+    const items = (data && Array.isArray(data.items)) ? data.items : [];
+    cmsItems = items
+      .filter((item) => item && item.title_zh)
+      .map((item) => {
+        // 跟 lessons.html 的連結邏輯保持一致：PNG 圖片頁教案連到共用瀏覽頁，其餘連到完整教案頁。
+        const isImagePages = item.type === 'images'
+          && Array.isArray(item.page_images)
+          && item.page_images.some((img) => img && img.src);
+        const href = isImagePages
+          ? `lesson-viewer.html?id=${encodeURIComponent(item.slug || '')}`
+          : `lesson-view.html?slug=${encodeURIComponent(item.slug || '')}`;
+        return {
+          href,
+          date: item.sort_date || '1970-01-01',
+          zh: item.title_zh,
+          en: item.title_en || item.title_zh,
+          ja: item.title_ja || item.title_zh,
+          de: item.title_de || item.title_zh,
+        };
+      });
+  } catch (e) {
+    /* 讀取失敗就只用舊教案清單，不影響選單顯示 */
+  }
+
+  const top5 = LEGACY_LESSONS.concat(cmsItems)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 5);
+
+  if (desktopList) {
+    desktopList.querySelectorAll('li.lessons-dyn-item').forEach((li) => li.remove());
+    const viewAllLi = document.getElementById('lessonsDropdownViewAll');
+    const html = top5.map((it) => `<li class="lessons-dyn-item"><a href="${it.href}" class="block px-5 py-3 text-body font-bold hover:bg-forest-100 hover:text-forest-700" data-en="${it.en}" data-ja="${it.ja}" data-de="${it.de}">${it.zh}</a></li>`).join('');
+    if (viewAllLi) viewAllLi.insertAdjacentHTML('beforebegin', html);
+  }
+
+  if (mobileList) {
+    mobileList.querySelectorAll('li.lessons-dyn-item').forEach((li) => li.remove());
+    const viewAllLiMobile = document.getElementById('mobileLessonsViewAllLi');
+    const htmlMobile = top5.map((it) => `<li class="lessons-dyn-item"><a href="${it.href}" class="block py-1" data-en="${it.en}" data-ja="${it.ja}" data-de="${it.de}">${it.zh}</a></li>`).join('');
+    if (viewAllLiMobile) viewAllLiMobile.insertAdjacentHTML('beforebegin', htmlMobile);
+  }
+
+  // 新插入的 <li> 帶有 data-en/ja/de，需要重新套用一次目前的語言，不然會先短暫顯示中文再跳成英日德。
+  if (window.applyLanguage && window.getCurrentLang) {
+    window.applyLanguage(window.getCurrentLang());
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const navContainer = document.getElementById("nav-container");
   if (navContainer) navContainer.innerHTML = navbarHTML;
 
   const footerContainer = document.getElementById("footer-container");
   if (footerContainer) footerContainer.innerHTML = footerHTML;
+
+  refreshLessonsDropdown();
 
   const lessonNotesContainer = document.getElementById("lesson-notes-container");
   if (lessonNotesContainer) lessonNotesContainer.innerHTML = lessonNotesHTML;
