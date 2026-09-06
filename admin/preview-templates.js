@@ -143,7 +143,7 @@ var LessonsExtraPreview = createClass({
 
     var cards = items.map(function (item, i) {
       var titleZh = item.get('title_zh') || '（尚未填寫教案名稱）';
-      var summaryZh = item.get('summary_zh') || '';
+      var summaryZh = item.getIn(['summary', 'zh']) || '';
       var grade = item.get('grade') || '';
       var duration = item.get('duration') || '';
       var lessonType = item.get('type') || 'html'; // 教案呈現方式：html（完整教案頁，預設）／images（PNG 圖片頁）

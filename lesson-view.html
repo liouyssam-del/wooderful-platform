@@ -157,8 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
       setText('lesson-title-hero', lesson.title_zh, lesson.title_en, lesson.title_ja, lesson.title_de);
       setText('lesson-title-breadcrumb', lesson.title_zh, lesson.title_en, lesson.title_ja, lesson.title_de);
       setText('lesson-title-main', lesson.title_zh, lesson.title_en, lesson.title_ja, lesson.title_de);
-      setText('lesson-summary', lesson.summary_zh, lesson.summary_en, lesson.summary_ja, lesson.summary_de);
-      setText('lesson-objectives', lesson.objectives_zh, lesson.objectives_en, lesson.objectives_ja, lesson.objectives_de);
+      const summary = lesson.summary || {};
+      const objectives = lesson.objectives || {};
+      // 相容舊資料格式（summary_zh 等扁平欄位），新資料一律讀取上面的巢狀 summary/objectives。
+      setText('lesson-summary', summary.zh || lesson.summary_zh, summary.en || lesson.summary_en, summary.ja || lesson.summary_ja, summary.de || lesson.summary_de);
+      setText('lesson-objectives', objectives.zh || lesson.objectives_zh, objectives.en || lesson.objectives_en, objectives.ja || lesson.objectives_ja, objectives.de || lesson.objectives_de);
       document.getElementById('lesson-grade').textContent = lesson.grade || '';
       document.getElementById('lesson-duration').textContent = lesson.duration || '';
       document.getElementById('lesson-groupsize').textContent = lesson.group_size || '';

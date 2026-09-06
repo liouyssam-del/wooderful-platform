@@ -423,10 +423,17 @@ collections:
                 name: "cover_image"
                 widget: "image"
                 required: false
-              - { label: "一句話簡介（中文，可留白）", name: "summary_zh", widget: "text", required: false }
-              - { label: "一句話簡介（英文，可留白）", name: "summary_en", widget: "text", required: false }
-              - { label: "一句話簡介（日文，可留白）", name: "summary_ja", widget: "text", required: false }
-              - { label: "一句話簡介（德文，可留白）", name: "summary_de", widget: "text", required: false }
+              - label: "一句話簡介（可留白，預設收合）"
+                hint: "點一下可以展開／收合中英日德四語欄位。"
+                name: "summary"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "中文", name: "zh", widget: "text", required: false }
+                  - { label: "英文", name: "en", widget: "text", required: false }
+                  - { label: "日文", name: "ja", widget: "text", required: false }
+                  - { label: "德文", name: "de", widget: "text", required: false }
               - { label: "適合年級", name: "grade", widget: "string", required: false }
               - { label: "教學時間", name: "duration", widget: "string", required: false }
               - { label: "參與人數", name: "group_size", widget: "string", required: false }
@@ -476,14 +483,17 @@ collections:
                 fields:
                   - { label: "圖片", name: "src", widget: "image" }
                   - { label: "圖片說明（可不填）", hint: "可標註「德文／第幾頁」方便之後編輯辨識，例如「de-p1」。", name: "caption", widget: "string", required: false }
-              - label: "課程目標（中文，可留白）"
-                hint: "以下（課程目標／材料清單／製作步驟）僅「教案呈現方式＝完整教案頁」時前台才會顯示，PNG 圖片頁教案可以略過不填。"
-                name: "objectives_zh"
-                widget: "text"
+              - label: "課程目標／理念（可留白，預設收合）"
+                hint: "以下（課程目標／材料清單／製作步驟）僅「教案呈現方式＝完整教案頁」時前台才會顯示，PNG 圖片頁教案可以略過不填。點一下可以展開／收合中英日德四語欄位。"
+                name: "objectives"
+                widget: "object"
+                collapsed: true
                 required: false
-              - { label: "課程目標（英文，可留白）", name: "objectives_en", widget: "text", required: false }
-              - { label: "課程目標（日文，可留白）", name: "objectives_ja", widget: "text", required: false }
-              - { label: "課程目標（德文，可留白）", name: "objectives_de", widget: "text", required: false }
+                fields:
+                  - { label: "中文", name: "zh", widget: "text", required: false }
+                  - { label: "英文", name: "en", widget: "text", required: false }
+                  - { label: "日文", name: "ja", widget: "text", required: false }
+                  - { label: "德文", name: "de", widget: "text", required: false }
               - label: "材料清單"
                 hint: "每行一項，例如「木頭方塊 ×2」。僅「完整教案頁」使用。"
                 name: "materials"
