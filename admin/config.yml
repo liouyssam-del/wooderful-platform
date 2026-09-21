@@ -65,13 +65,27 @@ collections:
               - { label: "日期（用於排序，必填）", hint: "這個日期決定顯示順序（新到舊），跟下面「日期顯示文字」是兩個獨立欄位，兩個都要填。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: true }
               - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
-              - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
-              - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
-              - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - label: "標題（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文標題（必填）在上面。"
+                name: "title_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "string", required: false }
+                  - { label: "日文", name: "ja", widget: "string", required: false }
+                  - { label: "德文", name: "de", widget: "string", required: false }
               - { label: "內容（中文，可留白）", name: "desc_zh", widget: "text", required: false }
-              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
-              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
-              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - label: "內容（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文內容在上面。"
+                name: "desc_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "text", required: false }
+                  - { label: "日文", name: "ja", widget: "text", required: false }
+                  - { label: "德文", name: "de", widget: "text", required: false }
               - label: "照片"
                 hint: "可新增多張，每張可加說明，建議 3MB 以內；可留白。"
                 name: "images"
@@ -96,13 +110,27 @@ collections:
               - { label: "日期（用於排序，必填）", hint: "這個日期決定顯示順序（新到舊），跟下面「日期顯示文字」是兩個獨立欄位，兩個都要填。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: true }
               - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
-              - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
-              - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
-              - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - label: "標題（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文標題（必填）在上面。"
+                name: "title_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "string", required: false }
+                  - { label: "日文", name: "ja", widget: "string", required: false }
+                  - { label: "德文", name: "de", widget: "string", required: false }
               - { label: "內容（中文，可留白）", name: "desc_zh", widget: "text", required: false }
-              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
-              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
-              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - label: "內容（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文內容在上面。"
+                name: "desc_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "text", required: false }
+                  - { label: "日文", name: "ja", widget: "text", required: false }
+                  - { label: "德文", name: "de", widget: "text", required: false }
               - label: "照片"
                 hint: "可新增多張，每張可加說明，建議 3MB 以內；可留白。"
                 name: "images"
@@ -127,13 +155,27 @@ collections:
               - { label: "日期（用於排序，必填）", hint: "這個日期決定顯示順序（新到舊），跟下面「日期顯示文字」是兩個獨立欄位，兩個都要填。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: true }
               - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
-              - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
-              - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
-              - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - label: "標題（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文標題（必填）在上面。"
+                name: "title_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "string", required: false }
+                  - { label: "日文", name: "ja", widget: "string", required: false }
+                  - { label: "德文", name: "de", widget: "string", required: false }
               - { label: "內容（中文，可留白）", name: "desc_zh", widget: "text", required: false }
-              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
-              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
-              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - label: "內容（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文內容在上面。"
+                name: "desc_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "text", required: false }
+                  - { label: "日文", name: "ja", widget: "text", required: false }
+                  - { label: "德文", name: "de", widget: "text", required: false }
               - label: "照片"
                 hint: "可新增多張，每張可加說明，建議 3MB 以內；可留白。"
                 name: "images"
@@ -158,13 +200,27 @@ collections:
               - { label: "日期（用於排序，必填）", hint: "這個日期決定顯示順序（新到舊），跟下面「日期顯示文字」是兩個獨立欄位，兩個都要填。", name: "sort_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: true }
               - { label: "日期顯示文字", hint: "例如：2026 / 08", name: "date_label", widget: "string", required: false }
               - { label: "標題（中文，必填）", name: "title_zh", widget: "string" }
-              - { label: "標題（英文，可留白）", name: "title_en", widget: "string", required: false }
-              - { label: "標題（日文，可留白）", name: "title_ja", widget: "string", required: false }
-              - { label: "標題（德文，可留白）", name: "title_de", widget: "string", required: false }
+              - label: "標題（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文標題（必填）在上面。"
+                name: "title_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "string", required: false }
+                  - { label: "日文", name: "ja", widget: "string", required: false }
+                  - { label: "德文", name: "de", widget: "string", required: false }
               - { label: "內容（中文，可留白）", name: "desc_zh", widget: "text", required: false }
-              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
-              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
-              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - label: "內容（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文內容在上面。"
+                name: "desc_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "text", required: false }
+                  - { label: "日文", name: "ja", widget: "text", required: false }
+                  - { label: "德文", name: "de", widget: "text", required: false }
               - label: "照片"
                 hint: "可新增多張，每張可加說明，建議 3MB 以內；可留白。"
                 name: "images"
@@ -253,9 +309,16 @@ collections:
             fields:
               - { label: "期間", hint: "例如：2024/6–2024/9", name: "period", widget: "string", required: false }
               - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
-              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
-              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
-              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - label: "內容（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文內容在上面。"
+                name: "desc_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "text", required: false }
+                  - { label: "日文", name: "ja", widget: "text", required: false }
+                  - { label: "德文", name: "de", widget: "text", required: false }
 
       - name: "director_research_projects"
         label: "⑤ 研究計畫"
@@ -302,9 +365,16 @@ collections:
             fields:
               - { label: "期間", hint: "例如：2021/8–迄今", name: "period", widget: "string", required: false }
               - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
-              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
-              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
-              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - label: "內容（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文內容在上面。"
+                name: "desc_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "text", required: false }
+                  - { label: "日文", name: "ja", widget: "text", required: false }
+                  - { label: "德文", name: "de", widget: "text", required: false }
           - name: "design"
             label: "【設計實務】列表"
             widget: "list"
@@ -313,9 +383,16 @@ collections:
             fields:
               - { label: "期間", hint: "例如：1994/8–1997/8", name: "period", widget: "string", required: false }
               - { label: "內容（中文，必填）", name: "desc_zh", widget: "text" }
-              - { label: "內容（英文，可留白）", name: "desc_en", widget: "text", required: false }
-              - { label: "內容（日文，可留白）", name: "desc_ja", widget: "text", required: false }
-              - { label: "內容（德文，可留白）", name: "desc_de", widget: "text", required: false }
+              - label: "內容（英／日／德文，可留白，預設收合）"
+                hint: "點一下可以展開／收合英／日／德文欄位；中文內容在上面。"
+                name: "desc_intl"
+                widget: "object"
+                collapsed: true
+                required: false
+                fields:
+                  - { label: "英文", name: "en", widget: "text", required: false }
+                  - { label: "日文", name: "ja", widget: "text", required: false }
+                  - { label: "德文", name: "de", widget: "text", required: false }
 
       - name: "director_publications"
         label: "⑦ 研究發表"
@@ -434,10 +511,10 @@ collections:
                   - { label: "英文", name: "en", widget: "text", required: false }
                   - { label: "日文", name: "ja", widget: "text", required: false }
                   - { label: "德文", name: "de", widget: "text", required: false }
-              - { label: "適合年級", name: "grade", widget: "string", required: false }
-              - { label: "教學時間", name: "duration", widget: "string", required: false }
-              - { label: "參與人數", name: "group_size", widget: "string", required: false }
-              - { label: "教學領域", name: "subject", widget: "string", required: false }
+              - { label: "適合年級", hint: "僅「完整教案頁」使用，PNG 圖片頁可略過不填。", name: "grade", widget: "string", required: false }
+              - { label: "教學時間", hint: "僅「完整教案頁」使用，PNG 圖片頁可略過不填。", name: "duration", widget: "string", required: false }
+              - { label: "參與人數", hint: "僅「完整教案頁」使用，PNG 圖片頁可略過不填。", name: "group_size", widget: "string", required: false }
+              - { label: "教學領域", hint: "僅「完整教案頁」使用，PNG 圖片頁可略過不填。", name: "subject", widget: "string", required: false }
               - label: "照片"
                 hint: "可新增多張，每張可加說明，建議 3MB 以內；可留白，第一張會當作列表縮圖。這是活動花絮照片，不是教案內容本身——PNG 圖片頁教案請改用下面的「教案頁面圖片」欄位。"
                 name: "images"
