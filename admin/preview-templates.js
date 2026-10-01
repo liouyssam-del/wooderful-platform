@@ -4,10 +4,73 @@
 var h = window.h;
 var createClass = window.createClass;
 
+/* ── 共用元件：正確解析圖片路徑（含尚未發布、還在草稿階段的新圖片）──
+   後台右側「即時預覽」裡，圖片欄位存的其實只是一段路徑字串（例如
+   images/updates/xxx.png），在照片還沒 Save/Publish 真正上線前，直接拿
+   這段路徑當 <img src> 用會打不開、顯示破圖——因為瀏覽器會去現在這個
+   /admin/ 網址下面找這張圖，但圖其實還只是存在 Decap CMS 自己的草稿
+   暫存區。正確做法是呼叫 Decap CMS 另外提供的 getAsset()，把路徑換成
+   瀏覽器看得到的暫存網址。不同版本的 getAsset() 有的是直接回傳、有的
+   是回傳一個 Promise（之後才給結果），這個小元件兩種都處理，確保預覽
+   圖片正常顯示，不會變成破圖圖示。 */
+var AssetImage = createClass({
+  getInitialState: function () {
+    return { url: null };
+  },
+  resolveAsset: function (props) {
+    var self = this;
+    if (!props.src) {
+      this.setState({ url: null });
+      return;
+    }
+    if (!props.getAsset) {
+      this.setState({ url: props.src });
+      return;
+    }
+    var result;
+    try {
+      result = props.getAsset(props.src);
+    } catch (e) {
+      this.setState({ url: props.src });
+      return;
+    }
+    if (result && typeof result.then === 'function') {
+      result
+        .then(function (asset) {
+          var url = asset && asset.toString ? asset.toString() : asset || props.src;
+          self.setState({ url: url });
+        })
+        .catch(function () {
+          self.setState({ url: props.src });
+        });
+    } else {
+      var url = result && result.toString ? result.toString() : result || props.src;
+      this.setState({ url: url });
+    }
+  },
+  componentDidMount: function () {
+    this.resolveAsset(this.props);
+  },
+  componentDidUpdate: function (prevProps) {
+    if (prevProps.src !== this.props.src || prevProps.getAsset !== this.props.getAsset) {
+      this.resolveAsset(this.props);
+    }
+  },
+  render: function () {
+    if (!this.state.url) {
+      // 路徑還在解析中：先放一個跟圖片同尺寸的淺色佔位區塊，避免閃一下破圖圖示
+      var placeholderStyle = { background: '#f4f1ea' };
+      for (var k in this.props.style) { placeholderStyle[k] = this.props.style[k]; }
+      return h('div', { style: placeholderStyle });
+    }
+    return h('img', { src: this.state.url, style: this.props.style, alt: this.props.alt || '' });
+  },
+});
+
 /* ── 最新動態：預覽卡片，模擬 updates.html 的 .activity-card 樣式 ──
    4 個分類（國際交流／木育玩具／竹育樂／產學合作）各自獨立一個檔案、獨立一個預覽元件，
    不再是一份夾雜 4 個分類清單的大表單。共用同一個 renderUpdateCards() 畫卡片。 */
-function renderUpdateCards(items, categoryLabel) {
+function renderUpdateCards(items, categoryLabel, getAsset) {
     if (!items || items.size === 0) {
       return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何項目');
     }
@@ -79,8 +142,9 @@ function renderUpdateCards(items, categoryLabel) {
                 return h(
                   'div',
                   { key: idx, style: { width: '160px' } },
-                  h('img', {
+                  h(AssetImage, {
                     src: src,
+                    getAsset: getAsset,
                     style: { width: '100%', maxHeight: '160px', objectFit: 'contain', borderRadius: '8px', border: '1px solid #e7e2d8', background: '#f4f1ea', padding: '6px', boxSizing: 'border-box' },
                   }),
                   caption ? h('div', { style: { fontSize: '12px', color: '#7d7164', marginTop: '4px' } }, caption) : null
@@ -88,8 +152,9 @@ function renderUpdateCards(items, categoryLabel) {
               })
             )
           : legacyImage
-          ? h('img', {
+          ? h(AssetImage, {
               src: legacyImage,
+              getAsset: getAsset,
               style: { maxWidth: '100%', maxHeight: '220px', borderRadius: '8px', border: '1px solid #e7e2d8' },
             })
           : null
@@ -106,28 +171,28 @@ function renderUpdateCards(items, categoryLabel) {
 
 var UpdatesIntlPreview = createClass({
   render: function () {
-    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '國際交流');
+    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '國際交流', this.props.getAsset);
   },
 });
 CMS.registerPreviewTemplate('updates_intl', UpdatesIntlPreview);
 
 var UpdatesWoodPreview = createClass({
   render: function () {
-    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '木育玩具開發與推廣');
+    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '木育玩具開發與推廣', this.props.getAsset);
   },
 });
 CMS.registerPreviewTemplate('updates_wood', UpdatesWoodPreview);
 
 var UpdatesBambooPreview = createClass({
   render: function () {
-    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '竹育樂');
+    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '竹育樂', this.props.getAsset);
   },
 });
 CMS.registerPreviewTemplate('updates_bamboo', UpdatesBambooPreview);
 
 var UpdatesIndustryPreview = createClass({
   render: function () {
-    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '產學合作計畫成果');
+    return renderUpdateCards(this.props.entry.getIn(['data', 'items']), '產學合作計畫成果', this.props.getAsset);
   },
 });
 CMS.registerPreviewTemplate('updates_industry', UpdatesIndustryPreview);
@@ -136,6 +201,7 @@ CMS.registerPreviewTemplate('updates_industry', UpdatesIndustryPreview);
 var LessonsExtraPreview = createClass({
   render: function () {
     var entry = this.props.entry;
+    var getAsset = this.props.getAsset;
     var items = entry.getIn(['data', 'items']);
     if (!items || items.size === 0) {
       return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何教案');
@@ -171,8 +237,9 @@ var LessonsExtraPreview = createClass({
           },
         },
         coverImage
-          ? h('img', {
+          ? h(AssetImage, {
               src: coverImage,
+              getAsset: getAsset,
               style: { width: '80px', height: '80px', objectFit: 'cover', borderRadius: '9999px', margin: '0 auto 12px auto', display: 'block' },
             })
           : null,
@@ -222,7 +289,7 @@ var LessonsExtraPreview = createClass({
                 return h(
                   'div',
                   { key: idx, style: { width: '70px' } },
-                  h('img', { src: src, style: { width: '100%', height: '70px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e7e2d8' } }),
+                  h(AssetImage, { src: src, getAsset: getAsset, style: { width: '100%', height: '70px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e7e2d8' } }),
                   caption ? h('div', { style: { fontSize: '11px', color: '#8c8072', marginTop: '2px' } }, caption) : null
                 );
               })
@@ -238,7 +305,7 @@ var LessonsExtraPreview = createClass({
                 return h(
                   'div',
                   { key: idx, style: { width: '56px', height: '56px', border: idx === 0 ? '2px solid #446b2a' : '1px solid #e7e2d8', borderRadius: '6px', overflow: 'hidden' } },
-                  h('img', { src: src, style: { width: '100%', height: '100%', objectFit: 'cover' } })
+                  h(AssetImage, { src: src, getAsset: getAsset, style: { width: '100%', height: '100%', objectFit: 'cover' } })
                 );
               })
             )
