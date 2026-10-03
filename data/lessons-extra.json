@@ -170,6 +170,39 @@
       "images": [],
       "type": "images",
       "title_ja": "竹の蛙（たけのかえる)"
+    },
+    {
+      "page_images_en": [
+        {
+          "src": "images/updates/竹簾琴-e1.png"
+        }
+      ],
+      "steps": [],
+      "page_images": [
+        {
+          "src": "images/updates/竹簾琴-c1.png"
+        }
+      ],
+      "title_de": "Bambuvorhang xylophone",
+      "slug": "bamboo-curtain-xylophone",
+      "materials": [],
+      "page_images_ja": [
+        {
+          "src": "images/updates/竹簾琴-j1.png"
+        }
+      ],
+      "sort_date": "2026-10-01",
+      "title_en": "Bamboo curtain xylophone",
+      "cover_image": "images/updates/竹簾琴-封面.jpg",
+      "title_zh": "竹簾琴",
+      "page_images_de": [
+        {
+          "src": "images/updates/竹簾琴-g1.png"
+        }
+      ],
+      "images": [],
+      "type": "images",
+      "title_ja": "すだれ竹琴"
     }
   ]
 }
