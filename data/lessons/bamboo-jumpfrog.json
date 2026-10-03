@@ -1,0 +1,33 @@
+{
+  "page_images_en": [
+    {
+      "src": "images/updates/竹蛙-e.png"
+    }
+  ],
+  "steps": [],
+  "page_images": [
+    {
+      "src": "images/updates/竹蛙-c.png"
+    }
+  ],
+  "title_de": "Frosch aus Bambus",
+  "slug": "bamboo-jumpfrog",
+  "materials": [],
+  "page_images_ja": [
+    {
+      "src": "images/updates/竹蛙-j.png"
+    }
+  ],
+  "sort_date": "2026-09-06",
+  "title_en": "Bamboo jumping",
+  "cover_image": "images/updates/竹青蛙.png",
+  "title_zh": "竹青蛙",
+  "page_images_de": [
+    {
+      "src": "images/updates/竹蛙-g.png"
+    }
+  ],
+  "images": [],
+  "type": "images",
+  "title_ja": "竹の蛙（たけのかえる)"
+}

@@ -1,0 +1,61 @@
+name: 自動重新整理教案索引
+
+# 說明給以後維護的人看：
+# 後台 CMS（分享教案）改成「每份教案存成自己獨立的檔案」
+# (data/lessons/<slug>.json) 之後，網站前台還是只認一份彙整好的
+# data/lessons-extra.json。這個 workflow 負責在每次有教案透過 CMS
+# 發佈（= 有新的 commit 推到 main，而且改到了 data/lessons/ 底下的
+# 檔案）時，自動執行 scripts/build-lessons-index.js 重新產生彙整檔案，
+# 並且自動 commit 回到 repo。全程不需要人工操作，Cloudflare Pages
+# 偵測到這個新 commit 之後，會照常自動部署最新版本的網站。
+#
+# 如果看到網站「分享教案」列表頁沒有馬上更新，通常就是還在等這個
+# workflow + Cloudflare Pages 跑完，一般 1~2 分鐘內會自動好，
+# 不需要手動做任何事。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/lessons/**'
+
+# 避免同一時間有多次 push 疊加執行、互相搶著 commit
+concurrency:
+  group: build-lessons-index
+  cancel-in-progress: false
+
+jobs:
+  rebuild-index:
+    runs-on: ubuntu-latest
+    # 保護措施：如果這個 commit 本身就是這個 workflow 自動產生的
+    # （commit message 會帶 [skip ci]），GitHub 本來就不會觸發這個
+    # workflow，這裡多一層判斷只是雙重保險。
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    permissions:
+      contents: write
+    steps:
+      - name: 取出完整 repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 重新產生 data/lessons-extra.json
+        run: node scripts/build-lessons-index.js
+
+      - name: 檢查有沒有變動
+        id: diff
+        run: |
+          if git diff --quiet -- data/lessons-extra.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 自動 commit 並推回 main
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/lessons-extra.json
+          git commit -m "chore: 自動重新整理教案索引 [skip ci]"
+          git push

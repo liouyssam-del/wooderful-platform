@@ -197,46 +197,46 @@ var UpdatesIndustryPreview = createClass({
 });
 CMS.registerPreviewTemplate('updates_industry', UpdatesIndustryPreview);
 
-/* ── 分享教案：預覽卡片，模擬 lessons.html 的教案卡片樣式 ── */
+/* ── 分享教案：預覽卡片，模擬 lessons.html 的教案卡片樣式 ──
+   改成 folder collection 之後，每一個 entry 本身就是「一份教案」
+   （不再是一份清單裡的其中一筆），所以這裡預覽的是單一一張卡片，
+   不用再跑迴圈畫很多張。 */
 var LessonsExtraPreview = createClass({
   render: function () {
     var entry = this.props.entry;
     var getAsset = this.props.getAsset;
-    var items = entry.getIn(['data', 'items']);
-    if (!items || items.size === 0) {
-      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何教案');
+    var item = entry.get('data');
+    if (!item) {
+      return h('div', { style: { padding: '24px', fontFamily: 'sans-serif', color: '#999' } }, '目前沒有任何內容');
     }
 
-    var cards = items.map(function (item, i) {
-      var titleZh = item.get('title_zh') || '（尚未填寫教案名稱）';
-      var summaryZh = item.getIn(['summary', 'zh']) || '';
-      var grade = item.get('grade') || '';
-      var duration = item.get('duration') || '';
-      var lessonType = item.get('type') || 'html'; // 教案呈現方式：html（完整教案頁，預設）／images（PNG 圖片頁）
-      var images = item.get('images'); // 圖片清單（活動花絮照片），第一張當作縮圖
-      var pageImages = item.get('page_images'); // PNG 圖片頁專用：教案內容本身的頁面截圖
-      var legacyImage = item.get('image'); // 舊格式：單張圖片欄位（相容用）
-      var coverImage = (images && images.size && images.get(0).get('src'))
-        || (pageImages && pageImages.size && pageImages.get(0).get('src'))
-        || legacyImage || '';
-      var materials = item.get('materials');
-      var steps = item.get('steps');
+    var summaryZh = item.getIn(['summary', 'zh']) || '';
+    var grade = item.get('grade') || '';
+    var duration = item.get('duration') || '';
+    var lessonType = item.get('type') || 'html'; // 教案呈現方式：html（完整教案頁，預設）／images（PNG 圖片頁）
+    var images = item.get('images'); // 圖片清單（活動花絮照片），第一張當作縮圖
+    var pageImages = item.get('page_images'); // PNG 圖片頁專用：教案內容本身的頁面截圖
+    var legacyImage = item.get('image'); // 舊格式：單張圖片欄位（相容用）
+    var coverImage = (images && images.size && images.get(0).get('src'))
+      || (pageImages && pageImages.size && pageImages.get(0).get('src'))
+      || legacyImage || '';
+    var materials = item.get('materials');
+    var steps = item.get('steps');
 
-      return h(
-        'div',
-        {
-          key: i,
-          style: {
-            background: '#fff',
-            border: '1px solid #e7e2d8',
-            borderRadius: '14px',
-            padding: '24px',
-            marginBottom: '18px',
-            fontFamily: '"Noto Sans TC", sans-serif',
-            textAlign: 'center',
-          },
+    var card = h(
+      'div',
+      {
+        style: {
+          background: '#fff',
+          border: '1px solid #e7e2d8',
+          borderRadius: '14px',
+          padding: '24px',
+          marginBottom: '18px',
+          fontFamily: '"Noto Sans TC", sans-serif',
+          textAlign: 'center',
         },
-        coverImage
+      },
+      coverImage
           ? h(AssetImage, {
               src: coverImage,
               getAsset: getAsset,
@@ -330,14 +330,13 @@ var LessonsExtraPreview = createClass({
               )
             )
           : null
-      );
-    });
+    );
 
     return h(
       'div',
       { style: { padding: '24px', background: '#fbf9f5' } },
       h('p', { style: { fontSize: '12px', color: '#a8998a', marginBottom: '16px' } }, '（預覽樣式僅供參考，實際網站排版可能略有差異）'),
-      cards.toArray()
+      card
     );
   },
 });
