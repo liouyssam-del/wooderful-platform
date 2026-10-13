@@ -3,72 +3,68 @@
     {
       "page_images_en": [
         {
-          "src": "images/updates/1-1-e-0623-abccc_頁面_31.jpg"
+          "src": "images/updates/竹簾琴-e1.png"
         }
       ],
-      "group_size": "10",
       "steps": [],
       "page_images": [
         {
-          "src": "images/updates/1-c.png"
+          "src": "images/updates/竹簾琴-c1.png"
         }
       ],
-      "title_de": "Bambus-Schlaginstrument",
-      "slug": "bamboo1",
+      "title_de": "Bambuvorhang xylophone",
+      "slug": "bamboo-curtain-xylophone",
       "materials": [],
-      "subject": "跨域",
       "page_images_ja": [
         {
-          "src": "images/updates/1-j.png"
+          "src": "images/updates/竹簾琴-j1.png"
         }
       ],
-      "sort_date": "2026-07-29",
-      "title_en": "Percussion Bamboo Instrument",
-      "cover_image": "images/updates/1-0730.jpg",
-      "duration": "16小時",
-      "title_zh": "拍打竹樂器",
-      "grade": "小學3年級",
+      "sort_date": "2026-10-01",
+      "title_en": "Bamboo curtain xylophone",
+      "cover_image": "images/updates/竹簾琴-封面.jpg",
+      "title_zh": "竹簾琴",
       "page_images_de": [
         {
-          "src": "images/updates/1-g.png"
+          "src": "images/updates/竹簾琴-g1.png"
         }
       ],
       "images": [],
       "type": "images",
-      "title_ja": "打楽器型竹楽器（だがっきがた たけがっき"
+      "title_ja": "すだれ竹琴"
     },
     {
       "page_images_en": [
         {
-          "src": "images/updates/1-e-mmm.jpg"
+          "src": "images/updates/竹風鈴-e.png"
         }
       ],
       "steps": [],
       "page_images": [
         {
-          "src": "images/updates/1-c-m.png"
+          "src": "images/updates/竹風鈴-c.png"
         }
       ],
-      "title_de": "Mini-Bambus-Xylophon",
-      "slug": "bamboo-xylophone",
+      "title_de": "Bambus-Windspiel",
+      "slug": "bamboo-chimes",
       "materials": [],
       "page_images_ja": [
         {
-          "src": "images/updates/1-j-m.png"
+          "src": "images/updates/竹風鈴-j.png"
         }
       ],
-      "sort_date": "2026-08-18",
-      "title_en": "Mini Bamboo Xylophone",
-      "cover_image": "images/updates/snap-1.jpg",
-      "title_zh": "小竹琴",
+      "sort_date": "2026-09-06",
+      "title_en": "Bamboo wind chime",
+      "cover_image": "images/updates/竹風鈴.jpg",
+      "title_zh": "竹風鈴",
       "page_images_de": [
         {
-          "src": "images/updates/1-g-m.png"
+          "src": "images/updates/竹風鈴-g.png"
         }
       ],
       "images": [],
       "type": "images",
-      "title_ja": "ミニ竹木琴"
+      "title_ja": "竹風鈴（たけふうりん / Takefūrin）"
     },
     {
       "page_images_en": [
@@ -108,39 +104,6 @@
     {
       "page_images_en": [
         {
-          "src": "images/updates/竹風鈴-e.png"
-        }
-      ],
-      "steps": [],
-      "page_images": [
-        {
-          "src": "images/updates/竹風鈴-c.png"
-        }
-      ],
-      "title_de": "Bambus-Windspiel",
-      "slug": "bamboo-chimes",
-      "materials": [],
-      "page_images_ja": [
-        {
-          "src": "images/updates/竹風鈴-j.png"
-        }
-      ],
-      "sort_date": "2026-09-06",
-      "title_en": "Bamboo wind chime",
-      "cover_image": "images/updates/竹風鈴.jpg",
-      "title_zh": "竹風鈴",
-      "page_images_de": [
-        {
-          "src": "images/updates/竹風鈴-g.png"
-        }
-      ],
-      "images": [],
-      "type": "images",
-      "title_ja": "竹風鈴（たけふうりん / Takefūrin）"
-    },
-    {
-      "page_images_en": [
-        {
           "src": "images/updates/竹蛙-e.png"
         }
       ],
@@ -174,35 +137,72 @@
     {
       "page_images_en": [
         {
-          "src": "images/updates/竹簾琴-e1.png"
+          "src": "images/updates/1-e-mmm.jpg"
         }
       ],
       "steps": [],
       "page_images": [
         {
-          "src": "images/updates/竹簾琴-c1.png"
+          "src": "images/updates/1-c-m.png"
         }
       ],
-      "title_de": "Bambuvorhang xylophone",
-      "slug": "bamboo-curtain-xylophone",
+      "title_de": "Mini-Bambus-Xylophon",
+      "slug": "bamboo-xylophone",
       "materials": [],
       "page_images_ja": [
         {
-          "src": "images/updates/竹簾琴-j1.png"
+          "src": "images/updates/1-j-m.png"
         }
       ],
-      "sort_date": "2026-10-01",
-      "title_en": "Bamboo curtain xylophone",
-      "cover_image": "images/updates/竹簾琴-封面.jpg",
-      "title_zh": "竹簾琴",
+      "sort_date": "2026-08-18",
+      "title_en": "Mini Bamboo Xylophone",
+      "cover_image": "images/updates/snap-1.jpg",
+      "title_zh": "小竹琴",
       "page_images_de": [
         {
-          "src": "images/updates/竹簾琴-g1.png"
+          "src": "images/updates/1-g-m.png"
         }
       ],
       "images": [],
       "type": "images",
-      "title_ja": "すだれ竹琴"
+      "title_ja": "ミニ竹木琴"
+    },
+    {
+      "page_images_en": [
+        {
+          "src": "images/updates/1-1-e-0623-abccc_頁面_31.jpg"
+        }
+      ],
+      "group_size": "10",
+      "steps": [],
+      "page_images": [
+        {
+          "src": "images/updates/1-c.png"
+        }
+      ],
+      "title_de": "Bambus-Schlaginstrument",
+      "slug": "bamboo1",
+      "materials": [],
+      "subject": "跨域",
+      "page_images_ja": [
+        {
+          "src": "images/updates/1-j.png"
+        }
+      ],
+      "sort_date": "2026-07-29",
+      "title_en": "Percussion Bamboo Instrument",
+      "cover_image": "images/updates/1-0730.jpg",
+      "duration": "16小時",
+      "title_zh": "拍打竹樂器",
+      "grade": "小學3年級",
+      "page_images_de": [
+        {
+          "src": "images/updates/1-g.png"
+        }
+      ],
+      "images": [],
+      "type": "images",
+      "title_ja": "打楽器型竹楽器（だがっきがた たけがっき"
     }
   ]
 }

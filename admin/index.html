@@ -4,13 +4,217 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>木育玩具設計 - 內容管理後台</title>
+
+  <!-- 品牌字型：襯線標題用 Noto Serif TC，內文/表單用 Noto Sans TC，跟網站前台一致 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       木育玩具設計｜CMS 後台美編樣式
+       說明給以後維護的人看：
+       Decap CMS 的畫面是它自己的 React 程式在瀏覽器裡即時組出來的，
+       我們沒辦法像改一般網頁一樣直接改它的 HTML；能做的是：
+       1）用「原生表單元件」的標籤選取器（input／textarea／select／
+          button／label）去套樣式──這些是 Decap CMS 不管哪個版本都
+          一定會用到的標準 HTML 標籤，所以這一層最穩定、最不會失效。
+       2）用登入頁實際抓到的 class 名稱（例如 StyledAuthenticationPage、
+          LoginButton）做局部美化──這幾個是目前版本實測抓到的，
+          如果之後 Decap CMS 大版本更新導致樣式跑掉，
+          可以重新打開 /admin/ 頁面、按 F12 查看實際 class 名稱調整。
+       ============================================================ */
+
+    :root {
+      --wd-cream: #FDFBF7;
+      --wd-cream-deep: #f4efe4;
+      --wd-oak: #A57A4E;
+      --wd-oak-soft: rgba(165, 122, 78, .18);
+      --wd-moss: #2D4920;
+      --wd-moss-soft: #dcebc9;
+      --wd-ink: #3d2b20;
+      --wd-border: #e7e2d8;
+    }
+
+    html, body {
+      background: var(--wd-cream) !important;
+    }
+
+    /* ── 全站字型：中文用 Noto Sans TC，標題用 Noto Serif TC ── */
+    #nc-root, #nc-root * {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif !important;
+    }
+    #nc-root h1, #nc-root h2 {
+      font-family: "Noto Serif TC", serif !important;
+      color: var(--wd-ink) !important;
+    }
+
+    /* ── 登入頁：改成跟前台一樣的米白＋橡木/苔蘚綠配色 ── */
+    #nc-root [class*="StyledAuthenticationPage"] {
+      background: radial-gradient(circle at 50% 20%, var(--wd-cream-deep) 0%, var(--wd-cream) 65%) !important;
+    }
+    #nc-root [class*="CustomIconWrapper"] img {
+      width: 110px !important;
+      filter: drop-shadow(0 3px 10px rgba(45, 73, 32, .25));
+    }
+    #nc-root [class*="LoginButton"] {
+      background: var(--wd-moss) !important;
+      border-radius: 999px !important;
+      padding: 15px 36px !important;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      letter-spacing: .02em;
+      box-shadow: 0 6px 16px rgba(45, 73, 32, .28) !important;
+      border: none !important;
+      transition: transform .15s ease, box-shadow .15s ease !important;
+    }
+    #nc-root [class*="LoginButton"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(45, 73, 32, .34) !important;
+    }
+    /* Bridge/Netlify 提供服務的識別小標記，保留但縮小、降低存在感，不整個隱藏 */
+    #nc-root [class*="NetlifyCreditIcon"] {
+      opacity: .35 !important;
+      transform: scale(.8);
+    }
+
+    /* ── 通用表單元件：不管哪個欄位（文字／多行文字／下拉／日期）都套用 ──
+       這一段是原生 HTML 標籤選取器，最穩定、保證會生效。 */
+    #nc-root input[type="text"],
+    #nc-root input[type="email"],
+    #nc-root input[type="password"],
+    #nc-root input[type="search"],
+    #nc-root input[type="number"],
+    #nc-root textarea,
+    #nc-root select {
+      border: 1.5px solid var(--wd-border) !important;
+      border-radius: 10px !important;
+      padding: 11px 14px !important;
+      font-size: 15px !important;
+      line-height: 1.65 !important;
+      color: var(--wd-ink) !important;
+      background: #fff !important;
+      transition: border-color .15s ease, box-shadow .15s ease !important;
+    }
+    #nc-root input[type="text"]:focus,
+    #nc-root input[type="email"]:focus,
+    #nc-root input[type="password"]:focus,
+    #nc-root input[type="search"]:focus,
+    #nc-root input[type="number"]:focus,
+    #nc-root textarea:focus,
+    #nc-root select:focus {
+      border-color: var(--wd-oak) !important;
+      box-shadow: 0 0 0 3px var(--wd-oak-soft) !important;
+      outline: none !important;
+    }
+    #nc-root textarea {
+      min-height: 88px !important;
+    }
+    #nc-root label {
+      font-weight: 700 !important;
+      color: var(--wd-ink) !important;
+    }
+    /* 按鈕統一圓角、字重加粗，看起來更精緻好按 */
+    #nc-root button {
+      border-radius: 8px !important;
+      font-weight: 600 !important;
+    }
+    /* 滑鼠移到可點擊區塊時的手指游標，操作起來更直覺 */
+    #nc-root button, #nc-root [role="button"] {
+      cursor: pointer !important;
+    }
+
+    /* ============================================================
+       開頭載入畫面：在 Decap CMS 的程式從 CDN 載入、初始化完成之前，
+       先顯示一個跟網站同樣風格的品牌畫面，取代原本的空白頁。
+       ============================================================ */
+    #wd-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      background: radial-gradient(circle at 50% 30%, #f4efe4 0%, #FDFBF7 65%);
+      font-family: "Noto Serif TC", serif;
+      color: #3d2b20;
+      transition: opacity .35s ease;
+    }
+    #wd-splash .wd-spinner {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px solid #e7e2d8;
+      border-top-color: #A57A4E;
+      animation: wd-spin 0.9s linear infinite;
+    }
+    #wd-splash .wd-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    #wd-splash .wd-sub {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 13px;
+      color: #8a7c6c;
+    }
+    @keyframes wd-spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
   <!-- Decap CMS 主程式，從 CDN 載入，不需要另外 build。
        登入驗證的部分完全由 admin/config.yml 裡的 backend 設定（DecapBridge）處理，
        這裡不需要再另外載入 Netlify Identity 的程式碼。 -->
+
+  <!-- 品牌載入畫面：程式載入完成後會被下面的小段 JS 自動淡出移除 -->
+  <div id="wd-splash">
+    <div class="wd-spinner"></div>
+    <div class="wd-title">木育玩具設計．內容管理後台</div>
+    <div class="wd-sub">載入中，請稍候…</div>
+  </div>
+
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <!-- 自訂預覽樣式：讓右側即時預覽長得接近網站實際卡片樣式 -->
   <script src="preview-templates.js"></script>
+  <script>
+    (function () {
+      function hideSplash() {
+        var el = document.getElementById('wd-splash');
+        if (!el) return;
+        el.style.opacity = '0';
+        setTimeout(function () { el.remove(); }, 350);
+      }
+      function watchRoot(target) {
+        var observer = new MutationObserver(function () {
+          if (target.children.length > 0) {
+            hideSplash();
+            observer.disconnect();
+          }
+        });
+        observer.observe(target, { childList: true });
+      }
+      var existingRoot = document.getElementById('nc-root');
+      if (existingRoot) {
+        watchRoot(existingRoot);
+      } else {
+        // 保險：如果 #nc-root 這個容器是之後才被 Decap CMS 動態建立的，
+        // 先觀察 body，等它出現了再接著觀察它裡面的內容。
+        var bodyObserver = new MutationObserver(function () {
+          var root = document.getElementById('nc-root');
+          if (root) {
+            bodyObserver.disconnect();
+            watchRoot(root);
+          }
+        });
+        bodyObserver.observe(document.body, { childList: true });
+      }
+      // 保險機制：最多等 6 秒，避免任何原因偵測不到時畫面卡住不消失
+      setTimeout(hideSplash, 6000);
+    })();
+  </script>
 </body>
 </html>
