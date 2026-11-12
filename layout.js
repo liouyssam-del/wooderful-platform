@@ -15,7 +15,7 @@ const navbarHTML = `
     <div class="max-w-[1440px] mx-auto px-6 lg:px-10">
       <div class="flex items-center justify-between h-[90px]">
         <a href="index.html" class="flex items-center transition-transform hover:scale-105">
-          <img src="LOGO-WOOD-nav.png" alt="木育玩具設計" class="logo-img h-[72px] w-auto flex-shrink-0 drop-shadow-sm">
+          <img src="LOGO-WOOD-nav.png" alt="木育玩具設計" class="logo-img h-[64px] w-auto flex-shrink-0 drop-shadow-sm">
         </a>
         <div class="hidden xl:flex items-center gap-7">
           <ul class="flex items-center gap-7">

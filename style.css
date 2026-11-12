@@ -181,10 +181,13 @@ html:lang(en) .text-display,       html:lang(de) .text-display       { font-size
 
 /* 主導覽列（英／德文）：維持原本的 Arial Narrow 窄體字，選單項目多、德文單字長，
    窄體字才放得下一整排；內文才用 Inter。 */
-html:lang(en) .nav-link, html:lang(de) .nav-link {
+html:lang(en) #navbar .nav-link, html:lang(de) #navbar .nav-link {
   font-family: 'Arial Narrow', Arial, 'Helvetica Neue', sans-serif;
-  font-size: 18.6px; letter-spacing: -0.01em;
+  font-size: 20px; letter-spacing: -0.01em;
 }
+/* 導覽列中文／日文字級：選單連結同時套了 Tailwind 的 text-body（16px），
+   要用 #navbar 提高優先順序才蓋得過，否則上面 .nav-link 寫的字級不會生效。 */
+#navbar .nav-link { font-size: 18.5px; }
 /* 選單文字一律不換行（避免「Bamboo Learning & Joy」被切成兩行） */
 .nav-link { white-space: nowrap; }
 /* 螢幕寬度不到 1280px（一般筆電）時，導覽列改用右上角的選單按鈕（漢堡選單），
