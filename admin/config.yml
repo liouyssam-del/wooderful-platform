@@ -529,7 +529,7 @@ collections:
 
   - name: "lessons_images"
     label: "分享教案：PNG 圖片頁"
-    label_singular: "一份教案"
+    label_singular: "教案（PNG 圖片頁）"
     folder: "data/lessons"
     filter: { field: "type", value: "images" }
     create: true
@@ -621,7 +621,7 @@ collections:
           - { label: "圖片說明", name: "caption", widget: "string", required: false }
   - name: "lessons_html"
     label: "分享教案：完整教案頁"
-    label_singular: "一份教案"
+    label_singular: "教案（完整教案頁）"
     folder: "data/lessons"
     filter: { field: "type", value: "html" }
     create: true
